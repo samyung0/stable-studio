@@ -1,0 +1,45 @@
+---
+import AnimatedDivider from "../AnimatedDivider/AnimatedDivider.astro";
+import AnimatedText from "../AnimatedText/AnimatedText.astro";
+import { Image } from "astro:assets";
+import LandingSVG from "@/assets/landing.svg";
+---
+
+<!-- landing section -->
+<section class="pt-24 md:pt-48">
+	<div
+		class="flex flex-col items-stretch justify-between gap-[60px] [grid-row-gap:25px] lg:flex-row">
+		<h1 class="flex-[2] text-[11vw] leading-[1] lg:text-[7vw] 3xl:text-[130px]">
+			We design first class SaaS
+		</h1>
+		<div
+			class="flex min-w-[300px] max-w-[470px] flex-1 shrink-0 flex-col items-start py-4 lg:max-w-full">
+			<div
+				class="pb-8 uppercase leading-[1.7] tracking-tight opacity-80 3xl:text-lg 3xl:tracking-normal">
+				<AnimatedText>Uwwa</AnimatedText> is a design studio focusing solely on SaaS
+				products. We help businesses achieve goals through design.
+			</div>
+			<button class="3xl:text-lg">Explore works</button>
+		</div>
+	</div>
+</section>
+
+<!-- animated divider -->
+<section class="~pt-6/28">
+	<div
+		id="animatedDivider"
+		class="flex flex-nowrap items-center gap-1 overflow-hidden uppercase">
+		<AnimatedDivider />
+		<AnimatedDivider />
+		<span></span>
+		<AnimatedDivider />
+		<span></span>
+		<AnimatedDivider />
+		<span></span>
+	</div>
+</section>
+
+<!-- landing image -->
+<section class="~pt-5/16">
+	<Image src={LandingSVG} alt="landing" class="w-full" loading="eager" />
+</section>

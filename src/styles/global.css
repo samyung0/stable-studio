@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: "PPMori";
+	src: url("/src/assets/font/PPMori-Regular.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "PPMori";
+	src: url("/src/assets/font/PPMori-SemiBold.woff2") format("woff2");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@layer base {
+	:root {
+		--background: 60 8.33% 95.29%;
+		--foreground: 60 1.33% 14.71%;
+		--muted: 48 10.2% 90.39%;
+		--muted-foreground: 30 0.83% 47.06%;
+		--popover: 10 0% 100%;
+		--popover-foreground: 10 60% 5%;
+		--card: 48 10.2% 90.39%;
+		--card-foreground: 60 1.33% 14.71%;
+		--border: 48 10.2% 90.39%;
+		--input: 60 8.33% 95.29%;
+		--primary: 60 1.33% 14.71%;
+		--primary-foreground: 60 8.33% 95.29%;
+		--secondary: 60 1.33% 14.71%;
+		--secondary-foreground: 60 8.33% 95.29%;
+		--accent: 48 10.2% 90.39%;
+		--accent-foreground: 30 0.83% 47.06%;
+		--destructive: 0 31.79% 26.56%;
+		--destructive-foreground: 60 8.33% 95.29%;
+		--ring: 294.47 0% 100%;
+		--radius: 0.5rem;
+
+		--red: #baa9a9;
+		--red_2: #d3c7c6;
+		--red_3: #e0d2d2;
+		--red_4: #bcb0b7;
+		--dark_red: #9f8787;
+		--blue: #a4afb5;
+		--light_blue: #d2d6e0;
+		--dark_blue: #7a95a4;
+		--deep_blue:#2c3437;
+		--yellow: #dee0d2;
+		--dark_green: #6d908b;
+		--green: #93adaa;
+		--green_2: #afb9a8;
+		--orange: #b5ab94;
+		--gray: #b1b1b1;
+		--gray_2: rgb(161, 161, 161);
+		--dark_violet: #8787a3;
+		--violet: #a29ab9;
+		--violet_2: #dad6e3;
+		--chart-1: 12 76% 61%;
+		--chart-2: 173 58% 39%;
+		--chart-3: 197 37% 24%;
+		--chart-4: 43 74% 66%;
+		--chart-5: 27 87% 67%;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background font-sans text-foreground;
+	}
+	html, article, section, main, nav, footer {
+		-webkit-tap-highlight-color: transparent;
+		scrollbar-gutter: stable;
+		scrollbar-color: var(--scrollbar-color) transparent;
+		scrollbar-width: thin;
+	}
+
+	:root {
+		--scrollbar-color: rgba(0, 0, 0, 0.3);
+	}
+	:root.dark {
+		--scrollbar-color: hsla(0, 0%, 100%, 0.3);
+	}
+	/* lenis recommendation */
+	html.lenis,
+	html.lenis body {
+		height: auto;
+	}
+
+	.lenis.lenis-smooth {
+		scroll-behavior: auto !important;
+	}
+
+	.lenis.lenis-smooth [data-lenis-prevent] {
+		overscroll-behavior: contain;
+	}
+
+	.lenis.lenis-stopped {
+		overflow: hidden;
+	}
+
+	.lenis.lenis-smooth iframe {
+		pointer-events: none;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-xs font-semibold leading-[1] tracking-[-0.012em] text-foreground sm:text-sm 3xl:text-base;
+	}
+	input {
+		outline: none;
+	}
+}

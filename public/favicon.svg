@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 99.39 156.87">
+  <defs>
+    <style>
+      .uuid-5ce75c36-fd31-4685-9840-8dc693469af0 {
+        isolation: isolate;
+      }
+
+      .uuid-0885f513-f63a-4e4a-a687-291c505dc7f5 {
+        fill: url(#uuid-87a1c598-2e3a-492f-ae3f-6c00a40169c9);
+      }
+
+      .uuid-0885f513-f63a-4e4a-a687-291c505dc7f5, .uuid-f94f80ef-6203-49ac-a5f3-07dd24158f38, .uuid-56c17c50-bba7-4675-901a-f18542f4e8bc, .uuid-feccbdb6-ca01-49aa-9bc9-d23bad92eb33 {
+        stroke-width: 0px;
+      }
+
+      .uuid-f94f80ef-6203-49ac-a5f3-07dd24158f38 {
+        fill: url(#uuid-9b4f182d-9c7f-41f3-8020-c8b034c0f72d);
+      }
+
+      .uuid-56c17c50-bba7-4675-901a-f18542f4e8bc {
+        fill: #93a2aa;
+      }
+
+      .uuid-56c17c50-bba7-4675-901a-f18542f4e8bc, .uuid-feccbdb6-ca01-49aa-9bc9-d23bad92eb33 {
+        mix-blend-mode: multiply;
+        opacity: .5;
+      }
+
+      .uuid-feccbdb6-ca01-49aa-9bc9-d23bad92eb33 {
+        fill: #1a2e45;
+        fill-rule: evenodd;
+      }
+    </style>
+    <linearGradient id="uuid-87a1c598-2e3a-492f-ae3f-6c00a40169c9" x1="-836.23" y1="980.19" x2="-833.8" y2="980.19" gradientTransform="translate(54298.74 33728.32) rotate(90) scale(40.33 55.35)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9800"/>
+      <stop offset="1" stop-color="#f00090"/>
+    </linearGradient>
+    <linearGradient id="uuid-9b4f182d-9c7f-41f3-8020-c8b034c0f72d" x1="-834.61" y1="982.79" x2="-832.18" y2="982.79" gradientTransform="translate(26038.18 32168.33) rotate(90) scale(38.46 26.48)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f00090"/>
+      <stop offset="1" stop-color="#27b1fc"/>
+    </linearGradient>
+  </defs>
+  <g class="uuid-5ce75c36-fd31-4685-9840-8dc693469af0">
+    <g id="uuid-75bbef88-2da9-4211-8108-c90d4575ad11" data-name="Layer 1">
+      <g>
+        <path class="uuid-0885f513-f63a-4e4a-a687-291c505dc7f5" d="m32.16,32.16h18.23c9.25,0,16.83,7.58,16.83,16.83s-7.58,16.83-16.83,16.83H0v32.16h50.39c26.95,0,48.99-22.04,48.99-48.99h0C99.38,22.04,77.35,0,50.39,0h-18.23L0,32.16h32.16Z"/>
+        <polygon class="uuid-f94f80ef-6203-49ac-a5f3-07dd24158f38" points="0 65.82 0 124.7 0 156.87 32.16 124.71 32.16 65.82 0 65.82"/>
+        <rect class="uuid-56c17c50-bba7-4675-901a-f18542f4e8bc" x="0" y="65.82" width="32.16" height="32.16"/>
+        <polygon class="uuid-feccbdb6-ca01-49aa-9bc9-d23bad92eb33" points="32.16 65.82 36.89 97.98 32.16 97.98 32.16 65.82"/>
+      </g>
+    </g>
+  </g>
+</svg>

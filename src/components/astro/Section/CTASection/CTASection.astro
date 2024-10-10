@@ -1,0 +1,84 @@
+<section
+	class="relative flex w-full flex-col items-center justify-center rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
+	<div
+		id="ctaSection"
+		class="relative grid w-full grid-cols-[150px_1fr] gap-[5vw] px-6 sm:px-12 md:px-16 2xl:flex 2xl:justify-center 2xl:gap-0 3xl:max-w-[80vw]">
+		<p
+			class="mutedText mutedText relative left-0 col-start-[2] row-start-1 ml-auto lg:col-start-[1] 2xl:absolute">
+			/ get started /
+		</p>
+		<div
+			class="col-span-2 col-start-1 row-start-1 -mt-4 lg:col-span-1 lg:col-start-2 lg:-mt-2">
+			<h1
+				class="whitespace-nowrap text-[7vw] leading-[1] tracking-tight 3xl:text-[130px]">
+				Launch Your Website <br />
+				<span>Now</span>
+			</h1>
+			<!-- <CTAPath /> -->
+			<div
+				class="mx-auto flex max-w-[1000px] flex-col gap-10 ~pt-6/24 ~pb-16/52 md:flex-row md:gap-6">
+				<div
+					class="order-last flex flex-1 flex-col gap-6 md:order-first md:gap-10">
+					<p
+						class="text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8] 3xl:text-xl 3xl:leading-[2]">
+						We are providing consultations, for free. Get advice on customer
+						activation, onboarding design, reducing product complexity, or
+						growth experiments.
+					</p>
+					<div class="flex flex-col md:gap-3">
+						<p class="mutedText mutedTextDark">contact us</p>
+						<ul
+							class="flex flex-col text-base font-normal text-primary-foreground/70 md:gap-2 3xl:text-lg">
+							<li><a>samyung@stablestudio.org</a></li>
+							<li><a>Sam's Homepage</a></li>
+							<!-- add a open in the tab icon -->
+						</ul>
+					</div>
+				</div>
+				<form action="" class="flex flex-1 flex-col gap-8">
+					<input
+						type="text"
+						placeholder="first & last name"
+						class="mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border"
+					/>
+					<input
+						type="text"
+						placeholder="email"
+						class="mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border"
+					/>
+					<input
+						type="text"
+						placeholder="what do you want to know"
+						class="mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border"
+					/>
+					<button
+						class="self-start rounded bg-background px-5 py-4 text-primary"
+						>Send a message</button
+					>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style is:global>
+	#ctaSection {
+		grid-template-columns: auto min-content;
+		@media screen and (min-width: 64rem) {
+			/* lg, 1024px */
+			grid-template-columns: minmax(auto, 150px) auto;
+		}
+	}
+</style>
+
+<style>
+	.mutedText {
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-background/70 md:text-xs lg:ml-0 3xl:text-sm;
+	}
+	.mutedTextDark {
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:ml-0 3xl:text-sm;
+	}
+	.mutedTextInput::placeholder {
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:ml-0 3xl:text-sm;
+	}
+</style>

@@ -1,0 +1,317 @@
+---
+import { Image } from "astro:assets";
+import Img1 from "@/assets/img1.svg";
+import Img2 from "@/assets/landing.svg";
+import SpinningWheel from "../spinningWheel.astro";
+---
+
+<div
+	class="col-span-full col-start-1 grid auto-rows-min lg:col-span-2 lg:col-start-2 lg:grid-cols-subgrid">
+	<div class="col-span-full">
+		<div
+			id="processSection"
+			class="max-h-[100dvh] min-h-[100dvh] overflow-hidden ~py-6/24">
+			<!-- top section -->
+			<div class="flex flex-col gap-5 lg:flex-row lg:gap-[7vw]">
+				<!-- title of card -->
+				<div class="max-h-[4rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
+					<h2
+						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
+						Lorem, ipsum dolor.Lorem, ipsum dolor.Lorem, ipsum dolor. lorem50
+					</h2>
+					<h2
+						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
+						This time it's different
+					</h2>
+					<h2
+						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
+						Hi there
+					</h2>
+				</div>
+
+				<div class="flex flex-1 flex-col gap-5">
+					<!-- progress bar -->
+					<div
+						class="relative col-span-2 col-start-1 row-start-1 h-[20px] w-full overflow-hidden rounded bg-card md:col-span-1 md:col-start-2 md:h-[30px]">
+						<div class="absolute flex size-full">
+							<div
+								id="processSectionProgressBar"
+								class="size-full rounded bg-primary">
+							</div>
+							<div
+								id="processSectionWheel"
+								class="absolute left-0 flex h-full items-center justify-center py-0.5 will-change-transform md:p-0.5">
+								<SpinningWheel />
+							</div>
+						</div>
+					</div>
+
+					<!-- progress steps -->
+					<div
+						class="col-start-2 hidden items-center justify-between uppercase tracking-tight text-flatgray md:flex">
+						<!-- label -->
+						<div class="flex items-center justify-start gap-3">
+							<span class="processStep processActive flex items-center gap-1"
+								><span class="overflow-hidden">step</span><span>/01/</span
+								></span
+							>
+							<span class="processStep flex items-center gap-1"
+								><span class="w-0 overflow-hidden">step</span><span>/02/</span
+								></span
+							>
+							<span class="processStep flex items-center gap-1"
+								><span class="w-0 overflow-hidden">step</span><span>/03/</span
+								></span
+							>
+						</div>
+						<!-- progress text -->
+						<div class="flex items-center gap-1">
+							<span class="uppercase">progress</span>
+							<span id="processSectionProgressText" class="text-primary"
+								>0%</span
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- main content section -->
+			<div class="~py-6/16">
+				<article
+					class="flex max-h-[75dvh] min-h-[60dvh] flex-col gap-[4vw] overflow-hidden rounded-xl bg-card md:max-h-[60dvh] md:min-h-[40dvh] md:flex-row">
+					<!-- text part on left -->
+					<div
+						id="processLeft"
+						class="relative flex flex-1 flex-col items-stretch justify-stretch p-6">
+						<div class="flex flex-col gap-6">
+							<p class="text-sm !leading-[1.8] md:text-base 3xl:text-xl">
+								1. We craft intuitive and tailored SaaS experiences that users
+								love. From your idea to a complete design.
+							</p>
+							<div
+								class="text-sm font-normal text-muted-foreground md:text-base 3xl:text-xl">
+								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse
+								voluptas excepturi id laudantium iusto laboriosam a quaerat non
+								optio, rem quo obcaecati, odio cupiditate nostrum nihil deleniti
+								illum quas inventore ullam, expedita soluta. Quo excepturi
+								commodi Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Obcaecati aspernatur modi illum ratione, animi labore
+								reprehenderit. Ea eaque facilis eum adipisci voluptate veniam
+							</div>
+						</div>
+
+						<div class="flex flex-col gap-6">
+							<p class="text-sm !leading-[1.8] md:text-base 3xl:text-xl">
+								2. We craft intuitive and tailored SaaS experiences that users
+								love. From your idea to a complete design.
+							</p>
+							<div
+								class="text-sm font-normal text-muted-foreground md:text-base 3xl:text-xl">
+								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse
+								voluptas excepturi id laudantium iusto laboriosam a quaerat non
+								optio, rem quo obcaecati, odio cupiditate nostrum nihil deleniti
+								illum quas inventore ullam, expedita soluta. Quo excepturi
+								commodi at hic cum mollitia eum dolor saepe voluptatum
+								perspiciatis repellat voluptates velit dolores sequi laborum
+								facilis ratione aliquam, consectetur quos laudantium omnis
+								veniam quod quisquam? Sit natus esse cum nostrum earum
+								laboriosam accusantium hic! Id assumenda animi autem eveniet,
+								beatae ad voluptatum explicabo iusto earum voluptatibus odio cum
+								enim. Sit, nobis illo optio ab
+							</div>
+						</div>
+
+						<div class="flex flex-col gap-6">
+							<p class="text-sm !leading-[1.8] md:text-base 3xl:text-xl">
+								3. We craft intuitive and tailored SaaS experiences that users
+								love. From your idea to a complete design.
+							</p>
+							<div
+								class="text-sm font-normal text-muted-foreground md:text-base 3xl:text-xl">
+								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse
+								voluptas excepturi id laudantium iusto laboriosam a quaerat non
+								optio, rem quo obcaecati, odio cupiditate nostrum nihil deleniti
+								illum quas inventore ullam, expedita soluta. Quo excepturi
+								commodi at hic cum mollitia eum dolor saepe voluptatum
+								perspiciatis repellat voluptates velit dolores sequi laborum
+								facilis ratione aliquam, consectetur quos laudantium omnis
+								veniam quod quisquam? Sit natus esse cum nostrum earum
+								laboriosam accusantium hic! Id assumenda animi autem eveniet,
+								beatae ad voluptatum explicabo iusto earum voluptatibus odio cum
+								enim. Sit, nobis illo optio ab
+							</div>
+						</div>
+					</div>
+
+					<!-- img part on right -->
+					<div
+						id="processRight"
+						class="relative order-first h-[30dvh] w-full p-6 md:sticky md:top-0 md:order-last md:h-auto md:flex-1 md:p-0">
+						<Image
+							src={Img1}
+							alt="Lorem, ipsum dolor."
+							class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
+						/>
+						<Image
+							src={Img2}
+							alt="Lorem, ipsum dolor."
+							class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
+						/>
+						<Image
+							src={Img1}
+							alt="Lorem, ipsum dolor."
+							class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
+						/>
+					</div>
+				</article>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.processActive {
+		@apply text-primary;
+	}
+</style>
+
+<script>
+	import { darkColors } from "@/lib/utils";
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { TextPlugin } from "gsap/TextPlugin";
+	import textAnimationLeft from "./textAnimationLeft";
+	import imageAnimationRight from "./imageAnimationRight";
+	import progressStepsAnimation from "./progressStepsAnimation";
+	import progressBarAnimation from "./progressBarAnimation";
+	import titleAnimation from "./titleAnimation";
+	import progressWheelAnimation from "./progressWheelAnimation";
+
+	gsap.registerPlugin(ScrollTrigger, TextPlugin);
+	gsap.config({
+		force3D: true,
+	});
+	gsap.defaults({
+		overwrite: true,
+	});
+
+	const processSection = document.getElementById(
+		"processSection",
+	) as HTMLElement | null;
+	const processLeftChildren = gsap.utils.toArray(
+		"#processLeft>*",
+	) as HTMLElement[];
+	const processRightChildren = gsap.utils.toArray(
+		"#processRight>*",
+	) as HTMLElement[];
+	const processSectionProgressBar = document.getElementById(
+		"processSectionProgressBar",
+	) as HTMLElement | null;
+	const processSteps = gsap.utils.toArray(".processStep") as HTMLElement[];
+	const processStepsFirstSpan = gsap.utils.toArray(
+		".processStep span:first-child",
+	) as HTMLElement[];
+	const processSectionProgressText = document.getElementById(
+		"processSectionProgressText",
+	) as HTMLElement | null;
+	const processTitle = gsap.utils.toArray(".processTitle") as HTMLElement[];
+	const processSectionWheel = document.getElementById("processSectionWheel");
+
+	if (processSectionProgressBar)
+		processSectionProgressBar.style.willChange = "width";
+	for (let i = 1; i < processLeftChildren.length; i++) {
+		processLeftChildren[i].style.display = "none";
+		processLeftChildren[i].style.opacity = "0";
+	}
+	for (let i = 1; i < processRightChildren.length; i++) {
+		gsap.set(processRightChildren[i], {
+			xPercent: 110,
+		});
+	}
+	for (let i = 0; i < processStepsFirstSpan.length; i++) {
+		processStepsFirstSpan[i].style.willChange = "width";
+	}
+	for (let i = 1; i < processTitle.length; i++) {
+		processTitle[i].style.display = "none";
+	}
+
+	const processStepsSpanWidth = processStepsFirstSpan[0]?.offsetWidth ?? 35;
+
+	const scrollDistancePerCard = 400;
+
+	ScrollTrigger.create({
+		trigger: processSection,
+		start: "top top",
+		end: `+=${scrollDistancePerCard * processLeftChildren.length}`,
+		scrub: 1,
+		// markers: true,
+		pin: true,
+		pinSpacing: true,
+		invalidateOnRefresh: true,
+	});
+
+	const rotateWheel = gsap.to(processSectionWheel, {
+		rotation: 360,
+		transformOrigin: "center",
+		duration: 7,
+		repeat: -1,
+		ease: "none",
+		overwrite: false,
+		onReverseComplete: function () {
+			this.progress(1);
+		},
+	});
+
+	const timeline = gsap.timeline({
+		scrollTrigger: {
+			trigger: processSection,
+			start: "top top",
+			end: `+=${scrollDistancePerCard * processLeftChildren.length}`,
+			scrub: true,
+			id: "processSection",
+			// markers: true,
+			invalidateOnRefresh: true,
+			onUpdate: progressWheelAnimation.bind(null, rotateWheel),
+		},
+		defaults: { duration: 0, ease: "none", overwrite: true },
+		onUpdate: function () {
+			const percent = (this.progress() * 100).toFixed();
+			if (processSectionProgressText)
+				processSectionProgressText.innerText = `${percent}%`;
+		},
+	});
+
+	// the first card does not need any animation when scrolling up or down
+	for (let i = 1; i < processLeftChildren.length; i++) {
+		timeline.add(() => {
+			// note the diff when scrolling down and up
+			const indexToShow = timeline.scrollTrigger?.direction === -1 ? i - 1 : i;
+			const indexToHide = timeline.scrollTrigger?.direction === -1 ? i : i - 1;
+
+			textAnimationLeft(
+				processLeftChildren[indexToShow],
+				processLeftChildren[indexToHide],
+			);
+			imageAnimationRight(
+				processRightChildren[indexToShow],
+				processRightChildren[indexToHide],
+			);
+			progressStepsAnimation(
+				processSteps[indexToShow],
+				processSteps[indexToHide],
+				processStepsFirstSpan[indexToShow],
+				processStepsFirstSpan[indexToHide],
+				processStepsSpanWidth,
+			);
+			titleAnimation(processTitle[indexToShow], processTitle[indexToHide]);
+		}, i);
+	}
+
+	timeline.set({}, {}, processLeftChildren.length);
+
+	progressBarAnimation(
+		timeline,
+		processSectionProgressBar,
+		processSectionWheel,
+	);
+</script>

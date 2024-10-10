@@ -1,0 +1,36 @@
+---
+import SectionHead from "@/layouts/SectionHead.astro";
+import ProcessSectionAnimation from "./ProcessSectionAnimation.astro";
+---
+
+<!-- process section -->
+<section>
+	<SectionHead class="!p-0">
+		<span slot="label">/ how it works /</span>
+		<span slot="title">
+			Le Process <span class="inline-flex items-center"
+				>design
+				<span>&nbsp;</span>
+				<svg
+					width="141"
+					height="24"
+					viewBox="0 0 141 24"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					class="~w-16/40">
+					<path
+						d="M0.826904 11.7536H64.872C67.7041 11.7536 70 9.45768 70 6.62556V5.86736C70 3.45398 71.9564 1.49756 74.3698 1.49756V1.49756C76.7832 1.49756 78.7396 3.45398 78.7396 5.86736V17.2587C78.7396 19.6761 80.6993 21.6358 83.1167 21.6358V21.6358C85.5341 21.6358 87.4938 19.6761 87.4938 17.2587V14.1947C87.4938 10.0851 90.8253 6.75357 94.935 6.75357H131.183C133.291 6.75357 135 8.4627 135 10.571V21.6358M135 21.6358L129.966 16.6021M135 21.6358L140.034 16.6021"
+						stroke="currentColor"
+						stroke-width="2"></path>
+				</svg></span
+			>
+		</span>
+		<p slot="description">
+			A young SaaS Design agency with no red tape. Founded by a perfect duo: an
+			expert designer and a design recruiter. Setting high standards for
+			ourselves and the work we do.
+		</p>
+
+		<ProcessSectionAnimation />
+	</SectionHead>
+</section>

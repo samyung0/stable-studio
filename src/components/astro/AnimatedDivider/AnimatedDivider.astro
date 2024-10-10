@@ -1,0 +1,84 @@
+---
+import Asterisk from "./Asterisk.astro";
+import ArrowRight from "./ArrowRight.astro";
+import Plus from "./Plus.astro";
+import ArrowBoth from "./ArrowBoth.astro";
+---
+
+<div class="flex items-center gap-1 text-flatgray2">
+	<span class="animatedDividerText">aesthetics</span>
+	<span class="pb-1">
+		<Asterisk />
+	</span>
+	<span class="animatedDividerText">efficiency</span>
+	<span class="pb-1">
+		<ArrowRight />
+	</span>
+	<span class="pb-1">
+		<Asterisk />
+	</span>
+	<span class="animatedDividerText">growth</span>
+	<span class="pb-1">
+		<ArrowRight />
+	</span>
+	<span class="animatedDividerText">innovation</span>
+	<span class="pb-1">
+		<Asterisk />
+	</span>
+	<span class="animatedDividerText">analytics</span>
+	<span class="pb-1">
+		<Plus />
+	</span>
+	<span class="animatedDividerText">efficiency</span>
+	<span class="pb-1">
+		<ArrowRight />
+	</span>
+	<span class="animatedDividerText">transparency</span>
+	<span class="pb-1">
+		<Asterisk />
+	</span>
+	<span class="pb-1">
+		<ArrowBoth />
+	</span>
+</div>
+
+<script>
+	import gsap from "gsap";
+	const text = gsap.utils.toArray(".animatedDividerText") as HTMLElement[];
+
+	const animateTextHighlight = () => {
+		const visibleTextNumber = Math.ceil(window.innerWidth / 164);
+
+		const groups = Math.floor(text.length / visibleTextNumber);
+
+		for (let i = 0; i < groups; i++) {
+			const seq = gsap.utils.shuffle(
+				text.slice(i * visibleTextNumber, (i + 1) * visibleTextNumber),
+			);
+
+			const t = gsap.timeline({ repeat: -1 });
+			seq.forEach((el, index) => {
+				t.to(el, {
+					keyframes: [
+						{ color: "hsl(60 1.33% 14.71%)", duration: 1 },
+						{ color: "rgb(161, 161, 161)", duration: 1, delay: gsap.utils.random(0.5, 2) },
+					],
+					delay: () => gsap.utils.random(1, 2),
+				});
+			});
+		}
+	};
+
+	animateTextHighlight();
+
+  let timer: ReturnType<typeof setTimeout>;
+	window.addEventListener("resize", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      gsap.killTweensOf(text);
+      animateTextHighlight();
+    }, 1000);
+	});
+</script>
+
+<!-- TODO: use svg instead of astro file -->

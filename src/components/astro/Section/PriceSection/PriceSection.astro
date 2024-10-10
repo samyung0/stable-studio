@@ -1,0 +1,125 @@
+---
+import SectionHead from "@/layouts/SectionHead.astro";
+import Check from "../../Check.astro";
+---
+
+<section
+	class="relative flex w-full flex-col items-center justify-center lg:rounded-[60px] md:rounded-[40px] rounded-[20px] bg-primary pt-[40dvh] text-primary-foreground">
+	<div
+		id="priceSection"
+		class="flex w-full flex-col items-center 3xl:max-w-[80vw]">
+		<p
+			id="price"
+			class="flex flex-col items-center gap-6 px-6 sm:px-12 md:px-16">
+			<span class="text-[5vw] leading-[1] 3xl:text-[100px]"
+				>Simple and affordable price.</span
+			>
+			<span class="text-center text-[2.5vw] leading-[1.2] 3xl:text-[60px]">
+				No funny hidden fees.
+			</span>
+		</p>
+		<SectionHead
+			class="px-6 ~lg:~pt-32/52 sm:px-12 md:px-16 3xl:max-w-[80vw] 3xl:pt-[15dvh]">
+			<span slot="label" class="text-background/70">/ pricing /</span>
+			<span slot="title">Pricing</span>
+			<p slot="description" class="text-flatgray2">
+				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae, ipsum.
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus placeat
+				aliquam, impedit reprehenderit magni voluptate eum nulla nihil
+				blanditiis aliquid!
+			</p>
+			<div class="col-span-2 col-start-1 flex ~py-6/24 lg:col-start-2">
+				<div
+					class="flex w-full flex-col gap-6 lg:flex-row xl:pl-[15vw] 2xl:pl-[20vw]">
+					<section
+						class="price flex flex-1 flex-col gap-4 rounded-xl bg-flatdeepblue px-6 py-6 lg:gap-6 lg:px-8 lg:py-16">
+						<h2
+							class="flex h-[50px] items-center text-lg leading-[1.4] lg:text-base lg:leading-[1.8] 3xl:text-xl">
+							One-off
+						</h2>
+						<div class="border-t border-muted-foreground"></div>
+						<ul class="space-y-2 md:space-y-3">
+							<li class="flex items-center gap-2 text-primary-foreground">
+								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+									<Check />
+								</span>
+								All Basic Service
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+									<Check />
+								</span>All Basic Service
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+									<Check />
+								</span>All Basic Service
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+									<Check />
+								</span>All Basic Service
+							</li>
+						</ul>
+						<div class="border-t border-muted-foreground"></div>
+						<p class="flex flex-none items-center justify-between">
+							<span>
+								$30.0 <span class="text-primary-foreground/50"> / month</span>
+							</span>
+							<button
+								class="rounded bg-primary px-6 py-3 text-primary-foreground md:py-5"
+								>Start now</button
+							>
+						</p>
+					</section>
+					<section
+						class="price flex flex-1 flex-col gap-4 rounded-xl bg-card px-6 py-6 text-primary lg:gap-6 lg:px-8 lg:py-16">
+						<h2
+							class="flex h-[50px] items-center gap-5 whitespace-nowrap text-xl leading-[1.4] text-primary lg:text-2xl lg:leading-[1.8] xl:gap-[2vw] 3xl:text-3xl">
+							Monthly subscription
+							<span
+								class="text-xs font-normal uppercase text-muted-foreground 3xl:text-sm"
+								>popular</span
+							>
+						</h2>
+						<div class="border-t border-muted-foreground/50"></div>
+						<div class="flex gap-12">
+							<ul class="space-y-3">
+								<li class="flex items-center gap-2">
+									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+										<Check />
+									</span>All Basic Service
+								</li>
+								<li class="flex items-center gap-2">
+									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+										<Check />
+									</span>All Basic Service
+								</li>
+								<li class="flex items-center gap-2">
+									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+										<Check />
+									</span>All Basic Service
+								</li>
+								<li class="flex items-center gap-2">
+									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+										<Check />
+									</span>All Basic Service
+								</li>
+							</ul>
+						</div>
+						<div class="border-t border-muted-foreground/50"></div>
+						<p class="flex items-center justify-between">
+							<span>
+								$30.0 <span class="text-muted-foreground"> / month</span>
+							</span>
+							<button
+								class="rounded bg-primary px-6 py-5 text-primary-foreground"
+								>Start now</button
+							>
+						</p>
+					</section>
+				</div>
+			</div>
+		</SectionHead>
+	</div>
+</section>

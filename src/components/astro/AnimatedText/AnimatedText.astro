@@ -1,0 +1,29 @@
+<span class="animatedText">
+	<slot />
+</span>
+
+<script>
+	import { darkColors } from "@/lib/utils";
+	import gsap from "gsap";
+
+	const colors = darkColors;
+	const startingIndex = gsap.utils.random(0, colors.length - 1);
+	const seq = [
+		...colors.slice(startingIndex),
+		...colors.slice(0, startingIndex),
+	];
+	const el = gsap.utils.toArray(".animatedText") as HTMLElement[];
+	gsap.fromTo(
+		el,
+		{
+			color: seq[0],
+		},
+		{
+			keyframes: { color: [...seq.slice(1), seq[0]] },
+			duration: seq.length,
+			repeat: -1,
+			yoyo: true,
+			ease: "none",
+		},
+	);
+</script>

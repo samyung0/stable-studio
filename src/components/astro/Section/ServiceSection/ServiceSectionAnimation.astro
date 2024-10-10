@@ -1,0 +1,202 @@
+---
+interface Props {
+	subServices?: string[];
+}
+
+import SectionHead from "@/layouts/SectionHead.astro";
+import { toRoman } from "@/lib/utils";
+
+const { subServices } = Astro.props;
+---
+
+<li class="serviceSection bg-background">
+	<SectionHead class="3xl:py-18 !~py-4/12">
+		<span
+			slot="label"
+			class="serviceLabel text-xs text-muted-foreground transition-all duration-500 ease-in md:text-base lg:w-0 3xl:text-lg">
+			<slot name="label" class="text-base" />
+		</span>
+		<span
+			slot="title"
+			class="serviceSectionHeader block text-base uppercase md:text-lg lg:mt-2 3xl:text-2xl">
+			<slot name="title" />
+		</span>
+		<div
+			slot="description"
+			class="flex flex-col gap-3 pt-3 md:pt-4 lg:gap-5 lg:pt-0">
+			<h2
+				class="colorSubheader flex max-w-[500px] flex-1 text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8] 3xl:text-xl">
+				<slot name="subheader" />
+			</h2>
+			<div class="serviceContent">
+				<slot name="description" />
+				{
+					subServices && (
+						<ul class="serviceSectionSub grid grid-cols-[min-content_1fr] divide-y divide-muted-foreground/50 pt-3 text-primary md:pt-4">
+							{subServices.map((subService, index) => (
+								<li class="col-span-2 grid grid-cols-subgrid gap-6 py-2 md:gap-8 md:py-4">
+									<span class="whitespace-nowrap text-sm md:text-base">
+										{toRoman(index + 1)}
+									</span>
+									<span class="text-sm md:text-base">{subService}</span>
+								</li>
+							))}
+						</ul>
+					)
+				}
+			</div>
+		</div>
+	</SectionHead>
+</li>
+<style is:global>
+	.serviceLabelActive {
+		@apply text-primary before:content-['/'] after:content-['/'];
+	}
+</style>
+<script>
+	import { darkColors } from "@/lib/utils";
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+
+	const colorSubheader = gsap.utils.toArray(".colorSubheader") as HTMLElement[];
+	const shuffledDarkColor = gsap.utils.shuffle(darkColors);
+	const expandedArray = Array(
+		Math.ceil(colorSubheader.length / shuffledDarkColor.length),
+	)
+		.fill(shuffledDarkColor)
+		.flat();
+	for (let i = 0; i < colorSubheader.length; i++) {
+		gsap.to(colorSubheader[i], {
+			color: expandedArray[i],
+			duration: 0.5,
+			ease: "power.out",
+		});
+	}
+
+	const container = document.getElementById("serviceSectionContainer");
+	const outerContainer = document.getElementById(
+		"serviceSectionOuterContainer",
+	);
+	const serviceLabel = gsap.utils.toArray(".serviceLabel") as HTMLElement[];
+	const serviceSection = gsap.utils.toArray(".serviceSection") as HTMLElement[];
+	serviceSection[serviceSection.length - 1].style.borderBottomWidth = "1px";
+
+	let scrollTriggers = [] as ScrollTrigger[];
+	let tweens = [] as gsap.core.Tween[];
+
+	const makeCollapsible = () => {
+		scrollTriggers.forEach((trigger) => {
+			trigger.kill();
+		});
+		tweens.forEach((tween) => {
+			tween.seek(0);
+			tween.kill();
+		});
+		scrollTriggers = [];
+		tweens = [];
+		serviceLabel.forEach((label) => {
+			label.classList.remove("serviceLabelActive");
+		});
+
+		if (!container || serviceSection.length < 2) return;
+
+		const offsetTop = parseFloat(getComputedStyle(container).paddingTop);
+
+		let stubArray = [] as number[];
+		for (let i = 0; i < serviceSection.length; i++) {
+			const header = serviceSection[i].querySelector(
+				".serviceSectionHeader",
+			) as HTMLElement | null;
+			const subServices = serviceSection[i].querySelector(
+				".serviceSectionSub",
+			) as HTMLElement | null;
+			let remainingStub = 100;
+			if (header && subServices) {
+				const gap =
+					subServices.getBoundingClientRect().bottom -
+					header.getBoundingClientRect().bottom;
+				remainingStub = serviceSection[i].offsetHeight - gap;
+			}
+			stubArray.push(remainingStub);
+		}
+		const sum = stubArray.slice(0, -1).reduce((prev, acc) => prev + acc, 0);
+		const totalScrollOffset =
+			sum + offsetTop + serviceSection[serviceSection.length - 1].offsetHeight;
+		for (let i = 0; i < serviceSection.length; i++) {
+			const serviceContent = serviceSection[i].querySelector(
+				".serviceContent",
+			) as HTMLElement | null;
+			const subServices = serviceSection[i].querySelector(
+				".serviceSectionSub",
+			) as HTMLElement | null;
+			scrollTriggers.push(
+				ScrollTrigger.create({
+					trigger: serviceSection[i],
+					start: `top-=${stubArray.slice(0, i).reduce((acc, cur) => acc + cur, 0)} top+=${offsetTop}`,
+					endTrigger: container,
+					end: `bottom top+=${totalScrollOffset}`,
+					pin: true,
+					pinSpacing: false,
+					pinType: "transform",
+					anticipatePin: 1,
+					onEnter: () => {
+						serviceLabel[i - 1]?.classList.remove("serviceLabelActive");
+						serviceLabel[i]?.classList.add("serviceLabelActive");
+					},
+					onLeaveBack: () => {
+						serviceLabel[i + 1]?.classList.remove("serviceLabelActive");
+						serviceLabel[i]?.classList.add("serviceLabelActive");
+					},
+					// id: `serviceSection${i}`,
+					// markers: true,
+				}),
+			);
+			// TODO: fix this and use distance from top
+			if (serviceContent && subServices && i < serviceSection.length - 1)
+				tweens.push(
+					gsap.to(serviceContent, {
+						autoAlpha: 0,
+						scrollTrigger: {
+							trigger: subServices,
+							start: `top-=${stubArray.slice(0, i + 1).reduce((acc, cur) => acc + cur, 0) - serviceContent.offsetHeight * 0.5} top+=${offsetTop}`,
+							end: `+=${serviceContent.offsetHeight * 0.5}`,
+							scrub: 1,
+							// id: `serviceContent${i}`,
+							// markers: true,
+						},
+						ease: "power2.out",
+					}),
+				);
+		}
+		const sectionHead = document.querySelector(
+			".sectionHead",
+		) as HTMLElement | null;
+		const sectionHeadPaddingTop = parseFloat(
+			(sectionHead && getComputedStyle(sectionHead).paddingTop) || "0",
+		);
+		// this sets the padding for the next section
+		tweens.push(
+			gsap.to(outerContainer, {
+				y: -sectionHeadPaddingTop,
+				scrollTrigger: {
+					trigger: outerContainer,
+					start: `top top`,
+					end: `bottom top+=${totalScrollOffset - offsetTop}`,
+					scrub: true,
+					// markers: true,
+				},
+				ease: "none",
+			}),
+		);
+	};
+
+	makeCollapsible();
+	let timer: ReturnType<typeof setTimeout>;
+	window.addEventListener("resize", () => {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			makeCollapsible();
+		}, 1000);
+	});
+</script>

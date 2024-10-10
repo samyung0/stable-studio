@@ -1,0 +1,133 @@
+---
+import SectionHead from "@/layouts/SectionHead.astro";
+import FAQSectionAnimation from "./FAQSectionAnimation.astro";
+---
+
+<!-- service section -->
+<section id="faqOuterContainer" class="relative">
+	<SectionHead class="!pt-0 ~pb-8/52 gap-0 md:gap-0">
+		<span slot="label">/ faq /</span>
+		<span slot="title">Frequently asked questions</span>
+		<div
+			class="col-span-full col-start-1 row-start-2 lg:col-span-1 lg:col-start-3 lg:row-start-1">
+			<ul
+				id="faqContainer"
+				class="~pt-8/24 lg:pt-0 flex flex-col [&_.faqSection:last-child]:border-b [&_.faqSection]:border-t [&_.faqSection]:border-muted-foreground/50">
+				<FAQSectionAnimation>
+					<span slot="label">01</span>
+					<span slot="title">Lorem ipsum dolor sit amet</span>
+					<span slot="description"
+						>Your SaaS web app needs a stunning, user-friendly design. We create
+						custom designs that enhance usability, boost retention, and meet
+						your business goals.</span
+					>
+				</FAQSectionAnimation>
+				<FAQSectionAnimation>
+					<span slot="label">01</span>
+					<span slot="title"
+						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+						reiciendis praesentium ullam neque itaque! Velit ut id beatae
+						dolorum error.</span
+					>
+					<span slot="description"
+						>Your SaaS web app needs a stunning, user-friendly design. We create
+						custom designs that enhance usability, boost retention, and meet
+						your business goals.</span
+					>
+				</FAQSectionAnimation>
+				<FAQSectionAnimation>
+					<span slot="label">01</span>
+					<span slot="title"
+						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+						reiciendis praesentium ullam neque itaque! Velit ut id beatae
+						dolorum error.</span
+					>
+					<span slot="description"
+						>Your SaaS web app needs a stunning, user-friendly design. We create
+						custom designs that enhance usability, boost retention, and meet
+						your business goals.</span
+					>
+				</FAQSectionAnimation>
+				<FAQSectionAnimation>
+					<span slot="label">01</span>
+					<span slot="title"
+						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+						reiciendis praesentium ullam neque itaque! Velit ut id beatae
+						dolorum error.</span
+					>
+					<span slot="description"
+						>Your SaaS web app needs a stunning, user-friendly design. We create
+						custom designs that enhance usability, boost retention, and meet
+						your business goals.</span
+					>
+				</FAQSectionAnimation>
+				<FAQSectionAnimation>
+					<span slot="label">01</span>
+					<span slot="title"
+						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+						reiciendis praesentium ullam neque itaque! Velit ut id beatae
+						dolorum error.</span
+					>
+					<span slot="description"
+						>Your SaaS web app needs a stunning, user-friendly design. We create
+						custom designs that enhance usability, boost retention, and meet
+						your business goals.</span
+					>
+				</FAQSectionAnimation>
+				<FAQSectionAnimation>
+					<span slot="label">01</span>
+					<span slot="title"
+						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+						reiciendis praesentium ullam neque itaque! Velit ut id beatae
+						dolorum error.</span
+					>
+					<span slot="description"
+						>Your SaaS web app needs a stunning, user-friendly design. We create
+						custom designs that enhance usability, boost retention, and meet
+						your business goals.</span
+					>
+				</FAQSectionAnimation>
+				<FAQSectionAnimation>
+					<span slot="label">01</span>
+					<span slot="title"
+						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+						reiciendis praesentium ullam neque itaque! Velit ut id beatae
+						dolorum error.</span
+					>
+					<span slot="description"
+						>Your SaaS web app needs a stunning, user-friendly design. We create
+						custom designs that enhance usability, boost retention, and meet
+						your business goals.</span
+					>
+				</FAQSectionAnimation>
+			</ul>
+		</div>
+	</SectionHead>
+</section>
+<script>
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+	gsap.defaults({
+		overwrite: true,
+	});
+	const faqContainer = document.getElementById(
+		"faqContainer",
+	) as HTMLElement | null;
+	const faqCursor = document.getElementById("faqCursor") as HTMLElement | null;
+
+	faqContainer?.addEventListener("mouseenter", (e) => {
+		gsap.to(faqCursor, {
+			opacity: 1,
+			ease: "power3.out",
+			overwrite: "auto",
+		});
+	});
+	faqContainer?.addEventListener("mouseleave", () => {
+		gsap.to(faqCursor, {
+			opacity: 0,
+			ease: "power3.out",
+			overwrite: "auto",
+		});
+	});
+</script>

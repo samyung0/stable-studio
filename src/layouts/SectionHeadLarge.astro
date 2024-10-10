@@ -1,0 +1,44 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div
+	class={cn(
+		"sectionHeadLarge grid gap-4 md:gap-8 lg:gap-0 items-start justify-between ~pt-8/52 w-full",
+		className,
+	)}>
+	<div
+		class="col-[2] row-start-1 ml-auto flex overflow-hidden whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:col-[1] lg:ml-0 3xl:text-sm">
+		<slot name="label" />
+	</div>
+
+	<div
+		class="col-span-1 col-start-1 flex flex-1 text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:col-start-2 lg:-mt-2 lg:text-base lg:leading-[1.8] 3xl:text-xl 3xl:leading-[2]">
+		<slot />
+	</div>
+
+	<div
+		class="col-[2] row-start-1 ml-auto flex overflow-hidden whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:col-[1] lg:ml-0 3xl:text-sm">
+		<slot name="label2" />
+	</div>
+</div>
+
+<style is:global>
+	.sectionHeadLarge {
+		grid-template-columns: minmax(auto, 450px) min-content;
+		@media screen and (min-width: 64rem) {
+			/* lg, 1024px */
+			grid-template-columns: 100px auto 100px;
+		}
+		@media screen and (min-width: 120rem) {
+			/* 3xl, 1920px */
+			grid-template-columns: 100px auto 100px;
+		}
+	}
+</style>
