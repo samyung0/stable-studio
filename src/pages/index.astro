@@ -14,7 +14,7 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 ---
 
 <!-- TODO: company icon --><!-- TODO: add labels and enable anchor links scrolling --><!-- TODO: draw all images and icons (including redesigning the horizontal divider, service animation, pricing animation and cta animation) --><!-- TODO: footer --><!-- TODO: tidy tailwind styles -->
-<div class="relative">
+<!-- <div class="relative">
 	<div
 		id="cursorContainer"
 		class="pointer-events-none absolute left-0 top-0 z-[999]">
@@ -23,7 +23,7 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 			class="pointer-events-none absolute size-32 origin-center opacity-0">
 			<GeometrySquare />
 		</div>
-	</div>
+	</div> -->
 	<Layout>
 		<SEO
 			slot="head"
@@ -78,7 +78,7 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 			set:html={JSON.stringify(indexSchemaMarkup)}
 		/>
 	</Layout>
-</div>
+<!-- </div> -->
 <style is:global>
 	#faqCursor rect {
 		fill-opacity: 0.6;
@@ -104,66 +104,66 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 
 	gsap.ticker.lagSmoothing(0);
 
-	const cursorContainer = document.getElementById(
-		"cursorContainer",
-	) as HTMLElement | null;
-	const faqCursor = document.getElementById("faqCursor") as HTMLElement | null;
+	// const cursorContainer = document.getElementById(
+	// 	"cursorContainer",
+	// ) as HTMLElement | null;
+	// const faqCursor = document.getElementById("faqCursor") as HTMLElement | null;
 
-	gsap.set(faqCursor, {
-		xPercent: -50,
-		yPercent: -50,
-	});
+	// gsap.set(faqCursor, {
+	// 	xPercent: -50,
+	// 	yPercent: -50,
+	// });
 
-	let lastX = 0,
-		lastY = 0,
-		lastScrolled = 0,
-		lenisScrollListenerSet = false;
-	const xTo = gsap.quickTo(faqCursor, "x", {
-		duration: 0.2,
-		ease: "power3",
-	});
-	const yTo = gsap.quickTo(faqCursor, "y", {
-		duration: 0.2,
-		ease: "power3",
-	});
-	const cursorMoveHandler = (e: MouseEvent) => {
-		// const { x, y } = getRelativeXY(e, cursorContainer);
-		xTo(e.pageX);
-		yTo(e.pageY);
-		lastX = e.pageX;
-		lastY = e.pageY;
-	};
-	const cursorScrollHandler = () => {
-		lastY -= lastScrolled;
-		lastScrolled = document.documentElement.scrollTop;
-		lastY += lastScrolled;
-		gsap.set(faqCursor, { y: lastY });
-		gsap.set(faqCursor, { x: lastX });
-	};
-	const mm = gsap.matchMedia();
-	mm.add(
-		{ isLg: "(max-width: 1023px)", isDesktop: "(min-width: 1024px)" },
-		(context) => {
-			const isLg = !!context.conditions?.isLg;
-			if (isLg) {
-				if (cursorContainer) cursorContainer.style.display = "none";
-				return;
-			}
+	// let lastX = 0,
+	// 	lastY = 0,
+	// 	lastScrolled = 0,
+	// 	lenisScrollListenerSet = false;
+	// const xTo = gsap.quickTo(faqCursor, "x", {
+	// 	duration: 0.2,
+	// 	ease: "power3",
+	// });
+	// const yTo = gsap.quickTo(faqCursor, "y", {
+	// 	duration: 0.2,
+	// 	ease: "power3",
+	// });
+	// const cursorMoveHandler = (e: MouseEvent) => {
+	// 	// const { x, y } = getRelativeXY(e, cursorContainer);
+	// 	xTo(e.pageX);
+	// 	yTo(e.pageY);
+	// 	lastX = e.pageX;
+	// 	lastY = e.pageY;
+	// };
+	// const cursorScrollHandler = () => {
+	// 	lastY -= lastScrolled;
+	// 	lastScrolled = document.documentElement.scrollTop;
+	// 	lastY += lastScrolled;
+	// 	gsap.set(faqCursor, { y: lastY });
+	// 	gsap.set(faqCursor, { x: lastX });
+	// };
+	// const mm = gsap.matchMedia();
+	// mm.add(
+	// 	{ isLg: "(max-width: 1023px)", isDesktop: "(min-width: 1024px)" },
+	// 	(context) => {
+	// 		const isLg = !!context.conditions?.isLg;
+	// 		if (isLg) {
+	// 			if (cursorContainer) cursorContainer.style.display = "none";
+	// 			return;
+	// 		}
 
-			document.addEventListener("mousemove", cursorMoveHandler);
-			if (!lenisScrollListenerSet) {
-				lenis.on("scroll", cursorScrollHandler);
-				lenisScrollListenerSet = true;
-			}
+	// 		document.addEventListener("mousemove", cursorMoveHandler);
+	// 		if (!lenisScrollListenerSet) {
+	// 			lenis.on("scroll", cursorScrollHandler);
+	// 			lenisScrollListenerSet = true;
+	// 		}
 
-			if (cursorContainer) cursorContainer.style.display = "block";
+	// 		if (cursorContainer) cursorContainer.style.display = "block";
 
-			() => {
-				document.removeEventListener("mousemove", cursorMoveHandler);
-				// lenis.off("scroll", cursorScrollHandler);
-			};
-		},
-	);
+	// 		() => {
+	// 			document.removeEventListener("mousemove", cursorMoveHandler);
+	// 			// lenis.off("scroll", cursorScrollHandler);
+	// 		};
+	// 	},
+	// );
 
 	// ScrollTrigger.normalizeScroll(true);
 
