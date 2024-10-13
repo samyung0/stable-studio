@@ -6,16 +6,18 @@ import ServiceSection from "@/components/astro/Section/ServiceSection/ServiceSec
 import ProcessSection from "@/components/astro/Section/ProcessSection/ProcessSection.astro";
 import PriceSection from "@/components/astro/Section/PriceSection/PriceSection.astro";
 import LandingSection from "@/components/astro/Section/LandingSection.astro";
-import Header from "@/components/astro/Section/Header.astro";
+import HeaderSection from "@/components/astro/Section/HeaderSection.astro";
 import MissionSection from "@/components/astro/Section/MissionSection.astro";
 import FAQSection from "@/components/astro/Section/FAQSection/FAQSection.astro";
-import GeometrySquare from "@/components/astro/Section/GeometrySquare.astro";
+import GeometrySquare from "@/components/astro/GeometrySquare.astro";
 import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 ---
 
 <!-- TODO: company icon --><!-- TODO: add labels and enable anchor links scrolling --><!-- TODO: draw all images and icons (including redesigning the horizontal divider, service animation, pricing animation and cta animation) --><!-- TODO: footer --><!-- TODO: tidy tailwind styles -->
 <div class="relative">
-	<div id="cursorContainer" class="absolute left-0 top-0 z-[999] pointer-events-none">
+	<div
+		id="cursorContainer"
+		class="pointer-events-none absolute left-0 top-0 z-[999]">
 		<div
 			id="faqCursor"
 			class="pointer-events-none absolute size-32 origin-center opacity-0">
@@ -46,7 +48,7 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 		<!-- hero, services and process section -->
 		<div
 			class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[80vw]">
-			<Header />
+			<HeaderSection />
 			<main>
 				<LandingSection />
 				<ServiceSection />
@@ -112,6 +114,10 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 		yPercent: -50,
 	});
 
+	let lastX = 0,
+		lastY = 0,
+		lastScrolled = 0,
+		lenisScrollListenerSet = false;
 	const xTo = gsap.quickTo(faqCursor, "x", {
 		duration: 0.2,
 		ease: "power3",
@@ -120,10 +126,19 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 		duration: 0.2,
 		ease: "power3",
 	});
-	const cursorHandler = (e: MouseEvent) => {
-		const { x, y } = getRelativeXY(e, cursorContainer);
-		xTo(x);
-		yTo(y);
+	const cursorMoveHandler = (e: MouseEvent) => {
+		// const { x, y } = getRelativeXY(e, cursorContainer);
+		xTo(e.pageX);
+		yTo(e.pageY);
+		lastX = e.pageX;
+		lastY = e.pageY;
+	};
+	const cursorScrollHandler = () => {
+		lastY -= lastScrolled;
+		lastScrolled = document.documentElement.scrollTop;
+		lastY += lastScrolled;
+		gsap.set(faqCursor, { y: lastY });
+		gsap.set(faqCursor, { x: lastX });
 	};
 	const mm = gsap.matchMedia();
 	mm.add(
@@ -135,11 +150,17 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 				return;
 			}
 
-			document.addEventListener("mousemove", cursorHandler);
+			document.addEventListener("mousemove", cursorMoveHandler);
+			if (!lenisScrollListenerSet) {
+				lenis.on("scroll", cursorScrollHandler);
+				lenisScrollListenerSet = true;
+			}
+
 			if (cursorContainer) cursorContainer.style.display = "block";
 
 			() => {
-				document.removeEventListener("mousemove", cursorHandler);
+				document.removeEventListener("mousemove", cursorMoveHandler);
+				// lenis.off("scroll", cursorScrollHandler);
 			};
 		},
 	);

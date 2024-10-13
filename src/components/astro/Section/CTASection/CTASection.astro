@@ -1,3 +1,7 @@
+---
+import Globe from "../../Globe/Globe.astro"
+---
+
 <section
 	class="relative flex w-full flex-col items-center justify-center rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
 	<div
@@ -59,6 +63,11 @@
 			</div>
 		</div>
 	</div>
+	<div
+		id="globeContainer"
+		class="flex w-full items-center justify-center h-0 overflow-hidden">
+		<Globe />
+	</div>
 </section>
 
 <style is:global>
@@ -82,3 +91,28 @@
 		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:ml-0 3xl:text-sm;
 	}
 </style>
+
+<script>
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import globeLogic from "../../Globe/globeLogic";
+	gsap.registerPlugin(ScrollTrigger);
+
+	const ctaSection = document.getElementById(
+		"ctaSection",
+	) as HTMLDivElement | null;
+	const globeContainer = document.getElementById(
+		"globeContainer",
+	) as HTMLDivElement | null;
+
+	// lazy load globe animation, the globe component imported here is a shell only
+	ScrollTrigger.create({
+		trigger: ctaSection,
+		start: "top bottom",
+		onEnter: () => {
+			globeLogic().then(() => {
+				gsap.set(globeContainer, { height: "auto" });
+			});
+		},
+	});
+</script>
