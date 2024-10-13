@@ -1,13 +1,12 @@
 ---
-import { Image } from "astro:assets";
-import Img1 from "@/assets/img1.svg";
-import Img2 from "@/assets/landing.svg";
 import SpinningWheel from "../spinningWheel.astro";
+import ProcessSectionLeft from "./ProcessSectionLeft.astro";
+import ProcessSectionRight from "./ProcessSectionRight.astro";
 ---
 
 <div
 	class="col-span-full col-start-1 grid auto-rows-min lg:col-span-2 lg:col-start-2 lg:grid-cols-subgrid">
-	<div class="col-span-full">
+	<div id="processSectionContainer" class="col-span-full">
 		<div
 			id="processSection"
 			class="max-h-[100dvh] min-h-[100dvh] overflow-hidden ~py-6/24">
@@ -17,15 +16,19 @@ import SpinningWheel from "../spinningWheel.astro";
 				<div class="max-h-[4rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
 					<h2
 						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
-						Lorem, ipsum dolor.Lorem, ipsum dolor.Lorem, ipsum dolor. lorem50
+						Requirement Collection
 					</h2>
 					<h2
 						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
-						This time it's different
+						Prototyping
 					</h2>
 					<h2
 						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
-						Hi there
+						Optimization and Deployment
+					</h2>
+					<h2
+						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
+						Ad Campaign and Profile Building
 					</h2>
 				</div>
 
@@ -63,6 +66,10 @@ import SpinningWheel from "../spinningWheel.astro";
 								><span class="w-0 overflow-hidden">step</span><span>/03/</span
 								></span
 							>
+							<span class="processStep flex items-center gap-1"
+								><span class="w-0 overflow-hidden">step</span><span>/04/</span
+								></span
+							>
 						</div>
 						<!-- progress text -->
 						<div class="flex items-center gap-1">
@@ -78,91 +85,9 @@ import SpinningWheel from "../spinningWheel.astro";
 			<!-- main content section -->
 			<div class="~py-6/16">
 				<article
-					class="flex max-h-[75dvh] min-h-[60dvh] flex-col gap-[4vw] overflow-hidden rounded-xl bg-card md:max-h-[60dvh] md:min-h-[40dvh] md:flex-row">
-					<!-- text part on left -->
-					<div
-						id="processLeft"
-						class="relative flex flex-1 flex-col items-stretch justify-stretch p-6">
-						<div class="flex flex-col gap-6">
-							<p class="text-sm !leading-[1.8] md:text-base 3xl:text-xl">
-								1. We craft intuitive and tailored SaaS experiences that users
-								love. From your idea to a complete design.
-							</p>
-							<div
-								class="text-sm font-normal text-muted-foreground md:text-base 3xl:text-xl">
-								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse
-								voluptas excepturi id laudantium iusto laboriosam a quaerat non
-								optio, rem quo obcaecati, odio cupiditate nostrum nihil deleniti
-								illum quas inventore ullam, expedita soluta. Quo excepturi
-								commodi Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Obcaecati aspernatur modi illum ratione, animi labore
-								reprehenderit. Ea eaque facilis eum adipisci voluptate veniam
-							</div>
-						</div>
-
-						<div class="flex flex-col gap-6">
-							<p class="text-sm !leading-[1.8] md:text-base 3xl:text-xl">
-								2. We craft intuitive and tailored SaaS experiences that users
-								love. From your idea to a complete design.
-							</p>
-							<div
-								class="text-sm font-normal text-muted-foreground md:text-base 3xl:text-xl">
-								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse
-								voluptas excepturi id laudantium iusto laboriosam a quaerat non
-								optio, rem quo obcaecati, odio cupiditate nostrum nihil deleniti
-								illum quas inventore ullam, expedita soluta. Quo excepturi
-								commodi at hic cum mollitia eum dolor saepe voluptatum
-								perspiciatis repellat voluptates velit dolores sequi laborum
-								facilis ratione aliquam, consectetur quos laudantium omnis
-								veniam quod quisquam? Sit natus esse cum nostrum earum
-								laboriosam accusantium hic! Id assumenda animi autem eveniet,
-								beatae ad voluptatum explicabo iusto earum voluptatibus odio cum
-								enim. Sit, nobis illo optio ab
-							</div>
-						</div>
-
-						<div class="flex flex-col gap-6">
-							<p class="text-sm !leading-[1.8] md:text-base 3xl:text-xl">
-								3. We craft intuitive and tailored SaaS experiences that users
-								love. From your idea to a complete design.
-							</p>
-							<div
-								class="text-sm font-normal text-muted-foreground md:text-base 3xl:text-xl">
-								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse
-								voluptas excepturi id laudantium iusto laboriosam a quaerat non
-								optio, rem quo obcaecati, odio cupiditate nostrum nihil deleniti
-								illum quas inventore ullam, expedita soluta. Quo excepturi
-								commodi at hic cum mollitia eum dolor saepe voluptatum
-								perspiciatis repellat voluptates velit dolores sequi laborum
-								facilis ratione aliquam, consectetur quos laudantium omnis
-								veniam quod quisquam? Sit natus esse cum nostrum earum
-								laboriosam accusantium hic! Id assumenda animi autem eveniet,
-								beatae ad voluptatum explicabo iusto earum voluptatibus odio cum
-								enim. Sit, nobis illo optio ab
-							</div>
-						</div>
-					</div>
-
-					<!-- img part on right -->
-					<div
-						id="processRight"
-						class="relative order-first h-[30dvh] w-full p-6 md:sticky md:top-0 md:order-last md:h-auto md:flex-1 md:p-0">
-						<Image
-							src={Img1}
-							alt="Lorem, ipsum dolor."
-							class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
-						/>
-						<Image
-							src={Img2}
-							alt="Lorem, ipsum dolor."
-							class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
-						/>
-						<Image
-							src={Img1}
-							alt="Lorem, ipsum dolor."
-							class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
-						/>
-					</div>
+					class="flex max-h-[75dvh] min-h-[60dvh] flex-col gap-6 rounded-xl bg-card md:max-h-[60dvh] md:min-h-[40dvh] md:flex-row xl:gap-[4vw] 3xl:gap-10">
+					<ProcessSectionLeft />
+					<ProcessSectionRight />
 				</article>
 			</div>
 		</div>
@@ -176,18 +101,17 @@ import SpinningWheel from "../spinningWheel.astro";
 </style>
 
 <script>
-	import { darkColors } from "@/lib/utils";
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { TextPlugin } from "gsap/TextPlugin";
 	import textAnimationLeft from "./textAnimationLeft";
 	import imageAnimationRight from "./imageAnimationRight";
 	import progressStepsAnimation from "./progressStepsAnimation";
 	import progressBarAnimation from "./progressBarAnimation";
 	import titleAnimation from "./titleAnimation";
 	import progressWheelAnimation from "./progressWheelAnimation";
+	import Lenis from "lenis";
 
-	gsap.registerPlugin(ScrollTrigger, TextPlugin);
+	gsap.registerPlugin(ScrollTrigger);
 	gsap.config({
 		force3D: true,
 	});
@@ -216,6 +140,24 @@ import SpinningWheel from "../spinningWheel.astro";
 	) as HTMLElement | null;
 	const processTitle = gsap.utils.toArray(".processTitle") as HTMLElement[];
 	const processSectionWheel = document.getElementById("processSectionWheel");
+	const processLeftDiv = gsap.utils.toArray(
+		"#processLeft>div",
+	) as HTMLElement[];
+	const processSectionContainer = document.getElementById("processSectionContainer");
+
+	for (let i = 0; i < processLeftDiv.length; i++) {
+		const lenis = new Lenis({
+			wrapper: processLeftDiv[i],
+			lerp: 0.4,
+			overscroll: true,
+		});
+
+		gsap.ticker.add((time) => {
+			lenis.raf(time * 1000);
+		});
+	}
+
+	gsap.ticker.lagSmoothing(0);
 
 	if (processSectionProgressBar)
 		processSectionProgressBar.style.willChange = "width";
@@ -237,18 +179,7 @@ import SpinningWheel from "../spinningWheel.astro";
 
 	const processStepsSpanWidth = processStepsFirstSpan[0]?.offsetWidth ?? 35;
 
-	const scrollDistancePerCard = 400;
-
-	ScrollTrigger.create({
-		trigger: processSection,
-		start: "top top",
-		end: `+=${scrollDistancePerCard * processLeftChildren.length}`,
-		scrub: 1,
-		// markers: true,
-		pin: true,
-		pinSpacing: true,
-		invalidateOnRefresh: true,
-	});
+	const scrollDistancePerCard = 360;
 
 	const rotateWheel = gsap.to(processSectionWheel, {
 		rotation: 360,
@@ -266,9 +197,13 @@ import SpinningWheel from "../spinningWheel.astro";
 		scrollTrigger: {
 			trigger: processSection,
 			start: "top top",
+			pin: true,
+			pinType: "transform",
+			pinnedContainer: processSectionContainer,
+			// pinReparent: true,
+			pinSpacing: true,
 			end: `+=${scrollDistancePerCard * processLeftChildren.length}`,
 			scrub: true,
-			id: "processSection",
 			// markers: true,
 			invalidateOnRefresh: true,
 			onUpdate: progressWheelAnimation.bind(null, rotateWheel),
@@ -287,6 +222,8 @@ import SpinningWheel from "../spinningWheel.astro";
 			// note the diff when scrolling down and up
 			const indexToShow = timeline.scrollTrigger?.direction === -1 ? i - 1 : i;
 			const indexToHide = timeline.scrollTrigger?.direction === -1 ? i : i - 1;
+
+			console.log(indexToShow, indexToHide);
 
 			textAnimationLeft(
 				processLeftChildren[indexToShow],

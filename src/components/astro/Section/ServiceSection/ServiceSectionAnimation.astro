@@ -103,7 +103,7 @@ const { subServices } = Astro.props;
 
 		const offsetTop = parseFloat(getComputedStyle(container).paddingTop);
 
-		let stubArray = [] as number[];
+		const remainingArray = [] as number[];
 		for (let i = 0; i < serviceSection.length; i++) {
 			const header = serviceSection[i].querySelector(
 				".serviceSectionHeader",
@@ -111,29 +111,34 @@ const { subServices } = Astro.props;
 			const subServices = serviceSection[i].querySelector(
 				".serviceSectionSub",
 			) as HTMLElement | null;
-			let remainingStub = 100;
+			let remaining = 100;
 			if (header && subServices) {
 				const gap =
 					subServices.getBoundingClientRect().bottom -
 					header.getBoundingClientRect().bottom;
-				remainingStub = serviceSection[i].offsetHeight - gap;
+				remaining = serviceSection[i].offsetHeight - gap;
 			}
-			stubArray.push(remainingStub);
+			remainingArray.push(remaining);
 		}
-		const sum = stubArray.slice(0, -1).reduce((prev, acc) => prev + acc, 0);
+		const sum = remainingArray
+			.slice(0, -1)
+			.reduce((prev, acc) => prev + acc, 0);
 		const totalScrollOffset =
 			sum + offsetTop + serviceSection[serviceSection.length - 1].offsetHeight;
 		for (let i = 0; i < serviceSection.length; i++) {
 			const serviceContent = serviceSection[i].querySelector(
 				".serviceContent",
 			) as HTMLElement | null;
-			const subServices = serviceSection[i].querySelector(
-				".serviceSectionSub",
-			) as HTMLElement | null;
+			// const subServices = serviceSection[i].querySelector(
+			// 	".serviceSectionSub",
+			// ) as HTMLElement | null;
+			const distanceBefore = remainingArray
+				.slice(0, i)
+				.reduce((acc, cur) => acc + cur, 0);
 			scrollTriggers.push(
 				ScrollTrigger.create({
 					trigger: serviceSection[i],
-					start: `top-=${stubArray.slice(0, i).reduce((acc, cur) => acc + cur, 0)} top+=${offsetTop}`,
+					start: `top-=${distanceBefore} top+=${offsetTop}`,
 					endTrigger: container,
 					end: `bottom top+=${totalScrollOffset}`,
 					pin: true,
@@ -152,14 +157,13 @@ const { subServices } = Astro.props;
 					// markers: true,
 				}),
 			);
-			// TODO: fix this and use distance from top
-			if (serviceContent && subServices && i < serviceSection.length - 1)
+			if (serviceContent && i < serviceSection.length - 1)
 				tweens.push(
 					gsap.to(serviceContent, {
 						autoAlpha: 0,
 						scrollTrigger: {
-							trigger: subServices,
-							start: `top-=${stubArray.slice(0, i + 1).reduce((acc, cur) => acc + cur, 0) - serviceContent.offsetHeight * 0.5} top+=${offsetTop}`,
+							trigger: serviceSection[i].parentElement,
+							start: `top-=${distanceBefore - serviceContent.offsetHeight * 0.5} top+=${offsetTop}`,
 							end: `+=${serviceContent.offsetHeight * 0.5}`,
 							scrub: 1,
 							// id: `serviceContent${i}`,
@@ -175,7 +179,7 @@ const { subServices } = Astro.props;
 		const sectionHeadPaddingTop = parseFloat(
 			(sectionHead && getComputedStyle(sectionHead).paddingTop) || "0",
 		);
-		// this sets the padding for the next section
+		// this moves whole container up and indirectly sets the padding for the next section
 		tweens.push(
 			gsap.to(outerContainer, {
 				y: -sectionHeadPaddingTop,

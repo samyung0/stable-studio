@@ -4,29 +4,32 @@ import Check from "../../Check.astro";
 ---
 
 <section
-	class="relative flex w-full flex-col items-center justify-center lg:rounded-[60px] md:rounded-[40px] rounded-[20px] bg-primary pt-[40dvh] text-primary-foreground">
-	<div
-		id="priceSection"
-		class="flex w-full flex-col items-center 3xl:max-w-[80vw]">
-		<p
-			id="price"
-			class="flex flex-col items-center gap-6 px-6 sm:px-12 md:px-16">
-			<span class="text-[5vw] leading-[1] 3xl:text-[100px]"
-				>Simple and affordable price.</span
-			>
-			<span class="text-center text-[2.5vw] leading-[1.2] 3xl:text-[60px]">
-				No funny hidden fees.
-			</span>
-		</p>
-		<SectionHead
-			class="px-6 ~lg:~pt-32/52 sm:px-12 md:px-16 3xl:max-w-[80vw] 3xl:pt-[15dvh]">
+	id="priceSectionContainer"
+	class="relative flex w-full flex-col items-center justify-center rounded-[20px] bg-primary text-primary-foreground md:rounded-[40px] lg:rounded-[60px] 3xl:max-w-full">
+	<div id="priceSection">
+		<div
+			id="priceAnimationContainer"
+			class="flex max-h-[100dvh] min-h-[100dvh] items-center justify-center overflow-hidden">
+			<div id="priceAnimation">
+				<p class="flex flex-col items-center gap-6 px-6 sm:px-12 md:px-16">
+					<span class="text-[5vw] leading-[1] 3xl:text-[100px]"
+						>Simple and affordable price.</span
+					>
+					<span class="text-center text-[2.5vw] leading-[1.2] 3xl:text-[60px]">
+						No funny hidden fees.
+					</span>
+				</p>
+			</div>
+		</div>
+		<SectionHead class="px-6 sm:px-12 md:px-16 3xl:max-w-[80vw]">
+			<!-- class="px-6 ~lg:~pt-32/52 sm:px-12 md:px-16 3xl:max-w-[80vw] 3xl:pt-[15dvh]"> -->
 			<span slot="label" class="text-background/70">/ pricing /</span>
 			<span slot="title">Pricing</span>
 			<p slot="description" class="text-flatgray2">
-				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae, ipsum.
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus placeat
-				aliquam, impedit reprehenderit magni voluptate eum nulla nihil
-				blanditiis aliquid!
+				Extremely affordable pricing for even start-ups. For Saas and sites that
+				need to handle users, the price will scale with the traffic as you grow.
+				Total cost will be mentioned in the budget proposal at the start and we
+				make sure you are clear about it. (Currency in USD)
 			</p>
 			<div class="col-span-2 col-start-1 flex ~py-6/24 lg:col-start-2">
 				<div
@@ -43,28 +46,35 @@ import Check from "../../Check.astro";
 								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
 									<Check />
 								</span>
-								All Basic Service
+								Base 5 pages + Assets Handling
 							</li>
 							<li class="flex items-center gap-2">
 								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
 									<Check />
-								</span>All Basic Service
+								</span>Transitions + Animations
 							</li>
 							<li class="flex items-center gap-2">
 								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
 									<Check />
-								</span>All Basic Service
+								</span>SEO Optimizations
 							</li>
 							<li class="flex items-center gap-2">
 								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
 									<Check />
-								</span>All Basic Service
+								</span>Hosting and Deployment
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+									<Check />
+								</span>One Revision
 							</li>
 						</ul>
 						<div class="border-t border-muted-foreground"></div>
 						<p class="flex flex-none items-center justify-between">
 							<span>
-								$30.0 <span class="text-primary-foreground/50"> / month</span>
+								$780 <span class="text-primary-foreground/50">
+									(50% upfront)</span
+								>
 							</span>
 							<button
 								class="rounded bg-primary px-6 py-3 text-primary-foreground md:py-5"
@@ -88,29 +98,34 @@ import Check from "../../Check.astro";
 								<li class="flex items-center gap-2">
 									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
 										<Check />
-									</span>All Basic Service
+									</span>All features of One-off +
 								</li>
 								<li class="flex items-center gap-2">
 									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
 										<Check />
-									</span>All Basic Service
+									</span>Saas, CMS and User Handling
 								</li>
 								<li class="flex items-center gap-2">
 									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
 										<Check />
-									</span>All Basic Service
+									</span>Infinite Revisions
 								</li>
 								<li class="flex items-center gap-2">
 									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
 										<Check />
-									</span>All Basic Service
+									</span>Lottie Animations
+								</li>
+								<li class="flex items-center gap-2">
+									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+										<Check />
+									</span>Ad Campaigns and Off-Page SEO
 								</li>
 							</ul>
 						</div>
 						<div class="border-t border-muted-foreground/50"></div>
 						<p class="flex items-center justify-between">
 							<span>
-								$30.0 <span class="text-muted-foreground"> / month</span>
+								$110.0 <span class="text-muted-foreground"> / month</span>
 							</span>
 							<button
 								class="rounded bg-primary px-6 py-5 text-primary-foreground"
@@ -123,3 +138,94 @@ import Check from "../../Check.astro";
 		</SectionHead>
 	</div>
 </section>
+
+<script>
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+	gsap.config({
+		force3D: true,
+	});
+	gsap.defaults({
+		overwrite: true,
+	});
+
+	const processSectionContainer = document.getElementById(
+		"processSectionContainer",
+	) as HTMLElement | null;
+	const priceAnimationContainer = document.getElementById(
+		"priceAnimationContainer",
+	) as HTMLElement | null;
+	const priceSectionContainer = document.getElementById(
+		"priceSectionContainer",
+	) as HTMLElement | null;
+
+	const timelineStart = gsap.timeline({
+		scrollTrigger: {
+			trigger: priceSectionContainer,
+			start: "top bottom",
+			end: "top top",
+			pin: processSectionContainer,
+			pinType: "transform",
+			// pinReparent: true,
+			pinSpacing: false,
+			scrub: 1,
+			// markers: true,
+			invalidateOnRefresh: true,
+		},
+		defaults: { overwrite: "auto", ease: "none" },
+	});
+	timelineStart.to(
+		processSectionContainer?.parentElement!,
+		{
+			autoAlpha: 0,
+		},
+		0,
+	);
+
+	timelineStart.to(
+		processSectionContainer?.parentElement!,
+		{
+			y: 30,
+			delay: 0.1,
+		},
+		0,
+	);
+
+	const animationDistance = 1000;
+
+	const timelineMain = gsap.timeline({
+		scrollTrigger: {
+			trigger: priceAnimationContainer,
+			start: "top top",
+			end: `+=${animationDistance}`,
+			pin: true,
+			pinType: "transform",
+			id: "timelineMain",
+			scrub: 1,
+			markers: true,
+			invalidateOnRefresh: true,
+		},
+	});
+
+	const timelineEnd = gsap.timeline({
+		scrollTrigger: {
+			trigger: priceSectionContainer,
+			// pinnedContainer: processSectionContainer,
+			start: `bottom bottom`,
+			end: `bottom top`,
+			scrub: 1,
+			id: "timelineEnd",
+			markers: true,
+			invalidateOnRefresh: true,
+		},
+		defaults: { overwrite: "auto", ease: "none" },
+	});
+	timelineEnd.to(
+		priceSectionContainer,
+		{
+			scale: 0.9,
+		},
+		0,
+	);
+</script>

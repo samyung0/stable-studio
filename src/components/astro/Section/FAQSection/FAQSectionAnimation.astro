@@ -1,6 +1,6 @@
 <li role="button" tabindex="0" class="faqSection 3xl:py-18 bg-background !~py-4/12">
 	<div
-		class="faqContent col-span-1 col-start-1 row-span-2 row-start-1 flex flex-col lg:col-span-2 lg:col-start-2 lg:row-span-1 lg:row-start-1 lg:-mt-[2px]">
+		class="col-span-1 col-start-1 row-span-2 row-start-1 flex flex-col lg:col-span-2 lg:col-start-2 lg:row-span-1 lg:row-start-1 lg:-mt-[2px]">
 		<h2
 			class="faqSectionHeader text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8] 3xl:text-xl">
 			<slot name="title" />
@@ -21,8 +21,8 @@
 <script>
 	import gsap from "gsap";
 
-	const faqContent = gsap.utils.toArray(".faqContent") as HTMLElement[];
-	faqContent.forEach((faq) => {
+	const faqSection = gsap.utils.toArray(".faqSection") as HTMLElement[];
+	faqSection.forEach((faq) => {
 		faq.addEventListener("click", () => {
 			const serviceContent = faq.querySelector(".serviceContent");
 			if (!serviceContent) return;

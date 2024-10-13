@@ -75,11 +75,15 @@
 	body {
 		@apply bg-background font-sans text-foreground;
 	}
-	html, article, section, main, nav, footer {
+	* {
 		-webkit-tap-highlight-color: transparent;
 		scrollbar-gutter: stable;
 		scrollbar-color: var(--scrollbar-color) transparent;
 		scrollbar-width: thin;
+	}
+
+	svg {
+		stroke-width: inherit;
 	}
 
 	:root {
