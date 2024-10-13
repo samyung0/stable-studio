@@ -1,31 +1,23 @@
 ---
-import { Image } from "astro:assets";
-import Img1 from "@/assets/img1.svg";
-import Img2 from "@/assets/landing.svg";
+import Img1 from "../../ui/Img1.astro";
 ---
 
 <!-- img part on right -->
 <div
 	id="processRight"
 	class="relative order-first h-[30dvh] w-full p-6 md:sticky md:top-0 md:order-last md:h-auto md:flex-1 md:p-0">
-	<Image
-		src={Img1}
-		alt="Lorem, ipsum dolor."
-		class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
-	/>
-	<Image
-		src={Img2}
-		alt="Lorem, ipsum dolor."
-		class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
-	/>
-	<Image
-		src={Img1}
-		alt="Lorem, ipsum dolor."
-		class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
-	/>
-	<Image
-		src={Img1}
-		alt="Lorem, ipsum dolor."
-		class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl object-cover object-center will-change-transform md:w-full"
-	/>
+	<div
+		class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl will-change-transform md:w-full">
+		<Img1 />
+	</div>
+	<div
+		class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl will-change-transform md:w-full">
+		<Img1 />
+	</div><div
+		class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl will-change-transform md:w-full">
+		<Img1 />
+	</div><div
+		class="absolute block h-full w-[calc(100%_-_3rem)] rounded-xl will-change-transform md:w-full">
+		<Img1 />
+	</div>
 </div>

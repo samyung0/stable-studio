@@ -9,7 +9,6 @@ import LandingSection from "@/components/astro/Section/LandingSection.astro";
 import HeaderSection from "@/components/astro/Section/HeaderSection.astro";
 import MissionSection from "@/components/astro/Section/MissionSection.astro";
 import FAQSection from "@/components/astro/Section/FAQSection/FAQSection.astro";
-import GeometrySquare from "@/components/astro/GeometrySquare.astro";
 import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 ---
 
@@ -89,11 +88,11 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	import { horizontalLoop } from "@/lib/gsap/loop";
-	import { getRelativeXY } from "@/lib/utils";
+
 	gsap.registerPlugin(ScrollTrigger);
 
 	const lenis = new Lenis({
-		lerp: 0.4,
+		// lerp: 0.4,
 	});
 
 	lenis.on("scroll", ScrollTrigger.update);

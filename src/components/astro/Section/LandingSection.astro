@@ -1,9 +1,8 @@
 ---
 import AnimatedDivider from "../AnimatedDivider/AnimatedDivider.astro";
 import AnimatedText from "../AnimatedText/AnimatedText.astro";
-import { Image } from "astro:assets";
-import LandingSVG from "@/assets/landing.svg";
-import ArrowRightDown from "../ArrowRightDown.astro";
+import ArrowRightDown from "../ui/ArrowRightDown.astro";
+import LandingImg from "../ui/LandingImg.astro";
 ---
 
 <!-- landing section -->
@@ -48,5 +47,5 @@ import ArrowRightDown from "../ArrowRightDown.astro";
 
 <!-- landing image -->
 <section class="~pt-5/16">
-	<Image src={LandingSVG} alt="landing" class="w-full" loading="eager" />
+	<LandingImg />
 </section>
