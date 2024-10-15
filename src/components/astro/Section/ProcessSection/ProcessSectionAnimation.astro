@@ -111,7 +111,6 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	import titleAnimation from "./titleAnimation";
 	import progressWheelAnimation from "./progressWheelAnimation";
 	import priceSectionAnimationLogic from "@/components/astro/Section/PriceSection/priceSectionAnimationLogic";
-	import Lenis from "lenis";
 
 	gsap.registerPlugin(ScrollTrigger);
 	gsap.config({
@@ -150,24 +149,6 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 		"processSectionContainer",
 	);
 
-	// ScrollTrigger.normalizeScroll({
-	// 	target: processScroll!,
-	// 	onWheel: (value) => {
-	// 		console.log(value)
-	// 	}
-	// });
-
-	// const lenisScroll = new Lenis({
-	// 	wrapper: processScroll!,
-	// 	// overscroll: true,
-	// });
-
-	// gsap.ticker.add((time) => {
-	// 	lenisScroll.raf(time * 1000);
-	// });
-
-	// gsap.ticker.lagSmoothing(0);
-
 	ScrollTrigger.normalizeScroll({
 		target: processScroll,
 	});
@@ -189,8 +170,6 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	for (let i = 1; i < processTitle.length; i++) {
 		processTitle[i].style.display = "none";
 	}
-
-	const processStepsSpanWidth = processStepsFirstSpan[0]?.offsetWidth ?? 35;
 
 	const scrollDistancePerCard = 500;
 
@@ -244,16 +223,10 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 				processSteps[indexToHide],
 				processStepsFirstSpan[indexToShow],
 				processStepsFirstSpan[indexToHide],
-				processStepsSpanWidth,
 			);
 			titleAnimation(processTitle[indexToShow], processTitle[indexToHide]);
 
 			if (processScroll) processScroll.scrollTop = 0;
-
-			// lenisScroll.resize();
-			// lenisScroll.scrollTo(0, {
-			// 	immediate: true,
-			// });
 		}, i);
 	}
 

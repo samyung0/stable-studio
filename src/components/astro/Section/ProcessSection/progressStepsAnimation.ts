@@ -5,12 +5,11 @@ const progressStepsAnimation = (
 	hideEl: HTMLElement,
 	showFirstSpan: HTMLElement,
 	hideFirstSpan: HTMLElement,
-	processStepsSpanWidth: number,
 ) => {
 	showEl.classList.add("processActive");
 	hideEl.classList.remove("processActive");
 	gsap.to(showFirstSpan, {
-		width: processStepsSpanWidth,
+		width: "auto",
 		duration: 0.8,
 		ease: "power3.out",
 	});

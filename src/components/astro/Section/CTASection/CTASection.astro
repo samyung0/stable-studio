@@ -121,7 +121,6 @@ import Globe from "../../Globe/Globe.astro";
 			const isMobile = !!context.conditions?.isMobile;
 			const reduceMotion = !!context.conditions?.reduceMotion;
 			if (isMobile || reduceMotion) return;
-			console.log("run")
 			gsap.to(ctaSectionContainer, {
 				scrollTrigger: {
 					trigger: footer,
