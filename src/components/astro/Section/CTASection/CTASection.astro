@@ -1,5 +1,5 @@
 ---
-import Globe from "../../Globe/Globe.astro";
+import GlobeLoader from "@/components/react/GlobeLoader";
 ---
 
 <section
@@ -66,8 +66,9 @@ import Globe from "../../Globe/Globe.astro";
 	</div>
 	<div
 		id="globeContainer"
-		class="hidden ~pb-6/24 w-full items-center justify-center overflow-hidden">
-		<Globe />
+		class="flex w-full items-center justify-center px-6 ~pb-6/24 sm:px-12 md:px-16 3xl:max-w-[90vw]">
+		<!-- <Globe /> -->
+		<GlobeLoader client:load />
 	</div>
 </section>
 
@@ -96,53 +97,5 @@ import Globe from "../../Globe/Globe.astro";
 <script>
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import globeLogic from "../../Globe/globeLogic";
 	gsap.registerPlugin(ScrollTrigger);
-
-	const ctaSection = document.getElementById(
-		"ctaSection",
-	) as HTMLDivElement | null;
-	const globeContainer = document.getElementById(
-		"globeContainer",
-	) as HTMLDivElement | null;
-
-	const footer = document.getElementById("footer");
-	const ctaSectionContainer = document.getElementById("ctaSectionContainer");
-
-	// lazy load globe animation, the globe component imported here is a shell only
-	const mm = gsap.matchMedia();
-	mm.add(
-		{
-			isMobile: "(max-width: 767px)",
-			isDesktop: "(min-width: 768px)",
-			reduceMotion: "(prefers-reduced-motion: reduce)",
-		},
-		(context) => {
-			const isMobile = !!context.conditions?.isMobile;
-			const reduceMotion = !!context.conditions?.reduceMotion;
-			if (isMobile || reduceMotion) return;
-			gsap.to(ctaSectionContainer, {
-				scrollTrigger: {
-					trigger: footer,
-					start: "top bottom",
-					end: "bottom bottom",
-					scrub: 1,
-					markers: true,
-				},
-				scale: 0.9,
-			});
-			gsap.set(globeContainer, { display: "flex" });
-			ScrollTrigger.create({
-				trigger: ctaSection,
-				start: "top bottom",
-				onEnter: () => {
-					globeLogic().then(() => {
-						// gsap.set(globeContainer, { height: "auto" });
-						// scaleTween.invalidate();
-					});
-				},
-			});
-			// () => scaleTween.invalidate;
-		},
-	);
 </script>

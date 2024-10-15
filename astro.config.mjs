@@ -6,23 +6,21 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import astroMetaTags from "astro-meta-tags";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
-	site: "https://stablestudio.org",
-	output: "hybrid",
-	adapter: vercel(),
-	integrations: [
-		sitemap(),
-		tailwind({
-			applyBaseStyles: false,
-		}),
-		astroMetaTags(),
-	],
-	prefetch: {
-		defaultStrategy: "viewport",
-		prefetchAll: true,
-	},
-	image: {
-		remotePatterns: [{ protocol: "https" }],
-	},
+    site: "https://stablestudio.org",
+    output: "hybrid",
+    adapter: vercel(),
+    integrations: [sitemap(), tailwind({
+        applyBaseStyles: false,
+		}), astroMetaTags(), react()],
+    prefetch: {
+        defaultStrategy: "viewport",
+        prefetchAll: true,
+    },
+    image: {
+        remotePatterns: [{ protocol: "https" }],
+    },
 });
