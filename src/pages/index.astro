@@ -13,8 +13,7 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 import FooterSection from "@/components/astro/Section/FooterSection.astro";
 ---
 
-<!-- TODO: company icon --><!-- TODO: add labels and enable anchor links scrolling --><!-- TODO: draw all images and icons (including redesigning the horizontal divider, service animation, pricing animation and cta animation) -->
- <!-- <div class="relative">
+<!-- TODO: company icon --><!-- TODO: add labels and enable anchor links scrolling --><!-- TODO: draw all images and icons (including redesigning the horizontal divider, service animation, pricing animation and cta animation) --><!-- <div class="relative">
 	<div
 		id="cursorContainer"
 		class="pointer-events-none absolute left-0 top-0 z-[999]">
@@ -46,29 +45,23 @@ import FooterSection from "@/components/astro/Section/FooterSection.astro";
 	/>
 
 	<!-- hero, services and process section -->
-	<div
-		class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
-		<HeaderSection />
-		<main>
+	<main>
+		<div
+			class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
+			<HeaderSection />
+
 			<LandingSection />
 			<ServiceSection />
 			<ProcessSection />
-		</main>
-	</div>
+		</div>
 
-	<main>
 		<!-- pricing section -->
 		<PriceSection />
-	</main>
 
-	<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
-		<main>
+		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
 			<MissionSection />
 			<FAQSection />
-		</main>
-	</div>
-
-	<main>
+		</div>
 		<CTASection />
 	</main>
 
@@ -169,13 +162,7 @@ import FooterSection from "@/components/astro/Section/FooterSection.astro";
 	// 	},
 	// );
 
-	const normalizeScroll = ScrollTrigger.normalizeScroll(true);
-
-	declare global {
-		var normalizeScroll: Observer | undefined;
-	}
-
-	window.normalizeScroll = normalizeScroll;
+	ScrollTrigger.normalizeScroll(true);
 
 	horizontalLoop(document.getElementById("animatedDivider"), {
 		repeat: -1,
