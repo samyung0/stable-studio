@@ -10,22 +10,22 @@ const { subServices } = Astro.props;
 ---
 
 <li class="serviceSection bg-background">
-	<SectionHead class="3xl:py-18 !~py-4/12">
+	<SectionHead class="!~py-4/12">
 		<span
 			slot="label"
-			class="serviceLabel text-xs text-muted-foreground transition-all duration-500 ease-in md:text-base lg:w-0 3xl:text-lg">
+			class="inline-block w-[30px] md:w-auto serviceLabel text-muted-foreground transition-all duration-500 ease-in lg:w-0">
 			<slot name="label" class="text-base" />
 		</span>
 		<span
 			slot="title"
-			class="serviceSectionHeader block text-base uppercase md:text-lg lg:mt-2 3xl:text-2xl">
+			class="serviceSectionHeader block text-base uppercase md:text-lg lg:mt-2">
 			<slot name="title" />
 		</span>
 		<div
 			slot="description"
 			class="flex flex-col gap-3 pt-3 md:pt-4 lg:gap-5 lg:pt-0">
 			<h2
-				class="colorSubheader flex max-w-[500px] flex-1 text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8] 3xl:text-xl">
+				class="colorSubheader flex max-w-[500px] flex-1 text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
 				<slot name="subheader" />
 			</h2>
 			<div class="serviceContent">
@@ -58,6 +58,7 @@ const { subServices } = Astro.props;
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	gsap.registerPlugin(ScrollTrigger);
+	ScrollTrigger.config({ ignoreMobileResize: true });
 
 	const colorSubheader = gsap.utils.toArray(".colorSubheader") as HTMLElement[];
 	const shuffledDarkColor = gsap.utils.shuffle(darkColors);

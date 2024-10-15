@@ -2,6 +2,7 @@ const progressBarAnimation = (
 	timeline: gsap.core.Timeline,
 	el: HTMLElement | null,
 	wheelEl: HTMLElement | null,
+	textEl: HTMLElement | null,
 ) => {
 	timeline.fromTo(
 		el,
@@ -17,17 +18,30 @@ const progressBarAnimation = (
 		0,
 	);
 	timeline.fromTo(
-			wheelEl,
-			{
-				x: 0,
-			},
-			{
-				x: () => el?.offsetWidth ?? 0,
-				duration: () => timeline.totalDuration(),
-				overwrite: false,
-			},
-			0,
-		);
+		wheelEl,
+		{
+			x: 0,
+		},
+		{
+			x: () => el?.offsetWidth ?? 0,
+			duration: () => timeline.totalDuration(),
+			overwrite: false,
+		},
+		0,
+	);
+
+	timeline.fromTo(
+		textEl,
+		{
+			innerText: "0%",
+		},
+		{
+			innerText: "100%",
+			snap: { innerText: 1 },
+			duration: () => timeline.totalDuration(),
+		},
+		0,
+	);
 };
 
 export default progressBarAnimation;

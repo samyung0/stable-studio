@@ -1,12 +1,12 @@
-<li role="button" tabindex="0" class="faqSection 3xl:py-18 bg-background !~py-4/12">
+<li role="button" tabindex="0" class="faqSection bg-background !~py-4/12">
 	<div
 		class="col-span-1 col-start-1 row-span-2 row-start-1 flex flex-col lg:col-span-2 lg:col-start-2 lg:row-span-1 lg:row-start-1 lg:-mt-[2px]">
 		<h2
-			class="faqSectionHeader text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8] 3xl:text-xl">
+			class="faqSectionHeader text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
 			<slot name="title" />
 		</h2>
 		<div
-			class="serviceContent w h-0 overflow-hidden text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8] 3xl:text-xl 3xl:leading-[2]">
+			class="serviceContent w h-0 overflow-hidden text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
 			<p class="pt-4 md:pt-5">
 				<slot name="description" />
 			</p>
@@ -20,6 +20,8 @@
 </style>
 <script>
 	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
 
 	const faqSection = gsap.utils.toArray(".faqSection") as HTMLElement[];
 	faqSection.forEach((faq) => {
