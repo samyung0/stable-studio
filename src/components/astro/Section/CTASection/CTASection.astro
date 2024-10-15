@@ -1,30 +1,31 @@
 ---
-import Globe from "../../Globe/Globe.astro"
+import Globe from "../../Globe/Globe.astro";
 ---
 
 <section
+	id="ctaSectionContainer"
 	class="relative flex w-full flex-col items-center justify-center rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
 	<div
 		id="ctaSection"
-		class="relative grid w-full grid-cols-[150px_1fr] gap-[5vw] px-6 sm:px-12 md:px-16 2xl:flex 2xl:justify-center 2xl:gap-0 3xl:max-w-[80vw]">
+		class="relative grid w-full grid-cols-[150px_1fr] gap-[5vw] px-6 sm:px-12 md:px-16 2xl:flex 2xl:justify-center 2xl:gap-0 3xl:max-w-[90vw]">
 		<p
 			class="mutedText mutedText relative left-0 col-start-[2] row-start-1 ml-auto lg:col-start-[1] 2xl:absolute">
 			/ get started /
 		</p>
 		<div
-			class="col-span-2 col-start-1 row-start-1 -mt-4 lg:col-span-1 lg:col-start-2 lg:-mt-2">
+			class="col-span-2 col-start-1 row-start-1 md:-mt-4 lg:col-span-1 lg:col-start-2 lg:-mt-2">
 			<h1
-				class="whitespace-nowrap text-[7vw] leading-[1] tracking-tight 3xl:text-[130px]">
+				class="whitespace-nowrap text-2xl leading-[1] tracking-tight md:text-[7vw] md:leading-[1] 3xl:text-[130px]">
 				Launch Your Website <br />
 				<span>Now</span>
 			</h1>
 			<!-- <CTAPath /> -->
 			<div
-				class="mx-auto flex max-w-[1000px] flex-col gap-10 ~pt-6/24 ~pb-16/52 md:flex-row md:gap-[5vw]">
+				class="mx-auto flex flex-col gap-10 ~py-6/24 md:flex-row md:gap-[5vw]">
 				<div
 					class="order-last flex flex-1 flex-col gap-6 md:order-first md:gap-10">
 					<p
-						class="text-sm leading-[1.4] text-primary-foreground/70 md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8] 3xl:text-xl 3xl:leading-[2]">
+						class="text-sm leading-[1.4] text-primary-foreground/70 md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
 						Got something to ask about? Or just want to say hi? Feel free to
 						drop us a message via email or the contact form and we will get back
 						to you as soon as possible.
@@ -32,7 +33,7 @@ import Globe from "../../Globe/Globe.astro"
 					<div class="flex flex-col md:gap-3">
 						<p class="mutedText mutedTextDark">contact us</p>
 						<ul
-							class="flex flex-col text-base font-normal text-primary-foreground/70 md:gap-2 3xl:text-lg">
+							class="flex flex-col text-base font-normal text-primary-foreground/70 md:gap-2">
 							<li><a>samyung@stablestudio.org</a></li>
 							<li><a>Sam's Homepage</a></li>
 							<!-- add a open in the tab icon -->
@@ -65,7 +66,7 @@ import Globe from "../../Globe/Globe.astro"
 	</div>
 	<div
 		id="globeContainer"
-		class="flex w-full items-center justify-center h-0 overflow-hidden">
+		class="hidden ~pb-6/24 w-full items-center justify-center overflow-hidden">
 		<Globe />
 	</div>
 </section>
@@ -82,13 +83,13 @@ import Globe from "../../Globe/Globe.astro"
 
 <style>
 	.mutedText {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-background/70 md:text-xs lg:ml-0 3xl:text-sm;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-background/70 md:text-xs lg:ml-0;
 	}
 	.mutedTextDark {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:ml-0 3xl:text-sm;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:ml-0;
 	}
 	.mutedTextInput::placeholder {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:ml-0 3xl:text-sm;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:ml-0;
 	}
 </style>
 
@@ -105,14 +106,44 @@ import Globe from "../../Globe/Globe.astro"
 		"globeContainer",
 	) as HTMLDivElement | null;
 
+	const footer = document.getElementById("footer");
+	const ctaSectionContainer = document.getElementById("ctaSectionContainer");
+
 	// lazy load globe animation, the globe component imported here is a shell only
-	ScrollTrigger.create({
-		trigger: ctaSection,
-		start: "top bottom",
-		onEnter: () => {
-			globeLogic().then(() => {
-				gsap.set(globeContainer, { height: "auto" });
-			});
+	const mm = gsap.matchMedia();
+	mm.add(
+		{
+			isMobile: "(max-width: 767px)",
+			isDesktop: "(min-width: 768px)",
+			reduceMotion: "(prefers-reduced-motion: reduce)",
 		},
-	});
+		(context) => {
+			const isMobile = !!context.conditions?.isMobile;
+			const reduceMotion = !!context.conditions?.reduceMotion;
+			if (isMobile || reduceMotion) return;
+			console.log("run")
+			gsap.to(ctaSectionContainer, {
+				scrollTrigger: {
+					trigger: footer,
+					start: "top bottom",
+					end: "bottom bottom",
+					scrub: 1,
+					markers: true,
+				},
+				scale: 0.9,
+			});
+			gsap.set(globeContainer, { display: "flex" });
+			ScrollTrigger.create({
+				trigger: ctaSection,
+				start: "top bottom",
+				onEnter: () => {
+					globeLogic().then(() => {
+						// gsap.set(globeContainer, { height: "auto" });
+						// scaleTween.invalidate();
+					});
+				},
+			});
+			// () => scaleTween.invalidate;
+		},
+	);
 </script>

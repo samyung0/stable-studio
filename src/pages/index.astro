@@ -10,10 +10,11 @@ import HeaderSection from "@/components/astro/Section/HeaderSection.astro";
 import MissionSection from "@/components/astro/Section/MissionSection.astro";
 import FAQSection from "@/components/astro/Section/FAQSection/FAQSection.astro";
 import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
+import FooterSection from "@/components/astro/Section/FooterSection.astro";
 ---
 
-<!-- TODO: company icon --><!-- TODO: add labels and enable anchor links scrolling --><!-- TODO: draw all images and icons (including redesigning the horizontal divider, service animation, pricing animation and cta animation) --><!-- TODO: footer --><!-- TODO: tidy tailwind styles -->
-<!-- <div class="relative">
+<!-- TODO: company icon --><!-- TODO: add labels and enable anchor links scrolling --><!-- TODO: draw all images and icons (including redesigning the horizontal divider, service animation, pricing animation and cta animation) -->
+ <!-- <div class="relative">
 	<div
 		id="cursorContainer"
 		class="pointer-events-none absolute left-0 top-0 z-[999]">
@@ -23,60 +24,64 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 			<GeometrySquare />
 		</div>
 	</div> -->
-	<Layout>
-		<SEO
-			slot="head"
-			title="Yung Chin Pang, Sam"
-			description="I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI."
-			openGraph={{
-				basic: {
-					title: "Yung Chin Pang, Sam",
-					type: "website",
-					image: "https://avatars.githubusercontent.com/u/41984660",
-					url: "https://sam.partialty.com",
-				},
-				optional: {
-					locale: "en-US",
-					siteName: "partialty",
-					description:
-						"I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
-				},
-			}}
-		/>
+<Layout>
+	<SEO
+		slot="head"
+		title="Yung Chin Pang, Sam"
+		description="I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI."
+		openGraph={{
+			basic: {
+				title: "Yung Chin Pang, Sam",
+				type: "website",
+				image: "https://avatars.githubusercontent.com/u/41984660",
+				url: "https://sam.partialty.com",
+			},
+			optional: {
+				locale: "en-US",
+				siteName: "partialty",
+				description:
+					"I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
+			},
+		}}
+	/>
 
-		<!-- hero, services and process section -->
-		<div
-			class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[80vw]">
-			<HeaderSection />
-			<main>
-				<LandingSection />
-				<ServiceSection />
-				<ProcessSection />
-			</main>
-		</div>
-
+	<!-- hero, services and process section -->
+	<div
+		class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
+		<HeaderSection />
 		<main>
-			<!-- pricing section -->
-			<PriceSection />
+			<LandingSection />
+			<ServiceSection />
+			<ProcessSection />
 		</main>
+	</div>
 
-		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[80vw]">
-			<main>
-				<MissionSection />
-				<FAQSection />
-			</main>
-		</div>
+	<main>
+		<!-- pricing section -->
+		<PriceSection />
+	</main>
 
+	<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
 		<main>
-			<CTASection />
+			<MissionSection />
+			<FAQSection />
 		</main>
+	</div>
 
-		<script
-			is:inline
-			type="application/ld+json"
-			set:html={JSON.stringify(indexSchemaMarkup)}
-		/>
-	</Layout>
+	<main>
+		<CTASection />
+	</main>
+
+	<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
+		<FooterSection />
+	</div>
+
+	<script
+		is:inline
+		type="application/ld+json"
+		set:html={JSON.stringify(indexSchemaMarkup)}
+	/>
+</Layout>
 <!-- </div> -->
 <style is:global>
 	#faqCursor rect {
@@ -164,7 +169,13 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 	// 	},
 	// );
 
-	// ScrollTrigger.normalizeScroll(true);
+	const normalizeScroll = ScrollTrigger.normalizeScroll(true);
+
+	declare global {
+		var normalizeScroll: Observer | undefined;
+	}
+
+	window.normalizeScroll = normalizeScroll;
 
 	horizontalLoop(document.getElementById("animatedDivider"), {
 		repeat: -1,

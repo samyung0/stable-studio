@@ -49,7 +49,7 @@
 		--blue: #a4afb5;
 		--light_blue: #d2d6e0;
 		--dark_blue: #7a95a4;
-		--deep_blue:#2c3437;
+		--deep_blue: #2c3437;
 		--yellow: #dee0d2;
 		--dark_green: #6d908b;
 		--green: #93adaa;
@@ -75,9 +75,14 @@
 	body {
 		@apply bg-background font-sans text-foreground;
 	}
+	*::-webkit-scrollbar {
+		width: 2px;
+		height: 2px;
+	}
 	* {
 		-webkit-tap-highlight-color: transparent;
-		scrollbar-gutter: stable;
+		/* scrollabr gutter cause svg transparent in chrome dunno why */
+		/* scrollbar-gutter: stable; */
 		scrollbar-color: var(--scrollbar-color) transparent;
 		scrollbar-width: thin;
 	}
@@ -113,14 +118,11 @@
 	.lenis.lenis-smooth iframe {
 		pointer-events: none;
 	}
-}
-
-@layer base {
 	* {
 		@apply border-border;
 	}
 	body {
-		@apply bg-background text-xs font-semibold leading-[1] tracking-[-0.012em] text-foreground sm:text-sm 3xl:text-base;
+		@apply bg-background text-xs font-semibold leading-[1] tracking-[-0.012em] text-foreground sm:text-sm;
 	}
 	input {
 		outline: none;

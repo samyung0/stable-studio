@@ -9,25 +9,25 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	<div id="processSectionContainer" class="col-span-full">
 		<div
 			id="processSection"
-			class="max-h-[100dvh] min-h-[100dvh] overflow-hidden ~py-6/24">
+			class="flex max-h-[100dvh] min-h-[100dvh] flex-col overflow-hidden ~py-6/24">
 			<!-- top section -->
 			<div class="flex flex-col gap-5 lg:flex-row lg:gap-[7vw]">
 				<!-- title of card -->
 				<div class="max-h-[4rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
 					<h2
-						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
+						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg">
 						Requirement Collection
 					</h2>
 					<h2
-						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
+						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg">
 						Prototyping
 					</h2>
 					<h2
-						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
+						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg">
 						Optimization and Deployment
 					</h2>
 					<h2
-						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg 3xl:text-2xl">
+						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg">
 						Ad Campaign and Profile Building
 					</h2>
 				</div>
@@ -83,9 +83,10 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			</div>
 
 			<!-- main content section -->
-			<div class="~py-6/16">
+			<div class="max-h-full flex-1 overflow-hidden ~py-6/16">
 				<article
-					class="flex max-h-[75dvh] min-h-[60dvh] flex-col gap-6 rounded-xl bg-card md:max-h-[60dvh] md:min-h-[40dvh] md:flex-row xl:gap-[4vw] 3xl:gap-10">
+					id="processScroll"
+					class="flex max-h-full flex-col gap-6 overflow-auto overflow-x-hidden rounded-xl bg-card md:max-h-[60vh] md:min-h-[40vh] md:flex-row xl:gap-[4vw]">
 					<ProcessSectionLeft />
 					<ProcessSectionRight />
 				</article>
@@ -109,8 +110,8 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	import progressBarAnimation from "./progressBarAnimation";
 	import titleAnimation from "./titleAnimation";
 	import progressWheelAnimation from "./progressWheelAnimation";
-	import Lenis from "lenis";
 	import priceSectionAnimationLogic from "@/components/astro/Section/PriceSection/priceSectionAnimationLogic";
+	import Lenis from "lenis";
 
 	gsap.registerPlugin(ScrollTrigger);
 	gsap.config({
@@ -119,6 +120,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	gsap.defaults({
 		overwrite: true,
 	});
+	ScrollTrigger.config({ ignoreMobileResize: true });
 
 	const processSection = document.getElementById(
 		"processSection",
@@ -141,28 +143,37 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	) as HTMLElement | null;
 	const processTitle = gsap.utils.toArray(".processTitle") as HTMLElement[];
 	const processSectionWheel = document.getElementById("processSectionWheel");
-	const processLeftDiv = gsap.utils.toArray(
-		"#processLeft>div",
-	) as HTMLElement[];
+	const processScroll = document.getElementById(
+		"processScroll",
+	) as HTMLElement | null;
 	const processSectionContainer = document.getElementById(
 		"processSectionContainer",
 	);
 
-	for (let i = 0; i < processLeftDiv.length; i++) {
-		const lenis = new Lenis({
-			wrapper: processLeftDiv[i],
-			overscroll: true,
-		});
+	// ScrollTrigger.normalizeScroll({
+	// 	target: processScroll!,
+	// 	onWheel: (value) => {
+	// 		console.log(value)
+	// 	}
+	// });
 
-		gsap.ticker.add((time) => {
-			lenis.raf(time * 1000);
-		});
-	}
+	// const lenisScroll = new Lenis({
+	// 	wrapper: processScroll!,
+	// 	// overscroll: true,
+	// });
 
-	gsap.ticker.lagSmoothing(0);
+	// gsap.ticker.add((time) => {
+	// 	lenisScroll.raf(time * 1000);
+	// });
+
+	// gsap.ticker.lagSmoothing(0);
+
+	ScrollTrigger.normalizeScroll({
+		target: processScroll,
+	});
 
 	if (processSectionProgressBar)
-		processSectionProgressBar.style.willChange = "width";
+		processSectionProgressBar.style.willChange = "transform";
 	for (let i = 1; i < processLeftChildren.length; i++) {
 		processLeftChildren[i].style.display = "none";
 		processLeftChildren[i].style.opacity = "0";
@@ -181,7 +192,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 
 	const processStepsSpanWidth = processStepsFirstSpan[0]?.offsetWidth ?? 35;
 
-	const scrollDistancePerCard = 360;
+	const scrollDistancePerCard = 500;
 
 	const rotateWheel = gsap.to(processSectionWheel, {
 		rotation: 360,
@@ -211,11 +222,6 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			onUpdate: progressWheelAnimation.bind(null, rotateWheel),
 		},
 		defaults: { duration: 0, ease: "none", overwrite: true },
-		onUpdate: function () {
-			const percent = (this.progress() * 100).toFixed();
-			if (processSectionProgressText)
-				processSectionProgressText.innerText = `${percent}%`;
-		},
 	});
 
 	// the first card does not need any animation when scrolling up or down
@@ -241,6 +247,13 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 				processStepsSpanWidth,
 			);
 			titleAnimation(processTitle[indexToShow], processTitle[indexToHide]);
+
+			if (processScroll) processScroll.scrollTop = 0;
+
+			// lenisScroll.resize();
+			// lenisScroll.scrollTo(0, {
+			// 	immediate: true,
+			// });
 		}, i);
 	}
 
@@ -250,6 +263,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 		timeline,
 		processSectionProgressBar,
 		processSectionWheel,
+		processSectionProgressText,
 	);
 
 	priceSectionAnimationLogic();
