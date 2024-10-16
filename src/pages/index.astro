@@ -46,17 +46,19 @@ import FooterSection from "@/components/astro/Section/FooterSection.astro";
 
 	<!-- hero, services and process section -->
 	<main>
-		<div
-			class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
-			<HeaderSection />
+		<div id="normalizeScrollContainer">
+			<div
+				class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
+				<HeaderSection />
 
-			<LandingSection />
-			<ServiceSection />
-			<ProcessSection />
+				<LandingSection />
+				<ServiceSection />
+				<ProcessSection />
+			</div>
+
+			<!-- pricing section -->
+			<PriceSection />
 		</div>
-
-		<!-- pricing section -->
-		<PriceSection />
 
 		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
 			<MissionSection />
@@ -162,7 +164,13 @@ import FooterSection from "@/components/astro/Section/FooterSection.astro";
 	// 	},
 	// );
 
-	ScrollTrigger.normalizeScroll(true);
+	const windowNormalizeScroll = ScrollTrigger.normalizeScroll({});
+
+	declare global {
+		var windowNormalizeScroll: Observer | undefined;
+	}
+
+	window.windowNormalizeScroll = windowNormalizeScroll;
 
 	horizontalLoop(document.getElementById("animatedDivider"), {
 		repeat: -1,

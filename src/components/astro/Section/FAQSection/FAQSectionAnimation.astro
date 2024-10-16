@@ -14,9 +14,9 @@
 	</div>
 </li>
 <style is:global>
-  .serviceContent {
-    will-change: height;
-  }
+	.serviceContent {
+		will-change: height;
+	}
 </style>
 <script>
 	import gsap from "gsap";
@@ -24,20 +24,39 @@
 	gsap.registerPlugin(ScrollTrigger);
 
 	const faqSection = gsap.utils.toArray(".faqSection") as HTMLElement[];
+	const faqOuterContainer = document.getElementById("faqOuterContainer");
+
+	const handleOpen = (faq: HTMLElement, e: Event) => {
+		const serviceContent = faq.querySelector(".serviceContent");
+		if (!serviceContent) return;
+		const open = getComputedStyle(serviceContent).height === "0px";
+		gsap.to(serviceContent, {
+			height: open ? "auto" : "0",
+			opacity: open ? 1 : 0,
+			duration: 0.7,
+			ease: "power4.out",
+			overwrite: true,
+		});
+	};
+
+	// ScrollTrigger.create({
+	// 	trigger: faqOuterContainer,
+	// 	start: "top bottom",
+	// 	onEnter: () => {
+	// 		faqSection.forEach((faq) => {
+	// 			faq.addEventListener("click", handleOpen.bind(null, faq), true);
+	// 		});
+	// 	},
+	// 	onEnterBack: () => {
+	// 		faqSection.forEach((faq) => {
+	// 			faq.removeEventListener("click", handleOpen.bind(null, faq), true);
+	// 		});
+	// 	},
+	// });
+
 	faqSection.forEach((faq) => {
-		faq.addEventListener("click", () => {
-			const serviceContent = faq.querySelector(".serviceContent");
-			if (!serviceContent) return;
-      const open = getComputedStyle(serviceContent).height === "0px";
-			gsap.to(serviceContent, {
-				height: () =>{
-					return open ? "auto" : '0'
-        },
-        opacity: open ? 1 : 0,
-				duration: 0.7,
-				ease: "power4.out",
-				overwrite: true,
-			});
+		faq.addEventListener("click", handleOpen.bind(null, faq), {
+			passive: true,
 		});
 	});
 </script>
