@@ -106,7 +106,7 @@
 	const href = hrefClip.map((anchor) =>
 		(anchor as HTMLAnchorElement).href.split("#").pop(),
 	);
-	const urlHash = window.location.hash.split("#").pop();
+	const urlHash = window.location.hash.split("#")[1];
 	let activeIndex = href.indexOf(urlHash);
 	const resize = () => {
 		if (!clipPathContainer || activeIndex === -1) return;

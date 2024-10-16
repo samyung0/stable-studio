@@ -175,15 +175,14 @@ import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 	});
 
 	window.onload = () => {
-		const urlHash = window.location.href.split("#").pop();
-		if (!urlHash) return;
+		const urlHash = window.location.href.split("#")[1];
 		const config = {
 			offset: -window.innerHeight * 0.1,
 			easing: (x: number) =>
 				x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2,
 			duration: 1.5,
 		};
-		lenis.scrollTo(`#${urlHash}`, config);
+		if (urlHash) lenis.scrollTo(`#${urlHash}`, config);
 		const anchorArray = gsap.utils.toArray(
 			"a[href^='#']",
 		) as HTMLAnchorElement[];
