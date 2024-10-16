@@ -13,7 +13,7 @@ const { subServices } = Astro.props;
 	<SectionHead class="!~py-4/12">
 		<span
 			slot="label"
-			class="inline-block w-[30px] md:w-auto serviceLabel text-muted-foreground transition-all duration-500 ease-in lg:w-0">
+			class="serviceLabel inline-block w-[30px] text-muted-foreground transition-all duration-500 ease-in md:w-auto lg:w-0">
 			<slot name="label" class="text-base" />
 		</span>
 		<span
@@ -83,125 +83,87 @@ const { subServices } = Astro.props;
 	const serviceSection = gsap.utils.toArray(".serviceSection") as HTMLElement[];
 	serviceSection[serviceSection.length - 1].style.borderBottomWidth = "1px";
 
-	let scrollTriggers = [] as ScrollTrigger[];
-	let tweens = [] as gsap.core.Tween[];
+	const offsetTop = parseFloat(getComputedStyle(container!).paddingTop);
 
-	const makeCollapsible = () => {
-		scrollTriggers.forEach((trigger) => {
-			trigger.kill();
-		});
-		tweens.forEach((tween) => {
-			tween.seek(0);
-			tween.kill();
-		});
-		scrollTriggers = [];
-		tweens = [];
-		serviceLabel.forEach((label) => {
-			label.classList.remove("serviceLabelActive");
-		});
-
-		if (!container || serviceSection.length < 2) return;
-
-		const offsetTop = parseFloat(getComputedStyle(container).paddingTop);
-
-		const remainingArray = [] as number[];
-		for (let i = 0; i < serviceSection.length; i++) {
-			const header = serviceSection[i].querySelector(
-				".serviceSectionHeader",
-			) as HTMLElement | null;
-			const subServices = serviceSection[i].querySelector(
-				".serviceSectionSub",
-			) as HTMLElement | null;
-			let remaining = 100;
-			if (header && subServices) {
-				const gap =
-					subServices.getBoundingClientRect().bottom -
-					header.getBoundingClientRect().bottom;
-				remaining = serviceSection[i].offsetHeight - gap;
-			}
-			remainingArray.push(remaining);
-		}
-		const sum = remainingArray
-			.slice(0, -1)
-			.reduce((prev, acc) => prev + acc, 0);
-		const totalScrollOffset =
-			sum + offsetTop + serviceSection[serviceSection.length - 1].offsetHeight;
-		for (let i = 0; i < serviceSection.length; i++) {
-			const serviceContent = serviceSection[i].querySelector(
-				".serviceContent",
-			) as HTMLElement | null;
-			// const subServices = serviceSection[i].querySelector(
-			// 	".serviceSectionSub",
-			// ) as HTMLElement | null;
-			const distanceBefore = remainingArray
-				.slice(0, i)
-				.reduce((acc, cur) => acc + cur, 0);
-			scrollTriggers.push(
-				ScrollTrigger.create({
-					trigger: serviceSection[i],
-					start: `top-=${distanceBefore} top+=${offsetTop}`,
-					endTrigger: container,
-					end: `bottom top+=${totalScrollOffset}`,
-					pin: true,
-					pinSpacing: false,
-					pinType: "transform",
-					anticipatePin: 1,
-					onEnter: () => {
-						serviceLabel[i - 1]?.classList.remove("serviceLabelActive");
-						serviceLabel[i]?.classList.add("serviceLabelActive");
-					},
-					onLeaveBack: () => {
-						serviceLabel[i + 1]?.classList.remove("serviceLabelActive");
-						serviceLabel[i]?.classList.add("serviceLabelActive");
-					},
-					// id: `serviceSection${i}`,
-					// markers: true,
-				}),
-			);
-			if (serviceContent && i < serviceSection.length - 1)
-				tweens.push(
-					gsap.to(serviceContent, {
-						autoAlpha: 0,
-						scrollTrigger: {
-							trigger: serviceSection[i].parentElement,
-							start: `top-=${distanceBefore - serviceContent.offsetHeight * 0.5} top+=${offsetTop}`,
-							end: `+=${serviceContent.offsetHeight * 0.5}`,
-							scrub: 1,
-							// id: `serviceContent${i}`,
-							// markers: true,
-						},
-						ease: "power2.out",
-					}),
-				);
-		}
-		const sectionHead = document.querySelector(
-			".sectionHead",
+	const remainingArray = [] as number[];
+	for (let i = 0; i < serviceSection.length; i++) {
+		const header = serviceSection[i].querySelector(
+			".serviceSectionHeader",
 		) as HTMLElement | null;
-		const sectionHeadPaddingTop = parseFloat(
-			(sectionHead && getComputedStyle(sectionHead).paddingTop) || "0",
-		);
-		// this moves whole container up and indirectly sets the padding for the next section
-		tweens.push(
-			gsap.to(outerContainer, {
-				y: -sectionHeadPaddingTop,
+		const subServices = serviceSection[i].querySelector(
+			".serviceSectionSub",
+		) as HTMLElement | null;
+		let remaining = 100;
+		if (header && subServices) {
+			const gap =
+				subServices.getBoundingClientRect().bottom -
+				header.getBoundingClientRect().bottom;
+			remaining = serviceSection[i].offsetHeight - gap;
+		}
+		remainingArray.push(remaining);
+	}
+	const sum = remainingArray.slice(0, -1).reduce((prev, acc) => prev + acc, 0);
+	const totalScrollOffset =
+		sum + offsetTop + serviceSection[serviceSection.length - 1].offsetHeight;
+	for (let i = 0; i < serviceSection.length; i++) {
+		const serviceContent = serviceSection[i].querySelector(
+			".serviceContent",
+		) as HTMLElement | null;
+		const distanceBefore = remainingArray
+			.slice(0, i)
+			.reduce((acc, cur) => acc + cur, 0);
+		ScrollTrigger.create({
+			trigger: serviceSection[i],
+			start: `top-=${distanceBefore} top+=${offsetTop}`,
+			endTrigger: container,
+			end: `bottom top+=${totalScrollOffset}`,
+			pin: true,
+			pinSpacing: false,
+			pinType: "transform",
+			anticipatePin: 1,
+			onEnter: () => {
+				serviceLabel[i - 1]?.classList.remove("serviceLabelActive");
+				serviceLabel[i]?.classList.add("serviceLabelActive");
+			},
+			onLeaveBack: () => {
+				serviceLabel[i + 1]?.classList.remove("serviceLabelActive");
+				serviceLabel[i]?.classList.add("serviceLabelActive");
+			},
+			// id: `serviceSection${i}`,
+			// markers: true,
+		});
+
+		if (serviceContent && i < serviceSection.length - 1)
+			gsap.to(serviceContent, {
+				autoAlpha: 0,
 				scrollTrigger: {
-					trigger: outerContainer,
-					start: `top top`,
-					end: `bottom top+=${totalScrollOffset - offsetTop}`,
-					scrub: true,
+					trigger: serviceSection[i].parentElement,
+					start: `top-=${distanceBefore - serviceContent.offsetHeight * 0.5} top+=${offsetTop}`,
+					end: `+=${serviceContent.offsetHeight * 0.5}`,
+					scrub: 1,
+					// id: `serviceContent${i}`,
 					// markers: true,
 				},
-				ease: "none",
-			}),
-		);
-	};
+				ease: "power2.out",
+			});
+	}
+	const sectionHead = document.querySelector(
+		".sectionHead",
+	) as HTMLElement | null;
+	const sectionHeadPaddingTop = parseFloat(
+		(sectionHead && getComputedStyle(sectionHead).paddingTop) || "0",
+	);
+	// this moves whole container up and indirectly sets the padding for the next section
 
-	makeCollapsible();
-	let timer: ReturnType<typeof setTimeout>;
-	window.addEventListener("resize", () => {
-		clearTimeout(timer);
-		timer = setTimeout(() => {
-			makeCollapsible();
-		}, 1000);
+	gsap.to(outerContainer, {
+		y: -sectionHeadPaddingTop,
+		scrollTrigger: {
+			trigger: outerContainer,
+			start: `top top`,
+			end: `bottom top+=${totalScrollOffset - offsetTop}`,
+			scrub: true,
+			// markers: true,
+		},
+		ease: "none",
 	});
 </script>

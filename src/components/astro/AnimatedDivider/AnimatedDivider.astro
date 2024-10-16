@@ -72,11 +72,11 @@ import ArrowBoth from "./ArrowBoth.astro";
 	animateTextHighlight();
 
   let timer: ReturnType<typeof setTimeout>;
-	window.addEventListener("resize", () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      gsap.killTweensOf(text);
-      animateTextHighlight();
-    }, 1000);
-	});
+	// window.addEventListener("resize", () => {
+  //   clearTimeout(timer);
+  //   timer = setTimeout(() => {
+  //     gsap.killTweensOf(text);
+  //     animateTextHighlight();
+  //   }, 1000);
+	// });
 </script>
