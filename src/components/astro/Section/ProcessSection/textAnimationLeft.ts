@@ -1,6 +1,6 @@
 import gsap from "gsap";
 
-const textAnimationLeft = (showEl: HTMLElement, hideEl: HTMLElement) => {
+const textAnimationLeft = (showEl: HTMLElement, hideEl: HTMLElement, remaining: HTMLElement[]) => {
 	gsap.fromTo(
 		showEl,
 		{
@@ -18,6 +18,13 @@ const textAnimationLeft = (showEl: HTMLElement, hideEl: HTMLElement) => {
 	gsap.set(hideEl, {
 		display: "none",
 		alpha: 0,
+	});
+
+	remaining.forEach((el) => {
+		gsap.set(el, {
+			display: "none",
+			alpha: 0,
+		});
 	});
 };
 

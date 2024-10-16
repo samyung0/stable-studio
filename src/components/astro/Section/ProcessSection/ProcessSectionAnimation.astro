@@ -13,21 +13,21 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			<!-- top section -->
 			<div class="flex flex-col gap-5 lg:flex-row lg:gap-[7vw]">
 				<!-- title of card -->
-				<div class="max-h-[4rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
+				<div class="max-h-[3.6rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
 					<h2
-						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg">
+						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
 						Requirement Collection
 					</h2>
 					<h2
-						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg">
+						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
 						Prototyping
 					</h2>
 					<h2
-						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg">
+						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
 						Optimization and Deployment
 					</h2>
 					<h2
-						class="processTitle text-base !leading-[2rem] will-change-transform md:text-lg">
+						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
 						Ad Campaign and Profile Building
 					</h2>
 				</div>
@@ -35,7 +35,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 				<div class="flex flex-1 flex-col gap-5">
 					<!-- progress bar -->
 					<div
-						class="relative col-span-2 col-start-1 row-start-1 h-[20px] w-full overflow-hidden rounded bg-card xlcol-span-1 xlcol-start-2 xlh-[30px]">
+						class="xlcol-span-1 xlcol-start-2 xlh-[30px] relative col-span-2 col-start-1 row-start-1 h-[20px] w-full overflow-hidden rounded bg-card xl:h-[25px]">
 						<div class="absolute flex size-full">
 							<div
 								id="processSectionProgressBar"
@@ -83,7 +83,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			</div>
 
 			<!-- main content section -->
-			<div class="h-full flex-1 max-h-full overflow-hidden ~py-6/16 md:h-auto">
+			<div class="h-full max-h-full flex-1 overflow-hidden ~pt-6/16 md:h-auto">
 				<article
 					id="processScroll"
 					class="flex h-full max-h-full flex-col gap-6 overflow-hidden rounded-xl bg-card md:h-auto md:min-h-[40vh] md:flex-row xl:gap-[4vw]">
@@ -150,48 +150,6 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 		"processSectionContainer",
 	);
 
-	// ScrollTrigger.normalizeScroll({
-	// 	target: processScroll,
-	// 	allowClicks: false,
-	// 	allowNestedScroll: false,
-	// 	capture: true,
-	// 	debounce: false,
-	// });
-
-	// const lenis = new Lenis({
-	// 	wrapper: processScroll!,
-	// 	overscroll: true,
-	// });
-
-	// lenis.on("scroll", ScrollTrigger.update);
-
-	// gsap.ticker.add((time) => {
-	// 	lenis.raf(time * 1000);
-	// });
-
-	// processScroll?.addEventListener(
-	// 	"wheel",
-	// 	(e) => {
-	// 		e.stopImmediatePropagation();
-	// 		e.stopPropagation();
-	// 		e.preventDefault();
-	// 	},
-	// 	{
-	// 		capture: false,
-	// 	},
-	// );
-	// processScroll?.addEventListener(
-	// 	"touchstart",
-	// 	(e) => {
-	// 		e.stopImmediatePropagation();
-	// 		e.stopPropagation();
-	// 		e.preventDefault();
-	// 	},
-	// 	{
-	// 		capture: false,
-	// 	},
-	// );
-
 	if (processSectionProgressBar)
 		processSectionProgressBar.style.willChange = "transform";
 	for (let i = 1; i < processLeftChildren.length; i++) {
@@ -252,20 +210,26 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			textAnimationLeft(
 				processLeftChildren[indexToShow],
 				processLeftChildren[indexToHide],
+				processLeftChildren.filter((_, i) => i !== indexToShow && i !== indexToHide),
 			);
 			imageAnimationRight(
 				processRightChildren[indexToShow],
 				processRightChildren[indexToHide],
+				processRightChildren.filter((_, i) => i !== indexToShow && i !== indexToHide),
 			);
 			progressStepsAnimation(
 				processSteps[indexToShow],
 				processSteps[indexToHide],
+				processSteps.filter((_, i) => i !== indexToShow && i !== indexToHide),
 				processStepsFirstSpan[indexToShow],
 				processStepsFirstSpan[indexToHide],
+				processStepsFirstSpan.filter((_, i) => i !== indexToShow && i !== indexToHide),
 			);
-			titleAnimation(processTitle[indexToShow], processTitle[indexToHide]);
-
-			// lenis.resize();
+			titleAnimation(
+				processTitle[indexToShow],
+				processTitle[indexToHide],
+				processTitle.filter((_, i) => i !== indexToShow && i !== indexToHide),
+			);
 		}, i);
 	}
 
