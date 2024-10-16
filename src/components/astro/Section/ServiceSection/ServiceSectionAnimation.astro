@@ -114,13 +114,13 @@ const { subServices } = Astro.props;
 			.reduce((acc, cur) => acc + cur, 0);
 		ScrollTrigger.create({
 			trigger: serviceSection[i],
-			start: `top-=${distanceBefore} top+=${offsetTop}`,
+			start: `top-=${distanceBefore}`,
 			endTrigger: container,
 			end: `bottom top+=${totalScrollOffset}`,
 			pin: true,
 			pinSpacing: false,
 			pinType: "transform",
-			anticipatePin: 1,
+			// anticipatePin: 1,
 			onEnter: () => {
 				serviceLabel[i - 1]?.classList.remove("serviceLabelActive");
 				serviceLabel[i]?.classList.add("serviceLabelActive");
