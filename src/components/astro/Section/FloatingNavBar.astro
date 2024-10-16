@@ -1,0 +1,140 @@
+<nav
+	class="fixed bottom-[2%] left-[50%] hidden h-[44px] -translate-x-[50%] sm:block md:h-[54px]">
+	<div class="relative flex h-full flex-col">
+		<div class="relative z-[100] flex h-full items-center">
+			<div
+				class="flex h-full rounded border border-primary bg-primary text-xs text-primary-foreground">
+				<a id="activeItem" class="flex items-center gap-3 p-5" href="#home"
+					>Home<span>/</span></a
+				>
+			</div>
+			<div class="relative h-full">
+				<div id="navList" class="flex h-full items-center">
+					<ul
+						class="flex h-full flex-row items-center rounded border border-flatgray bg-background">
+						<li class="pl-1 text-xs text-muted-foreground">
+							<a class="flex items-center gap-3 p-5" href="#service">Service</a>
+						</li>
+						<li class="text-xs text-muted-foreground">
+							<a class="flex items-center gap-3 p-5" href="#process">Process</a>
+						</li>
+						<li class="text-xs text-muted-foreground">
+							<a class="flex items-center gap-3 p-5" href="#price">Price</a>
+						</li>
+						<li class="text-xs text-muted-foreground">
+							<a class="flex items-center gap-3 p-5" href="#mission">Mission</a>
+						</li>
+					</ul>
+				</div>
+				<div
+					id="clip-path-container"
+					aria-hidden
+					class="pointer absolute left-0 top-0 flex h-full w-full items-center overflow-hidden rounded border border-primary bg-primary">
+					<ul class="flex h-full flex-row items-center">
+						<li class="pl-1 text-xs text-primary-foreground">
+							<a
+								aria-hidden
+								tabindex="-1"
+								class="flex items-center gap-3 p-5"
+								href="#service">Service</a
+							>
+						</li>
+						<li class="text-xs text-primary-foreground">
+							<a
+								aria-hidden
+								tabindex="-1"
+								class="flex items-center gap-3 p-5"
+								href="#process">Process</a
+							>
+						</li>
+						<li class="text-xs text-primary-foreground">
+							<a
+								aria-hidden
+								tabindex="-1"
+								class="flex items-center gap-3 p-5"
+								href="#price">Price</a
+							>
+						</li>
+						<li class="text-xs text-primary-foreground">
+							<a
+								aria-hidden
+								tabindex="-1"
+								class="flex items-center gap-3 p-5"
+								href="#mission">Mission</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="clip-background" class="rounded bg-flatgray opacity-50"></div>
+	</div>
+</nav>
+
+<style>
+	#clip-path-container {
+		/* transition: clip-path 0.25s ease; */
+		z-index: 100;
+		clip-path: inset(0px 0px 0px 324px round 100px);
+	}
+	#clip-background {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		inset: 0;
+		z-index: 99;
+	}
+	#navList {
+		position: relative;
+		z-index: 100;
+		/* clip-path: inset(0px 0 0px 92px round 100px); */
+	}
+	/* #clip-foreground {
+		z-index: 101;
+		clip-path: inset(0px 380px 0px 0px round 100px);
+	} */
+</style>
+
+<script>
+	import gsap from "gsap";
+	const clipPathContainer = document.getElementById("clip-path-container");
+	const navItems = gsap.utils.toArray("#navList li") as HTMLElement[];
+	const navClipItems = gsap.utils.toArray(
+		"#clip-path-container li",
+	) as HTMLElement[];
+	const hrefClip = gsap.utils.toArray("#clip-path-container li>a");
+	const href = hrefClip.map((anchor) =>
+		(anchor as HTMLAnchorElement).href.split("#").pop(),
+	);
+	const urlHash = window.location.hash.split("#").pop();
+	let activeIndex = href.indexOf(urlHash);
+	const resize = () => {
+		if (!clipPathContainer || activeIndex === -1) return;
+		const containerWidth = clipPathContainer.offsetWidth;
+		const borderWidth =
+			parseFloat(
+				getComputedStyle(clipPathContainer).borderLeftWidth.slice(0, -2),
+			) +
+			parseFloat(
+				getComputedStyle(clipPathContainer).borderRightWidth.slice(0, -2),
+			);
+		const itemOffsetleft = navClipItems[activeIndex]?.offsetLeft ?? 0;
+		const itemOffsetRight =
+			itemOffsetleft + (navClipItems[activeIndex]?.offsetWidth ?? 0);
+		gsap.to(clipPathContainer, {
+			clipPath: `inset(0px ${containerWidth - itemOffsetRight - borderWidth}px 0px ${itemOffsetleft}px round 100px)`,
+			duration: 0.25,
+			ease: "power3",
+		});
+	};
+
+	resize();
+	window.addEventListener("resize", resize);
+
+	navItems.forEach((navItem, index) => {
+		navItem.addEventListener("mouseover", (e) => {
+			activeIndex = index;
+			resize();
+		});
+	});
+</script>

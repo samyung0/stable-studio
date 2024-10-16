@@ -1,6 +1,6 @@
 import gsap from "gsap";
 
-const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement) => {
+const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement, remaining: HTMLElement[]) => {
 	const mm = gsap.matchMedia();
 
 	mm.add(
@@ -51,6 +51,13 @@ const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement) => {
 			gsap.set(hideEl, {
 				xPercent: 110,
 				filter: "blur(0px)",
+			});
+
+			remaining.forEach((el) => {
+				gsap.set(el, {
+					xPercent: 110,
+					filter: "blur(0px)",
+				});
 			});
 		},
 	);

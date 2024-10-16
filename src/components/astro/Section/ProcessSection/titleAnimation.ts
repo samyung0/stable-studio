@@ -1,6 +1,6 @@
 import gsap from "gsap";
 
-const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement) => {
+const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement, remaining: HTMLElement[]) => {
 	gsap.fromTo(
 		showEl,
 		{
@@ -15,6 +15,11 @@ const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement) => {
 	);
 	gsap.set(hideEl, {
 		display: "none",
+	});
+	remaining.forEach((el) => {
+		gsap.set(el, {
+			display: "none",
+		});
 	});
 };
 

@@ -11,7 +11,7 @@ const priceSectionAnimationLogic = () => {
 		"processSection",
 	) as HTMLElement | null;
 	const priceSectionContainer = document.getElementById(
-		"priceSectionContainer",
+		"price",
 	) as HTMLElement | null;
 
 	const mm = gsap.matchMedia();
@@ -62,23 +62,33 @@ const priceSectionAnimationLogic = () => {
 	const priceAnimationContainer = document.getElementById(
 		"priceAnimationContainer",
 	) as HTMLElement | null;
-	const animationDistance = 1000;
 
 	const timelineMain = gsap.timeline({
 		scrollTrigger: {
 			trigger: priceAnimationContainer,
 			// pinnedContainer: priceSectionContainer,
-			start: "top top",
-			end: `+=${animationDistance}`,
-			pin: true,
-			pinType: "transform",
+			start: "top 85%",
+			end: `top 60%`,
+			// pin: true,
+			// pinType: "transform",
 			// pinReparent: true,
 			id: "timelineMain",
 			scrub: 1,
-			markers: true,
+			// markers: true,
 			invalidateOnRefresh: true,
 		},
 	});
+	gsap.set(priceAnimationContainer, {
+		filter: "blur(8px)",
+	});
+	timelineMain.to(
+		priceAnimationContainer,
+		{
+			filter: "blur(0px)",
+			ease: "none",
+		},
+		0,
+	);
 
 	mm.add(
 		{

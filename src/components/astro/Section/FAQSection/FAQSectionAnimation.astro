@@ -24,7 +24,6 @@
 	gsap.registerPlugin(ScrollTrigger);
 
 	const faqSection = gsap.utils.toArray(".faqSection") as HTMLElement[];
-	const faqOuterContainer = document.getElementById("faqOuterContainer");
 
 	const handleOpen = (faq: HTMLElement, e: Event) => {
 		const serviceContent = faq.querySelector(".serviceContent");

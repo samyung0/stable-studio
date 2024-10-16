@@ -11,9 +11,10 @@ import MissionSection from "@/components/astro/Section/MissionSection.astro";
 import FAQSection from "@/components/astro/Section/FAQSection/FAQSection.astro";
 import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 import FooterSection from "@/components/astro/Section/FooterSection.astro";
+import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 ---
 
-<!-- TODO: company icon --><!-- TODO: add labels and enable anchor links scrolling --><!-- TODO: draw all images and icons (including redesigning the horizontal divider, service animation, pricing animation and cta animation) --><!-- <div class="relative">
+<!-- TODO: company icon --><!-- TODO: draw all images and icons (including redesigning the horizontal divider, service animation, pricing animation and cta animation) --><!-- <div class="relative">
 	<div
 		id="cursorContainer"
 		class="pointer-events-none absolute left-0 top-0 z-[999]">
@@ -45,20 +46,18 @@ import FooterSection from "@/components/astro/Section/FooterSection.astro";
 	/>
 
 	<!-- hero, services and process section -->
-	<main>
-		<div id="normalizeScrollContainer">
-			<div
-				class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
-				<HeaderSection />
+	<main id="home">
+		<div
+			class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
+			<HeaderSection />
 
-				<LandingSection />
-				<ServiceSection />
-				<ProcessSection />
-			</div>
-
-			<!-- pricing section -->
-			<PriceSection />
+			<LandingSection />
+			<ServiceSection />
+			<ProcessSection />
 		</div>
+
+		<!-- pricing section -->
+		<PriceSection />
 
 		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
 			<MissionSection />
@@ -70,6 +69,8 @@ import FooterSection from "@/components/astro/Section/FooterSection.astro";
 	<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
 		<FooterSection />
 	</div>
+
+	<FloatingNavBar />
 
 	<script
 		is:inline
@@ -164,16 +165,43 @@ import FooterSection from "@/components/astro/Section/FooterSection.astro";
 	// 	},
 	// );
 
-	const windowNormalizeScroll = ScrollTrigger.normalizeScroll({});
-
-	declare global {
-		var windowNormalizeScroll: Observer | undefined;
-	}
-
-	window.windowNormalizeScroll = windowNormalizeScroll;
+	ScrollTrigger.normalizeScroll({
+		allowClicks: true,
+	});
 
 	horizontalLoop(document.getElementById("animatedDivider"), {
 		repeat: -1,
 		speed: 0.35,
 	});
+
+	window.onload = () => {
+		const urlHash = window.location.href.split("#").pop();
+		if (!urlHash) return;
+		const config = {
+			offset: -window.innerHeight * 0.1,
+			easing: (x: number) =>
+				x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2,
+			duration: 1.5,
+		};
+		lenis.scrollTo(`#${urlHash}`, config);
+		const anchorArray = gsap.utils.toArray(
+			"a[href^='#']",
+		) as HTMLAnchorElement[];
+		anchorArray.forEach((anchor) => {
+			anchor.addEventListener(
+				"click",
+				(e) => {
+					e.preventDefault();
+					const href = anchor.getAttribute("href");
+					if (!href) return;
+					lenis.scrollTo(href, config);
+					window.location.hash = href;
+				},
+				{
+					passive: false,
+					capture: true,
+				},
+			);
+		});
+	};
 </script>
