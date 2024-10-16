@@ -1,6 +1,6 @@
 import gsap from "gsap";
 
-const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement, remaining: HTMLElement[]) => {
+const titleAnimation = (showEl: HTMLElement, hideEl: HTMLElement, remaining: HTMLElement[]) => {
 	gsap.fromTo(
 		showEl,
 		{
@@ -23,4 +23,4 @@ const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement, remaining
 	});
 };
 
-export default imageAnimationRight;
+export default titleAnimation;

@@ -1,14 +1,13 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "verbatimModuleSyntax": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  }
+	"extends": "astro/tsconfigs/strict",
+	"compilerOptions": {
+		"verbatimModuleSyntax": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"types": ["@cloudflare/workers-types/2023-07-01"],
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
+	}
 }
