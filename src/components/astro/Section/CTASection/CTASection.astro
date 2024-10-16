@@ -34,27 +34,38 @@ import GlobeLoader from "@/components/react/GlobeLoader";
 						<p class="mutedText mutedTextDark">contact us</p>
 						<ul
 							class="flex flex-col text-base font-normal text-primary-foreground/70 md:gap-2">
-							<li><a href="mailto:samyung@stablestudio.org">samyung@stablestudio.org</a></li>
+							<li>
+								<a href="mailto:samyung@stablestudio.org"
+									>samyung@stablestudio.org</a
+								>
+							</li>
 							<li><a href="https://sam.partialty.com">Sam's Homepage</a></li>
 						</ul>
 					</div>
 				</div>
 				<form action="" class="flex flex-1 flex-col gap-8">
 					<input
+						autocorrect="off"
+						autocapitalize="off"
+						spellcheck="false"
+						autocomplete="nickname"
 						type="text"
-						placeholder="first & last name"
+						placeholder="how should we call you"
 						class="mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border"
 					/>
 					<input
-						type="text"
-						placeholder="email"
+						autocorrect="off"
+						autocapitalize="off"
+						spellcheck="false"
+						autocomplete="email"
+						type="email"
+						placeholder="email address"
 						class="mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border"
 					/>
-					<input
-						type="text"
-						placeholder="what do you want to know"
-						class="mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border"
-					/>
+					<textarea
+						placeholder="enquiry"
+						class="mutedTextInput text-normal m-0 h-[80px] border-b border-border/30 bg-transparent p-0 text-base font-normal outline-none transition-all focus:border-border"
+					></textarea>
 					<button
 						class="self-start rounded bg-background px-5 py-4 text-primary"
 						>Send a message</button
@@ -74,8 +85,10 @@ import GlobeLoader from "@/components/react/GlobeLoader";
 <style is:global>
 	#ctaSection {
 		grid-template-columns: auto min-content;
-		@media screen and (min-width: 64rem) {
-			/* lg, 1024px */
+	}
+	@media screen and (min-width: 64rem) {
+		/* lg, 1024px */
+		#ctaSection {
 			grid-template-columns: minmax(auto, 150px) auto;
 		}
 	}
@@ -83,13 +96,13 @@ import GlobeLoader from "@/components/react/GlobeLoader";
 
 <style>
 	.mutedText {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-background/70 md:text-xs lg:ml-0;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-background/70 md:text-xs lg:ml-0;
 	}
 	.mutedTextDark {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:ml-0;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-muted-foreground md:text-xs lg:ml-0;
 	}
 	.mutedTextInput::placeholder {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:ml-0;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-muted-foreground md:text-xs lg:ml-0;
 	}
 </style>
 

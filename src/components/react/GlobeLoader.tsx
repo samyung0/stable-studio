@@ -4,6 +4,7 @@ export default function () {
 	const [globeLoaded, setGlobeLoaded] = useState(false);
 	const [Globe, setGlobe] = useState<any>(null);
 	useEffect(() => {
+		if(window.innerWidth < 768) return;
 		if (!IntersectionObserver) return;
 		const ctaSection = document.getElementById(
 			"ctaSectionContainer",
