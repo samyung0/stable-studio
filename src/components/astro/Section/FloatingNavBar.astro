@@ -75,7 +75,7 @@
 	#clip-path-container {
 		/* transition: clip-path 0.25s ease; */
 		z-index: 100;
-		clip-path: inset(0px 0px 0px 324px round 100px);
+		clip-path: inset(0px 324px 0px 0px round 100px);
 	}
 	#clip-background {
 		height: 100%;
@@ -87,12 +87,7 @@
 	#navList {
 		position: relative;
 		z-index: 100;
-		/* clip-path: inset(0px 0 0px 92px round 100px); */
 	}
-	/* #clip-foreground {
-		z-index: 101;
-		clip-path: inset(0px 380px 0px 0px round 100px);
-	} */
 </style>
 
 <script>
@@ -128,6 +123,9 @@
 		});
 	};
 
+	gsap.set(clipPathContainer, {
+		clipdPath: `inset(0px ${clipPathContainer?.offsetWidth ?? 324}px 0px 0px round 100px)`,
+	});
 	resize();
 	window.addEventListener("resize", resize);
 
