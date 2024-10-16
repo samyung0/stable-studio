@@ -11,7 +11,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			id="processSection"
 			class="flex max-h-[100dvh] min-h-[100dvh] flex-col overflow-hidden ~py-6/24">
 			<!-- top section -->
-			<div class="flex flex-col gap-5 lg:flex-row lg:gap-[7vw]">
+			<div class="flex flex-col items-center gap-5 lg:flex-row lg:gap-[7vw]">
 				<!-- title of card -->
 				<div class="max-h-[3.6rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
 					<h2
@@ -83,10 +83,10 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			</div>
 
 			<!-- main content section -->
-			<div class="max-h-full flex-1 overflow-hidden ~pt-6/16 h-auto">
+			<div class="h-auto max-h-full flex-1 overflow-hidden ~pt-6/16">
 				<article
 					id="processScroll"
-					class="flex max-h-full flex-col gap-6 overflow-hidden rounded-xl bg-card h-auto md:min-h-[40vh] md:flex-row xl:gap-[4vw]">
+					class="flex h-auto max-h-full flex-col gap-6 overflow-hidden rounded-xl bg-card md:min-h-[40vh] md:flex-row xl:gap-[4vw]">
 					<ProcessSectionLeft />
 					<ProcessSectionRight />
 				</article>
