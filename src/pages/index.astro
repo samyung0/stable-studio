@@ -48,7 +48,7 @@ import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 	<!-- hero, services and process section -->
 	<main id="home">
 		<div
-			class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
+			class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
 			<HeaderSection />
 
 			<LandingSection />
@@ -59,14 +59,14 @@ import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 		<!-- pricing section -->
 		<PriceSection />
 
-		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
+		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
 			<MissionSection />
 			<FAQSection />
 		</div>
 		<CTASection />
 	</main>
 
-	<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[90vw]">
+	<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
 		<FooterSection />
 	</div>
 
@@ -176,13 +176,13 @@ import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 
 	window.onload = () => {
 		const urlHash = window.location.href.split("#")[1];
-		const config = {
-			offset: -window.innerHeight * 0.1,
+		const config = () => ({
+			offset: -window.innerHeight * 0.15,
 			easing: (x: number) =>
 				x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2,
 			duration: 1.5,
-		};
-		if (urlHash) lenis.scrollTo(`#${urlHash}`, config);
+		});
+		if (urlHash) lenis.scrollTo(`#${urlHash}`, config());
 		const anchorArray = gsap.utils.toArray(
 			"a[href^='#']",
 		) as HTMLAnchorElement[];
@@ -193,8 +193,10 @@ import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 					e.preventDefault();
 					const href = anchor.getAttribute("href");
 					if (!href) return;
-					lenis.scrollTo(href, config);
+					lenis.scrollTo(href, config());
 					window.location.hash = href;
+					window.activeIndex = window.href.indexOf(href.split("#")[1]);
+					window.setNavbar();
 				},
 				{
 					passive: false,

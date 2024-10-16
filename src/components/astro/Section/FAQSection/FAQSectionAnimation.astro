@@ -1,17 +1,17 @@
-<li role="button" tabindex="0" class="faqSection bg-background !~py-4/12">
-	<div
-		class="col-span-1 col-start-1 row-span-2 row-start-1 flex flex-col lg:col-span-2 lg:col-start-2 lg:row-span-1 lg:row-start-1 lg:-mt-[2px]">
-		<h2
-			class="faqSectionHeader text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
+<li class="bg-gackground text-left">
+	<button
+		class="faqSection col-span-1 col-start-1 row-span-2 row-start-1 flex flex-col !~py-4/12 lg:col-span-2 lg:col-start-2 lg:row-span-1 lg:row-start-1 lg:-mt-[2px]">
+		<span
+			class="faqSectionHeader flex text-left text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
 			<slot name="title" />
-		</h2>
-		<div
-			class="serviceContent w h-0 overflow-hidden text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
-			<p class="pt-4 md:pt-5">
+		</span>
+		<span
+			class="serviceContent w block h-0 overflow-hidden text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
+			<span class="flex pt-4 text-left md:pt-5">
 				<slot name="description" />
-			</p>
-		</div>
-	</div>
+			</span>
+		</span>
+	</button>
 </li>
 <style is:global>
 	.serviceContent {
