@@ -195,6 +195,8 @@ import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 					if (!href) return;
 					lenis.scrollTo(href, config);
 					window.location.hash = href;
+					window.activeIndex = window.href.indexOf(href.split("#")[1]);
+					window.setNavbar();
 				},
 				{
 					passive: false,

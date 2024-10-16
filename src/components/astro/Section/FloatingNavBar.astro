@@ -92,19 +92,20 @@
 
 <script>
 	import gsap from "gsap";
+	const urlHash = window.location.hash.split("#")[1];
 	const clipPathContainer = document.getElementById("clip-path-container");
 	const navItems = gsap.utils.toArray("#navList li") as HTMLElement[];
-	const navClipItems = gsap.utils.toArray(
-		"#clip-path-container li",
-	) as HTMLElement[];
 	const hrefClip = gsap.utils.toArray("#clip-path-container li>a");
 	const href = hrefClip.map((anchor) =>
 		(anchor as HTMLAnchorElement).href.split("#").pop(),
 	);
-	const urlHash = window.location.hash.split("#")[1];
-	let activeIndex = href.indexOf(urlHash);
-	const resize = () => {
-		if (!clipPathContainer || activeIndex === -1) return;
+	const navClipItems = gsap.utils.toArray(
+		"#clip-path-container li",
+	) as HTMLElement[];
+	window.activeIndex = href.indexOf(urlHash);
+	const setNavbar = () => {
+		const activeItem = window.activeIndex;
+		if (!clipPathContainer || activeItem < 0) return;
 		const containerWidth = clipPathContainer.offsetWidth;
 		const borderWidth =
 			parseFloat(
@@ -113,7 +114,7 @@
 			parseFloat(
 				getComputedStyle(clipPathContainer).borderRightWidth.slice(0, -2),
 			);
-		const itemOffsetleft = navClipItems[activeIndex]?.offsetLeft ?? 0;
+		const itemOffsetleft = navClipItems[activeItem]?.offsetLeft ?? 0;
 		const itemOffsetRight =
 			itemOffsetleft + (navClipItems[activeIndex]?.offsetWidth ?? 0);
 		gsap.to(clipPathContainer, {
@@ -124,15 +125,25 @@
 	};
 
 	gsap.set(clipPathContainer, {
-		clipdPath: `inset(0px ${clipPathContainer?.offsetWidth ?? 324}px 0px 0px round 100px)`,
+		clipPath: `inset(0px ${clipPathContainer?.offsetWidth ?? 324}px 0px 0px round 100px)`,
 	});
-	resize();
-	window.addEventListener("resize", resize);
+	setNavbar();
+	window.addEventListener("resize", setNavbar);
+
+	declare global {
+		var setNavbar: () => void;
+		var href: (string | undefined)[];
+		var activeIndex: number;
+	}
+
+	window.setNavbar = setNavbar;
+	window.href = href;
+	window.activeIndex = activeIndex;
 
 	navItems.forEach((navItem, index) => {
 		navItem.addEventListener("mouseover", (e) => {
-			activeIndex = index;
-			resize();
+			window.activeIndex = index;
+			setNavbar();
 		});
 	});
 </script>
