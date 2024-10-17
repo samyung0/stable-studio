@@ -4,10 +4,10 @@ export default function () {
 	const [globeLoaded, setGlobeLoaded] = useState(false);
 	const [Globe, setGlobe] = useState<any>(null);
 	useEffect(() => {
-		if(window.innerWidth < 768) return;
+		if (window.innerWidth < 768) return;
 		if (!IntersectionObserver) return;
 		const ctaSection = document.getElementById(
-			"ctaSectionContainer",
+			"getstarted",
 		) as HTMLElement | null;
 		const observer = new IntersectionObserver(async function (
 			entries,
@@ -20,7 +20,7 @@ export default function () {
 					!globeLoaded
 				) {
 					setGlobeLoaded(true);
-          observer.disconnect();
+					observer.disconnect();
 					const GlobeContainer = (await import("./GlobeContainer")).default;
 					setGlobe(<GlobeContainer />);
 				}

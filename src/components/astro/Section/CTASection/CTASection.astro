@@ -1,11 +1,10 @@
 ---
 import GlobeLoader from "@/components/react/GlobeLoader";
-import ArrowRight from "../../ui/ArrowRight.astro";
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 ---
 
 <section
-	id="ctaSectionContainer"
+	id="getstarted"
 	class="relative flex w-full flex-col items-center justify-center rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
 	<div
 		id="ctaSection"
@@ -260,4 +259,6 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 
 		sendingMessage = false;
 	});
+
+	window.ctaSectionReady = true;
 </script>
