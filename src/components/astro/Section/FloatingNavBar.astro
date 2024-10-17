@@ -92,7 +92,6 @@
 
 <script>
 	import gsap from "gsap";
-	const urlHash = window.location.hash.split("#")[1];
 	const clipPathContainer = document.getElementById("clip-path-container");
 	const navItems = gsap.utils.toArray("#navList li") as HTMLElement[];
 	const hrefClip = gsap.utils.toArray("#clip-path-container li>a");
@@ -102,9 +101,8 @@
 	const navClipItems = gsap.utils.toArray(
 		"#clip-path-container li",
 	) as HTMLElement[];
-	window.activeIndex = href.indexOf(urlHash);
 	const setNavbar = () => {
-		const activeItem = window.activeIndex;
+		const activeItem = window.activeIndex ?? -1;
 		if (!clipPathContainer || activeItem < 0) return;
 		const containerWidth = clipPathContainer.offsetWidth;
 		const borderWidth =
@@ -127,7 +125,6 @@
 	gsap.set(clipPathContainer, {
 		clipPath: `inset(0px ${clipPathContainer?.offsetWidth ?? 324}px 0px 0px round 100px)`,
 	});
-	setNavbar();
 	window.addEventListener("resize", setNavbar);
 
 	declare global {
@@ -136,9 +133,8 @@
 		var activeIndex: number;
 	}
 
-	window.setNavbar = setNavbar;
 	window.href = href;
-	window.activeIndex = activeIndex;
+	window.setNavbar = setNavbar;
 
 	navItems.forEach((navItem, index) => {
 		navItem.addEventListener("mouseover", (e) => {
