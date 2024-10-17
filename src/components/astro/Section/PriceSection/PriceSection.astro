@@ -9,7 +9,7 @@ import Check from "../../ui/Check.astro";
 	<div id="priceSection">
 		<div
 			id="priceAnimationContainer"
-			class="flex ~mt-16/52 ~py-16/52 items-center justify-center overflow-hidden">
+			class="flex items-center justify-center overflow-hidden ~mt-16/52 ~py-16/52">
 			<div id="priceAnimation">
 				<p class="flex flex-col items-center gap-6">
 					<span class="text-[5vw] leading-[1] 3xl:text-[100px]"
@@ -75,9 +75,10 @@ import Check from "../../ui/Check.astro";
 									(50% upfront)</span
 								>
 							</span>
-							<button
+							<a
+								href="#getstarted"
 								class="rounded bg-primary px-6 py-3 text-primary-foreground md:py-5"
-								>Start now</button
+								>Start now</a
 							>
 						</p>
 					</section>
@@ -86,8 +87,7 @@ import Check from "../../ui/Check.astro";
 						<h2
 							class="flex h-[50px] items-center gap-5 whitespace-nowrap text-xl leading-[1.4] text-primary lg:text-2xl lg:leading-[1.8] xl:gap-[2vw]">
 							Monthly subscription
-							<span
-								class="text-xs font-normal uppercase text-muted-foreground"
+							<span class="text-xs font-normal uppercase text-muted-foreground"
 								>popular</span
 							>
 						</h2>
@@ -126,9 +126,10 @@ import Check from "../../ui/Check.astro";
 							<span>
 								$110.0 <span class="text-muted-foreground"> / month</span>
 							</span>
-							<button
+							<a
+								href="#getstarted"
 								class="rounded bg-primary px-6 py-5 text-primary-foreground"
-								>Start now</button
+								>Start now</a
 							>
 						</p>
 					</section>

@@ -7,11 +7,11 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 <div
 	class="col-span-full col-start-1 grid auto-rows-min xl:col-span-2 xl:col-start-2 xl:grid-cols-2">
 	<div id="processSectionContainer" class="col-span-full">
-		<div
-			id="processSection"
-			class="flex max-h-[100dvh] min-h-[100dvh] flex-col overflow-hidden ~py-6/24">
+		<div id="processSection" class="flex flex-col overflow-hidden ~py-6/24">
 			<!-- top section -->
-			<div class="flex flex-col items-center gap-3 sm:gap-5 lg:flex-row lg:gap-[7vw]">
+			<div
+				id="processTitleContainer"
+				class="flex flex-col items-center gap-3 sm:gap-5 lg:flex-row lg:gap-[7vw]">
 				<!-- title of card -->
 				<div
 					class="mr-auto max-h-[3.6rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
@@ -20,20 +20,20 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 						Requirement Collection
 					</h2>
 					<h2
-						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
+						class="processTitle hidden text-base !leading-[1.8rem] will-change-transform md:text-lg">
 						Prototyping
 					</h2>
 					<h2
-						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
+						class="processTitle hidden text-base !leading-[1.8rem] will-change-transform md:text-lg">
 						Optimization and Deployment
 					</h2>
 					<h2
-						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
+						class="processTitle hidden text-base !leading-[1.8rem] will-change-transform md:text-lg">
 						Ad Campaign and Profile Building
 					</h2>
 				</div>
 
-				<div class="flex w-full flex-1 flex-col gap-5">
+				<div id="processDecoration" class="flex w-full flex-1 flex-col gap-5">
 					<!-- progress bar -->
 					<div
 						class="relative col-span-2 col-start-1 row-start-1 h-[6px] w-full overflow-hidden rounded bg-card sm:h-[20px] xl:col-span-1 xl:col-start-2 xl:h-[30px]">
@@ -84,10 +84,11 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			</div>
 
 			<!-- main content section -->
-			<div class="h-auto max-h-full flex-1 overflow-hidden pt-3 pb-6/16 sm:~pt-6/16">
+			<div
+				class="pb-6/16 flex max-h-full flex-1 overflow-hidden pt-3 sm:~pt-6/16 md:flex-initial">
 				<article
 					id="processScroll"
-					class="flex h-auto max-h-full flex-col gap-6 overflow-hidden rounded-xl bg-card md:min-h-[40vh] md:flex-row xl:gap-[4vw]">
+					class="flex max-h-full flex-1 flex-col gap-0 overflow-hidden rounded-xl bg-card md:min-h-[40vh] md:flex-row xl:gap-[4vw]">
 					<ProcessSectionLeft />
 					<ProcessSectionRight />
 				</article>
@@ -99,6 +100,27 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 <style>
 	.processActive {
 		@apply text-primary;
+	}
+	#processSection {
+		max-height: 100vh;
+		min-height: 100vh;
+		max-height: 100dvh;
+		min-height: 100dvh;
+	}
+</style>
+<style is:global>
+	@media (-webkit-max-device-pixel-ratio: 3) and (max-width: 400px) and (max-height: 700px) {
+		#processRight {
+			display: none;
+		}
+	}
+	@media (-webkit-max-device-pixel-ratio: 3) and (max-width: 350px) and (max-height: 550px) {
+		#processDecoration {
+			display: none;
+		}
+		#processTitleContainer {
+			display: none;
+		}
 	}
 </style>
 
@@ -112,7 +134,6 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	import titleAnimation from "./titleAnimation";
 	import progressWheelAnimation from "./progressWheelAnimation";
 	import priceSectionAnimationLogic from "@/components/astro/Section/PriceSection/priceSectionAnimationLogic";
-	import Lenis from "lenis";
 
 	gsap.registerPlugin(ScrollTrigger);
 	gsap.config({
@@ -144,9 +165,6 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	) as HTMLElement | null;
 	const processTitle = gsap.utils.toArray(".processTitle") as HTMLElement[];
 	const processSectionWheel = document.getElementById("processSectionWheel");
-	const processScroll = document.getElementById(
-		"processScroll",
-	) as HTMLElement | null;
 	const processSectionContainer = document.getElementById(
 		"processSectionContainer",
 	);
@@ -250,4 +268,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	);
 
 	priceSectionAnimationLogic();
+
+	window.processSectionReady = true;
+	window.priceSectionReady = true;
 </script>
