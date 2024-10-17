@@ -92,7 +92,6 @@
 
 <script>
 	import gsap from "gsap";
-	const urlHash = window.location.hash.split("#")[1];
 	const clipPathContainer = document.getElementById("clip-path-container");
 	const navItems = gsap.utils.toArray("#navList li") as HTMLElement[];
 	const hrefClip = gsap.utils.toArray("#clip-path-container li>a");
@@ -102,12 +101,11 @@
 	const navClipItems = gsap.utils.toArray(
 		"#clip-path-container li",
 	) as HTMLElement[];
-	window.activeIndex = href.indexOf(urlHash);
 	const setNavbar = () => {
-		const activeItem = window.activeIndex;
-		if (!clipPathContainer || activeItem < 0) return;
+		const activeItem = window.activeIndex ?? -1;
+		if (!clipPathContainer) return;
 		const containerWidth = clipPathContainer.offsetWidth;
-		const borderWidth =
+		let borderWidth =
 			parseFloat(
 				getComputedStyle(clipPathContainer).borderLeftWidth.slice(0, -2),
 			) +
@@ -115,6 +113,9 @@
 				getComputedStyle(clipPathContainer).borderRightWidth.slice(0, -2),
 			);
 		const itemOffsetleft = navClipItems[activeItem]?.offsetLeft ?? 0;
+		if (activeItem === -1) {
+			borderWidth = 0;
+		}
 		const itemOffsetRight =
 			itemOffsetleft + (navClipItems[activeIndex]?.offsetWidth ?? 0);
 		gsap.to(clipPathContainer, {
@@ -127,18 +128,18 @@
 	gsap.set(clipPathContainer, {
 		clipPath: `inset(0px ${clipPathContainer?.offsetWidth ?? 324}px 0px 0px round 100px)`,
 	});
-	setNavbar();
 	window.addEventListener("resize", setNavbar);
-
+	
 	declare global {
 		var setNavbar: () => void;
 		var href: (string | undefined)[];
 		var activeIndex: number;
 	}
-
-	window.setNavbar = setNavbar;
+	
+	window.activeIndex = -1;
 	window.href = href;
-	window.activeIndex = activeIndex;
+	window.setNavbar = setNavbar;
+	setNavbar();
 
 	navItems.forEach((navItem, index) => {
 		navItem.addEventListener("mouseover", (e) => {

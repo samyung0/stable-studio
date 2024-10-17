@@ -10,7 +10,7 @@ export default {
 		fontSize,
 		extend: {
 			screens: {
-				"3xl": "120rem",
+				"3xl": "160rem",
 			},
 			fontFamily: {
 				sans: ["PPMori", ...defaultTheme.fontFamily.sans],
@@ -85,5 +85,10 @@ export default {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate"), fluid],
+	plugins: [
+		require("tailwindcss-animate"),
+		fluid({
+			checkSC144: false,
+		}),
+	],
 };

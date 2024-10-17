@@ -3,7 +3,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const priceSectionAnimationLogic = () => {
 	gsap.registerPlugin(ScrollTrigger);
-	ScrollTrigger.config({ ignoreMobileResize: true });
 	const processSectionContainer = document.getElementById(
 		"processSectionContainer",
 	) as HTMLElement | null;
@@ -63,31 +62,43 @@ const priceSectionAnimationLogic = () => {
 		"priceAnimationContainer",
 	) as HTMLElement | null;
 
-	const timelineMain = gsap.timeline({
-		scrollTrigger: {
-			trigger: priceAnimationContainer,
-			// pinnedContainer: priceSectionContainer,
-			start: "top 85%",
-			end: `top 60%`,
-			// pin: true,
-			// pinType: "transform",
-			// pinReparent: true,
-			id: "timelineMain",
-			scrub: 1,
-			// markers: true,
-			invalidateOnRefresh: true,
-		},
-	});
-	gsap.set(priceAnimationContainer, {
-		filter: "blur(8px)",
-	});
-	timelineMain.to(
-		priceAnimationContainer,
+	mm.add(
 		{
-			filter: "blur(0px)",
-			ease: "none",
+			isShort: "(max-height: 799px)",
+			isTall: "(min-height: 800px)",
+			isNarrow: "(max-width: 450px)",
 		},
-		0,
+		(context) => {
+			const isShort = !!context.conditions?.isShort;
+			const isNarrow = !!context.conditions?.isNarrow;
+			if (isShort && isNarrow) return;
+			const timelineMain = gsap.timeline({
+				scrollTrigger: {
+					trigger: priceAnimationContainer,
+					// pinnedContainer: priceSectionContainer,
+					start: "top 85%",
+					end: `top 60%`,
+					// pin: true,
+					// pinType: "transform",
+					// pinReparent: true,
+					id: "timelineMain",
+					scrub: 1,
+					// markers: true,
+					invalidateOnRefresh: true,
+				},
+			});
+			gsap.set(priceAnimationContainer, {
+				filter: "blur(8px)",
+			});
+			timelineMain.to(
+				priceAnimationContainer,
+				{
+					filter: "blur(0px)",
+					ease: "none",
+				},
+				0,
+			);
+		},
 	);
 
 	mm.add(

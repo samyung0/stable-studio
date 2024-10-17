@@ -24,10 +24,10 @@ const { subServices } = Astro.props;
 		<div
 			slot="description"
 			class="flex flex-col gap-3 pt-3 md:pt-4 lg:gap-5 lg:pt-0">
-			<h2
+			<h3
 				class="colorSubheader flex max-w-[500px] flex-1 text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
 				<slot name="subheader" />
-			</h2>
+			</h3>
 			<div class="serviceContent">
 				<slot name="description" />
 				{
@@ -58,7 +58,6 @@ const { subServices } = Astro.props;
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	gsap.registerPlugin(ScrollTrigger);
-	ScrollTrigger.config({ ignoreMobileResize: true });
 
 	const colorSubheader = gsap.utils.toArray(".colorSubheader") as HTMLElement[];
 	const shuffledDarkColor = gsap.utils.shuffle(darkColors);

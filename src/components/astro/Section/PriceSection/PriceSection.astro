@@ -4,6 +4,7 @@ import Check from "../../ui/Check.astro";
 ---
 
 <section
+	aria-describedby="priceSectionDescription"
 	id="price"
 	class="relative flex w-full flex-col items-center justify-center rounded-[20px] bg-primary text-primary-foreground md:rounded-[40px] lg:rounded-[60px] 3xl:max-w-full">
 	<div id="priceSection">
@@ -12,10 +13,12 @@ import Check from "../../ui/Check.astro";
 			class="flex items-center justify-center overflow-hidden ~mt-16/52 ~py-16/52">
 			<div id="priceAnimation">
 				<p class="flex flex-col items-center gap-6">
-					<span class="text-[5vw] leading-[1] 3xl:text-[100px]"
+					<span
+						class="whitespace-nowrap text-[6vw] leading-[1] 3xl:text-[100px]"
 						>Simple and affordable price.</span
 					>
-					<span class="text-center text-[2.5vw] leading-[1.2] 3xl:text-[60px]">
+					<span
+						class="whitespace-nowrap text-center text-[2.5vw] leading-[1.2] 3xl:text-4xl">
 						No funny hidden fees.
 					</span>
 				</p>
@@ -24,7 +27,7 @@ import Check from "../../ui/Check.astro";
 		<SectionHead class="px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
 			<span slot="label" class="text-background/70">/ pricing /</span>
 			<span slot="title">Pricing</span>
-			<p slot="description" class="text-flatgray2">
+			<p slot="description" class="text-flatgray2" id="priceSectionDescription">
 				Extremely affordable pricing for even start-ups. For Saas and sites that
 				need to handle users, the price will scale with the traffic as you grow.
 				Total cost will be mentioned in the budget proposal at the start and we

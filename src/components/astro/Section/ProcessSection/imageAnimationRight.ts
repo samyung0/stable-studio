@@ -31,6 +31,12 @@ const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement, remaining
 					duration: 0.5,
 					ease: "power3.out",
 				});
+				remaining.forEach((el) => {
+					gsap.set(el, {
+						xPercent: 110,
+						filter: "blur(0px)",
+					});
+				});
 				return;
 			}
 			gsap.set(showEl, {
