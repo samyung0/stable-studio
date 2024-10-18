@@ -23,7 +23,7 @@ const { class: className } = Astro.props;
 	</h1>
 
 	<div
-		class="sectionHeadDesc col-span-1 col-start-1 flex flex-1 text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
+		class="sectionHeadDesc col-span-2 col-start-1 flex flex-1 text-sm leading-[1.4] text-muted-foreground sm:col-span-1 md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
 		<slot name="description" />
 	</div>
 
@@ -44,12 +44,6 @@ const { class: className } = Astro.props;
 		/* 3xl, 1920px */
 		.sectionHead {
 			grid-template-columns: 5vw minmax(auto, 20vw) minmax(auto, 40vw);
-		}
-	}
-
-	@media (-webkit-max-device-pixel-ratio: 3) and (max-width: 400px) and (max-height: 700px) {
-		.sectionHeadDesc {
-			@apply col-span-2
 		}
 	}
 </style>
