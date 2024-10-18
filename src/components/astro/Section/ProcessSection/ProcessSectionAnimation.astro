@@ -85,6 +85,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 
 			<!-- main content section -->
 			<div
+				id="processScrollContainer"
 				class="pb-6/16 flex max-h-full flex-1 overflow-hidden pt-3 sm:~pt-6/16 md:flex-initial">
 				<article
 					id="processScroll"
@@ -114,12 +115,16 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			display: none;
 		}
 	}
-	@media (-webkit-max-device-pixel-ratio: 3) and (max-width: 350px) and (max-height: 550px) {
+	@media (max-height: 650px) {
 		#processDecoration {
 			display: none;
 		}
 		#processTitleContainer {
 			display: none;
+		}
+
+		#processScrollContainer {
+			padding-top: 0;
 		}
 	}
 </style>
@@ -142,8 +147,6 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 	gsap.defaults({
 		overwrite: true,
 	});
-	ScrollTrigger.config({ ignoreMobileResize: true });
-
 	const processSection = document.getElementById(
 		"processSection",
 	) as HTMLElement | null;

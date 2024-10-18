@@ -58,7 +58,6 @@ const { subServices } = Astro.props;
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	gsap.registerPlugin(ScrollTrigger);
-	ScrollTrigger.config({ ignoreMobileResize: true });
 
 	const colorSubheader = gsap.utils.toArray(".colorSubheader") as HTMLElement[];
 	const shuffledDarkColor = gsap.utils.shuffle(darkColors);
