@@ -103,9 +103,9 @@
 	) as HTMLElement[];
 	const setNavbar = () => {
 		const activeItem = window.activeIndex ?? -1;
-		if (!clipPathContainer || activeItem < 0) return;
+		if (!clipPathContainer) return;
 		const containerWidth = clipPathContainer.offsetWidth;
-		const borderWidth =
+		let borderWidth =
 			parseFloat(
 				getComputedStyle(clipPathContainer).borderLeftWidth.slice(0, -2),
 			) +
@@ -113,6 +113,9 @@
 				getComputedStyle(clipPathContainer).borderRightWidth.slice(0, -2),
 			);
 		const itemOffsetleft = navClipItems[activeItem]?.offsetLeft ?? 0;
+		if (activeItem === -1) {
+			borderWidth = 0;
+		}
 		const itemOffsetRight =
 			itemOffsetleft + (navClipItems[activeIndex]?.offsetWidth ?? 0);
 		gsap.to(clipPathContainer, {
@@ -133,6 +136,7 @@
 		var activeIndex: number;
 	}
 
+	window.activeIndex = -1;
 	window.href = href;
 	window.setNavbar = setNavbar;
 
