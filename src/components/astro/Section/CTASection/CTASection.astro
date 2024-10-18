@@ -10,7 +10,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 		id="ctaSection"
 		class="relative grid w-full grid-cols-[auto_1fr] gap-[5vw] justify-between px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
 		<p
-			class="mutedText mutedText relative left-0 col-start-[2] row-start-1 ml-auto lg:col-start-[1] 2xl:absolute">
+			class="mutedText mutedText relative left-0 col-start-[2] row-start-1 ml-auto lg:col-start-[1]">
 			/ get started /
 		</p>
 		<div
@@ -133,13 +133,13 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 
 <style>
 	.mutedText {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-background/70 md:text-xs lg:ml-0;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-background/70 md:text-xs lg:mx-auto;
 	}
 	.mutedTextDark {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-muted-foreground md:text-xs lg:ml-0;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-muted-foreground md:text-xs lg:mx-auto;
 	}
 	.mutedTextInput::placeholder {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-muted-foreground md:text-xs lg:ml-0;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-muted-foreground md:text-xs lg:mx-auto;
 	}
 </style>
 
