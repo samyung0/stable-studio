@@ -8,7 +8,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 	class="relative flex w-full flex-col items-center justify-center rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
 	<div
 		id="ctaSection"
-		class="relative grid w-full grid-cols-[150px_1fr] gap-[5vw] px-6 sm:px-12 md:px-16 2xl:flex 2xl:justify-center 2xl:gap-0 3xl:max-w-[95vw]">
+		class="relative grid w-full grid-cols-[auto_1fr] gap-[5vw] justify-between px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
 		<p
 			class="mutedText mutedText relative left-0 col-start-[2] row-start-1 ml-auto lg:col-start-[1] 2xl:absolute">
 			/ get started /
@@ -16,7 +16,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 		<div
 			class="col-span-2 col-start-1 row-start-1 md:-mt-4 lg:col-span-1 lg:col-start-2 lg:-mt-2">
 			<h1
-				class="whitespace-nowrap text-2xl leading-[1] tracking-tight md:text-[7vw] md:leading-[1] 3xl:text-[130px]">
+				class="whitespace-nowrap text-2xl sm:text-3xl leading-[1] tracking-tight md:text-[7vw] md:leading-[1] 3xl:text-[130px]">
 				Launch Your Website <br />
 				<span>Now</span>
 			</h1>
@@ -126,7 +126,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 	@media screen and (min-width: 64rem) {
 		/* lg, 1024px */
 		#ctaSection {
-			grid-template-columns: minmax(auto, 150px) auto;
+			grid-template-columns: 10vw auto;
 		}
 	}
 </style>
