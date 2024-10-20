@@ -11,9 +11,9 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 			<!-- top section -->
 			<div
 				id="processTitleContainer"
-				class="flex flex-col items-center gap-3 sm:gap-5 lg:flex-row lg:gap-[7vw]">
+				class="flex flex-col items-start gap-3 sm:gap-5 lg:flex-row lg:gap-[7vw]">
 				<!-- title of card -->
-				<div
+				<header
 					class="mr-auto max-h-[3.6rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
 					<h2
 						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
@@ -31,7 +31,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 						class="processTitle hidden text-base !leading-[1.8rem] will-change-transform md:text-lg">
 						Ad Campaign and Profile Building
 					</h2>
-				</div>
+				</header>
 
 				<div id="processDecoration" class="flex w-full flex-1 flex-col gap-5">
 					<!-- progress bar -->
@@ -54,7 +54,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 
 					<!-- progress steps -->
 					<div
-						class="col-start-2 hidden items-center justify-between uppercase tracking-tight text-flatgray xl:flex">
+						class="col-start-2 hidden items-center justify-between uppercase tracking-tight text-flatgray 2xl:text-muted-foreground xl:flex">
 						<!-- label -->
 						<div class="flex items-center justify-start gap-3">
 							<span class="processStep processActive flex items-center gap-1"
@@ -91,7 +91,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 				class="pb-6/16 flex max-h-full flex-1 overflow-hidden pt-3 sm:~pt-6/16 md:flex-initial">
 				<article
 					id="processScroll"
-					class="flex max-h-full flex-1 flex-col gap-0 overflow-hidden rounded-xl bg-card md:min-h-[40vh] md:flex-row xl:gap-[4vw]">
+					class="flex max-h-full flex-1 flex-col gap-0 overflow-hidden rounded-xl bg-card md:min-h-[40vh] 2xl:min-h-[60vh] md:flex-row xl:gap-[4vw]">
 					<ProcessSectionLeft />
 					<ProcessSectionRight />
 				</article>

@@ -17,10 +17,12 @@ const { class: className } = Astro.props;
 		class="col-[2] row-start-1 ml-auto flex whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:col-[1] lg:ml-0">
 		<slot name="label" />
 	</div>
-	<h1
+	<header
 		class="sectionHeadTitle row-start-1 flex text-lg sm:text-2xl md:text-4xl lg:mx-auto lg:-mt-2">
-		<slot name="title" />
-	</h1>
+		<h2>
+			<slot name="title" />
+		</h2>
+	</header>
 
 	<div
 		class="sectionHeadDesc col-span-2 col-start-1 flex flex-1 text-sm leading-[1.4] text-muted-foreground sm:col-span-1 md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
@@ -40,8 +42,8 @@ const { class: className } = Astro.props;
 			grid-template-columns: 5vw minmax(auto, 31vw) minmax(auto, 45vw);
 		}
 	}
-	@media screen and (min-width: 120rem) {
-		/* 3xl, 1920px */
+	@media screen and (min-width: 160rem) {
+		/* 3xl, 2560px */
 		.sectionHead {
 			grid-template-columns: 5vw minmax(auto, 20vw) minmax(auto, 40vw);
 		}
