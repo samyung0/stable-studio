@@ -4,6 +4,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 ---
 
 <section
+	aria-describedby="ctaSectionDescription"
 	id="getstarted"
 	class="relative flex w-full flex-col items-center justify-center rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
 	<div
@@ -26,6 +27,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 				<div
 					class="order-last flex flex-1 flex-col gap-6 md:order-first md:gap-10">
 					<p
+						id="ctaSectionDescription"
 						class="flex flex-col gap-1 text-sm leading-[1.4] text-primary-foreground/70 md:gap-3 md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
 						Got something to ask about? Or just want to say hi? Feel free to
 						drop us a message via email or the contact form and we will get back
@@ -74,7 +76,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 						class="mutedTextInput text-normal m-0 h-[80px] border-b border-border/30 bg-transparent p-0 text-base font-normal outline-none transition-all focus:border-border"
 					></textarea>
 
-					<div class="max-h-[2rem] overflow-hidden">
+					<div aria-live="polite" id="formSubmissionStatus" class="max-h-[2rem] overflow-hidden">
 						<p
 							id="formSubmitText"
 							class="max-h-full text-xs leading-[1rem] text-muted-foreground">
@@ -101,6 +103,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 					</div>
 
 					<button
+						aria-controls="formSubmissionStatus"
 						class="flex items-center gap-1 self-start rounded bg-background px-3 py-4 text-primary md:gap-3 md:px-5 md:py-4">
 						<span class="size-4 text-muted-foreground md:size-6"
 							><ArrowRightShort /></span
