@@ -2,6 +2,7 @@
 import AnimatedDivider from "../AnimatedDivider/AnimatedDivider.astro";
 import AnimatedText from "../AnimatedText/AnimatedText.astro";
 import ArrowRightDown from "../ui/ArrowRightDown.astro";
+import DoubleGear from "../ui/DoubleGear.astro";
 import LandingImg from "../ui/LandingImg.astro";
 ---
 
@@ -10,10 +11,14 @@ import LandingImg from "../ui/LandingImg.astro";
 	<div
 		class="flex flex-col items-stretch justify-between gap-[60px] [grid-row-gap:25px] lg:flex-row">
 		<h1
-			class="flex flex-[2] flex-wrap text-4xl sm:text-[9vw] leading-[1] lg:text-[6vw] 3xl:text-[130px]">
-			<span class="whitespace-nowrap">We make silky </span><span
-				class="whitespace-nowrap">smooth websites</span
-			>
+			class="flex-[2] text-4xl leading-[1.2] sm:text-[9vw] lg:text-[6vw] 3xl:text-[130px]">
+			<span class="whitespace-nowrap"
+				>We make silky <span
+					class="inline-block aspect-square w-[36px] translate-y-2 sm:w-[9vw] lg:w-[6vw] 3xl:w-[130px]">
+					<DoubleGear />
+				</span></span
+			><br />
+			<span class="whitespace-nowrap">smooth websites</span>
 		</h1>
 		<div
 			class="flex min-w-[300px] max-w-[470px] flex-1 shrink-0 flex-col items-start py-4 lg:max-w-full">
@@ -55,3 +60,59 @@ import LandingImg from "../ui/LandingImg.astro";
 <section class="~pt-5/10">
 	<LandingImg />
 </section>
+
+<script>
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+
+	const top = document.getElementById("top");
+	const upperGear = gsap.utils.toArray(".upperGear") as HTMLElement[];
+	const lowerGear = gsap.utils.toArray(".lowerGear") as HTMLElement[];
+
+	for (let i = 0; i < upperGear.length; i++) {
+		const parent = upperGear[i].parentElement
+			?.parentElement as HTMLElement | null;
+		const upperGearCenter = parent?.querySelector(
+			".upperGearCenter",
+		) as HTMLElement | null;
+		const lowerGearCenter = parent?.querySelector(
+			".lowerGearCenter",
+		) as HTMLElement | null;
+		const upperGearCenterCoords = {
+			x: upperGearCenter?.getAttribute("cx") ?? 0,
+			y: upperGearCenter?.getAttribute("cy") ?? 0,
+		};
+		const lowerGearCenterCoords = {
+			x: lowerGearCenter?.getAttribute("cx") ?? 0,
+			y: lowerGearCenter?.getAttribute("cy") ?? 0,
+		};
+		gsap.set(upperGear[i], {
+			svgOrigin: `${upperGearCenterCoords.x}px ${upperGearCenterCoords.y}px`,
+		});
+		gsap.set(lowerGear[i], {
+			svgOrigin: `${lowerGearCenterCoords.x}px ${lowerGearCenterCoords.y}px`,
+		});
+		gsap
+			.timeline({
+				scrollTrigger: {
+					trigger: top,
+					start: "top top",
+					end: "+=1000",
+					scrub: 0.2,
+				},
+			})
+			.to(upperGear[i], {
+				rotation: 360,
+				ease: "none",
+			})
+			.to(
+				lowerGear[i],
+				{
+					rotation: -360,
+					ease: "none",
+				},
+				0,
+			);
+	}
+</script>

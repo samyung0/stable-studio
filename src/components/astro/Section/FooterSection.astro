@@ -1,9 +1,58 @@
 ---
+import ConcaveSquare from "../ui/ConcaveSquare.astro";
+
 const year = new Date().getFullYear();
 ---
 
-<footer id="footer" class="flex h-[150px] sm:h-[300px] flex-col ~pt-6/24 ~pb-5/10">
-	<p class="mt-auto self-end text-xs text-flatgray2 2xl:text-muted-foreground font-normal md:text-sm">
+<footer
+	id="footer"
+	class="flex h-[150px] flex-col ~mt-6/24 ~pt-6/24 ~pb-5/10 sm:h-[300px]">
+	<div id="footerIconContainer" class="relative">
+		<a id="footerIcon" href="#top" class="absolute left-0 top-0 size-[16vmin]">
+			<span class="sr-only">Go back to top of the page</span>
+			<ConcaveSquare />
+		</a>
+	</div>
+	<p
+		class="mt-auto self-end text-xs font-normal text-flatgray2 md:text-sm 2xl:text-muted-foreground">
 		© {year} All rights reserved. All wrongs reversed.
 	</p>
 </footer>
+
+<script>
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+
+	const footer = document.getElementById("footer");
+	const footerIcon = document.getElementById("footerIcon");
+	const footerIconContainer = document.getElementById("footerIconContainer");
+
+	gsap.set(footerIcon, {
+		xPercent: -100,
+	});
+	let timeline: GSAPTimeline | null = null;
+	const footerTimelineFn = () => {
+		timeline?.time(0).kill();
+		timeline = gsap
+			.timeline({
+				scrollTrigger: {
+					trigger: footer,
+					start: "top bottom",
+					end: "bottom bottom",
+					scrub: 1,
+				},
+			})
+			.to(footerIcon, {
+				x: () => `${footerIconContainer?.offsetWidth ?? 0}px`,
+				rotate: 360,
+				ease: "none",
+			});
+	};
+
+	declare global {
+		var footerTimelineFn: () => void;
+	}
+
+	window.footerTimelineFn = footerTimelineFn;
+</script>

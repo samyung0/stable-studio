@@ -1,6 +1,7 @@
 ---
 import GlobeLoader from "@/components/react/GlobeLoader";
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
+import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 ---
 
 <section
@@ -17,10 +18,14 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 		<div
 			class="col-span-2 col-start-1 row-start-1 md:-mt-4 lg:col-span-1 lg:col-start-2 lg:-mt-2">
 			<header
-				class="whitespace-nowrap text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[7vw] md:leading-[1] 3xl:text-[130px]">
+				class="whitespace-nowrap pb-[5vw] text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[7vw] md:leading-[1] 3xl:text-[130px]">
 				<h1>
 					Launch Your Website <br />
-					<span>Now</span>
+					<span class="inline-flex whitespace-nowrap items-start"
+						>Now<span>&nbsp;</span><span class="w-[130px] sm:w-[180px] md:w-[30vw] aspect-video translate-x-3 translate-y-3 md:translate-y-[3vw]">
+							<VeryLongArrowRightDown />
+						</span></span
+					>
 				</h1>
 			</header>
 			<!-- <CTAPath /> -->
@@ -109,7 +114,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 
 					<button
 						aria-controls="formSubmissionStatus"
-						class="flex items-center gap-1 self-start rounded bg-background px-3 py-4 text-primary md:gap-3 md:px-5 md:py-4">
+						class="flex items-center gap-1 self-start rounded bg-background px-4 py-4 text-primary md:gap-3 md:px-5 md:py-4">
 						<span class="size-4 text-muted-foreground md:size-6"
 							><ArrowRightShort /></span
 						>

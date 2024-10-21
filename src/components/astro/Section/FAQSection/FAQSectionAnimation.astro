@@ -1,9 +1,15 @@
+---
+import ArrowDown from "../../ui/ArrowDown.astro";
+---
+
 <li class="bg-gackground text-left">
-	<button
-		class="faqSection col-span-1 col-start-1 row-span-2 row-start-1 flex flex-col !~py-4/12 lg:col-span-2 lg:col-start-2 lg:row-span-1 lg:row-start-1 lg:-mt-[2px]">
+	<button class="faqSection flex cursor-none flex-col !~py-4/12 lg:-mt-[2px]">
 		<span
-			class="faqSectionHeader flex text-left text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
+			class="faqSectionHeader flex min-w-full items-center justify-between gap-6 text-left text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
 			<slot name="title" />
+			<span class="faqArrow inline-block size-4 stroke-2">
+				<ArrowDown />
+			</span>
 		</span>
 		<span
 			class="serviceContent w block h-0 overflow-hidden text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
@@ -27,6 +33,7 @@
 
 	const handleOpen = (faq: HTMLElement, e: Event) => {
 		const serviceContent = faq.querySelector(".serviceContent");
+		const faqArrow = faq.querySelector(".faqArrow");
 		if (!serviceContent) return;
 		const open = getComputedStyle(serviceContent).height === "0px";
 		gsap.to(serviceContent, {
@@ -36,22 +43,13 @@
 			ease: "power4.out",
 			overwrite: true,
 		});
+		gsap.to(faqArrow, {
+			rotate: open ? 180 : 0,
+			duration: 0.7,
+			ease: "power4.out",
+			overwrite: true,
+		});
 	};
-
-	// ScrollTrigger.create({
-	// 	trigger: faqOuterContainer,
-	// 	start: "top bottom",
-	// 	onEnter: () => {
-	// 		faqSection.forEach((faq) => {
-	// 			faq.addEventListener("click", handleOpen.bind(null, faq), true);
-	// 		});
-	// 	},
-	// 	onEnterBack: () => {
-	// 		faqSection.forEach((faq) => {
-	// 			faq.removeEventListener("click", handleOpen.bind(null, faq), true);
-	// 		});
-	// 	},
-	// });
 
 	faqSection.forEach((faq) => {
 		faq.addEventListener("click", handleOpen.bind(null, faq), {
