@@ -29,5 +29,9 @@ export default function () {
 		if (!ctaSection) return;
 		observer.observe(ctaSection);
 	});
+	useEffect(() => {
+		if (!Globe) return;
+		(window as any).footerTimelineFn?.();
+	}, [Globe]);
 	return <>{Globe}</>;
 }

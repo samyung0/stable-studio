@@ -12,18 +12,9 @@ import FAQSection from "@/components/astro/Section/FAQSection/FAQSection.astro";
 import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 import FooterSection from "@/components/astro/Section/FooterSection.astro";
 import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
+import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 ---
 
-<!-- TODO: company icon --><!-- TODO: draw all images and icons (including redesigning the horizontal divider, service animation, pricing animation and cta animation) --><!-- <div class="relative">
-	<div
-		id="cursorContainer"
-		class="pointer-events-none absolute left-0 top-0 z-[999]">
-		<div
-			id="faqCursor"
-			class="pointer-events-none absolute size-32 origin-center opacity-0">
-			<GeometrySquare />
-		</div>
-	</div> -->
 <Layout>
 	<SEO
 		slot="head"
@@ -44,6 +35,17 @@ import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 			},
 		}}
 	/>
+
+	<!-- cursor group -->
+	<div
+		id="cursorContainer"
+		class="pointer-events-none fixed top-0 z-[999] hidden min-h-full min-w-full">
+		<div
+			id="faqCursor"
+			class="pointer-events-none fixed size-32 origin-center opacity-0">
+			<LargeAsterisk />
+		</div>
+	</div>
 
 	<!-- hero, services and process section -->
 	<main id="home">
@@ -80,7 +82,7 @@ import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 </Layout>
 <!-- </div> -->
 <style is:global>
-	#faqCursor rect {
+	#faqCursor circle {
 		fill-opacity: 0.6;
 	}
 </style>
@@ -104,66 +106,47 @@ import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
 
 	gsap.ticker.lagSmoothing(0);
 
-	// const cursorContainer = document.getElementById(
-	// 	"cursorContainer",
-	// ) as HTMLElement | null;
-	// const faqCursor = document.getElementById("faqCursor") as HTMLElement | null;
+	const cursorContainer = document.getElementById(
+		"cursorContainer",
+	) as HTMLElement | null;
+	const faqCursor = document.getElementById("faqCursor") as HTMLElement | null;
 
-	// gsap.set(faqCursor, {
-	// 	xPercent: -50,
-	// 	yPercent: -50,
-	// });
+	gsap.set(faqCursor, {
+		xPercent: -50,
+		yPercent: -50,
+	});
 
-	// let lastX = 0,
-	// 	lastY = 0,
-	// 	lastScrolled = 0,
-	// 	lenisScrollListenerSet = false;
-	// const xTo = gsap.quickTo(faqCursor, "x", {
-	// 	duration: 0.2,
-	// 	ease: "power3",
-	// });
-	// const yTo = gsap.quickTo(faqCursor, "y", {
-	// 	duration: 0.2,
-	// 	ease: "power3",
-	// });
-	// const cursorMoveHandler = (e: MouseEvent) => {
-	// 	// const { x, y } = getRelativeXY(e, cursorContainer);
-	// 	xTo(e.pageX);
-	// 	yTo(e.pageY);
-	// 	lastX = e.pageX;
-	// 	lastY = e.pageY;
-	// };
-	// const cursorScrollHandler = () => {
-	// 	lastY -= lastScrolled;
-	// 	lastScrolled = document.documentElement.scrollTop;
-	// 	lastY += lastScrolled;
-	// 	gsap.set(faqCursor, { y: lastY });
-	// 	gsap.set(faqCursor, { x: lastX });
-	// };
-	// const mm = gsap.matchMedia();
-	// mm.add(
-	// 	{ isLg: "(max-width: 1023px)", isDesktop: "(min-width: 1024px)" },
-	// 	(context) => {
-	// 		const isLg = !!context.conditions?.isLg;
-	// 		if (isLg) {
-	// 			if (cursorContainer) cursorContainer.style.display = "none";
-	// 			return;
-	// 		}
+	const xTo = gsap.quickTo(faqCursor, "x", {
+		duration: 0.2,
+		ease: "power3",
+	});
+	const yTo = gsap.quickTo(faqCursor, "y", {
+		duration: 0.2,
+		ease: "power3",
+	});
+	const cursorMoveHandler = (e: MouseEvent) => {
+		if(cursorContainer) cursorContainer.style.display = "block"
+		xTo(e.clientX);
+		yTo(e.clientY);
+	};
+	const mm = gsap.matchMedia();
+	mm.add(
+		{ isLg: "(max-width: 1023px)", isDesktop: "(min-width: 1024px)" },
+		(context) => {
+			const isLg = !!context.conditions?.isLg;
+			if (isLg) return;
 
-	// 		document.addEventListener("mousemove", cursorMoveHandler);
-	// 		if (!lenisScrollListenerSet) {
-	// 			lenis.on("scroll", cursorScrollHandler);
-	// 			lenisScrollListenerSet = true;
-	// 		}
+			document.addEventListener("mousemove", cursorMoveHandler);
+			gsap.set(faqCursor, {
+				x: window.innerWidth / 2,
+				y: window.innerHeight / 2,
+			});
 
-	// 		if (cursorContainer) cursorContainer.style.display = "block";
-
-	// 		() => {
-	// 			document.removeEventListener("mousemove", cursorMoveHandler);
-	// 			// lenis.off("scroll", cursorScrollHandler);
-	// 		};
-	// 	},
-	// );
+			() => {
+				document.removeEventListener("mousemove", cursorMoveHandler);
+			};
+		},
+	);
 
 	ScrollTrigger.normalizeScroll({
 		allowClicks: true,

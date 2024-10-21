@@ -1,6 +1,7 @@
 ---
 import SectionHead from "@/layouts/SectionHead.astro";
 import Check from "../../ui/Check.astro";
+import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 ---
 
 <section
@@ -80,7 +81,7 @@ import Check from "../../ui/Check.astro";
 							</span>
 							<a
 								href="#getstarted"
-								class="rounded bg-primary px-6 py-3 text-primary-foreground md:py-5"
+								class="rounded bg-primary px-4 py-3 text-primary-foreground md:px-6 md:py-5"
 								>Start now</a
 							>
 						</p>
@@ -131,8 +132,11 @@ import Check from "../../ui/Check.astro";
 							</span>
 							<a
 								href="#getstarted"
-								class="rounded bg-primary px-6 py-5 text-primary-foreground"
-								>Start now</a
+								class="flex items-center gap-1 rounded bg-primary py-3 pl-3 pr-4 text-primary-foreground md:gap-3 md:py-5 md:pl-5 md:pr-6"
+								><span class="size-4 text-muted-foreground md:size-6"
+									><ArrowRightShort /></span
+								>
+								<span class="mt-[2px] block">Start now</span></a
 							>
 						</p>
 					</section>

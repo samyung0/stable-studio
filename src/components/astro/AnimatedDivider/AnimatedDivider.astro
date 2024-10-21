@@ -3,6 +3,7 @@ import Asterisk from "./Asterisk.astro";
 import ArrowRight from "./ArrowRight.astro";
 import Plus from "./Plus.astro";
 import ArrowBoth from "./ArrowBoth.astro";
+import ArrowBothShort from "./ArrowBothShort.astro";
 ---
 
 <div class="flex items-center gap-1 text-flatgray2">
@@ -18,8 +19,8 @@ import ArrowBoth from "./ArrowBoth.astro";
 		<Asterisk />
 	</span>
 	<span class="animatedDividerText">speed</span>
-	<span class="pb-1">
-		<ArrowRight />
+	<span class="pb-1 text-flatviolet">
+		<ArrowBothShort />
 	</span>
 	<span class="animatedDividerText">creativity</span>
 	<span class="pb-1">
@@ -70,13 +71,4 @@ import ArrowBoth from "./ArrowBoth.astro";
 	};
 
 	animateTextHighlight();
-
-  let timer: ReturnType<typeof setTimeout>;
-	// window.addEventListener("resize", () => {
-  //   clearTimeout(timer);
-  //   timer = setTimeout(() => {
-  //     gsap.killTweensOf(text);
-  //     animateTextHighlight();
-  //   }, 1000);
-	// });
 </script>
