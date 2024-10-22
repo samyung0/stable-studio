@@ -42,6 +42,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 								role="progressbar"
 								aria-live="off"
 								id="processSectionProgressBar"
+								aria-label="web development process steps"
 								class="size-full rounded bg-primary">
 							</div>
 							<div
@@ -54,7 +55,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 
 					<!-- progress steps -->
 					<div
-						class="col-start-2 hidden items-center justify-between uppercase tracking-tight text-flatgray 2xl:text-muted-foreground xl:flex">
+						class="col-start-2 hidden items-center justify-between uppercase tracking-tight text-flatgray xl:flex 2xl:text-muted-foreground">
 						<!-- label -->
 						<div class="flex items-center justify-start gap-3">
 							<span class="processStep processActive flex items-center gap-1"
@@ -91,7 +92,7 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 				class="pb-6/16 flex max-h-full flex-1 overflow-hidden pt-3 sm:~pt-6/16 md:flex-initial">
 				<article
 					id="processScroll"
-					class="flex max-h-full flex-1 flex-col gap-0 overflow-hidden rounded-xl bg-card md:min-h-[40vh] 2xl:min-h-[60vh] md:flex-row xl:gap-[4vw]">
+					class="flex max-h-full flex-1 flex-col gap-0 overflow-hidden rounded-xl bg-card md:min-h-[40vh] md:flex-row xl:gap-[4vw] 2xl:min-h-[60vh]">
 					<ProcessSectionLeft />
 					<ProcessSectionRight />
 				</article>
