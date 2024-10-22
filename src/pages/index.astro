@@ -5,13 +5,13 @@ import Layout from "../layouts/Layout.astro";
 import ServiceSection from "@/components/astro/Section/ServiceSection/ServiceSection.astro";
 import ProcessSection from "@/components/astro/Section/ProcessSection/ProcessSection.astro";
 import PriceSection from "@/components/astro/Section/PriceSection/PriceSection.astro";
-import LandingSection from "@/components/astro/Section/LandingSection.astro";
-import HeaderSection from "@/components/astro/Section/HeaderSection.astro";
-import MissionSection from "@/components/astro/Section/MissionSection.astro";
+import LandingSection from "@/components/astro/Section/LandingSection/LandingSection.astro";
+import HeaderSection from "@/components/astro/Section/HeaderSection/HeaderSection.astro";
+import MissionSection from "@/components/astro/Section/MissionSection/MissionSection.astro";
 import FAQSection from "@/components/astro/Section/FAQSection/FAQSection.astro";
 import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
-import FooterSection from "@/components/astro/Section/FooterSection.astro";
-import FloatingNavBar from "@/components/astro/Section/FloatingNavBar.astro";
+import FooterSection from "@/components/astro/Section/FooterSection/FooterSection.astro";
+import FloatingNavBar from "@/components/astro/Section/FloatingNavBar/FloatingNavBar.astro";
 import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 ---
 
@@ -256,6 +256,11 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 						},
 					);
 			}
+
+			setTimeout(() => {
+				window.ctaSectionTimeline?.();
+				window.setNavbar?.();
+			}, 1);
 		}, 100);
 
 		const anchorArray = gsap.utils.toArray(

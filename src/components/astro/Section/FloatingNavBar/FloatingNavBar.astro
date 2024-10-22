@@ -125,9 +125,6 @@
 		});
 	};
 
-	gsap.set(clipPathContainer, {
-		clipPath: `inset(0px ${clipPathContainer?.offsetWidth ?? 324}px 0px 0px round 100px)`,
-	});
 	window.addEventListener("resize", setNavbar);
 	
 	declare global {
@@ -139,7 +136,6 @@
 	window.activeIndex = -1;
 	window.href = href;
 	window.setNavbar = setNavbar;
-	setNavbar();
 
 	navItems.forEach((navItem, index) => {
 		navItem.addEventListener("mouseover", (e) => {
