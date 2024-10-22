@@ -85,6 +85,42 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 	#faqCursor circle {
 		fill-opacity: 0.6;
 	}
+	.fadeinAnimation {
+		filter: blur(50px);
+		opacity: 0;
+		animation: blur 1s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
+		will-change: opacity, filter;
+		-webkit-backface-visibility: hidden;
+		-webkit-transform: translate3d(0, 0, 0);
+		backface-visibility: hidden;
+		transform: translate3d(0, 0, 0);
+	}
+
+	@keyframes blur {
+		0% {
+			filter: blur(12px);
+			opacity: 0;
+		}
+		100% {
+			filter: blur(0);
+			opacity: 1;
+		}
+	}
+
+	.slideinAnimation {
+		transform: translate3d(0, 100px, 0);
+		animation: slide 1s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
+		will-change: transform;
+	}
+
+	@keyframes slide {
+		0% {
+			transform: translate3d(0, 100px, 0);
+		}
+		100% {
+			transform: translate3d(0, 0, 0);
+		}
+	}
 </style>
 <script>
 	import Lenis, { type ScrollToOptions } from "lenis";
@@ -125,7 +161,7 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 		ease: "power3",
 	});
 	const cursorMoveHandler = (e: MouseEvent) => {
-		if(cursorContainer) cursorContainer.style.display = "block"
+		if (cursorContainer) cursorContainer.style.display = "block";
 		xTo(e.clientX);
 		yTo(e.clientY);
 	};
@@ -180,21 +216,48 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 	};
 	window.onload = () => {
 		const urlHash = window.location.href.split("#")[1];
-		if (urlHash) {
-			const check = setInterval(() => {
-				const ready =
-					window.serviceSectionReady &&
-					window.processSectionReady &&
-					window.priceSectionReady &&
-					window.missionSectionReady &&
-					window.faqSectionReady &&
-					window.ctaSectionReady;
-				if (!ready) return;
-				clearInterval(check);
-				lenis.resize();
-				handleHashNavigate(`#${urlHash}`);
-			}, 100);
-		}
+		const check = setInterval(() => {
+			const ready =
+				window.serviceSectionReady &&
+				window.processSectionReady &&
+				window.priceSectionReady &&
+				window.missionSectionReady &&
+				window.faqSectionReady &&
+				window.ctaSectionReady;
+			if (!ready) return;
+			clearInterval(check);
+			lenis.resize();
+			if (urlHash) handleHashNavigate(`#${urlHash}`);
+
+			// slide in anim
+			const sectionHeadAnimated = gsap.utils.toArray(
+				".sectionHeadAnimated",
+			) as HTMLElement[];
+			for (let i = 0; i < sectionHeadAnimated.length; i++) {
+				gsap
+					.timeline({
+						scrollTrigger: {
+							trigger: sectionHeadAnimated[i],
+							start: "top 90%",
+							once: true,
+							// markers: true,
+						},
+					})
+					.fromTo(
+						Array.from(sectionHeadAnimated[i].children).slice(0, 3),
+						{
+							y: 100,
+						},
+						{
+							y: 0,
+							duration: 0.8,
+							stagger: 0.1,
+							ease: "power3.out",
+						},
+					);
+			}
+		}, 100);
+
 		const anchorArray = gsap.utils.toArray(
 			"a[href^='#']",
 		) as HTMLAnchorElement[];

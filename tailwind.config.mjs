@@ -73,6 +73,7 @@ export default {
 				flatgray: "var(--gray)",
 				flatgray2: "var(--gray_2)",
 				flatdarkviolet: "var(--dark_violet)",
+				flatdeepviolet: "var(--deep_violet)",
 				flatviolet: "var(--violet)",
 				flatviolet2: "var(--violet_2)",
 				chart: {

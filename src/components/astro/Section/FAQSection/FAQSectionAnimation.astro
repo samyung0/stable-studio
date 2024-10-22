@@ -3,7 +3,7 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 ---
 
 <li class="bg-gackground text-left">
-	<button class="faqSection flex cursor-none flex-col !~py-4/12 lg:-mt-[2px]">
+	<button class="faqSection flex lg:cursor-none flex-col !~py-4/12 lg:-mt-[2px]">
 		<span
 			class="faqSectionHeader flex min-w-full items-center justify-between gap-6 text-left text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
 			<slot name="title" />
@@ -49,6 +49,8 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 			ease: "power4.out",
 			overwrite: true,
 		});
+		window?.ctaSectionTimeline();
+		window?.footerTimelineFn();
 	};
 
 	faqSection.forEach((faq) => {

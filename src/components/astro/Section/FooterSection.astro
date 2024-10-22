@@ -41,6 +41,8 @@ const year = new Date().getFullYear();
 					start: "top bottom",
 					end: "bottom bottom",
 					scrub: 1,
+					invalidateOnRefresh: true,
+					// markers: true,
 				},
 			})
 			.to(footerIcon, {
@@ -54,5 +56,6 @@ const year = new Date().getFullYear();
 		var footerTimelineFn: () => void;
 	}
 
+	footerTimelineFn();
 	window.footerTimelineFn = footerTimelineFn;
 </script>
