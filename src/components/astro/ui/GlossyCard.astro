@@ -6,42 +6,41 @@
 		id="card3drectangle"
 		class="absolute top-full left-[70%] -translate-y-6 size-16 rotate-[65deg] bg-white/20 backdrop-blur-2xl rounded-lg shadow-md">
 	</div> -->
-  <div class="flex flex-col gap-6 max-w-[80%]">
-    <header class="flex flex-col">
-      <h2 class="text-2xl font-bold">Stable Studio</h2>
-      <p class="text-sm">A freelancers studio</p>
-    </header>
-    <div class="flex flex-col gap-4">
-      <p class="text-sm">
-        We craft animated and performant websites.<br />
-        Web Dev | Animation | Saas | Marketing | SEO | Maintenance | Free Consultation
-      </p>
-      <p class="flex items-center gap-3 text-sm">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="size-4"
-          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M9 15l6 -6"></path><path
-            d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"></path><path
-            d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"
-          ></path></svg
-        >
-        https://stablestudio.org
-      </p>
-    </div>
-    <footer class="flex flex-col gap-4">
-      <p class="text-sm">Founded in Hong Kong</p>
-    </footer>
-
-  </div>
+	<div class="flex max-w-[80%] flex-col gap-6">
+		<header class="flex flex-col">
+			<h2 class="text-2xl font-bold">Stable Studio</h2>
+			<p class="text-sm">A freelancers studio</p>
+		</header>
+		<div class="flex flex-col gap-4">
+			<p class="text-sm">
+				We craft animated and performant websites.<br />
+				Web Dev | Animation | Saas | Marketing | SEO | Maintenance | Free Consultation
+			</p>
+			<p class="flex items-center gap-3 text-sm">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="size-4 -translate-y-[1px]"
+					><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+						d="M9 15l6 -6"></path><path
+						d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"></path><path
+						d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"
+					></path></svg
+				>
+				https://stablestudio.org
+			</p>
+		</div>
+		<footer class="flex flex-col gap-4">
+			<p class="text-sm">Founded in Hong Kong</p>
+		</footer>
+	</div>
 </section>
 
 <style>
@@ -50,7 +49,7 @@
 		transition-property: transform, box-shadow;
 		transition-timing-function: ease-out;
 		transform: none;
-    perspective: 1500px;
+		perspective: 1500px;
 	}
 </style>
 
@@ -60,6 +59,7 @@
 	let bounds = { x: 0, y: 0, width: 0, height: 0 };
 
 	function rotateToMouse(e: MouseEvent) {
+		if (window.innerWidth < 768) return;
 		const mouseX = e.clientX;
 		const mouseY = e.clientY;
 		const leftX = mouseX - bounds.x;

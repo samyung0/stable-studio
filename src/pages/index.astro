@@ -13,6 +13,7 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 import FooterSection from "@/components/astro/Section/FooterSection/FooterSection.astro";
 import FloatingNavBar from "@/components/astro/Section/FloatingNavBar/FloatingNavBar.astro";
 import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
+import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 ---
 
 <Layout>
@@ -47,29 +48,34 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 		</div>
 	</div>
 
-	<!-- hero, services and process section -->
-	<main id="home">
-		<div
-			class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
-			<HeaderSection />
+	<!-- side nav for language and menu on mobile -->
+	<SideNav />
 
-			<LandingSection />
-			<ServiceSection />
-			<ProcessSection />
-		</div>
+	<div id="mainScroll">
+		<!-- hero, services and process section -->
+		<main id="home">
+			<div
+				class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+				<HeaderSection />
 
-		<!-- pricing section -->
-		<PriceSection />
+				<LandingSection />
+				<ServiceSection />
+				<ProcessSection />
+			</div>
+
+			<!-- pricing section -->
+			<PriceSection />
+
+			<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+				<MissionSection />
+				<FAQSection />
+			</div>
+			<CTASection />
+		</main>
 
 		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
-			<MissionSection />
-			<FAQSection />
+			<FooterSection />
 		</div>
-		<CTASection />
-	</main>
-
-	<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
-		<FooterSection />
 	</div>
 
 	<FloatingNavBar />
@@ -82,8 +88,8 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 </Layout>
 <!-- </div> -->
 <style is:global>
-	#faqCursor circle {
-		fill-opacity: 0.6;
+	#faqCursor {
+		fill-opacity: 0.4;
 	}
 	.fadeinAnimation {
 		filter: blur(50px);
@@ -132,6 +138,7 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 
 	const lenis = new Lenis({
 		// lerp: 0.4,
+		eventsTarget: document.getElementById("mainScroll")!
 	});
 
 	lenis.on("scroll", ScrollTrigger.update);
@@ -186,6 +193,7 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 
 	ScrollTrigger.normalizeScroll({
 		allowClicks: true,
+		allowNestedScroll: true
 	});
 
 	horizontalLoop(document.getElementById("animatedDivider"), {
@@ -230,37 +238,40 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 			if (urlHash) handleHashNavigate(`#${urlHash}`);
 
 			// slide in anim
-			const sectionHeadAnimated = gsap.utils.toArray(
-				".sectionHeadAnimated",
-			) as HTMLElement[];
-			for (let i = 0; i < sectionHeadAnimated.length; i++) {
-				gsap
-					.timeline({
-						scrollTrigger: {
-							trigger: sectionHeadAnimated[i],
-							start: "top 90%",
-							once: true,
-							// markers: true,
-						},
-					})
-					.fromTo(
-						Array.from(sectionHeadAnimated[i].children).slice(0, 3),
-						{
-							y: 100,
-						},
-						{
-							y: 0,
-							duration: 0.8,
-							stagger: 0.1,
-							ease: "power3.out",
-						},
-					);
+			if (window.innerWidth >= 1024) {
+				const sectionHeadAnimated = gsap.utils.toArray(
+					".sectionHeadAnimated",
+				) as HTMLElement[];
+				for (let i = 0; i < sectionHeadAnimated.length; i++) {
+					gsap
+						.timeline({
+							scrollTrigger: {
+								trigger: sectionHeadAnimated[i],
+								start: "top 90%",
+								once: true,
+								// markers: true,
+							},
+						})
+						.fromTo(
+							Array.from(sectionHeadAnimated[i].children).slice(0, 3),
+							{
+								y: 100,
+							},
+							{
+								y: 0,
+								duration: 0.8,
+								stagger: 0.1,
+								ease: "power3.out",
+							},
+						);
+				}
 			}
 
-			setTimeout(() => {
-				window.ctaSectionTimeline?.();
-				window.setNavbar?.();
-			}, 1);
+			// setTimeout(() => {
+			window.ctaSectionTimeline?.();
+			window.footerTimelineFn?.();
+			window.setNavbar?.();
+			// }, 1);
 		}, 100);
 
 		const anchorArray = gsap.utils.toArray(
@@ -270,10 +281,11 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 			anchor.addEventListener(
 				"click",
 				(e) => {
-					e.preventDefault();
 					const href = anchor.getAttribute("href");
-					if (!href) return;
+					if (!href || !href.startsWith("#")) return;
+					e.preventDefault();
 					handleHashNavigate(href);
+					window.closeSidenav?.();
 				},
 				{
 					passive: false,

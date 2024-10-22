@@ -38,7 +38,7 @@ const year = new Date().getFullYear();
 			.timeline({
 				scrollTrigger: {
 					trigger: footer,
-					start: "top bottom",
+					start: "top bottom-=50",
 					end: "bottom bottom",
 					scrub: 1,
 					invalidateOnRefresh: true,
@@ -56,6 +56,5 @@ const year = new Date().getFullYear();
 		var footerTimelineFn: () => void;
 	}
 
-	footerTimelineFn();
 	window.footerTimelineFn = footerTimelineFn;
 </script>

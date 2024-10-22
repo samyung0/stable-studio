@@ -77,7 +77,7 @@ const priceSectionAnimationLogic = () => {
 					trigger: priceAnimationContainer,
 					// pinnedContainer: priceSectionContainer,
 					start: "top 85%",
-					end: `top 60%`,
+					end: `top 45%`,
 					// pin: true,
 					// pinType: "transform",
 					// pinReparent: true,
