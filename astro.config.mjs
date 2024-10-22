@@ -19,9 +19,9 @@ export default defineConfig({
 			applyBaseStyles: false,
 		}),
 		astroMetaTags(),
-		react({
-            include: "**/react/**/*"
-		}),
+		// react({
+    //         include: "**/react/**/*"
+		// }),
 	],
 	prefetch: {
 		defaultStrategy: "viewport",
