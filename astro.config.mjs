@@ -11,8 +11,8 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://stablestudio.org",
-	// output: "hybrid",
-	// adapter: vercel(),
+	output: "hybrid",
+	adapter: vercel(),
 	integrations: [
 		sitemap(),
 		tailwind({
