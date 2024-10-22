@@ -1,7 +1,5 @@
 import { darkColors } from "@/lib/utils";
 import { World } from "./Globe";
-import { render } from "preact";
-import { useEffect } from "preact/hooks";
 
 const globeConfig = {
 	pointSize: 4,
@@ -389,32 +387,23 @@ const sampleArcs = [
 	},
 ];
 export default function GlobeContainer() {
-	useEffect(() => {
-		console.log("yo")
-		render(
+	return (
+		<div
+			className="flex max-h-[600px] max-w-full items-center justify-center 3xl:max-h-[35vw]"
+			style={{
+				width: "100%",
+				aspectRatio: 1,
+				margin: "auto",
+			}}>
 			<div
-				className="flex max-h-[600px] max-w-full items-center justify-center 3xl:max-h-[35vw]"
+				className="flex items-center justify-center"
 				style={{
 					width: "100%",
-					aspectRatio: 1,
-					margin: "auto",
+					height: "100%",
+					contain: "strict",
 				}}>
-				<div
-					className="flex items-center justify-center"
-					style={{
-						// position: "absolute",
-						width: "100%",
-						height: "100%",
-						contain: "strict",
-					}}>
-					{/* <Suspense> */}
-					<World data={sampleArcs} globeConfig={globeConfig} />
-					{/* </Suspense> */}
-				</div>
-			</div>,
-			document.getElementById("globeContainer")!,
-		);
-	}, []);
-
-	return null;
+				<World data={sampleArcs} globeConfig={globeConfig} />
+			</div>
+		</div>
+	);
 }

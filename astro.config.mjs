@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import astroMetaTags from "astro-meta-tags";
 
-import preact from "@astrojs/preact";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,9 +19,8 @@ export default defineConfig({
 			applyBaseStyles: false,
 		}),
 		astroMetaTags(),
-		preact({
-			compat: true,
-            include: "**/preact/**/*"
+		react({
+            include: "**/react/**/*"
 		}),
 	],
 	prefetch: {
@@ -30,14 +29,5 @@ export default defineConfig({
 	},
 	image: {
 		remotePatterns: [{ protocol: "https" }],
-	},
-	vite: {
-		resolve: {
-			alias: {
-				react: "preact/compat",
-				"react-dom": "preact/compat",
-				"react-reconciler": "preact-reconciler",
-			},
-		},
 	},
 });
