@@ -8,7 +8,7 @@ import BlurryBlob from "../../ui/BlurryBlob.astro";
 <section
 	aria-describedby="ctaSectionDescription"
 	id="getstarted"
-	class="relative flex w-full flex-col items-center justify-center rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
+	class="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
 	<div
 		id="ctaSection"
 		class="relative grid w-full grid-cols-[auto_1fr] justify-between gap-[5vw] px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
@@ -142,7 +142,7 @@ import BlurryBlob from "../../ui/BlurryBlob.astro";
 	</div>
 	<div
 		id="globeContainer"
-		class="relative rotate-90 md:rotate-0 isolate flex h-[65vh] max-h-[800px] w-full items-center justify-center px-6 ~my-12/52 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+		class="relative isolate flex h-[65vh] max-h-[800px] w-full rotate-90 items-center justify-center px-6 ~my-12/52 sm:px-12 md:rotate-0 md:px-16 3xl:max-w-[95vw]">
 		<BlurryBlob />
 		<GlossyCard />
 		<!-- <GlobeLoader client:load /> -->
