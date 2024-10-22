@@ -6,14 +6,34 @@ import ArrowRightShort from "../ui/ArrowRightShort.astro";
 <header id="top" class="pt-6 md:pt-8">
 	<div class="flex items-center justify-end">
 		<div class="flex items-center gap-2">
-			<button class="rounded px-3 py-4 md:px-6 md:py-4">Language</button>
+			<button
+				class="group relative overflow-hidden rounded px-4 py-4 md:px-6 md:py-5">
+				<span class="relative z-10"
+					>Language</span
+				>
+
+				<span class="absolute inset-0 h-full overflow-hidden rounded-md"
+					><span
+						class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatlightblue transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
+					></span></span
+				>
+			</button>
 			<a
 				href="#getstarted"
-				class="flex items-center gap-1 rounded bg-primary px-4 py-4 text-primary-foreground md:gap-3 md:px-6 md:py-5">
-				<span class="size-4 text-muted-foreground md:size-6">
-					<ArrowRightShort />
+				class="group relative overflow-hidden rounded bg-primary px-4 py-4 text-primary-foreground md:gap-3 md:px-6 md:py-5">
+				<span
+					class="relative z-10 flex items-center gap-1 duration-500 group-hover:text-primary">
+					<span class="size-4 text-muted-foreground md:size-6">
+						<ArrowRightShort />
+					</span>
+					<span class="mt-[2px] block">See magic happens</span>
 				</span>
-				<span class="mt-[2px] block">See magic happens</span>
+
+				<span class="absolute inset-0 h-full overflow-hidden rounded-md"
+					><span
+						class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatviolet2 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
+					></span></span
+				>
 			</a>
 		</div>
 	</div>

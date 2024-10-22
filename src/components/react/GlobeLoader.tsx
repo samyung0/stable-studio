@@ -21,6 +21,7 @@ export default function () {
 				) {
 					setGlobeLoaded(true);
 					observer.disconnect();
+
 					const GlobeContainer = (await import("./GlobeContainer")).default;
 					setGlobe(<GlobeContainer />);
 				}
@@ -28,7 +29,7 @@ export default function () {
 		});
 		if (!ctaSection) return;
 		observer.observe(ctaSection);
-	});
+	}, []);
 	useEffect(() => {
 		if (!Globe) return;
 		(window as any).footerTimelineFn?.();

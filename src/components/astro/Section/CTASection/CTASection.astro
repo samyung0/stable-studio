@@ -21,8 +21,10 @@ import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 				class="whitespace-nowrap pb-[5vw] text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[7vw] md:leading-[1] 3xl:text-[130px]">
 				<h1>
 					Launch Your Website <br />
-					<span class="inline-flex whitespace-nowrap items-start"
-						>Now<span>&nbsp;</span><span class="w-[130px] sm:w-[180px] md:w-[30vw] aspect-video translate-x-3 translate-y-3 md:translate-y-[3vw]">
+					<span class="inline-flex items-start whitespace-nowrap"
+						>Now<span>&nbsp;</span><span
+							id="ctaArrow"
+							class="aspect-video w-[130px] translate-x-3 translate-y-3 sm:w-[180px] md:w-[30vw] md:translate-y-[3vw]">
 							<VeryLongArrowRightDown />
 						</span></span
 					>
@@ -114,11 +116,24 @@ import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 
 					<button
 						aria-controls="formSubmissionStatus"
-						class="flex items-center gap-1 self-start rounded bg-background px-4 py-4 text-primary md:gap-3 md:px-5 md:py-4">
-						<span class="size-4 text-muted-foreground md:size-6"
-							><ArrowRightShort /></span
-						>
-						<span class="mt-[2px] block">Send a message</span>
+						class="group self-start overflow-hidden rounded bg-background px-4 py-4 text-primary md:gap-3 md:px-5 md:py-4">
+						<span class="flex items-center gap-1">
+							<span class="size-4 text-muted-foreground md:size-6"
+								><ArrowRightShort /></span
+							>
+
+							<span
+								class="relative mt-[2px] flex items-center justify-center overflow-hidden">
+								<span
+									class="translate-y-0 transition duration-300 group-hover:translate-y-[100%]">
+									Send a message
+								</span>
+								<span
+									class="absolute -translate-y-[100%] transition duration-300 group-hover:translate-y-0">
+									Send a message
+								</span>
+							</span>
+						</span>
 					</button>
 				</form>
 			</div>
@@ -160,6 +175,47 @@ import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	gsap.registerPlugin(ScrollTrigger);
+
+	const ctaSection = document.getElementById("ctaSection") as HTMLElement;
+	// first path is arrow head, second path is the arrow body
+	const ctaArrowPath = gsap.utils.toArray("#ctaArrow path") as SVGPathElement[];
+	const headLength = ctaArrowPath[0].getTotalLength() + 10;
+	const bodyLength = ctaArrowPath[1].getTotalLength() + 10;
+	gsap.set(ctaArrowPath[0], {
+		strokeDashoffset: headLength,
+		strokeDasharray: headLength,
+	});
+	gsap.set(ctaArrowPath[1], {
+		strokeDashoffset: bodyLength,
+		strokeDasharray: bodyLength,
+	});
+	let timeline: GSAPTimeline | null = null;
+	const ctaSectionTimeline = () => {
+		timeline?.time(0).kill();
+		timeline = gsap
+			.timeline({
+				scrollTrigger: {
+					trigger: ctaSection,
+					start: "top 80%",
+					end: "top 20%",
+					scrub: 1,
+					// markers: true,
+					invalidateOnRefresh: true,
+				},
+				defaults: {
+					ease: "none",
+				},
+			})
+			.to(ctaArrowPath[1], { strokeDashoffset: 0, duration: 2 })
+			.to(ctaArrowPath[0], { strokeDashoffset: 0, duration: 0.5 });
+	};
+
+	declare global {
+		var ctaSectionTimeline: () => void;
+	}
+
+	ctaSectionTimeline();
+	window.ctaSectionTimeline = ctaSectionTimeline;
 
 	const formSubmitText = document.getElementById(
 		"formSubmitText",

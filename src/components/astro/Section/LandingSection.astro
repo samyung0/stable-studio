@@ -7,7 +7,9 @@ import LandingImg from "../ui/LandingImg.astro";
 ---
 
 <!-- landing section -->
-<section class="pt-24 md:pt-48" aria-details="landingSectionDetails">
+<section
+	class="fadeinAnimation pt-24 md:pt-48"
+	aria-details="landingSectionDetails">
 	<div
 		class="flex flex-col items-stretch justify-between gap-[60px] [grid-row-gap:25px] lg:flex-row">
 		<h1
@@ -29,20 +31,29 @@ import LandingImg from "../ui/LandingImg.astro";
 				animations-rich websites. We prioritize user experience, website profile
 				and development speed.
 			</div>
-			<button>
-				<a class="flex items-center gap-1" href="#process">
-					<span class="-mt-1 block size-3 stroke-2 text-black">
-						<ArrowRightDown />
+
+			<a class="flex items-center gap-1" href="#process">
+				<span class="-mt-1 block size-3 stroke-2 text-black">
+					<ArrowRightDown />
+				</span>
+				<span
+					class="group relative inline-flex items-center justify-center overflow-hidden">
+					<span
+						class="translate-y-0 transition duration-300 group-hover:translate-y-[100%]">
+						Development process
 					</span>
-					Development process
-				</a>
-			</button>
+					<span
+						class="absolute -translate-y-[100%] transition duration-300 group-hover:translate-y-0">
+						Development process
+					</span>
+				</span>
+			</a>
 		</div>
 	</div>
 </section>
 
 <!-- animated divider -->
-<section class="~pt-6/20">
+<section class="fadeinAnimation ~pt-6/20">
 	<div
 		id="animatedDivider"
 		class="flex flex-nowrap items-center gap-1 overflow-hidden uppercase">
@@ -57,7 +68,7 @@ import LandingImg from "../ui/LandingImg.astro";
 </section>
 
 <!-- landing image -->
-<section class="~pt-5/10">
+<section class="slideinAnimation ~pt-5/10">
 	<LandingImg />
 </section>
 
