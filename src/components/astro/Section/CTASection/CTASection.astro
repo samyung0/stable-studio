@@ -1,7 +1,8 @@
 ---
-import GlobeLoader from "@/components/react/GlobeLoader";
+import GlossyCard from "../../ui/GlossyCard.astro";
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
+import BlurryBlob from "../../ui/BlurryBlob.astro";
 ---
 
 <section
@@ -32,7 +33,7 @@ import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 			</header>
 			<!-- <CTAPath /> -->
 			<div
-				class="mx-auto flex flex-col gap-10 ~py-6/24 md:flex-row md:gap-[5vw]">
+				class="mx-auto flex flex-col gap-10 ~pt-6/24 md:flex-row md:gap-[5vw]">
 				<div
 					class="order-last flex flex-1 flex-col gap-6 md:order-first md:gap-10">
 					<p
@@ -141,7 +142,9 @@ import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 	</div>
 	<div
 		id="globeContainer"
-		class="flex w-full items-center justify-center px-6 ~pb-6/24 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+		class="relative rotate-90 md:rotate-0 isolate flex h-[65vh] max-h-[800px] w-full items-center justify-center px-6 ~my-12/52 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+		<BlurryBlob />
+		<GlossyCard />
 		<!-- <GlobeLoader client:load /> -->
 	</div>
 </section>

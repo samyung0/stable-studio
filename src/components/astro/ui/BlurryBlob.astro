@@ -1,0 +1,30 @@
+---
+import { cn } from "@/lib/utils";
+
+type Props = {
+	class?: string;
+	firstBlobColor?: string;
+	secondBlobColor?: string;
+};
+
+const { class: className, firstBlobColor, secondBlobColor } = Astro.props;
+---
+
+<div class="absolute inset-0 size-full items-center justify-center flex">
+	<div class="relative w-full max-w-lg">
+		<div
+			class={cn(
+				"absolute -right-1 sm:-right-8 lg:-right-12 -top-28 size-48 sm:size-64 lg:size-72 animate-pop-blob rounded-sm bg-flatdarkblue p-8 opacity-45 mix-blend-multiply blur-[70px] filter",
+				className,
+				firstBlobColor,
+			)}>
+		</div>
+		<div
+			class={cn(
+				"absolute  sm:-left-8 lg:-left-12 -top-64 size-48 sm:size-64 lg:size-72 animate-pop-blob rounded-sm bg-flatdarkviolet p-8 opacity-45 mix-blend-multiply blur-[70px] filter",
+				className,
+				secondBlobColor,
+			)}>
+		</div>
+	</div>
+</div>
