@@ -192,6 +192,7 @@ import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 	let timeline: GSAPTimeline | null = null;
 	const ctaSectionTimeline = () => {
 		timeline?.time(0).kill();
+		console.log(ctaSection)
 		timeline = gsap
 			.timeline({
 				scrollTrigger: {
@@ -213,8 +214,7 @@ import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 	declare global {
 		var ctaSectionTimeline: () => void;
 	}
-
-	ctaSectionTimeline();
+	
 	window.ctaSectionTimeline = ctaSectionTimeline;
 
 	const formSubmitText = document.getElementById(

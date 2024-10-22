@@ -256,6 +256,11 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 						},
 					);
 			}
+
+			setTimeout(() => {
+				window.ctaSectionTimeline?.();
+				window.setNavbar?.();
+			}, 1);
 		}, 100);
 
 		const anchorArray = gsap.utils.toArray(
