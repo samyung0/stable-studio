@@ -230,37 +230,40 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 			if (urlHash) handleHashNavigate(`#${urlHash}`);
 
 			// slide in anim
-			const sectionHeadAnimated = gsap.utils.toArray(
-				".sectionHeadAnimated",
-			) as HTMLElement[];
-			for (let i = 0; i < sectionHeadAnimated.length; i++) {
-				gsap
-					.timeline({
-						scrollTrigger: {
-							trigger: sectionHeadAnimated[i],
-							start: "top 90%",
-							once: true,
-							// markers: true,
-						},
-					})
-					.fromTo(
-						Array.from(sectionHeadAnimated[i].children).slice(0, 3),
-						{
-							y: 100,
-						},
-						{
-							y: 0,
-							duration: 0.8,
-							stagger: 0.1,
-							ease: "power3.out",
-						},
-					);
+			if (window.innerWidth >= 1024) {
+				const sectionHeadAnimated = gsap.utils.toArray(
+					".sectionHeadAnimated",
+				) as HTMLElement[];
+				for (let i = 0; i < sectionHeadAnimated.length; i++) {
+					gsap
+						.timeline({
+							scrollTrigger: {
+								trigger: sectionHeadAnimated[i],
+								start: "top 90%",
+								once: true,
+								// markers: true,
+							},
+						})
+						.fromTo(
+							Array.from(sectionHeadAnimated[i].children).slice(0, 3),
+							{
+								y: 100,
+							},
+							{
+								y: 0,
+								duration: 0.8,
+								stagger: 0.1,
+								ease: "power3.out",
+							},
+						);
+				}
 			}
 
-			setTimeout(() => {
-				window.ctaSectionTimeline?.();
-				window.setNavbar?.();
-			}, 1);
+			// setTimeout(() => {
+			window.ctaSectionTimeline?.();
+			window.footerTimelineFn?.();
+			window.setNavbar?.();
+			// }, 1);
 		}, 100);
 
 		const anchorArray = gsap.utils.toArray(
