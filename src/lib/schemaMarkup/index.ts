@@ -20,7 +20,6 @@ const indexSchemaMarkup: Graph = {
 			gender: "Male",
 			image:
 				"https://sam.partialty.com/_image?href=%2F_astro%2Fprofile.Cs45b1KG.jpg&q=low&f=webp",
-			mainEntityOfPage: { "@id": "https://stablestudio.org/" },
 			nationality: "Hong Kong",
 		},
 		{
