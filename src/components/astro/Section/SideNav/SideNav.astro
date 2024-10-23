@@ -5,9 +5,10 @@ import ArrowRightShort from "@/components/astro/ui/ArrowRightShort.astro";
 
 <nav
 	id="sidenav"
-	class="fixed hidden inset-0 z-[100] size-full items-stretch justify-end">
+	class="fixed inset-0 z-[100] hidden size-full h-full items-stretch justify-end">
 	<div
-		class="relative flex min-w-full max-w-full flex-col gap-7 bg-primary px-6 py-6 text-primary-foreground sm:min-w-[60vw] sm:max-w-[70vw] md:min-w-[35vw] md:px-16 md:py-28 lg:max-w-[50vw] 2xl:max-w-[30vw]">
+		id="sidenavScroll"
+		class="relative flex max-h-full min-w-full max-w-full flex-col gap-7 overflow-auto bg-primary px-6 py-6 text-primary-foreground sm:min-w-[60vw] sm:max-w-[70vw] md:min-w-[35vw] md:px-16 md:py-28 lg:max-w-[50vw] 2xl:max-w-[30vw]">
 		<button
 			id="sidenavCloseButton"
 			class="absolute right-4 top-4 size-8 md:size-10 lg:right-8 lg:top-8 3xl:size-16">
@@ -119,8 +120,23 @@ import ArrowRightShort from "@/components/astro/ui/ArrowRightShort.astro";
 </style>
 
 <script>
+	import Lenis from "lenis";
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+
+	const sidenavScroll = document.getElementById("sidenavScroll");
 	const sidenav = document.getElementById("sidenav");
 	const sidenavCloseButton = document.getElementById("sidenavCloseButton");
+
+	const lenis = new Lenis({
+		wrapper: sidenavScroll!,
+	});
+
+	gsap.ticker.add((time) => {
+		lenis.raf(time * 1000);
+	});
+
 	const closeSidenav = () => {
 		if (!sidenav) return;
 		sidenav.classList.remove("sidenavDisplay");
@@ -137,9 +153,9 @@ import ArrowRightShort from "@/components/astro/ui/ArrowRightShort.astro";
 
 	sidenavCloseButton?.addEventListener("click", closeSidenav);
 
-  declare global {
-    var closeSidenav: () => void;
-  }
+	declare global {
+		var closeSidenav: () => void;
+	}
 
-  window.closeSidenav = closeSidenav;
+	window.closeSidenav = closeSidenav;
 </script>

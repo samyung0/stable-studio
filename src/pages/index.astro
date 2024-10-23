@@ -51,29 +51,31 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 	<!-- side nav for language and menu on mobile -->
 	<SideNav />
 
-	<!-- hero, services and process section -->
-	<main id="home">
-		<div
-			class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
-			<HeaderSection />
+	<div id="mainScroll">
+		<!-- hero, services and process section -->
+		<main id="home">
+			<div
+				class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+				<HeaderSection />
 
-			<LandingSection />
-			<ServiceSection />
-			<ProcessSection />
-		</div>
+				<LandingSection />
+				<ServiceSection />
+				<ProcessSection />
+			</div>
 
-		<!-- pricing section -->
-		<PriceSection />
+			<!-- pricing section -->
+			<PriceSection />
+
+			<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+				<MissionSection />
+				<FAQSection />
+			</div>
+			<CTASection />
+		</main>
 
 		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
-			<MissionSection />
-			<FAQSection />
+			<FooterSection />
 		</div>
-		<CTASection />
-	</main>
-
-	<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
-		<FooterSection />
 	</div>
 
 	<FloatingNavBar />
@@ -136,6 +138,7 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 
 	const lenis = new Lenis({
 		// lerp: 0.4,
+		eventsTarget: document.getElementById("mainScroll")!
 	});
 
 	lenis.on("scroll", ScrollTrigger.update);
@@ -190,6 +193,7 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 
 	ScrollTrigger.normalizeScroll({
 		allowClicks: true,
+		allowNestedScroll: true
 	});
 
 	horizontalLoop(document.getElementById("animatedDivider"), {
