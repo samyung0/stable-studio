@@ -94,11 +94,6 @@ const indexSchemaMarkup: Graph = {
 				unitCode: "MON",
 			},
 			offeredBy: { "@id": "https://stablestudio.org/#organization" },
-		},
-		{
-			"@type": "WebSite",
-			name: "https://stablestudio.org",
-			"@id": "https://stablestudio.org/#website",
 			potentialAction: {
 				"@type": "InteractAction",
 				name: "Contact",
@@ -107,26 +102,8 @@ const indexSchemaMarkup: Graph = {
 					"@id": "https://stablestudio.org/#organization",
 				},
 				target: [
-					{
-						"@type": "EntryPoint",
-						urlTemplate: "https://stablestudio/#contactForm",
-						actionPlatform: [
-							"http://schema.org/DesktopWebPlatform",
-							"http://schema.org/IOSPlatform",
-							"http://schema.org/AndroidPlatform",
-						],
-					},
-					{
-						"@type": "EntryPoint",
-						urlTemplate: "https://stablestudio.org/wrangler",
-						actionPlatform: [
-							"http://schema.org/DesktopWebPlatform",
-							"http://schema.org/IOSPlatform",
-							"http://schema.org/AndroidPlatform",
-						],
-						contentType: "application/json",
-						httpMethod: "POST",
-					},
+					"https://stablestudio/#contactForm",
+					"https://stablestudio.org/wrangler",
 				],
 			},
 		},
