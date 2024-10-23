@@ -1,16 +1,23 @@
 ---
-import ArrowRightShort from "../../ui/ArrowRightShort.astro"
+import ArrowRightShort from "../../ui/ArrowRightShort.astro";
+import Menu from "../../ui/Menu.astro";
+import World from "../../ui/World.astro";
 ---
 
 <!-- header -->
 <header id="top" class="pt-6 md:pt-8">
 	<div class="flex items-center justify-end">
-		<div class="flex items-center gap-2">
+		<button id="smallNavButton" class="size-8 block md:hidden">
+			<Menu />
+		</button>
+		<div class="hidden md:flex items-center gap-2">
 			<button
+				id="languageButton"
 				class="group relative overflow-hidden rounded px-4 py-4 md:px-6 md:py-5">
-				<span class="relative z-10"
-					>Language</span
-				>
+				<span class="relative z-10 flex gap-2 items-center">
+					<span class="size-4 hidden lg:inline -translate-y-[1px]"><World /></span>
+					<span>Language</span>
+				</span>
 
 				<span class="absolute inset-0 h-full overflow-hidden rounded-md"
 					><span
@@ -38,3 +45,20 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro"
 		</div>
 	</div>
 </header>
+
+<script>
+	const languageButton = document.getElementById("languageButton");
+	const sidenav = document.getElementById("sidenav");
+	const smallNavButton = document.getElementById("smallNavButton");
+
+	const openNav = () => {
+		if (!sidenav) return;
+		sidenav.style.display = "flex";
+		requestAnimationFrame(() => {
+			sidenav.classList.add("sidenavDisplay");
+		});
+	}
+
+	languageButton?.addEventListener("click", openNav);
+	smallNavButton?.addEventListener("click", openNav);
+</script>

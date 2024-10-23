@@ -13,6 +13,7 @@ import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
 import FooterSection from "@/components/astro/Section/FooterSection/FooterSection.astro";
 import FloatingNavBar from "@/components/astro/Section/FloatingNavBar/FloatingNavBar.astro";
 import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
+import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 ---
 
 <Layout>
@@ -46,6 +47,9 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 			<LargeAsterisk />
 		</div>
 	</div>
+
+	<!-- side nav for language and menu on mobile -->
+	<SideNav />
 
 	<!-- hero, services and process section -->
 	<main id="home">
@@ -82,8 +86,8 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 </Layout>
 <!-- </div> -->
 <style is:global>
-	#faqCursor circle {
-		fill-opacity: 0.6;
+	#faqCursor {
+		fill-opacity: 0.4;
 	}
 	.fadeinAnimation {
 		filter: blur(50px);
@@ -273,10 +277,11 @@ import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 			anchor.addEventListener(
 				"click",
 				(e) => {
-					e.preventDefault();
 					const href = anchor.getAttribute("href");
-					if (!href) return;
+					if (!href || !href.startsWith("#")) return;
+					e.preventDefault();
 					handleHashNavigate(href);
+					window.closeSidenav?.();
 				},
 				{
 					passive: false,
