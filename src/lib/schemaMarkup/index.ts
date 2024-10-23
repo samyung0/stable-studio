@@ -101,7 +101,8 @@ const indexSchemaMarkup: Graph = {
 			"@id": "https://stablestudio.org/#website",
 			potentialAction: {
 				"@type": "InteractAction",
-				name: "Contact Stable Studio",
+				name: "Contact",
+				description: "Contact Stable Studio and launch your website now.",
 				participant: {
 					"@id": "https://stablestudio.org/#organization",
 				},
