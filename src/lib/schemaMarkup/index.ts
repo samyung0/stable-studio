@@ -20,7 +20,6 @@ const indexSchemaMarkup: Graph = {
 			gender: "Male",
 			image:
 				"https://sam.partialty.com/_image?href=%2F_astro%2Fprofile.Cs45b1KG.jpg&q=low&f=webp",
-			mainEntityOfPage: { "@id": "https://stablestudio.org/" },
 			nationality: "Hong Kong",
 		},
 		{
@@ -102,6 +101,8 @@ const indexSchemaMarkup: Graph = {
 			"@id": "https://stablestudio.org/#website",
 			potentialAction: {
 				"@type": "InteractAction",
+				name: "Contact",
+				description: "Contact Stable Studio and launch your website now.",
 				participant: {
 					"@id": "https://stablestudio.org/#organization",
 				},
