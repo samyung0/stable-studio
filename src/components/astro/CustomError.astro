@@ -8,30 +8,16 @@ import { SEO } from "astro-seo";
 		slot="head"
 		title="404 Not Found"
 		description="Ooops. It seems like you are being too adventurous. The page you are looking for doesn't exist."
-		openGraph={{
-			basic: {
-				title: "404 Not Found",
-				type: "website",
-				image: "https://avatars.githubusercontent.com/u/41984660",
-				url: "https://sam.partialty.com",
-			},
-			optional: {
-				locale: "en-US",
-				siteName: "partialty",
-				description:
-					"Ooops. It seems like you are being too adventurous. The page you are looking for doesn't exist.",
-			},
-		}}
 	/>
-	<main class="min-h-screen flex items-center justify-center px-4">
-		<section class="gap-5 items-center">
-			<h1 class="flex items-center not-prose">
-				<span class="text-xl pr-4 sm:pr-8 border-r border-border leading-10"
-					>404</span
-				>
-				<span class="pl-4 sm:pl-8 text-base">Page not found.</span>
-			</h1>
-			<p class="hidden sm:block">
+	<main class="flex min-h-screen items-center justify-center px-4">
+		<section class="flex flex-col items-center gap-5">
+			<p
+				class="whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs">
+				/ 404 /
+			</p>
+			<h1 class="text-lg sm:text-2xl md:text-4xl">Page not found.</h1>
+			<p
+				class="text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:text-base lg:leading-[1.8]">
 				You have entered enemy territory. Return to safety immediately!
 			</p>
 		</section>
