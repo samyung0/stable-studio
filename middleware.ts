@@ -1,7 +1,12 @@
 // vercel edge middleware
 
-import { isAvailableLanguageTag, sourceLanguageTag } from "@/paraglide/runtime";
+// import { isAvailableLanguageTag, langImport.sourceLanguageTag } from "@/paraglide/runtime";
+import langImport from "./lang.ts"
 import {rewrite, next, type RequestContext} from "@vercel/edge"
+
+export const config = {
+  matcher: ['/((?!api|_astro|favicon.ico|favicon.svg|robots.txt|sitemap-.*.xml).*)'],
+}
 
 // runs on every route
 
@@ -10,7 +15,7 @@ export default function middleware(request: Request, context: RequestContext) {
 
   const url = new URL(request.url);
 	const firstSegment = url.pathname.split("/")[1] as string | undefined;
-	if(isAvailableLanguageTag(firstSegment)) return next();
+	if(firstSegment && langImport.languageTags.includes(firstSegment)) return next();
 
 	const acceptLanguage = request.headers.get("accept-language");
 
@@ -23,11 +28,11 @@ export default function middleware(request: Request, context: RequestContext) {
 		lang = lang ?? acceptLanguage.split(";")[0]?.split(",")[0];
 	}
 
-	if (!lang || !isAvailableLanguageTag(lang)) lang = sourceLanguageTag; // fallback to default lang
+	if (!lang || !langImport.languageTags.includes(lang)) lang = langImport.sourceLanguageTag; // fallback to default lang
 
-	console.log(lang, sourceLanguageTag);
+	console.log(lang, langImport.sourceLanguageTag);
 
-	if(lang === sourceLanguageTag) return rewrite(`/${sourceLanguageTag}${url.pathname}`);
+	if(lang === langImport.sourceLanguageTag) return rewrite(`/${langImport.sourceLanguageTag}${url.pathname}`);
 
 	return Response.redirect(`/${lang}${url.pathname}`);
 }
