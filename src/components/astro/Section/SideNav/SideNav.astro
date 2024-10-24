@@ -1,6 +1,8 @@
 ---
 import Close from "@/components/astro/ui/Close.astro";
 import ArrowRightShort from "@/components/astro/ui/ArrowRightShort.astro";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <nav
@@ -17,27 +19,27 @@ import ArrowRightShort from "@/components/astro/ui/ArrowRightShort.astro";
 		<div class="flex flex-col gap-4 md:hidden">
 			<p
 				class="whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs">
-				/ sections /
+				/ {m.polite_tangy_osprey_hunt()} /
 			</p>
 			<ul class="flex flex-col gap-4 uppercase">
 				<li class="text-lg md:text-xl">
-					<a href="#top">Top</a>
+					<a href="#top">{m.zesty_plane_oryx_stir()}</a>
 				</li>
 				<li class="text-lg md:text-xl">
-					<a href="#services">Service</a>
+					<a href="#services">{m.bold_late_gecko_transform()}</a>
 				</li>
 				<li class="text-lg md:text-xl">
-					<a href="#process">Development Process</a>
+					<a href="#process">{m.careful_lucky_cowfish_dine()}</a>
 				</li>
 				<li class="text-lg md:text-xl">
-					<a href="#pricing">Pricing</a>
+					<a href="#pricing">{m.grand_keen_antelope_endure()}</a>
 				</li>
 				<li class="text-lg md:text-xl">
-					<a href="#vision">Vision</a>
+					<a href="#vision">{m.smart_zippy_shell_dust()}</a>
 				</li>
 				<li class="text-lg md:text-xl">
 					<a href="#getstarted" class="flex items-center gap-1"
-						>Get Started <span class="size-4"><ArrowRightShort /></span></a
+						>{m.knotty_keen_meerkat_vent()} <span class="size-4"><ArrowRightShort /></span></a
 					>
 				</li>
 			</ul>
@@ -45,13 +47,12 @@ import ArrowRightShort from "@/components/astro/ui/ArrowRightShort.astro";
 		<div class="flex flex-col gap-4 md:gap-7">
 			<p
 				class="whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs">
-				/ language /
+				/ {m.maroon_mild_pig_grasp()} /
 			</p>
 			<div class="hidden flex-col items-start gap-2 md:flex">
-				<h2 class="flex text-lg sm:text-2xl md:text-4xl">Switch language</h2>
+				<h2 class="flex text-lg sm:text-2xl md:text-4xl">{m.heroic_green_racoon_believe()}</h2>
 				<p class="max-w-[400px] text-sm text-muted-foreground">
-					Special thanks to my friends for provding the translations. If you
-					would like to help translate, please contact me.
+					{m.full_factual_trout_lock()}
 				</p>
 			</div>
 			<ul
@@ -78,8 +79,8 @@ import ArrowRightShort from "@/components/astro/ui/ArrowRightShort.astro";
 					<a
 						href="/credits"
 						class="block text-xs text-muted-foreground underline">
-						<span class="sr-only">Go to credits page</span>
-						Credits</a
+						<span class="sr-only">{m.noisy_fluffy_fish_jest()}</span>
+						{m.caring_icy_goat_fold()}</a
 					>
 				</li>
 			</ul>
