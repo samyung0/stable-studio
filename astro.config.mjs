@@ -10,7 +10,9 @@ import astroMetaTags from "astro-meta-tags";
 export default defineConfig({
 	site: "https://stablestudio.org",
 	output: "hybrid",
-	adapter: vercel(),
+	adapter: vercel({
+		edgeMiddleware: true
+	}),
 	integrations: [
 		paraglide({
 			project: "./project.inlang",
