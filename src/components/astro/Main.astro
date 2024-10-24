@@ -1,0 +1,297 @@
+---
+import { indexSchemaMarkup } from "@/lib/schemaMarkup";
+import { SEO } from "astro-seo";
+import Layout from "@/layouts/Layout.astro";
+import ServiceSection from "@/components/astro/Section/ServiceSection/ServiceSection.astro";
+import ProcessSection from "@/components/astro/Section/ProcessSection/ProcessSection.astro";
+import PriceSection from "@/components/astro/Section/PriceSection/PriceSection.astro";
+import LandingSection from "@/components/astro/Section/LandingSection/LandingSection.astro";
+import HeaderSection from "@/components/astro/Section/HeaderSection/HeaderSection.astro";
+import MissionSection from "@/components/astro/Section/MissionSection/MissionSection.astro";
+import FAQSection from "@/components/astro/Section/FAQSection/FAQSection.astro";
+import CTASection from "@/components/astro/Section/CTASection/CTASection.astro";
+import FooterSection from "@/components/astro/Section/FooterSection/FooterSection.astro";
+import FloatingNavBar from "@/components/astro/Section/FloatingNavBar/FloatingNavBar.astro";
+import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
+import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
+---
+
+<Layout>
+	<!-- <SEO
+		slot="head"
+		title="Stable Studio"
+		description="Stable Studio is a freelancers studio that makes animations-rich websites. We prioritize user experience, website profile and development speed."
+		openGraph={{
+			basic: {
+				title: "Stable Studio",
+				type: "website",
+				image: "https://avatars.githubusercontent.com/u/41984660",
+				url: "https://stablestudio.org",
+			},
+			optional: {
+				locale: "en-US",
+				siteName: "stablestudio",
+				description:
+					"Stable Studio is a freelancers studio that makes animations-rich websites. We prioritize user experience, website profile and development speed.",
+			},
+		}}
+	/> -->
+
+	<!-- cursor group -->
+	<div
+		id="cursorContainer"
+		class="pointer-events-none fixed top-0 z-[999] hidden min-h-full min-w-full">
+		<div
+			id="faqCursor"
+			class="pointer-events-none fixed size-32 origin-center opacity-0">
+			<LargeAsterisk />
+		</div>
+	</div>
+
+	<!-- side nav for language and menu on mobile -->
+	<SideNav />
+
+	<div id="mainScroll">
+		<!-- hero, services and process section -->
+		<main id="home">
+			<div
+				class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+				<HeaderSection />
+
+				<LandingSection />
+				<ServiceSection />
+				<ProcessSection />
+			</div>
+
+			<!-- pricing section -->
+			<PriceSection />
+
+			<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+				<MissionSection />
+				<FAQSection />
+			</div>
+			<CTASection />
+		</main>
+
+		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+			<FooterSection />
+		</div>
+	</div>
+
+	<FloatingNavBar />
+
+	<script
+		is:inline
+		type="application/ld+json"
+		set:html={JSON.stringify(indexSchemaMarkup)}
+	/>
+</Layout>
+<!-- </div> -->
+<style is:global>
+	#faqCursor {
+		fill-opacity: 0.4;
+	}
+	.fadeinAnimation {
+		filter: blur(50px);
+		opacity: 0;
+		animation: blur 1s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
+		will-change: opacity, filter;
+		-webkit-backface-visibility: hidden;
+		-webkit-transform: translate3d(0, 0, 0);
+		backface-visibility: hidden;
+		transform: translate3d(0, 0, 0);
+	}
+
+	@keyframes blur {
+		0% {
+			filter: blur(12px);
+			opacity: 0;
+		}
+		100% {
+			filter: blur(0);
+			opacity: 1;
+		}
+	}
+
+	.slideinAnimation {
+		transform: translate3d(0, 100px, 0);
+		animation: slide 1s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
+		will-change: transform;
+	}
+
+	@keyframes slide {
+		0% {
+			transform: translate3d(0, 100px, 0);
+		}
+		100% {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+</style>
+<script>
+	import Lenis, { type ScrollToOptions } from "lenis";
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { horizontalLoop } from "@/lib/gsap/loop";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const lenis = new Lenis({
+		// lerp: 0.4,
+		eventsTarget: document.getElementById("mainScroll")!
+	});
+
+	lenis.on("scroll", ScrollTrigger.update);
+
+	gsap.ticker.add((time) => {
+		lenis.raf(time * 1000);
+	});
+
+	gsap.ticker.lagSmoothing(0);
+
+	const cursorContainer = document.getElementById(
+		"cursorContainer",
+	) as HTMLElement | null;
+	const faqCursor = document.getElementById("faqCursor") as HTMLElement | null;
+
+	gsap.set(faqCursor, {
+		xPercent: -50,
+		yPercent: -50,
+	});
+
+	const xTo = gsap.quickTo(faqCursor, "x", {
+		duration: 0.2,
+		ease: "power3",
+	});
+	const yTo = gsap.quickTo(faqCursor, "y", {
+		duration: 0.2,
+		ease: "power3",
+	});
+	const cursorMoveHandler = (e: MouseEvent) => {
+		if (cursorContainer) cursorContainer.style.display = "block";
+		xTo(e.clientX);
+		yTo(e.clientY);
+	};
+	const mm = gsap.matchMedia();
+	mm.add(
+		{ isLg: "(max-width: 1023px)", isDesktop: "(min-width: 1024px)" },
+		(context) => {
+			const isLg = !!context.conditions?.isLg;
+			if (isLg) return;
+
+			document.addEventListener("mousemove", cursorMoveHandler);
+			gsap.set(faqCursor, {
+				x: window.innerWidth / 2,
+				y: window.innerHeight / 2,
+			});
+
+			() => {
+				document.removeEventListener("mousemove", cursorMoveHandler);
+			};
+		},
+	);
+
+	ScrollTrigger.normalizeScroll({
+		allowClicks: true,
+		allowNestedScroll: true
+	});
+
+	horizontalLoop(document.getElementById("animatedDivider"), {
+		repeat: -1,
+		speed: 0.35,
+	});
+
+	declare global {
+		var serviceSectionReady: boolean;
+		var processSectionReady: boolean;
+		var priceSectionReady: boolean;
+		var missionSectionReady: boolean;
+		var faqSectionReady: boolean;
+		var ctaSectionReady: boolean;
+	}
+
+	const config: () => ScrollToOptions = () => ({
+		offset: -window.innerHeight * 0.05,
+		easing: (x: number) =>
+			x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2,
+		duration: 1.5,
+	});
+	const handleHashNavigate = (href: string) => {
+		lenis.scrollTo(href, config());
+		window.location.hash = href;
+		window.activeIndex = window.href?.indexOf(href.split("#")[1]);
+		window.setNavbar?.();
+	};
+	window.onload = () => {
+		const urlHash = window.location.href.split("#")[1];
+		const check = setInterval(() => {
+			const ready =
+				window.serviceSectionReady &&
+				window.processSectionReady &&
+				window.priceSectionReady &&
+				window.missionSectionReady &&
+				window.faqSectionReady &&
+				window.ctaSectionReady;
+			if (!ready) return;
+			clearInterval(check);
+			lenis.resize();
+			if (urlHash) handleHashNavigate(`#${urlHash}`);
+
+			// slide in anim
+			if (window.innerWidth >= 1024) {
+				const sectionHeadAnimated = gsap.utils.toArray(
+					".sectionHeadAnimated",
+				) as HTMLElement[];
+				for (let i = 0; i < sectionHeadAnimated.length; i++) {
+					gsap
+						.timeline({
+							scrollTrigger: {
+								trigger: sectionHeadAnimated[i],
+								start: "top 90%",
+								once: true,
+								// markers: true,
+							},
+						})
+						.fromTo(
+							Array.from(sectionHeadAnimated[i].children).slice(0, 3),
+							{
+								y: 100,
+							},
+							{
+								y: 0,
+								duration: 0.8,
+								stagger: 0.1,
+								ease: "power3.out",
+							},
+						);
+				}
+			}
+
+			// setTimeout(() => {
+			window.ctaSectionTimeline?.();
+			window.footerTimelineFn?.();
+			window.setNavbar?.();
+			// }, 1);
+		}, 100);
+
+		const anchorArray = gsap.utils.toArray(
+			"a[href^='#']",
+		) as HTMLAnchorElement[];
+		anchorArray.forEach((anchor) => {
+			anchor.addEventListener(
+				"click",
+				(e) => {
+					const href = anchor.getAttribute("href");
+					if (!href || !href.startsWith("#")) return;
+					e.preventDefault();
+					handleHashNavigate(href);
+					window.closeSidenav?.();
+				},
+				{
+					passive: false,
+					capture: true,
+				},
+			);
+		});
+	};
+</script>

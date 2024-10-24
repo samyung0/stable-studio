@@ -15,7 +15,6 @@ export const config = {
 };
 
 export default function middleware(request: Request, context: RequestContext) {
-	console.log("vercel middleware.ts");
 
 	try {
 		const url = new URL(request.url);
@@ -26,10 +25,10 @@ export default function middleware(request: Request, context: RequestContext) {
 		const acceptLanguage = request.headers.get("accept-language");
 
 		const cookies = request.headers.getSetCookie();
+		console.log("Cookies: ", cookies)
 		const langCookie = cookies.find((cookie) => cookie.startsWith("lang="));
 		let lang: string | undefined = langCookie?.split("=", 2)[1];
 
-		// Try to use user language
 		if (acceptLanguage) {
 			lang = lang ?? acceptLanguage.split(";")[0]?.split(",")[0];
 		}
@@ -39,8 +38,6 @@ export default function middleware(request: Request, context: RequestContext) {
 
 		url.pathname = `/${lang}${url.pathname}`;
 		if (!url.pathname.endsWith("/")) url.pathname += "/";
-
-		console.log(lang, langImport.sourceLanguageTag, url.pathname);
 
 		if (lang === langImport.sourceLanguageTag) return rewrite(url.pathname);
 
