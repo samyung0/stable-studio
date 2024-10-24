@@ -10,7 +10,7 @@ const langImport = {
 
 export const config = {
 	matcher: [
-	`/((?!api|_astro|favicon.ico|favicon.svg|robots.txt|sitemap).*)`,
+	'/((?!api|_astro|favicon.ico|favicon.svg|robots.txt|sitemap.*.xml).*)',
 	],
 };
 
