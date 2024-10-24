@@ -1,39 +1,41 @@
 ---
 import { Image } from "astro:assets";
 import Img1 from "@/assets/img1.svg";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <!-- img part on right -->
 <div
 	id="processRight"
-	class="relative max-h-[170px] order-first aspect-video md:aspect-auto md:max-h-full flex items-center justify-center flex-1 overflow-hidden w-full md:sticky md:top-0 md:order-last md:max-w-[35%] 2xl:max-w-[40%]">
+	class="relative order-first flex aspect-video max-h-[170px] w-full flex-1 items-center justify-center overflow-hidden md:sticky md:top-0 md:order-last md:aspect-auto md:max-h-full md:max-w-[35%] 2xl:max-w-[40%]">
 	<div
-		class="absolute block h-full w-[calc(100%_-_3rem)] will-change-transform md:w-full pt-6 md:pt-0">
+		class="absolute block h-full w-[calc(100%_-_3rem)] pt-6 will-change-transform md:w-full md:pt-0">
 		<Image
 			src={Img1}
-			alt="Choose a Design"
+			alt={m.calm_such_weasel_twist()}
 			class="size-full rounded-xl object-cover object-center"
 		/>
 	</div>
 	<div
-		class="absolute block h-full w-[calc(100%_-_3rem)] will-change-transform md:w-full pt-6 md:pt-0">
+		class="absolute block h-full w-[calc(100%_-_3rem)] pt-6 will-change-transform md:w-full md:pt-0">
 		<Image
 			src={Img1}
-			alt="Create a Prototype"
+			alt={m.late_wacky_haddock_succeed()}
 			class="size-full rounded-xl object-cover object-center"
 		/>
 	</div><div
-		class="absolute block h-full w-[calc(100%_-_3rem)] will-change-transform md:w-full pt-6 md:pt-0">
+		class="absolute block h-full w-[calc(100%_-_3rem)] pt-6 will-change-transform md:w-full md:pt-0">
 		<Image
 			src={Img1}
-			alt="Optimize the Website"
+			alt={m.fluffy_close_weasel_sing()}
 			class="size-full rounded-xl object-cover object-center"
 		/>
 	</div><div
-		class="absolute block h-full w-[calc(100%_-_3rem)] will-change-transform md:w-full pt-6 md:pt-0">
+		class="absolute block h-full w-[calc(100%_-_3rem)] pt-6 will-change-transform md:w-full md:pt-0">
 		<Image
 			src={Img1}
-			alt="Ad Campaign and Analytics"
+			alt={m.stale_key_sawfish_pray()}
 			class="size-full rounded-xl object-cover object-center"
 		/>
 	</div>

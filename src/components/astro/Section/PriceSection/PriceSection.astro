@@ -2,6 +2,8 @@
 import SectionHead from "@/layouts/SectionHead.astro";
 import Check from "../../ui/Check.astro";
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <section
@@ -16,24 +18,21 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 				<p class="flex flex-col items-center gap-6">
 					<span
 						class="whitespace-nowrap text-[6vw] leading-[1] 3xl:text-[100px]"
-						>Simple and affordable price.</span
+						>{m.merry_clean_jannes_lock()}</span
 					>
 					<span
 						class="whitespace-nowrap text-center text-[2.5vw] leading-[1.2] 3xl:text-4xl">
-						No funny hidden fees.
+						{m.blue_factual_panther_buzz()}
 					</span>
 				</p>
 			</div>
 		</div>
 		<SectionHead
 			class="sectionHeadAnimated px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
-			<span slot="label" class="text-background/70">/ pricing /</span>
-			<span slot="title">Pricing</span>
+			<span slot="label" class="text-background/70">/ {m.pricing()} /</span>
+			<span slot="title">{m.few_tangy_walrus_file()}</span>
 			<p slot="description" class="text-flatgray2" id="priceSectionDescription">
-				Extremely affordable pricing for even start-ups. For Saas and sites that
-				need to handle users, the price will scale with the traffic as you grow.
-				Total cost will be mentioned in the budget proposal at the start and we
-				make sure you are clear about it. (Currency in USD)
+				{m.neat_deft_clownfish_propel()}
 			</p>
 			<div class="col-span-2 col-start-1 flex ~py-6/24 lg:col-start-2">
 				<div
@@ -42,7 +41,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 						class="price flex flex-1 flex-col gap-4 rounded-xl bg-flatdeepblue px-6 py-6 lg:gap-6 lg:px-8 lg:py-16">
 						<h2
 							class="flex h-[50px] items-center text-lg leading-[1.4] lg:text-base lg:leading-[1.8]">
-							One-off
+							{m.actual_great_parrot_heart()}
 						</h2>
 						<div class="border-t border-muted-foreground"></div>
 						<ul class="space-y-2 md:space-y-3">
@@ -50,27 +49,27 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
 									<Check />
 								</span>
-								Base 5 pages + Assets Handling
+								{m.frail_spry_gadfly_quiz()}
 							</li>
 							<li class="flex items-center gap-2">
 								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
 									<Check />
-								</span>Transitions + Animations
+								</span>{m.broad_arable_herring_spin()}
 							</li>
 							<li class="flex items-center gap-2">
 								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
 									<Check />
-								</span>SEO Optimizations
+								</span>{m.arable_white_goldfish_attend()}
 							</li>
 							<li class="flex items-center gap-2">
 								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
 									<Check />
-								</span>Hosting and Deployment
+								</span>{m.short_inner_parakeet_amaze()}
 							</li>
 							<li class="flex items-center gap-2">
 								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
 									<Check />
-								</span>Three Revision
+								</span>{m.mushy_tiny_jaguar_gulp()}
 							</li>
 						</ul>
 						<div class="border-t border-muted-foreground"></div>
@@ -85,7 +84,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 								class="group relative overflow-hidden rounded bg-primary px-4 py-3 text-primary-foreground md:px-6 md:py-5">
 								<span
 									class="relative z-10 duration-500 group-hover:text-primary"
-									>Start now</span
+									>{m.startnow()}</span
 								>
 								<span class="absolute inset-0 h-full overflow-hidden rounded-md"
 									><span
@@ -99,9 +98,9 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 						class="price flex flex-1 flex-col gap-4 rounded-xl bg-card px-6 py-6 text-primary lg:gap-6 lg:px-8 lg:py-16">
 						<h2
 							class="flex h-[50px] items-center gap-5 whitespace-nowrap text-xl leading-[1.4] text-primary lg:text-2xl lg:leading-[1.8] xl:gap-[2vw]">
-							Monthly subscription
+							{m.fun_upper_finch_cherish()}
 							<span class="text-xs font-normal uppercase text-muted-foreground"
-								>popular</span
+								>{m.known_tangy_butterfly_savor()}</span
 							>
 						</h2>
 						<div class="border-t border-muted-foreground/50"></div>
@@ -110,27 +109,27 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 								<li class="flex items-center gap-2">
 									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
 										<Check />
-									</span>All features of One-off +
+									</span>{m.royal_stock_hamster_pick()}
 								</li>
 								<li class="flex items-center gap-2">
 									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
 										<Check />
-									</span>Saas, CMS and User Handling
+									</span>{m.aware_key_lemming_adapt()}
 								</li>
 								<li class="flex items-center gap-2">
 									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
 										<Check />
-									</span>Infinite Revisions
+									</span>{m.salty_north_fish_boost()}
 								</li>
 								<li class="flex items-center gap-2">
 									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
 										<Check />
-									</span>Lottie Animations
+									</span>{m.strong_white_impala_absorb()}
 								</li>
 								<li class="flex items-center gap-2">
 									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
 										<Check />
-									</span>Ad Campaigns and Off-Page SEO
+									</span>{m.tasty_major_flea_imagine()}
 								</li>
 							</ul>
 						</div>
@@ -147,7 +146,7 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 									<span class="size-4 text-muted-foreground md:size-6"
 										><ArrowRightShort /></span
 									>
-									<span class="mt-[2px] block">Start now</span>
+									<span class="mt-[2px] block">{m.startnow()}</span>
 								</span>
 								<span class="absolute inset-0 h-full overflow-hidden rounded-md"
 									><span

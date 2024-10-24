@@ -138,7 +138,7 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 
 	const lenis = new Lenis({
 		// lerp: 0.4,
-		eventsTarget: document.getElementById("mainScroll")!
+		eventsTarget: document.getElementById("mainScroll")!,
 	});
 
 	lenis.on("scroll", ScrollTrigger.update);
@@ -193,7 +193,7 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 
 	ScrollTrigger.normalizeScroll({
 		allowClicks: true,
-		allowNestedScroll: true
+		allowNestedScroll: true,
 	});
 
 	horizontalLoop(document.getElementById("animatedDivider"), {

@@ -25,8 +25,8 @@ export function horizontalLoop(
 		paddingRight?: number;
 	},
 ) {
-  if(!container) return;
-  const items = gsap.utils.toArray(container.children) as HTMLElement[];
+	if (!container) return;
+	const items = gsap.utils.toArray(container.children) as HTMLElement[];
 	if (items.length < 1) return;
 	config = config || {};
 	let tl = gsap.timeline({

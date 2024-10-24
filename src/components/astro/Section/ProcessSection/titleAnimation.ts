@@ -1,6 +1,10 @@
 import gsap from "gsap";
 
-const titleAnimation = (showEl: HTMLElement, hideEl: HTMLElement, remaining: HTMLElement[]) => {
+const titleAnimation = (
+	showEl: HTMLElement,
+	hideEl: HTMLElement,
+	remaining: HTMLElement[],
+) => {
 	gsap.fromTo(
 		showEl,
 		{
