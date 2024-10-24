@@ -10,7 +10,7 @@ const langImport = {
 
 export const config = {
 	matcher: [
-	'/((?!api|_astro|favicon.ico|favicon.svg|robots.txt|sitemap.*.xml).*)',
+		"/((?!api|_astro|favicon.ico|favicon.svg|robots.txt|sitemap.*.xml).*)",
 	],
 };
 
@@ -37,16 +37,18 @@ export default function middleware(request: Request, context: RequestContext) {
 		if (!lang || !langImport.languageTags.includes(lang))
 			lang = langImport.sourceLanguageTag; // fallback to default lang
 
-		console.log(lang, langImport.sourceLanguageTag);
+		url.pathname = `/${lang}${url.pathname}`;
+		if (!url.pathname.endsWith("/")) url.pathname += "/";
 
-		let path = `/${lang}${url.pathname}`;
-		if (!path.endsWith("/")) path += "/";
+		console.log(lang, langImport.sourceLanguageTag, url.pathname);
 
-		if (lang === langImport.sourceLanguageTag) return rewrite(path);
+		if (lang === langImport.sourceLanguageTag) return rewrite(url.pathname);
 
-		return Response.redirect(path);
+		return Response.redirect(url.toString());
 	} catch (e) {
 		console.error(e);
-		return Response.error();
+
+    // absolute fallback of fallback
+		return Response.redirect(`https://stablestudio.org/${langImport.sourceLanguageTag}/`);
 	}
 }
