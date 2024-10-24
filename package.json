@@ -14,6 +14,7 @@
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "@types/rtl-detect": "^1.0.3",
+    "@vercel/edge": "^1.1.2",
     "astro": "^4.15.9",
     "astro-font": "^0.1.81",
     "astro-meta-tags": "^0.3.0",

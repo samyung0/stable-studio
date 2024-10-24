@@ -11,7 +11,7 @@ export default defineConfig({
 	site: "https://stablestudio.org",
 	output: "hybrid",
 	adapter: vercel({
-		edgeMiddleware: true
+		// edgeMiddleware: true,
 	}),
 	integrations: [
 		paraglide({
