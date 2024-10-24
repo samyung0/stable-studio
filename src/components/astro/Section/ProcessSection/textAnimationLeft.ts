@@ -1,6 +1,10 @@
 import gsap from "gsap";
 
-const textAnimationLeft = (showEl: HTMLElement, hideEl: HTMLElement, remaining: HTMLElement[]) => {
+const textAnimationLeft = (
+	showEl: HTMLElement,
+	hideEl: HTMLElement,
+	remaining: HTMLElement[],
+) => {
 	gsap.fromTo(
 		showEl,
 		{

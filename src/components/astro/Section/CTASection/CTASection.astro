@@ -3,6 +3,8 @@ import GlossyCard from "../../ui/GlossyCard.astro";
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 import BlurryBlob from "../../ui/BlurryBlob.astro";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <section
@@ -14,7 +16,7 @@ import BlurryBlob from "../../ui/BlurryBlob.astro";
 		class="relative grid w-full grid-cols-[auto_1fr] justify-between gap-[5vw] px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
 		<p
 			class="mutedText relative left-0 col-start-[2] row-start-1 ml-auto lg:col-start-[1]">
-			/ get started /
+			/ {m.getstarted2()} /
 		</p>
 		<div
 			class="col-span-2 col-start-1 row-start-1 md:-mt-4 lg:col-span-1 lg:col-start-2 lg:-mt-2">
@@ -39,12 +41,10 @@ import BlurryBlob from "../../ui/BlurryBlob.astro";
 					<p
 						id="ctaSectionDescription"
 						class="flex flex-col gap-1 text-sm leading-[1.4] text-primary-foreground/70 md:gap-3 md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
-						Got something to ask about? Or just want to say hi? Feel free to
-						drop us a message via email or the contact form and we will get back
-						to you as soon as possible.
+						{m.spry_solid_wombat_pick()}
 					</p>
 					<div class="flex flex-col items-start md:gap-3">
-						<p class="mutedTextDark">contact us</p>
+						<p class="mutedTextDark">{m.spry_real_cow_slide()}</p>
 						<ul
 							class="flex flex-col text-base font-normal text-primary-foreground/70 md:gap-2">
 							<li>
@@ -52,7 +52,11 @@ import BlurryBlob from "../../ui/BlurryBlob.astro";
 									>samyung@stablestudio.org</a
 								>
 							</li>
-							<li><a href="https://sam.partialty.com">Sam's Homepage</a></li>
+							<li>
+								<a href="https://sam.partialty.com"
+									>{m.spry_direct_stork_devour()}</a
+								>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -93,25 +97,23 @@ import BlurryBlob from "../../ui/BlurryBlob.astro";
 						<p
 							id="formSubmitText"
 							class="max-h-full text-xs leading-[1rem] text-muted-foreground">
-							Don't worry, we don't send annoying newsletters or promotional
-							emails.
+							{m.super_nice_ant_tap()}
 						</p>
 
 						<p
 							id="formSubmitTextSuccess"
 							class="hidden max-h-full text-xs font-normal leading-[1rem] text-primary-foreground/70">
-							We have received your message!
+							{m.level_maroon_lynx_cherish()}
 						</p>
 						<p
 							id="formSubmitTextWarn"
 							class="hidden max-h-full text-xs font-normal leading-[1rem] text-primary-foreground/70">
-							Hey, it seems like you have contacted us before. You can directly
-							send us an email if that's the case.
+							{m.whole_odd_walrus_relish()}
 						</p>
 						<p
 							id="formSubmitTextError"
 							class="hidden max-h-full text-xs font-normal leading-[1rem] text-primary-foreground/70">
-							Ooops, something went wrong. Please try again later.
+							{m.loved_fancy_clownfish_fry()}
 						</p>
 					</div>
 
@@ -127,11 +129,11 @@ import BlurryBlob from "../../ui/BlurryBlob.astro";
 								class="relative mt-[2px] flex items-center justify-center overflow-hidden">
 								<span
 									class="translate-y-0 transition duration-300 group-hover:translate-y-[100%]">
-									Send a message
+									{m.suave_helpful_lion_evoke()}
 								</span>
 								<span
 									class="absolute -translate-y-[100%] transition duration-300 group-hover:translate-y-0">
-									Send a message
+									{m.suave_helpful_lion_evoke()}
 								</span>
 							</span>
 						</span>

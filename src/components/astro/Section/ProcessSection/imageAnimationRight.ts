@@ -1,6 +1,10 @@
 import gsap from "gsap";
 
-const imageAnimationRight = (showEl: HTMLElement, hideEl: HTMLElement, remaining: HTMLElement[]) => {
+const imageAnimationRight = (
+	showEl: HTMLElement,
+	hideEl: HTMLElement,
+	remaining: HTMLElement[],
+) => {
 	const mm = gsap.matchMedia();
 
 	mm.add(

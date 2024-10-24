@@ -126,13 +126,13 @@
 	};
 
 	window.addEventListener("resize", setNavbar);
-	
+
 	declare global {
 		var setNavbar: () => void;
 		var href: (string | undefined)[];
 		var activeIndex: number;
 	}
-	
+
 	window.activeIndex = -1;
 	window.href = href;
 	window.setNavbar = setNavbar;

@@ -4,6 +4,8 @@ import AnimatedText from "../../AnimatedText/AnimatedText.astro";
 import ArrowRightDown from "../../ui/ArrowRightDown.astro";
 import DoubleGear from "../../ui/DoubleGear.astro";
 import LandingImg from "../../ui/LandingImg.astro";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <!-- landing section -->
@@ -16,21 +18,21 @@ import LandingImg from "../../ui/LandingImg.astro";
 		<h1
 			class="flex-[2] text-4xl leading-[1.2] sm:text-[9vw] lg:text-[6vw] 3xl:text-[130px]">
 			<span class="whitespace-nowrap"
-				>We make silky <span
+				>{m.tasty_wide_toad_renew()}
+				<span
 					class="inline-block aspect-square w-[36px] translate-y-2 sm:w-[9vw] lg:w-[6vw] 3xl:w-[130px]">
 					<DoubleGear />
 				</span></span
 			><br />
-			<span class="whitespace-nowrap">smooth websites</span>
+			<span class="whitespace-nowrap">{m.pretty_sweet_butterfly_dart()}</span>
 		</h1>
 		<div
 			class="flex min-w-[300px] max-w-[470px] flex-1 shrink-0 flex-col items-start py-4 lg:max-w-full">
 			<div
 				class="pb-8 uppercase leading-[1.7] opacity-80"
 				id="landingSectionDetails">
-				<AnimatedText>Stable Studio</AnimatedText> is a freelancers studio that makes
-				animations-rich websites. We prioritize user experience, website profile
-				and development speed.
+				<AnimatedText>Stable Studio</AnimatedText>
+				{m.active_calm_felix_sway()}
 			</div>
 
 			<a class="flex items-center gap-1" href="#process">
@@ -41,11 +43,11 @@ import LandingImg from "../../ui/LandingImg.astro";
 					class="group relative inline-flex items-center justify-center overflow-hidden">
 					<span
 						class="translate-y-0 transition duration-300 group-hover:translate-y-[100%]">
-						Development process
+						{m.every_late_squid_revive()}
 					</span>
 					<span
 						class="absolute -translate-y-[100%] transition duration-300 group-hover:translate-y-0">
-						Development process
+						{m.every_late_squid_revive()}
 					</span>
 				</span>
 			</a>

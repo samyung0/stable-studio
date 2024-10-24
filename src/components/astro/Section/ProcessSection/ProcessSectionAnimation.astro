@@ -2,6 +2,8 @@
 import SpinningWheel from "../../ui/SpinningWheel.astro";
 import ProcessSectionLeft from "./ProcessSectionLeft.astro";
 import ProcessSectionRight from "./ProcessSectionRight.astro";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <div
@@ -17,19 +19,19 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 					class="mr-auto max-h-[3.6rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
 					<h2
 						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
-						Requirement Collection
+						{m.any_vexed_manatee_cut()}
 					</h2>
 					<h2
 						class="processTitle hidden text-base !leading-[1.8rem] will-change-transform md:text-lg">
-						Prototyping
+						{m.weird_simple_elk_grip()}
 					</h2>
 					<h2
 						class="processTitle hidden text-base !leading-[1.8rem] will-change-transform md:text-lg">
-						Optimization and Deployment
+						{m.solid_cute_jaguar_pop()}
 					</h2>
 					<h2
 						class="processTitle hidden text-base !leading-[1.8rem] will-change-transform md:text-lg">
-						Ad Campaign and Profile Building
+						{m.stock_nice_snail_hurl()}
 					</h2>
 				</header>
 
@@ -59,25 +61,28 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 						<!-- label -->
 						<div class="flex items-center justify-start gap-3">
 							<span class="processStep processActive flex items-center gap-1"
-								><span class="overflow-hidden">step</span><span>/01/</span
-								></span
+								><span class="overflow-hidden">{m.crisp_green_camel_pet()}</span
+								><span>/01/</span></span
 							>
 							<span class="processStep flex items-center gap-1"
-								><span class="w-0 overflow-hidden">step</span><span>/02/</span
-								></span
+								><span class="w-0 overflow-hidden"
+									>{m.crisp_green_camel_pet()}</span
+								><span>/02/</span></span
 							>
 							<span class="processStep flex items-center gap-1"
-								><span class="w-0 overflow-hidden">step</span><span>/03/</span
-								></span
+								><span class="w-0 overflow-hidden"
+									>{m.crisp_green_camel_pet()}</span
+								><span>/03/</span></span
 							>
 							<span class="processStep flex items-center gap-1"
-								><span class="w-0 overflow-hidden">step</span><span>/04/</span
-								></span
+								><span class="w-0 overflow-hidden"
+									>{m.crisp_green_camel_pet()}</span
+								><span>/04/</span></span
 							>
 						</div>
 						<!-- progress text -->
 						<div class="flex items-center gap-1">
-							<span class="uppercase">progress</span>
+							<span class="uppercase">{m.cozy_kind_monkey_swim()}</span>
 							<span id="processSectionProgressText" class="text-primary"
 								>0%</span
 							>

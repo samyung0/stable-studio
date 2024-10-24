@@ -1,5 +1,7 @@
 ---
-import NestedSquare from "../../ui/NestedSquare.astro"
+import NestedSquare from "../../ui/NestedSquare.astro";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <!-- vision section -->
@@ -11,7 +13,7 @@ import NestedSquare from "../../ui/NestedSquare.astro"
 		class="flex max-w-full flex-col items-center justify-center gap-4 rounded-xl bg-card px-6 py-10 md:-mt-20 md:gap-4 md:px-12 md:py-8 lg:max-w-[70vw] lg:px-16 lg:py-10 2xl:max-w-[60vw] 3xl:px-24 3xl:py-12">
 		<p
 			class="whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs 3xl:text-sm">
-			/ vision /
+			/ {m.vision()} /
 		</p>
 		<div class="relative flex flex-col items-center gap-[4vh]">
 			<svg
@@ -29,10 +31,7 @@ import NestedSquare from "../../ui/NestedSquare.astro"
 			<p
 				id="missionSectionDescription"
 				class="text-center text-lg text-primary sm:text-2xl md:text-4xl md:leading-[1.2] 3xl:text-5xl">
-				We don't just build websites, we build connections. Sure, we want to
-				make amazing sites and help your business grow, but the prerequisites to
-				all of these are mutual trust and understanding and we strive to build
-				that with every project.&nbsp;&nbsp;<span
+				{m.each_misty_myna_blink()}&nbsp;&nbsp;<span
 					class="inline-block size-6 align-sub sm:size-8 md:size-11 3xl:size-14">
 					<NestedSquare />
 				</span>
@@ -41,7 +40,7 @@ import NestedSquare from "../../ui/NestedSquare.astro"
 				<span class="text-sm text-primary md:text-base">Sam Yung</span>
 				<span
 					class="whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-flatgray2 md:text-xs lg:ml-0 3xl:text-sm"
-					>/ founder /</span
+					>/ {m.founder()} /</span
 				>
 			</div>
 		</div>

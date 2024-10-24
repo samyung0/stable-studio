@@ -15,7 +15,6 @@ export const config = {
 };
 
 export default function middleware(request: Request, context: RequestContext) {
-
 	try {
 		const url = new URL(request.url);
 		const firstSegment = url.pathname.split("/")[1] as string | undefined;
@@ -24,8 +23,9 @@ export default function middleware(request: Request, context: RequestContext) {
 
 		const acceptLanguage = request.headers.get("accept-language");
 
+		// getsetcookies do not work lol
 		const cookies = request.headers.get("cookie")?.split("; ") ?? [];
-		console.log("Cookies: ", cookies)
+		console.log("Cookies: ", cookies);
 		const langCookie = cookies.find((cookie) => cookie.startsWith("lang="));
 		let lang: string | undefined = langCookie?.split("=", 2)[1];
 
@@ -45,7 +45,9 @@ export default function middleware(request: Request, context: RequestContext) {
 	} catch (e) {
 		console.error(e);
 
-    // absolute fallback of fallback
-		return Response.redirect(`https://stablestudio.org/${langImport.sourceLanguageTag}/`);
+		// absolute fallback of fallback
+		return Response.redirect(
+			`https://stablestudio.org/${langImport.sourceLanguageTag}/`,
+		);
 	}
 }

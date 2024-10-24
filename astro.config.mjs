@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import paraglide from '@inlang/paraglide-astro'
+import paraglide from "@inlang/paraglide-astro";
 import vercel from "@astrojs/vercel/serverless";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
@@ -37,6 +37,6 @@ export default defineConfig({
 	i18n: {
 		defaultLocale: "en",
 		locales: ["en", "ja", "tl", "id", "zh-HK", "zh-CN", "vi", "zh-TW", "zh"],
-		routing: "manual"
+		routing: "manual",
 	},
 });

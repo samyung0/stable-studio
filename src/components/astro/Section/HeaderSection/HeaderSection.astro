@@ -3,22 +3,24 @@ import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 import Menu from "../../ui/Menu.astro";
 import World from "../../ui/World.astro";
 
-import * as m from "@/paraglide/messages"
+import * as m from "@/paraglide/messages";
 ---
 
 <!-- header -->
 <header id="top" class="pt-6 md:pt-8">
 	<div class="flex items-center justify-end">
-		<button id="smallNavButton" class="size-8 block md:hidden">
+		<button id="smallNavButton" class="block size-8 md:hidden">
 			<Menu />
 		</button>
-		<div class="hidden md:flex items-center gap-2">
+		<div class="hidden items-center gap-2 md:flex">
 			<button
 				id="languageButton"
 				class="group relative overflow-hidden rounded px-4 py-4 md:px-6 md:py-5">
-				<span class="relative z-10 flex gap-2 items-center">
-					<span class="size-4 hidden lg:inline -translate-y-[1px]"><World /></span>
-					<span>Language</span>
+				<span class="relative z-10 flex items-center gap-2">
+					<span class="hidden size-4 -translate-y-[1px] lg:inline"
+						><World /></span
+					>
+					<span>{m.zippy_careful_rooster_clasp()}</span>
 				</span>
 
 				<span class="absolute inset-0 h-full overflow-hidden rounded-md"
@@ -35,7 +37,7 @@ import * as m from "@/paraglide/messages"
 					<span class="size-4 text-muted-foreground md:size-6">
 						<ArrowRightShort />
 					</span>
-					<span class="mt-[2px] block">{m.sectionHeadGetStarted()}</span>
+					<span class="mt-[2px] block">{m.fresh_nimble_tortoise_soar()}</span>
 				</span>
 
 				<span class="absolute inset-0 h-full overflow-hidden rounded-md"
@@ -59,7 +61,7 @@ import * as m from "@/paraglide/messages"
 		requestAnimationFrame(() => {
 			sidenav.classList.add("sidenavDisplay");
 		});
-	}
+	};
 
 	languageButton?.addEventListener("click", openNav);
 	smallNavButton?.addEventListener("click", openNav);

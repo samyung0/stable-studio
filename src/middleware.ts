@@ -45,7 +45,7 @@ export const onRequest =
 		}
 
 		if (!lang || !isAvailableLanguageTag(lang)) lang = sourceLanguageTag; // fallback to default lang
-		
+
 		if (lang === sourceLanguageTag)
 			return ctx.rewrite(`/${sourceLanguageTag}${ctx.url.pathname}`);
 

@@ -1,13 +1,13 @@
 {
-	"plugins": ["prettier-plugin-astro","prettier-plugin-tailwindcss"],
+	"plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
 	"overrides": [
-    {
-      "files": "*.astro",
-      "options": {
-        "parser": "astro"
-      }
-    }
-  ],
+		{
+			"files": "*.astro",
+			"options": {
+				"parser": "astro"
+			}
+		}
+	],
 	"tabWidth": 2,
 	"useTabs": true,
 	"bracketSameLine": true,

@@ -4,29 +4,31 @@ import ArrowRight from "./ArrowRight.astro";
 import Plus from "./Plus.astro";
 import ArrowBoth from "./ArrowBoth.astro";
 import ArrowBothShort from "./ArrowBothShort.astro";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <div class="flex items-center gap-1 text-flatgray2">
-	<span class="animatedDividerText">aesthetics</span>
+	<span class="animatedDividerText">{m.lazy_born_gadfly_work()}</span>
 	<span class="pb-1">
 		<Asterisk />
 	</span>
-	<span class="animatedDividerText">performance</span>
+	<span class="animatedDividerText">{m.acidic_factual_angelfish_charm()}</span>
 	<span class="pb-1">
 		<ArrowRight />
 	</span>
 	<span class="pb-1">
 		<Asterisk />
 	</span>
-	<span class="animatedDividerText">speed</span>
+	<span class="animatedDividerText">{m.tame_slimy_angelfish_pray()}</span>
 	<span class="pb-1 text-flatviolet">
 		<ArrowBothShort />
 	</span>
-	<span class="animatedDividerText">creativity</span>
+	<span class="animatedDividerText">{m.this_east_lemming_quiz()}</span>
 	<span class="pb-1">
 		<Asterisk />
 	</span>
-	<span class="animatedDividerText">professionalism</span>
+	<span class="animatedDividerText">{m.knotty_sea_shrike_scoop()}</span>
 	<span class="pb-1">
 		<Plus />
 	</span>
@@ -34,7 +36,7 @@ import ArrowBothShort from "./ArrowBothShort.astro";
 	<span class="pb-1">
 		<ArrowRight />
 	</span>
-	<span class="animatedDividerText">animations</span>
+	<span class="animatedDividerText">{m.teal_loved_fireant_trim()}</span>
 	<span class="pb-1">
 		<Asterisk />
 	</span>
@@ -62,7 +64,11 @@ import ArrowBothShort from "./ArrowBothShort.astro";
 				t.to(el, {
 					keyframes: [
 						{ color: "hsl(60 1.33% 14.71%)", duration: 1 },
-						{ color: "rgb(161, 161, 161)", duration: 1, delay: gsap.utils.random(0.5, 2) },
+						{
+							color: "rgb(161, 161, 161)",
+							duration: 1,
+							delay: gsap.utils.random(0.5, 2),
+						},
 					],
 					delay: () => gsap.utils.random(1, 2),
 				});

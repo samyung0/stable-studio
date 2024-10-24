@@ -1,5 +1,6 @@
 ---
 import ConcaveSquare from "../../ui/ConcaveSquare.astro";
+import * as m from "@/paraglide/messages";
 
 const year = new Date().getFullYear();
 ---
@@ -8,14 +9,18 @@ const year = new Date().getFullYear();
 	id="footer"
 	class="flex h-[150px] flex-col ~mt-6/24 ~pb-5/10 sm:h-[300px]">
 	<div id="footerIconContainer" class="relative">
-		<a id="footerIcon" href="#top" class="absolute left-0 top-0 size-[16vmin] max-h-[100px] max-w-[100px]">
-			<span class="sr-only">Go back to top of the page</span>
+		<a
+			id="footerIcon"
+			href="#top"
+			class="absolute left-0 top-0 size-[16vmin] max-h-[100px] max-w-[100px]">
+			<span class="sr-only">{m.dizzy_new_tuna_enchant()}</span>
 			<ConcaveSquare />
 		</a>
 	</div>
 	<p
 		class="mt-auto self-end text-xs font-normal text-flatgray2 md:text-sm 2xl:text-muted-foreground">
-		© {year} All rights reserved. All wrongs reversed.
+		© {year}
+		{m.fancy_stale_blackbird_fond()}
 	</p>
 </footer>
 

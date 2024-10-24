@@ -1,19 +1,20 @@
 ---
 import SectionHead from "@/layouts/SectionHead.astro";
 import ServiceSectionAnimation from "./ServiceSectionAnimation.astro";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <!-- service section -->
 <section id="service" aria-describedby="serviceSectionDescription">
 	<SectionHead class="sectionHeadAnimated">
-		<span slot="label">/ service /</span>
-		<span slot="title">What we are good at</span>
+		<span slot="label">/ {m.service()} /</span>
+		<span slot="title">{m.minor_teal_javelina_mop()}</span>
 		<p slot="description" id="serviceSectionDescription">
-			We specialize in making feature-rich and animated websites. Marketing,
-			showcase, blog, SaaS, you name it, we build it. Not only do we do SEO, CMS
-			integration, and profile building, we also do it with speed and precision
-			so you can see the result as soon as possible. <br />
-			<br /> Each website is unique, and we put our heart into every project.
+			{m.busy_long_coyote_succeed()}
+			<br />
+			<br />
+			{m.awful_full_butterfly_grip()}
 		</p>
 	</SectionHead>
 
@@ -29,19 +30,13 @@ import ServiceSectionAnimation from "./ServiceSectionAnimation.astro";
 					"Rapid Prototyping",
 				]}>
 				<span slot="label">01</span>
-				<span slot="title">Web Development</span>
+				<span slot="title">{m.inner_good_warthog_seek()}</span>
 				<span slot="subheader">
-					Smooth, animated, responsive and SEO optimized
+					{m.tough_tough_anaconda_nail()}
 				</span>
 				<p slot="description">
-					Your website's first impression is crucial. People leave when it is
-					slow, plain or have a bad UX. We make websites according to your
-					prefrences and business goals and supercharge it with stunning
-					visuals, smooth animations and user-friendly design. Of course we make
-					sure it is responsive and looks nice across devices as well. Depending
-					on the complexity, we can deliver a full website in as little as <span
-						class="italic text-flatdarkviolet">2 weeks</span
-					>.
+					{m.equal_full_walrus_inspire()}
+					<span class="italic text-flatdarkviolet">2 weeks</span>.
 				</p>
 			</ServiceSectionAnimation>
 			<ServiceSectionAnimation
@@ -51,40 +46,29 @@ import ServiceSectionAnimation from "./ServiceSectionAnimation.astro";
 					"Ad Campaigns and Reviews",
 				]}>
 				<span slot="label">02</span>
-				<span slot="title">SEO & Profile Building</span>
+				<span slot="title">{m.direct_flat_badger_bump()}</span>
 				<span slot="subheader">
-					Maximize your business exposure and conversion
+					{m.chunky_aloof_hornet_belong()}
 				</span>
 				<p slot="description">
-					Your business deserves to be noticed. Optimizing your website for
-					Google and elevating your visibility in a search results is only part
-					of the journey, we build your online business profile with ad
-					compaigns and reviews to help attract the right audience and stand out
-					amongst the competition.
+					{m.great_suave_rabbit_leap()}
 				</p>
 			</ServiceSectionAnimation>
 			<ServiceSectionAnimation
 				subServices={["Code Refactoring", "Bug Fixing", "Optimization"]}>
 				<span slot="label">03</span>
-				<span slot="title">Website Maintenance</span>
-				<span slot="subheader">The cleanup crew</span>
+				<span slot="title">{m.big_chunky_mantis_engage()}</span>
+				<span slot="subheader">{m.raw_lucky_squirrel_dart()}</span>
 				<p slot="description">
-					Website is not something you just build and forget. Be adding new
-					features, updating content, renewing designs or fixing bugs, we are
-					here to do the annoying part and to keep your website fresh and
-					up-to-date so you can focus on your business.
+					{m.key_cool_osprey_skip()}
 				</p>
 			</ServiceSectionAnimation>
 			<ServiceSectionAnimation>
 				<span slot="label">04</span>
-				<span slot="title">FREE Consultation</span>
-				<span slot="subheader">Be smart about your decisions</span>
+				<span slot="title">{m.extra_lime_elephant_relish()}</span>
+				<span slot="subheader">{m.good_next_bumblebee_believe()}</span>
 				<p slot="description">
-					Stop overpaying and be smart about your decisions. We provide free and
-					non-biased recommendations based on your business needs so you can be
-					well-informed. We advice on various topics such as relevant tech
-					stacks, project cost and resources. We genuinely want to help you
-					avoid unncessary cost and potential traps.
+					{m.mushy_royal_finch_support()}
 				</p>
 			</ServiceSectionAnimation>
 		</ul>

@@ -2,6 +2,8 @@
 import SectionHead from "@/layouts/SectionHead.astro";
 import ProcessSectionAnimation from "./ProcessSectionAnimation.astro";
 import LongArrowRightDown from "../../ui/LongArrowRightDown.astro";
+
+import * as m from "@/paraglide/messages";
 ---
 
 <!-- process section -->
@@ -9,10 +11,11 @@ import LongArrowRightDown from "../../ui/LongArrowRightDown.astro";
 	id="process"
 	class="relative"
 	aria-describedby="processSectionDescription">
-	<SectionHead class="!p-0 sectionHeadAnimated">
-		<span slot="label">/ process /</span>
+	<SectionHead class="sectionHeadAnimated !p-0">
+		<span slot="label">/ {m.process()} /</span>
 		<span slot="title">
-			Our website development <span class="inline-flex items-center"
+			{m.tough_true_pig_sew()}
+			<span class="inline-flex items-center"
 				>process
 				<span>&nbsp;</span>
 				<span class="~w-16/40">
@@ -21,10 +24,7 @@ import LongArrowRightDown from "../../ui/LongArrowRightDown.astro";
 			</span>
 		</span>
 		<p slot="description" id="processSectionDescription">
-			We are 100% transparent about our development process and we communicate
-			clearly the requirements, expectations and outcomes. We keep you up to
-			date with the progress and ensure that you are satisfied with the final
-			product.
+			{m.home_sharp_gazelle_dart()}
 		</p>
 
 		<ProcessSectionAnimation />

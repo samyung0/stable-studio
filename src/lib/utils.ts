@@ -48,9 +48,7 @@ export const getRelativeXY = (e: MouseEvent, el: HTMLElement | null) => {
 			document.body.scrollLeft +
 			document.documentElement.scrollLeft;
 		m_posy =
-			e.clientY +
-			document.body.scrollTop +
-			document.documentElement.scrollTop;
+			e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 	}
 	//get parent element position in document
 	if (obj?.offsetParent) {
