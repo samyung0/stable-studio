@@ -43,6 +43,8 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
 
 	if (!lang || !isAvailableLanguageTag(lang)) lang = sourceLanguageTag; // fallback to default lang
 
+	console.log(lang, sourceLanguageTag);
+
 	if(lang === sourceLanguageTag) return ctx.rewrite(`/${sourceLanguageTag}${ctx.url.pathname}`);
 
 	return ctx.redirect(`/${lang}${ctx.url.pathname}`);
