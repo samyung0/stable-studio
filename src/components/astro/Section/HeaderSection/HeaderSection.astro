@@ -2,6 +2,8 @@
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 import Menu from "../../ui/Menu.astro";
 import World from "../../ui/World.astro";
+
+import * as m from "@/paraglide/messages"
 ---
 
 <!-- header -->
@@ -33,7 +35,7 @@ import World from "../../ui/World.astro";
 					<span class="size-4 text-muted-foreground md:size-6">
 						<ArrowRightShort />
 					</span>
-					<span class="mt-[2px] block">See magic happens</span>
+					<span class="mt-[2px] block">{m.sectionHeadGetStarted()}</span>
 				</span>
 
 				<span class="absolute inset-0 h-full overflow-hidden rounded-md"

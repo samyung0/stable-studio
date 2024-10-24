@@ -2,6 +2,7 @@
 // in current version of Astro, 404 page cannot get the info of preferredLocale from the inital render
 // so we catch all route first and then throw a 404 error to render the 404 page, where the preferredLocale is available
 export const prerender = false;
+console.log("catch")
 return new Response("", { status: 404 });
 ---
 
