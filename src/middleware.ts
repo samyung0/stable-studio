@@ -1,6 +1,11 @@
 import { defineMiddleware } from "astro:middleware";
 import { isAvailableLanguageTag, sourceLanguageTag } from "./paraglide/runtime";
 
+
+// this middleware is mostly for dev only
+// vercel has its own middleware logic and most likely so does cloudflare pages
+// the edgemiddleware option in vercel integration does not work with rewrites and I suggest writing your own
+
 // i18n logic:
 // if url doesnt have lang in first segment, resolve the lang based on 
 // 			1.cookie 2.accept-language header 3.fallback to default
@@ -27,6 +32,10 @@ import { isAvailableLanguageTag, sourceLanguageTag } from "./paraglide/runtime";
 // since if the lang is specified in the url, we should not further redirect the user
 
 export const onRequest = defineMiddleware(async (ctx, next) => {
+	if(import.meta.env.MODE !== "development") {
+		return next();
+	}
+	
 	console.log("middleware.ts");
 
 	const firstSegment = ctx.url.pathname.split("/")[1] as string | undefined;
