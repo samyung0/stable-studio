@@ -24,7 +24,7 @@ export default function middleware(request: Request, context: RequestContext) {
 
 		const acceptLanguage = request.headers.get("accept-language");
 
-		const cookies = request.headers.getSetCookie();
+		const cookies = request.headers.get("cookie")?.split("; ") ?? [];
 		console.log("Cookies: ", cookies)
 		const langCookie = cookies.find((cookie) => cookie.startsWith("lang="));
 		let lang: string | undefined = langCookie?.split("=", 2)[1];
