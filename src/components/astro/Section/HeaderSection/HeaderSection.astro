@@ -8,44 +8,56 @@ import * as m from "@/paraglide/messages";
 
 <!-- header -->
 <header id="top" class="pt-6 md:pt-8">
-	<div class="flex items-center justify-end">
-		<button id="smallNavButton" class="block size-8 md:hidden">
-			<Menu />
-		</button>
-		<div class="hidden items-center gap-2 md:flex">
-			<button
-				id="languageButton"
-				class="group relative overflow-hidden rounded px-4 py-4 md:px-6 md:py-5">
-				<span class="relative z-10 flex items-center gap-2">
-					<span class="hidden size-4 -translate-y-[1px] lg:inline"
-						><World /></span
-					>
-					<span>{m.zippy_careful_rooster_clasp()}</span>
-				</span>
-
-				<span class="absolute inset-0 h-full overflow-hidden rounded-md"
-					><span
-						class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatlightblue transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
-					></span></span
-				>
-			</button>
-			<a
-				href="#getstarted"
-				class="group relative overflow-hidden rounded bg-primary px-4 py-4 text-primary-foreground md:gap-3 md:px-6 md:py-5">
-				<span
-					class="relative z-10 flex items-center gap-1 duration-500 group-hover:text-primary">
-					<span class="size-4 text-muted-foreground md:size-6">
-						<ArrowRightShort />
-					</span>
-					<span class="mt-[2px] block">{m.fresh_nimble_tortoise_soar()}</span>
-				</span>
-
-				<span class="absolute inset-0 h-full overflow-hidden rounded-md"
-					><span
-						class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatviolet2 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
-					></span></span
-				>
+	<div class="flex items-center justify-between">
+		<div>
+			<a href="https://stablestudio.org" class="block">
+				<img
+					src="/stablestudio.svg"
+					alt="Stable Studio"
+					class="w-32 md:w-48"
+					loading="eager"
+				/>
 			</a>
+		</div>
+		<div>
+			<button id="smallNavButton" class="block size-8 md:hidden">
+				<Menu />
+			</button>
+			<div class="hidden items-center gap-2 md:flex">
+				<button
+					id="languageButton"
+					class="group relative overflow-hidden rounded px-4 py-4 md:px-6 md:py-5">
+					<span class="relative z-10 flex items-center gap-2">
+						<span class="hidden size-4 -translate-y-[1px] lg:inline"
+							><World /></span
+						>
+						<span>{m.zippy_careful_rooster_clasp()}</span>
+					</span>
+
+					<span class="absolute inset-0 h-full overflow-hidden rounded-md"
+						><span
+							class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatlightblue transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
+						></span></span
+					>
+				</button>
+				<a
+					href="#getstarted"
+					class="group relative overflow-hidden rounded bg-primary px-4 py-4 text-primary-foreground md:gap-3 md:px-6 md:py-5">
+					<span
+						class="relative z-10 flex items-center gap-1 duration-500 group-hover:text-primary">
+						<span class="size-4 text-muted-foreground md:size-6">
+							<ArrowRightShort />
+						</span>
+						<span class="mt-[2px] block">{m.fresh_nimble_tortoise_soar()}</span>
+					</span>
+
+					<span class="absolute inset-0 h-full overflow-hidden rounded-md"
+						><span
+							class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatviolet2 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
+						></span></span
+					>
+				</a>
+			</div>
 		</div>
 	</div>
 </header>
