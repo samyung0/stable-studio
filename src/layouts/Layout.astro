@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 ---
+
 <!doctype html>
 <html lang={Astro.locals.paraglide.lang} dir={Astro.locals.paraglide.dir}>
 	<head>
@@ -10,8 +11,15 @@ import "@/styles/global.css";
 		<meta name="robots" content="noindex" />
 		<!-- <meta name="robots" content="index, follow"> -->
 		<meta charset="UTF-8" />
+		<meta name="theme-color" content="#262626" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+		<link
+			rel="apple-touch-icon"
+			type="image/png"
+			href="/apple-touch-icon.png"
+		/>
+		<link rel="icon" sizes="any" href="/favicon.svg" type="image/svg+xml" />
 		<meta name="generator" content={Astro.generator} />
 		<slot name="head" />
 		<link rel="preconnect" href="https://cloud.umami.is/" />

@@ -1,6 +1,5 @@
 ---
 import { indexSchemaMarkup } from "@/lib/schemaMarkup";
-import { SEO } from "astro-seo";
 import Layout from "@/layouts/Layout.astro";
 import ServiceSection from "@/components/astro/Section/ServiceSection/ServiceSection.astro";
 import ProcessSection from "@/components/astro/Section/ProcessSection/ProcessSection.astro";
@@ -17,26 +16,7 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 ---
 
 <Layout>
-	<!-- <SEO
-		slot="head"
-		title="Stable Studio"
-		description="Stable Studio is a freelancers studio that makes animations-rich websites. We prioritize user experience, website profile and development speed."
-		openGraph={{
-			basic: {
-				title: "Stable Studio",
-				type: "website",
-				image: "https://avatars.githubusercontent.com/u/41984660",
-				url: "https://stablestudio.org",
-			},
-			optional: {
-				locale: "en-US",
-				siteName: "stablestudio",
-				description:
-					"Stable Studio is a freelancers studio that makes animations-rich websites. We prioritize user experience, website profile and development speed.",
-			},
-		}}
-	/> -->
-
+	<slot name="head" slot="head" />
 	<!-- cursor group -->
 	<div
 		id="cursorContainer"
