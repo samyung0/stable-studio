@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import ConcaveSquare from "../../ui/ConcaveSquare.astro";
 import * as m from "@/paraglide/messages";
 
@@ -8,7 +9,7 @@ const year = new Date().getFullYear();
 <footer
 	id="footer"
 	class="flex h-[150px] flex-col ~mt-6/24 ~pb-5/10 sm:h-[300px]">
-	<div id="footerIconContainer" class="relative">
+	<div id="footerIconContainer" class="relative flex flex-col">
 		<a
 			id="footerIcon"
 			href="#top"
@@ -17,11 +18,25 @@ const year = new Date().getFullYear();
 			<ConcaveSquare />
 		</a>
 	</div>
-	<p
-		class="mt-auto self-end text-xs font-normal text-flatgray2 md:text-sm 2xl:text-muted-foreground">
-		© {year}
-		{m.fancy_stale_blackbird_fond()}
-	</p>
+	<div class="mt-auto flex w-full justify-between self-end items-end">
+		<a
+			href="https://stablestudio.org"
+			class="size-[40px]">
+			<span class="sr-only">Stable Studio Homepage</span>
+			<img
+				src="/stablestudio-small.svg"
+				alt="Stable Studio"
+				loading="lazy"
+				decoding="async"
+				class="size-full object-contain"
+			/>
+		</a>
+		<p
+			class="text-xs font-normal text-flatgray2 md:text-sm 2xl:text-muted-foreground">
+			© {year}
+			{m.fancy_stale_blackbird_fond()}
+		</p>
+	</div>
 </footer>
 
 <script>

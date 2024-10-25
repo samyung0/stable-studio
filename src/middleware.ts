@@ -34,6 +34,8 @@ export const onRequest =
 	import.meta.env.MODE === "development" &&
 	defineMiddleware(async (ctx, next) => {
 		const firstSegment = ctx.url.pathname.split("/")[1] as string | undefined;
+		if (firstSegment?.startsWith("_") || firstSegment?.startsWith("api"))
+			return next();
 		if (isAvailableLanguageTag(firstSegment)) return next();
 
 		const acceptLanguage = ctx.request.headers.get("accept-language");

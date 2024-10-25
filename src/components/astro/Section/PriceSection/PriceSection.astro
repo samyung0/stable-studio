@@ -4,6 +4,9 @@ import Check from "../../ui/Check.astro";
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 
 import * as m from "@/paraglide/messages";
+import { cn } from "@/lib/utils";
+
+const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
 
 <section
@@ -13,15 +16,22 @@ import * as m from "@/paraglide/messages";
 	<div id="priceSection">
 		<div
 			id="priceAnimationContainer"
-			class="flex items-center justify-center overflow-hidden ~mt-16/52 ~py-16/52">
+			class="flex items-center justify-center overflow-hidden ~mt-16/52 ~py-56/96">
 			<div id="priceAnimation">
 				<p class="flex flex-col items-center gap-6">
 					<span
-						class="whitespace-nowrap text-[6vw] leading-[1] 3xl:text-[100px]"
-						>{m.merry_clean_jannes_lock()}</span
+						class={cn(
+							"whitespace-nowrap text-center",
+							!isBahasa && "text-[6vw] leading-[1] 3xl:text-[100px]",
+							isBahasa && "text-[4vw] leading-[1] 3xl:text-[100px]",
+						)}>{m.merry_clean_jannes_lock()}</span
 					>
 					<span
-						class="whitespace-nowrap text-center text-[2.5vw] leading-[1.2] 3xl:text-4xl">
+						class={cn(
+							"whitespace-nowrap text-center",
+							!isBahasa && "text-[2.5vw] leading-[1.2] 3xl:text-4xl",
+							isBahasa && "text-[1.8vw] leading-[1.2] 3xl:text-2xl",
+						)}>
 						{m.blue_factual_panther_buzz()}
 					</span>
 				</p>
@@ -34,7 +44,12 @@ import * as m from "@/paraglide/messages";
 			<p slot="description" class="text-flatgray2" id="priceSectionDescription">
 				{m.neat_deft_clownfish_propel()}
 			</p>
-			<div class="col-span-2 col-start-1 flex ~py-6/24 lg:col-start-2">
+			<div
+				class={cn(
+					"col-span-2 col-start-1 flex ~py-6/24",
+					!isBahasa && "lg:col-start-2",
+					isBahasa && "xl:col-start-2",
+				)}>
 				<div
 					class="flex w-full flex-col gap-6 lg:flex-row xl:pl-[15vw] 2xl:pl-[20vw]">
 					<section
@@ -73,7 +88,7 @@ import * as m from "@/paraglide/messages";
 							</li>
 						</ul>
 						<div class="border-t border-muted-foreground"></div>
-						<p class="flex flex-none items-center justify-between">
+						<p class="flex items-center justify-between">
 							<span>
 								$780 <span class="text-primary-foreground/50">
 									{m.known_drab_snake_bloom()}</span
@@ -81,7 +96,7 @@ import * as m from "@/paraglide/messages";
 							</span>
 							<a
 								href="#getstarted"
-								class="group relative overflow-hidden rounded bg-primary px-4 py-3 text-primary-foreground md:px-6 md:py-5">
+								class="group relative overflow-hidden whitespace-nowrap rounded bg-primary px-4 py-3 text-primary-foreground md:px-6 md:py-5">
 								<span
 									class="relative z-10 duration-500 group-hover:text-primary"
 									>{m.startnow()}</span
@@ -142,7 +157,7 @@ import * as m from "@/paraglide/messages";
 							</span>
 							<a
 								href="#getstarted"
-								class="group relative overflow-hidden rounded bg-primary py-3 pl-3 pr-4 text-primary-foreground md:gap-3 md:py-5 md:pl-5 md:pr-6">
+								class="group relative overflow-hidden whitespace-nowrap rounded bg-primary py-3 pl-3 pr-4 text-primary-foreground md:gap-3 md:py-5 md:pl-5 md:pr-6">
 								<span
 									class="relative z-10 flex items-center gap-1 duration-500 group-hover:text-primary">
 									<span class="size-4 text-muted-foreground md:size-6"

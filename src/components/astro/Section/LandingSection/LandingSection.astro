@@ -1,4 +1,5 @@
 ---
+import { cn } from "@/lib/utils";
 import AnimatedDivider from "../../AnimatedDivider/AnimatedDivider.astro";
 import AnimatedText from "../../AnimatedText/AnimatedText.astro";
 import ArrowRightDown from "../../ui/ArrowRightDown.astro";
@@ -6,28 +7,38 @@ import DoubleGear from "../../ui/DoubleGear.astro";
 import LandingImg from "../../ui/LandingImg.astro";
 
 import * as m from "@/paraglide/messages";
+
+const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
 
 <!-- landing section -->
 <section
-	class="fadeinAnimation pt-24 md:pt-48"
+	class={cn("fadeinAnimation pt-24 md:pt-48", isBahasa && "sm:pt-48")}
 	aria-details="landingSectionDetails">
 	<div
 		id="schemaMarkupMain"
-		class="flex flex-col items-stretch justify-between gap-[60px] [grid-row-gap:25px] lg:flex-row">
+		class="flex flex-col items-stretch justify-between gap-[60px] [grid-row-gap:25px] xl:flex-row">
 		<h1
-			class="flex-[2] text-4xl leading-[1.2] sm:text-[9vw] lg:text-[6vw] 3xl:text-[130px]">
-			<span class="whitespace-nowrap"
-				>{m.tasty_wide_toad_renew()}
-				<span
-					class="inline-block aspect-square w-[36px] translate-y-2 sm:w-[9vw] lg:w-[6vw] 3xl:w-[130px]">
+			class={cn(
+				"flex-[2] text-4xl leading-[1.2] sm:text-[9vw] lg:text-[6vw] 3xl:text-[130px]",
+				isBahasa &&
+					"text-2xl sm:text-[6vw] xl:text-[4vw] 2xl:text-[4.2vw] 3xl:text-[100px] leading-[1.4] tracking-tight",
+			)}>
+			<span class={cn("sm:whitespace-nowrap", isBahasa && "relative")}
+				>{m.tasty_wide_toad_renew()}&nbsp;<span
+					class={cn(
+						"inline-block aspect-square w-[36px] translate-y-2 sm:w-[9vw] lg:w-[6vw] 3xl:w-[130px]",
+						isBahasa &&
+							"sm:w-[7vw] lg:w-[5vw] block absolute bottom-full md:-translate-y-6 -translate-y-3",
+					)}>
 					<DoubleGear />
 				</span></span
-			><br />
-			<span class="whitespace-nowrap">{m.pretty_sweet_butterfly_dart()}</span>
+			><br /><span class="sm:whitespace-nowrap"
+				>{m.pretty_sweet_butterfly_dart()}</span
+			>
 		</h1>
 		<div
-			class="flex min-w-[300px] max-w-[470px] flex-1 shrink-0 flex-col items-start py-4 lg:max-w-full">
+			class="flex min-w-[300px] flex-1 shrink-0 flex-col items-start py-4 sm:max-w-[60vw] xl:max-w-full">
 			<div
 				class="pb-8 uppercase leading-[1.7] opacity-80"
 				id="landingSectionDetails">

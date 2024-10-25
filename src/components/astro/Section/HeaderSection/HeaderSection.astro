@@ -1,6 +1,7 @@
 ---
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 import Menu from "../../ui/Menu.astro";
+import StableStudio from "../../ui/StableStudio.astro";
 import World from "../../ui/World.astro";
 
 import * as m from "@/paraglide/messages";
@@ -10,13 +11,18 @@ import * as m from "@/paraglide/messages";
 <header id="top" class="pt-6 md:pt-8">
 	<div class="flex items-center justify-between">
 		<div>
-			<a href="https://stablestudio.org" class="block">
+			<a href="https://stablestudio.org" class="block w-32 sm:w-48">
+				<span class="sr-only">Stable Studio Homepage</span>
+				<!-- retained to make the network request, might be useful for seo/debugging -->
 				<img
 					src="/stablestudio.svg"
 					alt="Stable Studio"
-					class="w-32 md:w-48"
+					class="w-32 sm:w-48 md:w-56 sr-only"
 					loading="eager"
+					decoding="sync"
 				/>
+
+				<StableStudio />
 			</a>
 		</div>
 		<div>

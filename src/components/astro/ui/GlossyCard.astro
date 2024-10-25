@@ -1,22 +1,28 @@
 ---
 import * as m from "@/paraglide/messages";
+import StableStudioCardLogo from "./StableStudioCardLogo.astro";
 ---
 
 <section
 	id="card3d"
-	class="flex min-w-[500px] max-w-full gap-4 overflow-visible rounded-2xl border-2 border-white/10 bg-white/10 p-8 font-normal tracking-wide text-white shadow-md backdrop-blur-2xl hover:shadow-xl">
+	class="flex relative min-w-[500px] max-w-full gap-12 px-12 overflow-visible rounded-2xl border-2 border-white/10 bg-white/10 p-8 font-normal tracking-wide text-white shadow-md backdrop-blur-2xl hover:shadow-xl">
 	<div id="card3dglow" class="absolute inset-0 size-full"></div>
 	<!-- <div
 		id="card3drectangle"
-		class="absolute top-full left-[70%] -translate-y-6 size-16 rotate-[65deg] bg-white/20 backdrop-blur-2xl rounded-lg shadow-md">
+		class="absolute hidden xl:block top-full left-[70%] -translate-y-6 size-16 rotate-[65deg] bg-white/20 backdrop-blur-2xl rounded-lg shadow-md">
 	</div> -->
+	<div class="flex flex-1 items-center justify-center">
+		<div class="size-32 fill-white">
+			<StableStudioCardLogo />
+		</div>
+	</div>
 	<div class="flex max-w-[80%] flex-col gap-6">
 		<header class="flex flex-col">
 			<h2 class="text-2xl font-bold">Stable Studio</h2>
 			<p class="text-sm">{m.white_fancy_jackal_snip()}</p>
 		</header>
 		<div class="flex flex-col gap-4">
-			<p class="text-sm">
+			<p class="text-sm max-w-[420px]">
 				{m.fine_major_swallow_smile()}<br />
 				{m.seemly_fresh_larva_ripple()}
 			</p>

@@ -3,6 +3,9 @@ import SectionHead from "@/layouts/SectionHead.astro";
 import FAQSectionAnimation from "./FAQSectionAnimation.astro";
 
 import * as m from "@/paraglide/messages";
+import { cn } from "@/lib/utils";
+
+const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
 
 <!-- faq section -->
@@ -11,10 +14,18 @@ import * as m from "@/paraglide/messages";
 		<span slot="label">/ {m.faq()} /</span>
 		<span slot="title">{m.short_front_felix_harbor()}</span>
 		<div
-			class="col-span-full col-start-1 row-start-2 lg:col-span-1 lg:col-start-3 lg:row-start-1">
+			class={cn(
+				"col-span-full col-start-1 row-start-2",
+				!isBahasa && "lg:col-span-1 lg:col-start-3 lg:row-start-1",
+				isBahasa && "xl:col-span-1 xl:col-start-3 xl:row-start-1",
+			)}>
 			<ul
 				id="faqContainer"
-				class="flex flex-col ~pt-8/24 lg:cursor-none lg:pt-0 [&>li:last-child]:border-b [&>li]:border-t [&>li]:border-muted-foreground/50">
+				class={cn(
+					"flex flex-col ~pt-8/24 lg:cursor-none [&>li:last-child]:border-b [&>li]:border-t [&>li]:border-muted-foreground/50",
+					!isBahasa && "lg:pt-0",
+					isBahasa && "xl:pt-0",
+				)}>
 				<FAQSectionAnimation>
 					<span slot="label">01</span>
 					<span slot="title">{m.sharp_shy_yak_flow()}</span>

@@ -1,9 +1,12 @@
 ---
+import { cn } from "@/lib/utils";
 import SpinningWheel from "../../ui/SpinningWheel.astro";
 import ProcessSectionLeft from "./ProcessSectionLeft.astro";
 import ProcessSectionRight from "./ProcessSectionRight.astro";
 
 import * as m from "@/paraglide/messages";
+
+const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
 
 <div
@@ -13,10 +16,18 @@ import * as m from "@/paraglide/messages";
 			<!-- top section -->
 			<div
 				id="processTitleContainer"
-				class="flex flex-col items-start gap-3 sm:gap-5 lg:flex-row lg:gap-[7vw]">
+				class={cn(
+					"flex flex-col items-start gap-3 sm:gap-5",
+					!isBahasa && "lg:flex-row lg:gap-[7vw]",
+					isBahasa && "xl:flex-row xl:gap-[7vw]",
+				)}>
 				<!-- title of card -->
 				<header
-					class="mr-auto max-h-[3.6rem] overflow-hidden lg:w-[20vw] 2xl:w-[16vw]">
+					class={cn(
+						"mr-auto max-h-[3.6rem] overflow-hidden 2xl:w-[16vw]",
+						!isBahasa && "lg:w-[20vw]",
+						isBahasa && "xl:w-[20vw]",
+					)}>
 					<h2
 						class="processTitle text-base !leading-[1.8rem] will-change-transform md:text-lg">
 						{m.any_vexed_manatee_cut()}
@@ -94,10 +105,18 @@ import * as m from "@/paraglide/messages";
 			<!-- main content section -->
 			<div
 				id="processScrollContainer"
-				class="pb-6/16 flex max-h-full flex-1 overflow-hidden pt-3 sm:~pt-6/16 md:flex-initial">
+				class={cn(
+					"pb-6/16 flex max-h-full flex-1 overflow-hidden pt-3 sm:~pt-6/16",
+					!isBahasa && "md:flex-initial",
+					isBahasa && "lg:flex-initial",
+				)}>
 				<article
 					id="processScroll"
-					class="flex max-h-full flex-1 flex-col gap-0 overflow-hidden rounded-xl bg-card md:min-h-[40vh] md:flex-row xl:gap-[4vw] 2xl:min-h-[60vh]">
+					class={cn(
+						"flex max-h-full flex-1 flex-col gap-0 overflow-hidden rounded-xl bg-card xl:gap-[4vw]",
+						!isBahasa && "md:min-h-[40vh] md:flex-row",
+						isBahasa && "lg:min-h-[40vh] lg:flex-row",
+					)}>
 					<ProcessSectionLeft />
 					<ProcessSectionRight />
 				</article>

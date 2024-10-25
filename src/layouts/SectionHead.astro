@@ -6,26 +6,42 @@ interface Props {
 }
 
 const { class: className } = Astro.props;
+
+const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
 
 <div
 	class={cn(
-		"sectionHead grid gap-4 md:gap-5 lg:gap-0 items-start justify-between ~pt-8/52 w-full",
+		"sectionHead grid gap-4 md:gap-5 items-start justify-between ~pt-8/52 w-full",
 		className,
+		!isBahasa && "sectionHeadBreakSmall lg:gap-0",
+		isBahasa && "sectionHeadBreakLarge xl:gap-0",
 	)}>
 	<div
-		class="col-[2] row-start-1 ml-auto flex whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs lg:col-[1] lg:ml-0">
+		class={cn(
+			"col-[2] row-start-1 ml-auto flex whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs",
+			!isBahasa && "lg:col-[1] lg:ml-0",
+			isBahasa && "xl:col-[1] xl:ml-0",
+		)}>
 		<slot name="label" />
 	</div>
 	<header
-		class="sectionHeadTitle row-start-1 flex text-lg sm:text-2xl md:text-4xl lg:mx-auto lg:-mt-2">
+		class={cn(
+			"sectionHeadTitle row-start-1 flex text-lg sm:text-2xl md:text-4xl",
+			!isBahasa && "lg:mx-auto lg:-mt-2",
+			isBahasa && "xl:mx-auto xl:-mt-2",
+		)}>
 		<h2>
 			<slot name="title" />
 		</h2>
 	</header>
 
 	<div
-		class="sectionHeadDesc col-span-2 col-start-1 flex flex-1 text-sm leading-[1.4] text-muted-foreground sm:col-span-1 md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
+		class={cn(
+			"sectionHeadDesc col-span-2 col-start-1 flex flex-1 text-sm leading-[1.4] text-muted-foreground sm:col-span-1 md:leading-[1.8]",
+			!isBahasa && "lg:col-start-3 lg:text-base lg:leading-[1.8]",
+			isBahasa && "xl:col-start-3 xl:text-base xl:leading-[1.8]",
+		)}>
 		<slot name="description" />
 	</div>
 
@@ -33,18 +49,26 @@ const { class: className } = Astro.props;
 </div>
 
 <style is:global>
-	.sectionHead {
+	.sectionHeadBreakSmall,
+	.sectionHeadBreakLarge {
 		grid-template-columns: minmax(auto, 65vw) min-content;
 	}
 	@media screen and (min-width: 64rem) {
 		/* lg, 1024px */
-		.sectionHead {
+		.sectionHeadBreakSmall {
+			grid-template-columns: 5vw minmax(auto, 31vw) minmax(auto, 45vw);
+		}
+	}
+	@media screen and (min-width: 80rem) {
+		/* xl, 1280px */
+		.sectionHeadBreakLarge {
 			grid-template-columns: 5vw minmax(auto, 31vw) minmax(auto, 45vw);
 		}
 	}
 	@media screen and (min-width: 160rem) {
 		/* 3xl, 2560px */
-		.sectionHead {
+		.sectionHeadBreakSmall,
+		.sectionHeadBreakLarge {
 			grid-template-columns: 5vw minmax(auto, 20vw) minmax(auto, 40vw);
 		}
 	}

@@ -77,7 +77,7 @@ const priceSectionAnimationLogic = () => {
 					trigger: priceAnimationContainer,
 					// pinnedContainer: priceSectionContainer,
 					start: "top 85%",
-					end: `top 45%`,
+					end: `top 25%`,
 					// pin: true,
 					// pinType: "transform",
 					// pinReparent: true,
@@ -88,7 +88,7 @@ const priceSectionAnimationLogic = () => {
 				},
 			});
 			gsap.set(priceAnimationContainer, {
-				filter: "blur(8px)",
+				filter: "blur(10px)",
 			});
 			timelineMain.to(
 				priceAnimationContainer,
