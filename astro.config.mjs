@@ -59,7 +59,7 @@ export default defineConfig({
 		// }),
 	],
 	prefetch: {
-		defaultStrategy: "viewport",
+		defaultStrategy: "hover",
 		prefetchAll: true,
 	},
 	image: {

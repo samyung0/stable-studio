@@ -4,7 +4,7 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 
 <li class="bg-gackground text-left">
 	<button
-		class="faqSection flex flex-col !~py-4/12 lg:-mt-[2px] lg:cursor-none">
+		class="faqSection flex w-full flex-col !~py-4/12 lg:-mt-[2px] lg:cursor-none">
 		<span
 			class="faqSectionHeader flex min-w-full items-center justify-between gap-6 text-left text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
 			<slot name="title" />
@@ -13,7 +13,7 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 			</span>
 		</span>
 		<span
-			class="serviceContent w block h-0 overflow-hidden text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
+			class="serviceContent w block h-0 overflow-hidden text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:text-base lg:leading-[1.8]">
 			<span class="flex pt-4 text-left md:pt-5">
 				<slot name="description" />
 			</span>

@@ -5,6 +5,9 @@ import VeryLongArrowRightDown from "../../ui/VeryLongArrowRightDown.astro";
 import BlurryBlob from "../../ui/BlurryBlob.astro";
 
 import * as m from "@/paraglide/messages";
+import { cn } from "@/lib/utils";
+
+const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
 
 <section
@@ -13,21 +16,44 @@ import * as m from "@/paraglide/messages";
 	class="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
 	<div
 		id="ctaSection"
-		class="relative grid w-full grid-cols-[auto_1fr] justify-between gap-[5vw] px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
+		class={cn(
+			"relative grid w-full justify-between gap-[5vw] px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]",
+			!isBahasa && "ctaSectionBreakSmall",
+			isBahasa && "ctaSectionBreakLarge",
+		)}>
 		<p
-			class="mutedText relative left-0 col-start-[2] row-start-1 ml-auto lg:col-start-[1]">
+			class={cn(
+				"mutedText relative left-0 col-start-[2] row-start-1 ml-auto",
+				!isBahasa && "lg:col-start-[1] lg:mx-auto",
+				isBahasa && "xl:col-start-[1] xl:mx-auto",
+			)}>
 			/ {m.getstarted2()} /
 		</p>
 		<div
-			class="col-span-2 col-start-1 row-start-1 md:-mt-4 lg:col-span-1 lg:col-start-2 lg:-mt-2">
+			class={cn(
+				"col-span-2 col-start-1 row-start-1 md:-mt-4",
+				!isBahasa && "lg:col-span-1 lg:col-start-2 lg:-mt-2",
+				isBahasa && "xl:col-span-1 xl:col-start-2 xl:-mt-2",
+			)}>
 			<header
-				class="whitespace-nowrap pb-[5vw] text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[7vw] md:leading-[1] 3xl:text-[130px]">
+				class={cn(
+					"whitespace-nowrap pb-[5vw] ",
+					!isBahasa &&
+						"text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[7vw] md:leading-[1] 3xl:text-[130px]",
+					isBahasa &&
+						"text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[5vw] md:leading-[1] 3xl:text-[130px]",
+				)}>
 				<h1>
-					{m.clean_strong_giraffe_pinch()} <br />
+					{m.clean_strong_giraffe_pinch()}
+					<br />
 					<span class="inline-flex items-start whitespace-nowrap"
 						>{m.keen_sharp_rabbit_love()}<span>&nbsp;</span><span
 							id="ctaArrow"
-							class="aspect-video w-[130px] translate-x-3 translate-y-3 sm:w-[180px] md:w-[30vw] md:translate-y-[3vw]">
+							class={cn(
+								"aspect-video w-[130px] translate-x-3 translate-y-3 sm:w-[180px] md:w-[30vw] 3xl:w-[700px]",
+								!isBahasa && "md:translate-y-[3vw]",
+								isBahasa && "md:translate-y-[2vw]",
+							)}>
 							<VeryLongArrowRightDown />
 						</span></span
 					>
@@ -40,7 +66,11 @@ import * as m from "@/paraglide/messages";
 					class="order-last flex flex-1 flex-col gap-6 md:order-first md:gap-10">
 					<p
 						id="ctaSectionDescription"
-						class="flex flex-col gap-1 text-sm leading-[1.4] text-primary-foreground/70 md:gap-3 md:leading-[1.8] lg:col-start-3 lg:text-base lg:leading-[1.8]">
+						class={cn(
+							"flex flex-col gap-1 text-sm leading-[1.4] text-primary-foreground/70 max-w-[550px] 3xl:max-w-[800px] md:gap-3 md:leading-[1.8] lg:text-base lg:leading-[1.8]",
+							!isBahasa && "lg:col-start-3",
+							isBahasa && "xl:col-start-3",
+						)}>
 						{m.spry_solid_wombat_pick()}
 					</p>
 					<div class="flex flex-col items-start md:gap-3">
@@ -152,20 +182,27 @@ import * as m from "@/paraglide/messages";
 </section>
 
 <style is:global>
-	#ctaSection {
+	.ctaSectionBreakSmall,
+	.ctaSectionBreakLarge {
 		grid-template-columns: auto min-content;
 	}
 	@media screen and (min-width: 64rem) {
 		/* lg, 1024px */
-		#ctaSection {
-			grid-template-columns: 10vw auto;
+		.ctaSectionBreakSmall {
+			grid-template-columns: 10vw 1fr;
+		}
+	}
+	@media screen and (min-width: 80rem) {
+		/* xl, 1280px */
+		.ctaSectionBreakLarge {
+			grid-template-columns: 10vw 1fr;
 		}
 	}
 </style>
 
 <style>
 	.mutedText {
-		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-background/70 md:text-xs lg:mx-auto;
+		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-background/70 md:text-xs;
 	}
 	.mutedTextDark {
 		@apply whitespace-nowrap text-[0.65rem] font-normal uppercase !leading-7 text-muted-foreground md:text-sm;

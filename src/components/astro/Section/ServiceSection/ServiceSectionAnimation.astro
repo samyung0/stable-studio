@@ -4,26 +4,40 @@ interface Props {
 }
 
 import SectionHead from "@/layouts/SectionHead.astro";
-import { toRoman } from "@/lib/utils";
+import { cn, toRoman } from "@/lib/utils";
 
 const { subServices } = Astro.props;
+
+const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
 
 <li class="serviceSection bg-background">
 	<SectionHead class="!~py-4/12">
 		<span
 			slot="label"
-			class="serviceLabel inline-block w-[30px] text-muted-foreground transition-all duration-500 ease-in md:w-auto lg:w-0">
+			class={cn(
+				"serviceLabel inline-block w-[30px] text-muted-foreground transition-all duration-500 ease-in md:w-auto",
+				!isBahasa && "lg:w-0",
+				isBahasa && "xl:w-0",
+			)}>
 			<slot name="label" class="text-base" />
 		</span>
 		<span
 			slot="title"
-			class="serviceSectionHeader block text-base uppercase md:text-lg lg:mt-2">
+			class={cn(
+				"serviceSectionHeader block text-base uppercase md:text-lg",
+				!isBahasa && "lg:mt-2",
+				isBahasa && "xl:mt-2",
+			)}>
 			<slot name="title" />
 		</span>
 		<div
 			slot="description"
-			class="flex flex-col gap-3 pt-3 md:pt-4 lg:gap-5 lg:pt-0">
+			class={cn(
+				"flex flex-col gap-3 pt-3 md:pt-4",
+				!isBahasa && "lg:gap-5 lg:pt-0",
+				isBahasa && "xl:gap-5 xl:pt-0",
+			)}>
 			<h3
 				class="colorSubheader flex max-w-[500px] flex-1 text-sm leading-[1.4] text-primary md:text-base md:leading-[1.8]">
 				<slot name="subheader" />
