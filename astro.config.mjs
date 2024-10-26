@@ -38,6 +38,10 @@ export default defineConfig({
 				"icon-mask.png",
 				"screenshot.png"
 			],
+			workbox: {
+				navigateFallback: '/en/',
+        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt}'],
+			},
 			manifest: {
 				name: "Stable Studio",
 				short_name: "Stable Studio",
