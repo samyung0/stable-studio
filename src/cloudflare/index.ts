@@ -67,7 +67,7 @@ export default {
 		const contentType = request.headers.get("content-type");
 		const ua = request.headers.get("user-agent");
 		const referrer = request.headers.get("Referrer");
-		console.log({ ua, referrer });
+		
 		if (request.method === "OPTIONS") {
 			// Handle CORS preflight requests
 			return handleOptions(request);
