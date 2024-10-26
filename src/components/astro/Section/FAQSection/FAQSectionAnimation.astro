@@ -49,9 +49,11 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 			duration: 0.7,
 			ease: "power4.out",
 			overwrite: true,
+			onComplete: () => {
+				window?.ctaSectionTimeline();
+				window?.footerTimelineFn();
+			},
 		});
-		window?.ctaSectionTimeline();
-		window?.footerTimelineFn();
 	};
 
 	faqSection.forEach((faq) => {

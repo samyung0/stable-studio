@@ -34,7 +34,13 @@ export const onRequest =
 	import.meta.env.MODE === "development" &&
 	defineMiddleware(async (ctx, next) => {
 		const firstSegment = ctx.url.pathname.split("/")[1] as string | undefined;
-		if (firstSegment?.startsWith("_") || firstSegment?.startsWith("manifest.webmanifest") || firstSegment?.startsWith("api") || firstSegment?.startsWith("wrangler"))
+		if (
+			firstSegment?.startsWith("_") ||
+			firstSegment?.startsWith("manifest.webmanifest") ||
+			firstSegment?.startsWith("dev-sw.js") ||
+			firstSegment?.startsWith("api") ||
+			firstSegment?.startsWith("wrangler")
+		)
 			return next();
 		if (isAvailableLanguageTag(firstSegment)) return next();
 

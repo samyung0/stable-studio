@@ -88,7 +88,7 @@ const priceSectionAnimationLogic = () => {
 				},
 			});
 			gsap.set(priceAnimationContainer, {
-				filter: "blur(10px)",
+				filter: "blur(14px)",
 			});
 			timelineMain.to(
 				priceAnimationContainer,

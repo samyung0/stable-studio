@@ -34,7 +34,7 @@ import { pwaInfo } from "virtual:pwa-info";
 				/>
 			)
 		}
-		<script src="/src/pwa.ts"></script>
+		<script src="/src/pwa.ts" />
 		{pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
 	</head>
 

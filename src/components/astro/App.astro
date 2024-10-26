@@ -73,8 +73,8 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 		}
 		.fadeinAnimation {
 			filter: blur(50px);
-			opacity: 0;
-			animation: blur 1s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
+			opacity: 0.5;
+			animation: blur 1s cubic-bezier(0.23,1,0.32,1) forwards;
 			will-change: opacity, filter;
 			-webkit-backface-visibility: hidden;
 			-webkit-transform: translate3d(0, 0, 0);
@@ -84,8 +84,8 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 
 		@keyframes blur {
 			0% {
-				filter: blur(12px);
-				opacity: 0;
+				filter: blur(50px);
+				opacity: 0.5;
 			}
 			100% {
 				filter: blur(0);
@@ -230,7 +230,7 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 							.timeline({
 								scrollTrigger: {
 									trigger: sectionHeadAnimated[i],
-									start: "top 90%",
+									start: "top 85%",
 									once: true,
 									// markers: true,
 								},
@@ -238,12 +238,12 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 							.fromTo(
 								Array.from(sectionHeadAnimated[i].children).slice(0, 3),
 								{
-									y: 100,
+									y: 40,
 								},
 								{
 									y: 0,
-									duration: 0.8,
-									stagger: 0.1,
+									duration: 1.5,
+									stagger: 0.08,
 									ease: "power3.out",
 								},
 							);
