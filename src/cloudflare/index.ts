@@ -17,6 +17,10 @@ interface Env {
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
+		const city = request.cf?.city || request.cf?.region || null;
+		const country = request.cf?.country || null;
+		const timezone = request.cf?.timezone || null;
+
 		const headers = {
 			"content-type": "application/json",
 			"Access-Control-Allow-Origin": "*",
@@ -116,6 +120,9 @@ export default {
 						fields: {
 							name: body.name,
 							enquirymessage: body.enquiry,
+							city,
+							country,
+							timezone,
 						},
 						groups: ["135355636160399051"],
 					}),
