@@ -11,7 +11,7 @@ const { subServices } = Astro.props;
 const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
 
-<li class="serviceSection bg-background">
+<section class="serviceSection bg-background">
 	<SectionHead class="!~py-4/12">
 		<span
 			slot="label"
@@ -61,7 +61,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 			</div>
 		</div>
 	</SectionHead>
-</li>
+</section>
 <style is:global>
 	.serviceLabelActive {
 		@apply text-primary before:content-['/'] after:content-['/'];
