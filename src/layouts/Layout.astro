@@ -4,31 +4,30 @@ import "@/styles/global.css";
 
 <!doctype html>
 <html lang={Astro.locals.paraglide.lang} dir={Astro.locals.paraglide.dir}>
-	<head>
-		<!-- do not use keywords meta tag, most engines disrecard it or marks it as spam -->
+	<!-- do not use keywords meta tag, most engines disrecard it or marks it as spam -->
 
-		<!-- TODO: remove no index after done -->
-		<meta name="robots" content="noindex" />
-		<!-- <meta name="robots" content="index, follow"> -->
-		<meta charset="UTF-8" />
-		<meta name="theme-color" content="#262626" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
-		<link
-			rel="apple-touch-icon"
-			type="image/png"
-			href="/apple-touch-icon.png"
-		/>
-		<link rel="icon" sizes="any" href="/favicon.svg" type="image/svg+xml" />
-		<meta name="generator" content={Astro.generator} />
-		<slot name="head" />
-		<link rel="preconnect" href="https://cloud.umami.is/" />
-		<!-- <script
-			is:inline
-			defer
-			src="https://cloud.umami.is/script.js"
-			data-website-id="f305f440-a907-4f5f-a728-393ab78dc117"></script> -->
-	</head>
+	<!-- TODO: remove no index after done -->
+	<meta name="robots" content="noindex" />
+	<!-- <meta name="robots" content="index, follow"> -->
+	<meta charset="UTF-8" />
+	<meta name="theme-color" content="#262626" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+	<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon.png" />
+	<link rel="icon" sizes="any" href="/favicon.svg" type="image/svg+xml" />
+	<meta name="generator" content={Astro.generator} />
+	<slot name="head" />
+	{
+		import.meta.env.MODE !== "development" && (
+			<script
+				is:inline
+				defer
+				src="/chain.js"
+				data-website-id="2ad1630a-27f4-4314-979f-ffbece150eb1"
+			/>
+		)
+	}
+
 	<body class="max-w-[100vw] overflow-hidden">
 		<slot />
 	</body>

@@ -148,6 +148,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 					</div>
 
 					<button
+						data-umami-event="Get Started Bottom"
 						aria-controls="formSubmissionStatus"
 						class="group self-start overflow-hidden rounded bg-background px-4 py-4 text-primary md:gap-3 md:px-5 md:py-4">
 						<span class="flex items-center gap-1">
@@ -338,7 +339,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 		}
 
 		try {
-			const res = await fetch("https://stablestudio.org/wrangler", {
+			const res = await fetch("/wrangler", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -348,6 +349,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 					name: data.name,
 					enquiry: data.enquiry,
 				}),
+				credentials: "include",
 			});
 
 			if (res.status === 201) {
