@@ -17,7 +17,11 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	aria-details="landingSectionDetails">
 	<div
 		id="schemaMarkupMain"
-		class="flex flex-col items-stretch justify-between gap-[60px] [grid-row-gap:25px] xl:flex-row">
+		class={cn(
+			"flex flex-col items-stretch justify-between gap-[60px] [grid-row-gap:25px]",
+			!isBahasa && "lg:flex-row",
+			isBahasa && "xl:flex-row",
+		)}>
 		<h1
 			class={cn(
 				"flex-[2] text-4xl leading-[1.2] sm:text-[9vw] lg:text-[6vw] 3xl:text-[130px]",
