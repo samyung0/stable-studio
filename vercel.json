@@ -56,7 +56,7 @@
 	],
 	"rewrites": [
 		{
-			"source": "/analytics.js",
+			"source": "/chain.js",
 			"destination": "https://cloud.umami.is/script.js"
 		},
 		{
