@@ -19,7 +19,7 @@ function setCookie(name: string, value: string) {
 
 export const config = {
 	matcher: [
-		"/((?!api|.*.png|_astro|_image|manifest.webmanifest|favicon.ico|robots.txt|wrangler|.*.xml|.*.svg||sw.js|.*.js).*)",
+		"/((?!api|.*.png|_astro|_image|manifest.webmanifest|favicon.ico|robots.txt|wrangler|.*.xml|.*.svg|sw.js|.*.js).*)",
 	],
 };
 
