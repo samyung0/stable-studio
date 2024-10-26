@@ -39,7 +39,7 @@ export default defineConfig({
 				"screenshot.png"
 			],
 			workbox: {
-				navigateFallback: '/en/',
+				navigateFallback: '/en',
         globPatterns: ['**/*.{css,js,html,svg,png,ico,txt}'],
 			},
 			manifest: {
