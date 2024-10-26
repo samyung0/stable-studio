@@ -58,6 +58,10 @@
     {
       "source": "/(.*)",
       "destination": "/index.html"
+    },
+    {
+      "source": "/analytics.js",
+      "destination": "https://cloud.umami.is/script.js"
     }
   ]
 }
