@@ -66,8 +66,10 @@ export default {
 		const method = request.method;
 		const contentType = request.headers.get("content-type");
 		const ua = request.headers.get("user-agent");
-		const referrer = request.headers.get("Referrer");
-		
+		const referer = request.headers.get("Referer");
+
+		console.log({ ua, referer, city, country, timezone });
+
 		if (request.method === "OPTIONS") {
 			// Handle CORS preflight requests
 			return handleOptions(request);
@@ -86,7 +88,7 @@ export default {
 				headers,
 			});
 		}
-		if (!ua?.includes("Mozilla") || !referrer?.includes("stablestudio.org")) {
+		if (!ua?.includes("Mozilla") || !referer?.includes("stablestudio.org")) {
 			response.message = "Invalid request";
 			return new Response(JSON.stringify(response), {
 				status: 403,

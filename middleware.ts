@@ -8,6 +8,15 @@ const langImport = {
 	languageTags: ["en", "ja", "tl", "id", "zh-HK", "zh-CN", "vi", "zh-TW", "zh"],
 };
 
+function setCookie(name: string, value: string) {
+	const date = new Date();
+	date.setTime(date.getTime() + 9999 * 24 * 60 * 60 * 1000);
+	const expires = "; Expires=" + date.toUTCString();
+	return (
+		name + "=" + (value || "") + expires + "; Path=/; SameSite=Lax; Secure"
+	);
+}
+
 export const config = {
 	matcher: [
 		"/((?!api|_astro|_image|favicon.ico|favicon.svg|robots.txt|sitemap.*.xml|stablestudio.*.svg|stablestudio.*.png|sw.js|workbox-.*.js|registerSW.js|icon-.*.png|apple-touch-icon.png).*)",
@@ -18,8 +27,14 @@ export default function middleware(request: Request, context: RequestContext) {
 	try {
 		const url = new URL(request.url);
 		const firstSegment = url.pathname.split("/")[1] as string | undefined;
-		if (firstSegment && langImport.languageTags.includes(firstSegment))
-			return next();
+		if (firstSegment && langImport.languageTags.includes(firstSegment)) {
+			const headers = new Headers();
+			headers.append("Set-Cookie", setCookie("lang", firstSegment));
+
+			return next({
+				headers,
+			});
+		}
 
 		const acceptLanguage = request.headers.get("accept-language");
 
@@ -39,9 +54,20 @@ export default function middleware(request: Request, context: RequestContext) {
 		url.pathname = `/${lang}${url.pathname}`;
 		if (!url.pathname.endsWith("/")) url.pathname += "/";
 
-		if (lang === langImport.sourceLanguageTag) return rewrite(url.pathname);
+		if (lang === langImport.sourceLanguageTag)
+			return rewrite(url.pathname, {
+				headers: {
+					"Set-Cookie": setCookie("lang", lang),
+				},
+			});
 
-		return Response.redirect(url.toString());
+		return new Response(null, {
+			status: 302,
+			headers: {
+				"Set-Cookie": setCookie("lang", lang),
+				Location: url.pathname,
+			},
+		});
 	} catch (e) {
 		console.error(e);
 
