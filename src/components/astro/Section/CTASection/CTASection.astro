@@ -338,7 +338,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 		}
 
 		try {
-			const res = await fetch("https://stablestudio.org/wrangler", {
+			const res = await fetch("http://localhost:8787", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -348,6 +348,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 					name: data.name,
 					enquiry: data.enquiry,
 				}),
+				credentials: "include"
 			});
 
 			if (res.status === 201) {

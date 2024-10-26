@@ -17,19 +17,27 @@ interface Env {
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
+		const cookies = request.headers.get("cookie")?.split("; ") ?? [];
+		const langCookie = cookies.find((cookie) => cookie.startsWith("lang="));
+		const lang: string | undefined = langCookie?.split("=", 2)[1];
+		
 		const city = request.cf?.city || request.cf?.region || null;
 		const country = request.cf?.country || null;
 		const timezone = request.cf?.timezone || null;
 
+		const origin = request.headers.get("origin");
 		const headers = {
 			"content-type": "application/json",
-			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Origin": origin?.startsWith("http://localhost")
+				? origin
+				: "https://stablestudio.org",
 			"Access-Control-Allow-Methods": "POST,OPTIONS",
+			"Access-Control-Allow-Credentials": "true",
 			"Access-Control-Max-Age": "86400",
 		};
 		async function handleOptions(request: Request) {
 			if (
-				request.headers.get("Origin") !== null &&
+				origin !== null &&
 				request.headers.get("Access-Control-Request-Method") !== null &&
 				request.headers.get("Access-Control-Request-Headers") !== null
 			) {
@@ -66,7 +74,7 @@ export default {
 		const method = request.method;
 		const contentType = request.headers.get("content-type");
 		const ua = request.headers.get("user-agent");
-		const referer = request.headers.get("Referer");
+		const referer = request.headers.get("referer");
 
 		console.log({ ua, referer, city, country, timezone });
 
@@ -88,6 +96,8 @@ export default {
 				headers,
 			});
 		}
+		if (origin?.startsWith("http://localhost"))
+			return new Response("ok", { headers, status: 201 });
 		if (!ua?.includes("Mozilla") || !referer?.includes("stablestudio.org")) {
 			response.message = "Invalid request";
 			return new Response(JSON.stringify(response), {
@@ -125,6 +135,7 @@ export default {
 							city,
 							country,
 							timezone,
+							lang: lang || "en",
 						},
 						groups: ["135355636160399051"],
 					}),
