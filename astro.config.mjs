@@ -25,9 +25,12 @@ export default defineConfig({
 		}),
 		astroMetaTags(),
 		AstroPWA({
+			experimental: {
+				directoryAndTrailingSlashHandler: true,
+			},
 			devOptions: {
-        enabled: true
-      },
+				enabled: true,
+			},
 			includeAssets: [
 				"favicon.ico",
 				"favicon.svg",
@@ -36,8 +39,12 @@ export default defineConfig({
 				"icon-512.png",
 				"icon-64.png",
 				"icon-mask.png",
-				"screenshot.png"
+				"screenshot.png",
 			],
+			workbox: {
+				navigateFallback: "/en",
+				globPatterns: ["**/*.{css,js,html,svg,png,ico,txt}"],
+			},
 			manifest: {
 				name: "Stable Studio",
 				short_name: "Stable Studio",
@@ -54,7 +61,12 @@ export default defineConfig({
 						sizes: "512x512",
 						purpose: "maskable",
 					},
-					{ src: "icon-512.png", type: "image/png", sizes: "512x512", purpose: "any" },
+					{
+						src: "icon-512.png",
+						type: "image/png",
+						sizes: "512x512",
+						purpose: "any",
+					},
 				],
 				screenshots: [
 					{
@@ -70,8 +82,8 @@ export default defineConfig({
 						type: "image/png",
 						form_factor: "narrow",
 						label: "Stable Studio",
-					}
-				]
+					},
+				],
 			},
 		}),
 		// react({

@@ -19,7 +19,7 @@ function setCookie(name: string, value: string) {
 
 export const config = {
 	matcher: [
-		"/((?!api|_astro|_image|manifest.webmanifest|favicon.ico|favicon.svg|chain.js|robots.txt|wrangler|sitemap.*.xml|stablestudio.*.svg|stablestudio.*.png|sw.js|workbox-.*.js|registerSW.js|icon-.*.png|apple-touch-icon.png).*)",
+		"/((?!api|.*.html|.*.png|_astro|_image|manifest.webmanifest|favicon.ico|robots.txt|wrangler|.*.xml|.*.svg|sw.js|.*.js).*)",
 	],
 };
 
