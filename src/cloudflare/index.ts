@@ -42,7 +42,7 @@ export default {
 				// Handle standard OPTIONS request.
 				return new Response(null, {
 					headers: {
-						Allow: "GET, HEAD, POST, OPTIONS",
+						Allow: "POST, OPTIONS",
 					},
 				});
 			}
@@ -61,6 +61,9 @@ export default {
 		}
 		const method = request.method;
 		const contentType = request.headers.get("content-type");
+		const ua = request.headers.get("user-agent");
+		const referrer = request.headers.get("Referrer");
+		console.log({ ua, referrer });
 		if (request.method === "OPTIONS") {
 			// Handle CORS preflight requests
 			return handleOptions(request);
@@ -76,6 +79,13 @@ export default {
 			response.message = "Invalid content type";
 			return new Response(JSON.stringify(response), {
 				status: 400,
+				headers,
+			});
+		}
+		if (!ua?.includes("Mozilla") || !referrer?.includes("stablestudio.org")) {
+			response.message = "Invalid request";
+			return new Response(JSON.stringify(response), {
+				status: 403,
 				headers,
 			});
 		}
