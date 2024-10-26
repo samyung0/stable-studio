@@ -43,16 +43,16 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 			duration: 0.7,
 			ease: "power4.out",
 			overwrite: true,
+			onComplete: () => {
+				window?.ctaSectionTimeline();
+				window?.footerTimelineFn();
+			},
 		});
 		gsap.to(faqArrow, {
 			rotate: open ? 180 : 0,
 			duration: 0.7,
 			ease: "power4.out",
 			overwrite: true,
-			onComplete: () => {
-				window?.ctaSectionTimeline();
-				window?.footerTimelineFn();
-			},
 		});
 	};
 
