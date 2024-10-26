@@ -89,7 +89,11 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 <section
 	class="slideinAnimation flex ~pt-5/10"
 	style="max-height: 100vh; max-height: 100dvh;">
-	<LandingImg />
+	<div class="flex max-h-full flex-1">
+		<LandingImg />
+		<!-- <img src="/LandingImg.svg" alt="Landing Image" class="size-full object-contain max-h-full	"/> -->
+	</div>
+	<!-- <LandingImg /> -->
 </section>
 
 <script>
