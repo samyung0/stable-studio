@@ -6,7 +6,12 @@
 		"paths": {
 			"@/*": ["./src/*"]
 		},
-		"types": ["@cloudflare/workers-types/2023-07-01"],
+		"types": [
+			"@cloudflare/workers-types/2023-07-01",
+			"vite-plugin-pwa/vanillajs",
+			"vite-plugin-pwa/info",
+			"vite-plugin-pwa/pwa-assets"
+		],
 		"jsx": "react-jsx",
 		"jsxImportSource": "react"
 	}

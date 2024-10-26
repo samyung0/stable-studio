@@ -25,6 +25,9 @@ export default defineConfig({
 		}),
 		astroMetaTags(),
 		AstroPWA({
+			devOptions: {
+        enabled: true
+      },
 			includeAssets: [
 				"favicon.ico",
 				"favicon.svg",
@@ -33,6 +36,7 @@ export default defineConfig({
 				"icon-512.png",
 				"icon-64.png",
 				"icon-mask.png",
+				"screenshot.png"
 			],
 			manifest: {
 				name: "Stable Studio",
@@ -52,6 +56,22 @@ export default defineConfig({
 					},
 					{ src: "icon-512.png", type: "image/png", sizes: "512x512", purpose: "any" },
 				],
+				screenshots: [
+					{
+						src: "screenshot.png",
+						sizes: "2717x1496",
+						type: "image/png",
+						form_factor: "wide",
+						label: "Stable Studio",
+					},
+					{
+						src: "screenshot-small.png",
+						sizes: "594x1150",
+						type: "image/png",
+						form_factor: "narrow",
+						label: "Stable Studio",
+					}
+				]
 			},
 		}),
 		// react({
