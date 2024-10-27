@@ -6,6 +6,10 @@ import BlurryBlob from "../../ui/BlurryBlob.astro";
 
 import * as m from "@/paraglide/messages";
 import { cn } from "@/lib/utils";
+import Mail from "../../ui/Mail.astro";
+import Twitter from "../../ui/Twitter.astro";
+import Meta from "../../ui/Meta.astro";
+import Instagram from "../../ui/Instagram.astro";
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
@@ -13,7 +17,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 <section
 	aria-describedby="ctaSectionDescription"
 	id="getstarted"
-	class="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-[20px] bg-primary text-primary-foreground ~pt-16/52 md:rounded-[40px] lg:rounded-[60px]">
+	class="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-[20px] bg-primary text-primary-foreground ~py-16/52 md:rounded-[40px] lg:rounded-[60px]">
 	<div
 		id="ctaSection"
 		class={cn(
@@ -73,16 +77,43 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 						)}>
 						{m.spry_solid_wombat_pick()}
 					</p>
-					<div class="flex flex-col items-start md:gap-3">
+					<div class="flex flex-col items-start gap-3">
 						<p class="mutedTextDark">{m.spry_real_cow_slide()}</p>
 						<ul
-							class="flex flex-col text-base font-normal text-primary-foreground/70 md:gap-2">
+							class="flex items-center text-base font-normal text-primary-foreground/70 gap-3">
 							<li>
-								<a href="mailto:samyung@stablestudio.org"
-									>samyung@stablestudio.org</a
-								>
+								<a
+									class="inline-block size-8 stroke-1"
+									href="mailto:samyung@stablestudio.org">
+									<span class="sr-only">Email Address</span>
+									<Mail />
+								</a>
 							</li>
 							<li>
+								<a
+									class="inline-block size-8 stroke-1"
+									href="https://x.com/stablestudioSS">
+									<span class="sr-only">Twitter Link</span>
+									<Twitter />
+								</a>
+							</li>
+							<li>
+								<a
+									class="inline-block size-8 stroke-1"
+									href="https://www.facebook.com/profile.php?id=61567128136714">
+									<span class="sr-only">Facebook Link</span>
+									<Meta />
+								</a>
+							</li>
+							<li>
+								<a
+									class="inline-block size-8 stroke-1"
+									href="https://x.com/stablestudioSS">
+									<span class="sr-only">Instagram Link</span>
+									<Instagram />
+								</a>
+							</li>
+							<li class="-translate-y-[2px]">
 								<a href="https://sam.partialty.com"
 									>{m.spry_direct_stork_devour()}</a
 								>

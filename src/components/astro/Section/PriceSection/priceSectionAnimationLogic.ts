@@ -76,8 +76,8 @@ const priceSectionAnimationLogic = () => {
 				scrollTrigger: {
 					trigger: priceAnimationContainer,
 					// pinnedContainer: priceSectionContainer,
-					start: "top 85%",
-					end: `top 25%`,
+					start: "top 90%",
+					end: `top 35%`,
 					// pin: true,
 					// pinType: "transform",
 					// pinReparent: true,

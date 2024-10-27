@@ -7,6 +7,7 @@ import DoubleGear from "../../ui/DoubleGear.astro";
 import LandingImg from "../../ui/LandingImg.astro";
 
 import * as m from "@/paraglide/messages";
+import GeometrySquare from "../../ui/GeometrySquare.astro";
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
 ---
@@ -29,15 +30,15 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 					"text-2xl sm:text-[6vw] xl:text-[4vw] 2xl:text-[4.2vw] 3xl:text-[100px] leading-[1.4] tracking-tight",
 			)}>
 			<span class={cn("sm:whitespace-nowrap", isBahasa && "relative")}
-				>{m.tasty_wide_toad_renew()}&nbsp;<span
+				>{m.tasty_wide_toad_renew()}
+				<span
 					class={cn(
 						"inline-block aspect-square w-[36px] translate-y-2 sm:w-[9vw] lg:w-[6vw] 3xl:w-[130px]",
-						isBahasa &&
-							"sm:w-[7vw] lg:w-[5vw] block absolute bottom-full md:-translate-y-6 -translate-y-3",
+						isBahasa && "hidden",
 					)}>
-					<DoubleGear />
-				</span></span
-			><br /><span class="sm:whitespace-nowrap"
+					<GeometrySquare />
+				</span>
+			</span><br /><span class="sm:whitespace-nowrap"
 				>{m.pretty_sweet_butterfly_dart()}</span
 			>
 		</h1>
@@ -89,59 +90,3 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 <section class="slideinAnimation flex ~pt-5/10">
 	<LandingImg />
 </section>
-
-<script>
-	import gsap from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	gsap.registerPlugin(ScrollTrigger);
-
-	const top = document.getElementById("top");
-	const upperGear = gsap.utils.toArray(".upperGear") as HTMLElement[];
-	const lowerGear = gsap.utils.toArray(".lowerGear") as HTMLElement[];
-
-	for (let i = 0; i < upperGear.length; i++) {
-		const parent = upperGear[i].parentElement
-			?.parentElement as HTMLElement | null;
-		const upperGearCenter = parent?.querySelector(
-			".upperGearCenter",
-		) as HTMLElement | null;
-		const lowerGearCenter = parent?.querySelector(
-			".lowerGearCenter",
-		) as HTMLElement | null;
-		const upperGearCenterCoords = {
-			x: upperGearCenter?.getAttribute("cx") ?? 0,
-			y: upperGearCenter?.getAttribute("cy") ?? 0,
-		};
-		const lowerGearCenterCoords = {
-			x: lowerGearCenter?.getAttribute("cx") ?? 0,
-			y: lowerGearCenter?.getAttribute("cy") ?? 0,
-		};
-		gsap.set(upperGear[i], {
-			svgOrigin: `${upperGearCenterCoords.x}px ${upperGearCenterCoords.y}px`,
-		});
-		gsap.set(lowerGear[i], {
-			svgOrigin: `${lowerGearCenterCoords.x}px ${lowerGearCenterCoords.y}px`,
-		});
-		gsap
-			.timeline({
-				scrollTrigger: {
-					trigger: top,
-					start: "top top",
-					end: "+=1000",
-					scrub: 0.2,
-				},
-			})
-			.to(upperGear[i], {
-				rotation: 360,
-				ease: "none",
-			})
-			.to(
-				lowerGear[i],
-				{
-					rotation: -360,
-					ease: "none",
-				},
-				0,
-			);
-	}
-</script>
