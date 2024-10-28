@@ -87,6 +87,41 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 </section>
 
 <!-- landing image -->
-<section class="slideinAnimation flex ~pt-5/10">
-	<LandingImg />
+<section class="slideinAnimation flex w-full ~pt-5/10">
+	<div id="notSusAnimation" class="flex w-full">
+		<LandingImg />
+	</div>
+	<div id="susAnimation" class="w-full hidden"></div>
 </section>
+
+<script>
+	import sus from "@/assets/sus.json";
+	const susAnimation = document.getElementById(
+		"susAnimation",
+	) as HTMLElement | null;
+	const notSusAnimation = document.getElementById(
+		"notSusAnimation",
+	) as HTMLElement | null;
+
+	import lottie from "lottie-web";
+	lottie.setQuality(2);
+	const anim = lottie.loadAnimation({
+		container: susAnimation!,
+		renderer: "svg",
+		loop: true,
+		autoplay: true,
+		animationData: sus,
+		// path: "/sus.json",
+		rendererSettings: {
+			preserveAspectRatio: "xMidYMid slice",
+			focusable: false,
+			className: "rounded-xl"
+		},
+	});
+
+	anim.addEventListener("DOMLoaded", () => {
+		notSusAnimation!.style.display = "none";
+		notSusAnimation?.remove();
+		susAnimation!.style.display = "flex";
+	});
+</script>
