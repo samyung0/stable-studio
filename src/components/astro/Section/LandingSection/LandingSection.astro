@@ -3,8 +3,9 @@ import { cn } from "@/lib/utils";
 import AnimatedDivider from "../../AnimatedDivider/AnimatedDivider.astro";
 import AnimatedText from "../../AnimatedText/AnimatedText.astro";
 import ArrowRightDown from "../../ui/ArrowRightDown.astro";
-import DoubleGear from "../../ui/DoubleGear.astro";
-import LandingImg from "../../ui/LandingImg.astro";
+import Sus from "@/components/astro/ui/Sus.astro";
+// import DoubleGear from "../../ui/DoubleGear.astro";
+// import LandingImg from "../../ui/LandingImg.astro";
 
 import * as m from "@/paraglide/messages";
 import GeometrySquare from "../../ui/GeometrySquare.astro";
@@ -87,15 +88,33 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 </section>
 
 <!-- landing image -->
-<section class="slideinAnimation flex w-full ~pt-5/10">
-	<div id="notSusAnimation" class="flex w-full">
-		<LandingImg />
+<section class="slideinAnimation flex w-full flex-col gap-1 ~pt-5/10">
+	<button
+		id="loadAnimationBtn"
+		class="hidden text-[0.65rem] font-normal uppercase text-muted-foreground underline"
+		>Load Animation (beware of lag)</button
+	>
+	<div id="notSusAnimation" class="hidden">
+		<img alt="static landing image" class="rounded-xl object-contain" />
+		<!-- <LandingImg /> -->
 	</div>
-	<div id="susAnimation" class="w-full hidden"></div>
+	<div id="susAnimation" class="flex">
+		<Sus />
+	</div>
 </section>
 
+<style>
+	#loadAnimationBtn.no-smil {
+		display: block;
+	}
+	#susAnimation.no-smil {
+		display: none;
+	}
+</style>
+
 <script>
-	import sus from "@/assets/sus.json";
+	// import sus from "@/assets/sus.json"
+	const btn = document.getElementById("loadAnimationBtn")!;
 	const susAnimation = document.getElementById(
 		"susAnimation",
 	) as HTMLElement | null;
@@ -103,25 +122,49 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 		"notSusAnimation",
 	) as HTMLElement | null;
 
-	import lottie from "lottie-web";
-	lottie.setQuality(2);
-	const anim = lottie.loadAnimation({
-		container: susAnimation!,
-		renderer: "svg",
-		loop: true,
-		autoplay: true,
-		animationData: sus,
-		// path: "/sus.json",
-		rendererSettings: {
-			preserveAspectRatio: "xMidYMid slice",
-			focusable: false,
-			className: "rounded-xl"
-		},
-	});
+	declare global {
+		var Modernizr: any;
+	}
 
-	anim.addEventListener("DOMLoaded", () => {
-		notSusAnimation!.style.display = "none";
-		notSusAnimation?.remove();
-		susAnimation!.style.display = "flex";
-	});
+	if (!Modernizr.smil) {
+		susAnimation!.style.display = "none";
+		notSusAnimation!.style.display = "flex";
+		notSusAnimation!.firstElementChild!.setAttribute("src", "/landing.svg");
+		susAnimation!.innerHTML = "";
+
+		const load = async () => {
+			btn.removeEventListener("click", load);
+			btn.remove();
+			btn.style.display = "none";
+			susAnimation!.style.display = "flex";
+			susAnimation!.style.height = `${
+				parseFloat(getComputedStyle(notSusAnimation!).width.slice(0, -2)) /
+				1.692966872
+			}px`;
+
+			const lottie = (await import("lottie-web")).default;
+			lottie.setQuality(2);
+			const anim = lottie.loadAnimation({
+				container: susAnimation!,
+				renderer: "canvas",
+				loop: true,
+				autoplay: true,
+				// animationData: sus,
+				path: "/sus.json",
+				rendererSettings: {
+					// preserveAspectRatio: "xMidYMid slice",
+					// focusable: false,
+					clearCanvas: false,
+				},
+			});
+
+			anim.addEventListener("DOMLoaded", () => {
+				console.log("lottie loaded");
+				notSusAnimation!.style.display = "none";
+				notSusAnimation?.remove();
+			});
+		};
+
+		btn.addEventListener("click", load);
+	}
 </script>
