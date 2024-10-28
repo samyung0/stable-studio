@@ -178,6 +178,9 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 			allowClicks: true,
 			allowNestedScroll: true,
 		});
+		ScrollTrigger.config({
+			ignoreMobileResize: true,
+		})
 
 		horizontalLoop(document.getElementById("animatedDivider"), {
 			repeat: -1,
