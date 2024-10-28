@@ -15,7 +15,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 
 <!-- landing section -->
 <section
-	class={cn("fadeinAnimation pt-24 md:pt-48", isBahasa && "sm:pt-48")}
+	class={cn("pt-24 md:pt-48", isBahasa && "sm:pt-48")}
 	aria-details="landingSectionDetails">
 	<div
 		id="schemaMarkupMain"
@@ -73,7 +73,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 </section>
 
 <!-- animated divider -->
-<section class="fadeinAnimation ~pt-6/20">
+<section class="~pt-6/20">
 	<div
 		id="animatedDivider"
 		class="flex flex-nowrap items-center gap-1 overflow-hidden uppercase">
@@ -88,7 +88,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 </section>
 
 <!-- landing image -->
-<section class="slideinAnimation flex w-full flex-col gap-1 ~pt-5/10">
+<section class="flex w-full flex-col gap-1 ~pt-5/10">
 	<button
 		id="loadAnimationBtn"
 		class="hidden text-[0.65rem] font-normal uppercase text-muted-foreground underline"
