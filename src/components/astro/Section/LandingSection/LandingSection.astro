@@ -44,7 +44,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 			>
 		</h1>
 		<div
-			class="flex min-w-[300px] flex-1 shrink-0 flex-col items-start py-4 sm:max-w-[60vw] xl:max-w-full">
+			class="flex min-w-[300px] flex-1 shrink-0 flex-col items-start py-4 sm:max-w-[60vw] xl:max-w-[700px]">
 			<div
 				class="pb-8 uppercase leading-[1.7] opacity-80"
 				id="landingSectionDetails">
@@ -57,7 +57,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 					<ArrowRightDown />
 				</span>
 				<span
-					class="group relative inline-flex items-center justify-center overflow-hidden">
+					class="group text-xs sm:text-sm relative inline-flex items-center justify-center overflow-hidden">
 					<span
 						class="translate-y-0 transition duration-300 group-hover:translate-y-[100%]">
 						{m.every_late_squid_revive()}
@@ -88,7 +88,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 </section>
 
 <!-- landing image -->
-<section class="flex w-full flex-col gap-1 ~pt-5/10">
+<section class="flex w-full flex-col gap-1 ~pt-3/10">
 	<button
 		id="loadAnimationBtn"
 		class="hidden text-[0.65rem] font-normal uppercase text-muted-foreground underline"
@@ -165,6 +165,6 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 			});
 		};
 
-		btn.addEventListener("click", load);
+		btn.addEventListener("click", load, { passive: true });
 	}
 </script>

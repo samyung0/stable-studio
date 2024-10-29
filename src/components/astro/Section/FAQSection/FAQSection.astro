@@ -77,18 +77,30 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	) as HTMLElement | null;
 	const faqCursor = document.getElementById("faqCursor") as HTMLElement | null;
 
-	faqContainer?.addEventListener("mouseenter", (e) => {
-		gsap.to(faqCursor, {
-			opacity: 1,
-			ease: "power3.out",
-			overwrite: "auto",
-		});
-	});
-	faqContainer?.addEventListener("mouseleave", () => {
-		gsap.to(faqCursor, {
-			opacity: 0,
-			ease: "power3.out",
-			overwrite: "auto",
-		});
-	});
+	faqContainer?.addEventListener(
+		"mouseenter",
+		(e) => {
+			gsap.to(faqCursor, {
+				opacity: 1,
+				ease: "power3.out",
+				overwrite: "auto",
+			});
+		},
+		{
+			passive: true,
+		},
+	);
+	faqContainer?.addEventListener(
+		"mouseleave",
+		() => {
+			gsap.to(faqCursor, {
+				opacity: 0,
+				ease: "power3.out",
+				overwrite: "auto",
+			});
+		},
+		{
+			passive: true,
+		},
+	);
 </script>

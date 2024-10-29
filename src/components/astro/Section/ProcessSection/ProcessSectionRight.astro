@@ -6,6 +6,9 @@ import * as m from "@/paraglide/messages";
 import { cn } from "@/lib/utils";
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
+const isViet = Astro.locals.paraglide.lang === "vi";
+
+const isSmall = isBahasa || isViet;
 ---
 
 <!-- img part on right -->
@@ -13,16 +16,16 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	id="processRight"
 	class={cn(
 		"relative order-first flex aspect-video w-full flex-1 items-center justify-center overflow-hidden 2xl:max-w-[40%] min-h-[90px] max-h-[170px]",
-		!isBahasa &&
+		!isSmall &&
 			"md:sticky md:top-0 md:order-last md:aspect-auto md:max-h-full md:max-w-[35%]",
-		isBahasa &&
+		isSmall &&
 			"lg:sticky lg:top-0 lg:order-last lg:aspect-auto lg:max-h-full lg:max-w-[35%] md:max-h-[220px]",
 	)}>
 	<div
 		class={cn(
 			"absolute block h-full w-[calc(100%_-_3rem)] pt-6 will-change-transform",
-			!isBahasa && "md:w-full md:pt-0",
-			isBahasa && "lg:w-full lg:pt-0",
+			!isSmall && "md:w-full md:pt-0",
+			isSmall && "lg:w-full lg:pt-0",
 		)}>
 		<Image
 			src={Optimize}
@@ -33,8 +36,8 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	<div
 		class={cn(
 			"absolute block h-full w-[calc(100%_-_3rem)] pt-6 will-change-transform",
-			!isBahasa && "md:w-full md:pt-0",
-			isBahasa && "lg:w-full lg:pt-0",
+			!isSmall && "md:w-full md:pt-0",
+			isSmall && "lg:w-full lg:pt-0",
 		)}>
 		<Image
 			src={Optimize}
@@ -44,8 +47,8 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	</div><div
 		class={cn(
 			"absolute block h-full w-[calc(100%_-_3rem)] pt-6 will-change-transform",
-			!isBahasa && "md:w-full md:pt-0",
-			isBahasa && "lg:w-full lg:pt-0",
+			!isSmall && "md:w-full md:pt-0",
+			isSmall && "lg:w-full lg:pt-0",
 		)}>
 		<Image
 			src={Optimize}
@@ -55,8 +58,8 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	</div><div
 		class={cn(
 			"absolute block h-full w-[calc(100%_-_3rem)] pt-6 will-change-transform",
-			!isBahasa && "md:w-full md:pt-0",
-			isBahasa && "lg:w-full lg:pt-0",
+			!isSmall && "md:w-full md:pt-0",
+			isSmall && "lg:w-full lg:pt-0",
 		)}>
 		<Image
 			src={Optimize}

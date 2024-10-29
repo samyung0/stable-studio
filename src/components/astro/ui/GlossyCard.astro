@@ -5,8 +5,8 @@ import StableStudioCardLogo from "./StableStudioCardLogo.astro";
 
 <section
 	id="card3d"
-	class="flex relative min-w-[600px] max-w-full gap-12 px-12 overflow-visible rounded-2xl border-2 border-white/10 bg-white/10 p-8 font-normal tracking-wide text-white shadow-md backdrop-blur-2xl hover:shadow-xl">
-	<div id="card3dglow" class="absolute inset-0 size-full"></div>
+	class="relative flex min-w-[600px] max-w-full gap-12 overflow-visible rounded-2xl border-2 border-white/10 bg-white/10 p-8 px-12 font-normal tracking-wide text-white shadow-md backdrop-blur-2xl hover:shadow-xl">
+	<div id="card3dglow" class="absolute left-0 top-0 size-full"></div>
 	<!-- <div
 		id="card3drectangle"
 		class="absolute hidden xl:block top-full left-[70%] -translate-y-6 size-16 rotate-[65deg] bg-white/20 backdrop-blur-2xl rounded-lg shadow-md">
@@ -22,7 +22,7 @@ import StableStudioCardLogo from "./StableStudioCardLogo.astro";
 			<p class="text-sm">{m.white_fancy_jackal_snip()}</p>
 		</header>
 		<div class="flex flex-col gap-4">
-			<p class="text-sm max-w-[420px]">
+			<p class="max-w-[420px] text-sm">
 				{m.fine_major_swallow_smile()}<br />
 				{m.seemly_fresh_larva_ripple()}
 			</p>
@@ -101,14 +101,22 @@ import StableStudioCardLogo from "./StableStudioCardLogo.astro";
 `;
 	}
 
-	cardContainer!.addEventListener("mouseenter", () => {
-		bounds = cardContainer!.getBoundingClientRect();
-		document.addEventListener("mousemove", rotateToMouse);
-	});
+	cardContainer!.addEventListener(
+		"mouseenter",
+		() => {
+			bounds = cardContainer!.getBoundingClientRect();
+			document.addEventListener("mousemove", rotateToMouse, { passive: true });
+		},
+		{ passive: true },
+	);
 
-	cardContainer!.addEventListener("mouseleave", () => {
-		document.removeEventListener("mousemove", rotateToMouse);
-		cardContainer!.style.transform = "";
-		cardGlow!.style.backgroundImage = "none";
-	});
+	cardContainer!.addEventListener(
+		"mouseleave",
+		() => {
+			document.removeEventListener("mousemove", rotateToMouse);
+			cardContainer!.style.transform = "";
+			cardGlow!.style.backgroundImage = "none";
+		},
+		{ passive: true },
+	);
 </script>

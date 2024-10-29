@@ -1,6 +1,5 @@
 ---
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
-import Menu from "../../ui/Menu.astro";
 import StableStudio from "../../ui/StableStudio.astro";
 import World from "../../ui/World.astro";
 
@@ -8,27 +7,15 @@ import * as m from "@/paraglide/messages";
 ---
 
 <!-- header -->
-<header id="top" class="pt-6 md:pt-8">
+<header id="top" class="pt-6 sm:pt-8">
 	<div class="flex items-center justify-between">
 		<div>
 			<a href="https://stablestudio.org" class="block w-32 sm:w-48">
 				<span class="sr-only">Stable Studio Homepage</span>
-				<!-- <img
-					src="/stablestudio.svg"
-					alt="Stable Studio"
-					class="w-32 sm:w-48 md:w-56 sr-only"
-					loading="lazy"
-					decoding="async"
-				/> -->
-
 				<StableStudio />
 			</a>
 		</div>
 		<div>
-			<button id="smallNavButton" class="block size-8 md:hidden">
-				<span class="sr-only">Open side navigation</span>
-				<Menu />
-			</button>
 			<div class="hidden items-center gap-2 md:flex">
 				<button
 					id="languageButton"
@@ -40,7 +27,8 @@ import * as m from "@/paraglide/messages";
 						<span>{m.zippy_careful_rooster_clasp()}</span>
 					</span>
 
-					<span class="absolute inset-0 h-full overflow-hidden rounded-md"
+					<span
+						class="absolute left-0 top-0 size-full overflow-hidden rounded-md"
 						><span
 							class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatlightblue transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
 						></span></span
@@ -49,7 +37,8 @@ import * as m from "@/paraglide/messages";
 				<a
 					href="#getstarted"
 					data-umami-event="Get Started Top"
-					class="group relative overflow-hidden rounded bg-primary px-4 py-4 text-primary-foreground md:gap-3 md:px-6 md:py-5">
+					id="getStartedButton"
+					class="group relative rounded bg-primary px-4 py-4 text-primary-foreground md:gap-3 md:px-6 md:py-5">
 					<span
 						class="relative z-10 flex items-center gap-1 duration-500 group-hover:text-primary">
 						<span class="size-4 text-muted-foreground md:size-6">
@@ -58,7 +47,7 @@ import * as m from "@/paraglide/messages";
 						<span class="mt-[2px] block">{m.fresh_nimble_tortoise_soar()}</span>
 					</span>
 
-					<span class="absolute inset-0 h-full overflow-hidden rounded-md"
+					<span class="absolute left-0 top-0 size-full overflow-hidden rounded"
 						><span
 							class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatviolet2 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
 						></span></span
@@ -69,43 +58,124 @@ import * as m from "@/paraglide/messages";
 	</div>
 </header>
 
+<style is:global>
+	/* @property compatibility hack, see https://codepen.io/propjockey/pen/OJdJmya */
+	/* for some reasons does not work when opening through another device, even though on the same network, it has to be in localhost */
+	@supports (background: paint(xddd)) or
+	((width: 1rlh) and ((-webkit-hyphens: none) or (-moz-appearance: none))) {
+
+		@property --radialFixLeft {
+			syntax: "<color>";
+			initial-value: rgb(38, 38, 38);
+			inherits: false;
+		}
+		@property --radialFixRight {
+			syntax: "<color>";
+			initial-value: rgb(38, 38, 38);
+			inherits: false;
+		}
+
+		#getStartedButton {
+			background-image: radial-gradient(
+					circle at 0% 50%,
+					transparent calc(100% - 30px),
+					var(--radialFixRight) 30px
+				),
+				radial-gradient(
+					circle at 100% 50%,
+					transparent calc(100% - 30px),
+					var(--radialFixLeft) 30px
+				);
+			transition:
+				--radialFixLeft 0s linear 0.2s,
+				--radialFixRight 0s linear 0.1s;
+		}
+		#getStartedButton:hover {
+			transition:
+				--radialFixLeft 0s linear 0.15s,
+				--radialFixRight 0s linear 0.35s;
+			--radialFixLeft: #dad6e3;
+			--radialFixRight: #dad6e3;
+		}
+	}
+</style>
+
 <script>
 	import gsap from "gsap";
 	const languageButton = document.getElementById("languageButton");
 	const sidenav = document.getElementById("sidenav");
 	const sidenavScroll = document.getElementById("sidenavScroll");
 	const smallNavButton = document.getElementById("smallNavButton");
+	const sidenavAnimateOpen = gsap.utils.toArray(
+		".sidenavAnimateOpen",
+	) as SVGAnimateElement[];
+	const sidenavAnimateClose = gsap.utils.toArray(
+		".sidenavAnimateClose",
+	) as SVGAnimateElement[];
 
-	const openNav = () => {
+	const openSidenav = () => {
+		window.sidenavOpen = true;
+		sidenavAnimateOpen.forEach((el) => el.beginElement());
 		gsap.set(sidenav, { display: "flex" });
-		gsap.fromTo(
-			sidenav,
-			{
-				backdropFilter: "blur(0px)",
-			},
-			{
-				duration: 0.35,
-				backdropFilter: "blur(12px)",
-				ease: "power3.out",
-				overwrite: "auto",
-			},
-		);
-		gsap.fromTo(
-			sidenavScroll,
-			{
-				xPercent: 0,
-				x: 100,
-				opacity: 1
-			},
-			{
-				x: 0,
-				duration: 0.5,
-				overwrite: "auto",
-				ease: "power3.out",
-			},
-		);
+		gsap.to(sidenav, {
+			duration: 0.35,
+			backdropFilter: "blur(12px)",
+			ease: "power3.out",
+			overwrite: "auto",
+		});
+		gsap.set(sidenavScroll, { opacity: 1 });
+		gsap.to(sidenavScroll, {
+			x: 0,
+			duration: 0.5,
+			overwrite: "auto",
+			ease: "power3.out",
+		});
 	};
 
-	languageButton?.addEventListener("click", openNav);
-	smallNavButton?.addEventListener("click", openNav);
+	const closeSidenav = () => {
+		window.sidenavOpen = false;
+		sidenavAnimateClose.forEach((animate) => animate.beginElement());
+		gsap.to(sidenav, {
+			backdropFilter: "blur(0px)",
+			ease: "power3.out",
+			overwrite: "auto",
+		});
+		gsap.to(sidenavScroll, {
+			duration: 0.5,
+			x: () => sidenavScroll!.offsetWidth,
+			ease: "power3.out",
+			overwrite: "auto",
+		});
+		gsap.to(sidenavScroll, {
+			duration: 0.4,
+			delay: 0.05,
+			opacity: 0,
+			ease: "power3.out",
+			overwrite: "auto",
+			onComplete: () => {
+				gsap.set(sidenav, { display: "none" });
+			},
+		});
+	};
+
+	declare global {
+		var closeSidenav: () => void;
+		var openSidenav: () => void;
+		var sidenavOpen: boolean;
+	}
+
+	window.closeSidenav = closeSidenav;
+	window.openSidenav = openSidenav;
+	window.sidenavOpen = false;
+
+	const handleNav = () => {
+		if (window.sidenavOpen) {
+			closeSidenav();
+		} else {
+			openSidenav();
+		}
+	};
+
+	languageButton?.addEventListener("click", handleNav, { passive: true });
+	smallNavButton?.addEventListener("click", handleNav, { passive: true });
 </script>

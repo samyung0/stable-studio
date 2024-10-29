@@ -7,6 +7,9 @@ import ProcessSectionRight from "./ProcessSectionRight.astro";
 import * as m from "@/paraglide/messages";
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
+const isViet = Astro.locals.paraglide.lang === "vi";
+
+const isSmall = isBahasa || isViet;
 ---
 
 <div
@@ -112,15 +115,15 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 				style="transform: translate3d(0, var(--offset-top), 0)"
 				class={cn(
 					"pb-6/16 flex max-h-full flex-1 overflow-hidden pt-3 sm:~pt-6/16",
-					!isBahasa && "md:flex-initial",
-					isBahasa && "lg:flex-initial",
+					!isSmall && "md:flex-initial",
+					isSmall && "lg:flex-initial",
 				)}>
 				<article
 					id="processScroll"
 					class={cn(
 						"flex max-h-full flex-1 flex-col gap-0 rounded-xl bg-card xl:gap-[4vw] overflow-auto",
-						!isBahasa && "md:min-h-[40vh] md:flex-row",
-						isBahasa && "lg:min-h-[40vh] lg:flex-row",
+						!isSmall && "md:min-h-[40vh] md:flex-row",
+						isSmall && "lg:min-h-[40vh] lg:flex-row",
 					)}>
 					<ProcessSectionLeft />
 					<ProcessSectionRight />
@@ -253,7 +256,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 			end: `+=${scrollDistancePerCard * processLeftChildren.length + window.innerHeight}`,
 			scrub: true,
 			// markers: true,
-			invalidateOnRefresh: false,
+			invalidateOnRefresh: true,
 			onUpdate: progressWheelAnimation.bind(null, rotateWheel),
 		},
 		defaults: { ease: "none", overwrite: "auto" },
@@ -311,7 +314,4 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	timeline.to({}, {}, `+=${ratio}`);
 
 	priceSectionAnimationLogic(timeline, ratio);
-
-	window.processSectionReady = true;
-	window.priceSectionReady = true;
 </script>

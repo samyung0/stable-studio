@@ -12,6 +12,9 @@ import Meta from "../../ui/Meta.astro";
 import Instagram from "../../ui/Instagram.astro";
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
+const isViet = Astro.locals.paraglide.lang === "vi";
+
+const isSmall = isBahasa || isViet;
 ---
 
 <section
@@ -22,29 +25,29 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 		id="ctaSection"
 		class={cn(
 			"relative grid w-full justify-between gap-[5vw] px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]",
-			!isBahasa && "ctaSectionBreakSmall",
-			isBahasa && "ctaSectionBreakLarge",
+			!isSmall && "ctaSectionBreakSmall",
+			isSmall && "ctaSectionBreakLarge",
 		)}>
 		<p
 			class={cn(
 				"mutedText relative left-0 col-start-[2] row-start-1 ml-auto",
-				!isBahasa && "lg:col-start-[1] lg:mx-auto",
-				isBahasa && "xl:col-start-[1] xl:mx-auto",
+				!isSmall && "lg:col-start-[1] lg:mx-auto",
+				isSmall && "xl:col-start-[1] xl:mx-auto",
 			)}>
 			/ {m.getstarted2()} /
 		</p>
 		<div
 			class={cn(
 				"col-span-2 col-start-1 row-start-1 md:-mt-4",
-				!isBahasa && "lg:col-span-1 lg:col-start-2 lg:-mt-2",
-				isBahasa && "xl:col-span-1 xl:col-start-2 xl:-mt-2",
+				!isSmall && "lg:col-span-1 lg:col-start-2 lg:-mt-2",
+				isSmall && "xl:col-span-1 xl:col-start-2 xl:-mt-2",
 			)}>
 			<header
 				class={cn(
 					"whitespace-nowrap pb-[5vw] ",
-					!isBahasa &&
+					!isSmall &&
 						"text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[7vw] md:leading-[1] 3xl:text-[130px]",
-					isBahasa &&
+					isSmall &&
 						"text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[5vw] md:leading-[1] 3xl:text-[130px]",
 				)}>
 				<h1>
@@ -55,35 +58,34 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 							id="ctaArrow"
 							class={cn(
 								"aspect-video w-[130px] translate-x-3 translate-y-3 sm:w-[180px] md:w-[30vw] 3xl:w-[700px]",
-								!isBahasa && "md:translate-y-[3vw]",
-								isBahasa && "md:translate-y-[2vw]",
+								!isSmall && "md:translate-y-[3vw] 3xl:translate-y-[2vw]",
+								isSmall && "md:translate-y-[2vw]",
 							)}>
 							<VeryLongArrowRightDown />
 						</span></span
 					>
 				</h1>
 			</header>
-			<!-- <CTAPath /> -->
 			<div
-				class="mx-auto flex flex-col gap-10 ~pt-6/24 md:flex-row md:gap-[5vw]">
+				class="2xl:pr-[8vw] flex flex-col gap-10 ~pt-6/24 md:flex-row md:gap-[5vw]">
 				<div
 					class="order-last flex flex-1 flex-col gap-6 md:order-first md:gap-10">
 					<p
 						id="ctaSectionDescription"
 						class={cn(
 							"flex flex-col gap-1 text-sm leading-[1.4] text-primary-foreground/70 max-w-[550px] 3xl:max-w-[800px] md:gap-3 md:leading-[1.8] lg:text-base lg:leading-[1.8]",
-							!isBahasa && "lg:col-start-3",
-							isBahasa && "xl:col-start-3",
+							!isSmall && "lg:col-start-3",
+							isSmall && "xl:col-start-3",
 						)}>
 						{m.spry_solid_wombat_pick()}
 					</p>
 					<div class="flex flex-col items-start gap-3">
 						<p class="mutedTextDark">{m.spry_real_cow_slide()}</p>
 						<ul
-							class="flex items-center text-base font-normal text-primary-foreground/70 gap-3">
+							class="flex items-center gap-3 text-base font-normal">
 							<li>
 								<a
-									class="inline-block size-8 stroke-1"
+									class="inline-block size-8 stroke-1 text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground"
 									href="mailto:samyung@stablestudio.org">
 									<span class="sr-only">Email Address</span>
 									<Mail />
@@ -91,7 +93,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 							</li>
 							<li>
 								<a
-									class="inline-block size-8 stroke-1"
+									class="inline-block size-8 stroke-1 text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground"
 									href="https://x.com/stablestudioSS">
 									<span class="sr-only">Twitter Link</span>
 									<Twitter />
@@ -99,7 +101,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 							</li>
 							<li>
 								<a
-									class="inline-block size-8 stroke-1"
+									class="inline-block size-8 stroke-1 text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground"
 									href="https://www.facebook.com/profile.php?id=61567128136714">
 									<span class="sr-only">Facebook Link</span>
 									<Meta />
@@ -107,13 +109,13 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 							</li>
 							<li>
 								<a
-									class="inline-block size-8 stroke-1"
+									class="inline-block size-8 stroke-1 text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground"
 									href="https://www.instagram.com/stablestudioss/">
 									<span class="sr-only">Instagram Link</span>
 									<Instagram />
 								</a>
 							</li>
-							<li class="-translate-y-[2px]">
+							<li class="-translate-y-[2px] text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground">
 								<a href="https://sam.partialty.com"
 									>{m.spry_direct_stork_devour()}</a
 								>
@@ -188,7 +190,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 							>
 
 							<span
-								class="relative mt-[2px] flex items-center justify-center overflow-hidden">
+								class="relative mt-[2px] text-xs sm:text-sm flex items-center justify-center overflow-hidden">
 								<span
 									class="translate-y-0 transition duration-300 group-hover:translate-y-[100%]">
 									{m.suave_helpful_lion_evoke()}
@@ -206,7 +208,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	</div>
 	<div
 		id="globeContainer"
-		class="relative isolate flex min-h-[65vh] max-h-[800px] w-full rotate-90 items-center justify-center my-36 md:~mt-16/52 ~mb-16/52 px-28 md:rotate-0 md:px-16 3xl:max-w-[95vw]">
+		class="relative isolate my-36 flex max-h-[800px] min-h-[65vh] w-full rotate-90 items-center justify-center px-28 ~mb-16/52 md:rotate-0 md:px-16 md:~mt-16/52 3xl:max-w-[95vw]">
 		<BlurryBlob />
 		<GlossyCard />
 		<!-- <GlobeLoader client:load /> -->
@@ -272,8 +274,8 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 					start: "top 70%",
 					end: "top 30%",
 					scrub: 1,
-					markers: true,
-					invalidateOnRefresh: false,
+					// markers: true,
+					invalidateOnRefresh: true,
 				},
 				defaults: {
 					ease: "none",
@@ -343,66 +345,70 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	const contactForm = document.getElementById(
 		"contactForm",
 	) as HTMLFormElement | null;
-	contactForm?.addEventListener("submit", async (e) => {
-		e.preventDefault();
-		if (sendingMessage) return;
-		sendingMessage = true;
-		const formData = new FormData(contactForm);
-		const data = Object.fromEntries(formData.entries()) as {
-			name: string;
-			email: string;
-			enquiry: string;
-		};
+	contactForm?.addEventListener(
+		"submit",
+		async (e) => {
+			e.preventDefault();
+			if (sendingMessage) return;
+			sendingMessage = true;
+			const formData = new FormData(contactForm);
+			const data = Object.fromEntries(formData.entries()) as {
+				name: string;
+				email: string;
+				enquiry: string;
+			};
 
-		if (
-			data.name.trim() === "" ||
-			data.email.trim() === "" ||
-			data.enquiry.trim() === ""
-		) {
-			alert("Please fill in all fields");
-			return;
-		}
-		if (
-			data.name.length > 256 ||
-			data.email.length > 256 ||
-			data.enquiry.length > 3000
-		) {
-			alert("Please enter a shorter name/email/enquiry");
-			return;
-		}
-
-		try {
-			const res = await fetch("/wrangler", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					email: data.email,
-					name: data.name,
-					enquiry: data.enquiry,
-				}),
-				credentials: "include",
-			});
-
-			if (res.status === 201) {
-				submitSuccessAnim(formSubmitTextSuccess);
-				contactForm?.reset();
-			} else if (res.status === 200) {
-				submitSuccessAnim(formSubmitTextWarn);
-				contactForm?.reset();
-			} else {
-				submitSuccessAnim(formSubmitTextError);
-				const json = await res.json();
-				console.error(json);
+			if (
+				data.name.trim() === "" ||
+				data.email.trim() === "" ||
+				data.enquiry.trim() === ""
+			) {
+				alert("Please fill in all fields");
+				return;
 			}
-		} catch (e) {
-			submitSuccessAnim(formSubmitTextError);
-			console.error(e);
-		}
+			if (
+				data.name.length > 256 ||
+				data.email.length > 256 ||
+				data.enquiry.length > 3000
+			) {
+				alert("Please enter a shorter name/email/enquiry");
+				return;
+			}
 
-		sendingMessage = false;
-	});
+			try {
+				const res = await fetch("/wrangler", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: data.email,
+						name: data.name,
+						enquiry: data.enquiry,
+					}),
+					credentials: "include",
+				});
 
-	window.ctaSectionReady = true;
+				if (res.status === 201) {
+					submitSuccessAnim(formSubmitTextSuccess);
+					contactForm?.reset();
+				} else if (res.status === 200) {
+					submitSuccessAnim(formSubmitTextWarn);
+					contactForm?.reset();
+				} else {
+					submitSuccessAnim(formSubmitTextError);
+					const json = await res.json();
+					console.error(json);
+				}
+			} catch (e) {
+				submitSuccessAnim(formSubmitTextError);
+				console.error(e);
+			}
+
+			sendingMessage = false;
+		},
+		{
+			passive: false,
+		},
+	);
 </script>

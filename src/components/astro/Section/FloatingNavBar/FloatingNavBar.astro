@@ -8,8 +8,10 @@ import * as m from "@/paraglide/messages";
 		<div class="relative z-[100] flex h-full items-center">
 			<div
 				class="flex h-full rounded border border-primary bg-primary text-xs text-primary-foreground">
-				<a id="activeItem" class="flex items-center gap-3 p-5" href="#home"
-					>Home<span>/</span></a
+				<a
+					id="activeItem"
+					class="flex items-center gap-3 whitespace-nowrap p-5"
+					href="#home">{m.cozy_noble_yak_adapt()}<span>/</span></a
 				>
 			</div>
 			<div class="relative h-full">
@@ -17,23 +19,27 @@ import * as m from "@/paraglide/messages";
 					<ul
 						class="flex h-full flex-row items-center rounded border border-flatgray bg-background">
 						<li class="pl-1 text-xs text-muted-foreground">
-							<a class="flex items-center gap-3 p-5" href="#service"
-								>{m.bold_late_gecko_transform()}</a
+							<a
+								class="flex items-center gap-3 whitespace-nowrap p-5"
+								href="#service">{m.bold_late_gecko_transform()}</a
 							>
 						</li>
 						<li class="text-xs text-muted-foreground">
-							<a class="flex items-center gap-3 p-5" href="#process"
-								>{m.kind_merry_jackal_spark()}</a
+							<a
+								class="flex items-center gap-3 whitespace-nowrap p-5"
+								href="#process">{m.kind_merry_jackal_spark()}</a
 							>
 						</li>
 						<li class="text-xs text-muted-foreground">
-							<a class="flex items-center gap-3 p-5" href="#price"
-								>{m.few_tangy_walrus_file()}</a
+							<a
+								class="flex items-center gap-3 whitespace-nowrap p-5"
+								href="#price">{m.few_tangy_walrus_file()}</a
 							>
 						</li>
 						<li class="pr-1 text-xs text-muted-foreground">
-							<a class="flex items-center gap-3 p-5" href="#vision"
-								>{m.smart_zippy_shell_dust()}</a
+							<a
+								class="flex items-center gap-3 whitespace-nowrap p-5"
+								href="#vision">{m.smart_zippy_shell_dust()}</a
 							>
 						</li>
 					</ul>
@@ -47,7 +53,7 @@ import * as m from "@/paraglide/messages";
 							<a
 								aria-hidden="true"
 								tabindex="-1"
-								class="flex items-center gap-3 p-5"
+								class="flex items-center gap-3 whitespace-nowrap p-5"
 								href="#service">{m.bold_late_gecko_transform()}</a
 							>
 						</li>
@@ -55,7 +61,7 @@ import * as m from "@/paraglide/messages";
 							<a
 								aria-hidden="true"
 								tabindex="-1"
-								class="flex items-center gap-3 p-5"
+								class="flex items-center gap-3 whitespace-nowrap p-5"
 								href="#process">{m.kind_merry_jackal_spark()}</a
 							>
 						</li>
@@ -63,7 +69,7 @@ import * as m from "@/paraglide/messages";
 							<a
 								aria-hidden="true"
 								tabindex="-1"
-								class="flex items-center gap-3 p-5"
+								class="flex items-center gap-3 whitespace-nowrap p-5"
 								href="#price">{m.few_tangy_walrus_file()}</a
 							>
 						</li>
@@ -71,7 +77,7 @@ import * as m from "@/paraglide/messages";
 							<a
 								aria-hidden="true"
 								tabindex="-1"
-								class="flex items-center gap-3 p-5"
+								class="flex items-center gap-3 whitespace-nowrap p-5"
 								href="#vision">{m.smart_zippy_shell_dust()}</a
 							>
 						</li>
@@ -93,7 +99,8 @@ import * as m from "@/paraglide/messages";
 		height: 100%;
 		width: 100%;
 		position: absolute;
-		inset: 0;
+		left: 0;
+		top: 0;
 		z-index: 99;
 	}
 	#navList {
@@ -137,7 +144,7 @@ import * as m from "@/paraglide/messages";
 		});
 	};
 
-	window.addEventListener("resize", setNavbar);
+	window.addEventListener("resize", setNavbar, { passive: true });
 
 	declare global {
 		var setNavbar: () => void;
@@ -150,9 +157,13 @@ import * as m from "@/paraglide/messages";
 	window.setNavbar = setNavbar;
 
 	navItems.forEach((navItem, index) => {
-		navItem.addEventListener("mouseover", (e) => {
-			window.activeIndex = index;
-			setNavbar();
-		});
+		navItem.addEventListener(
+			"mouseover",
+			(e) => {
+				window.activeIndex = index;
+				setNavbar();
+			},
+			{ passive: true },
+		);
 	});
 </script>

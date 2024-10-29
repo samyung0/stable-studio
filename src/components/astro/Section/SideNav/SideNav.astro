@@ -7,14 +7,14 @@ import * as m from "@/paraglide/messages";
 
 <nav
 	id="sidenav"
-	class="fixed inset-0 z-[100] hidden size-full h-full items-stretch justify-end">
+	class="fixed hidden left-0 top-0 z-[100] size-full h-full items-stretch justify-end">
 	<div
 		id="sidenavScroll"
-		class="relative flex max-h-full min-w-full max-w-full flex-col gap-7 overflow-auto bg-primary px-6 py-6 text-primary-foreground sm:min-w-[60vw] sm:max-w-[70vw] md:min-w-[35vw] md:px-16 md:py-28 lg:max-w-[50vw] 2xl:max-w-[30vw]">
+		class="relative translate-x-full flex max-h-full min-w-full max-w-full flex-col gap-7 overflow-auto bg-primary px-6 py-6 text-primary-foreground sm:min-w-[60vw] sm:max-w-[70vw] md:min-w-[35vw] md:px-16 md:py-28 lg:max-w-[50vw] 2xl:max-w-[30vw]">
 		<button
 			id="sidenavCloseButton"
-			class="absolute right-4 top-4 size-8 md:size-10 lg:right-8 lg:top-8 3xl:size-16">
-			<span class="sr-only">Open Navigation</span>
+			class="absolute hidden md:block right-4 top-4 size-10 lg:right-8 lg:top-8 3xl:size-16">
+			<span class="sr-only">Close Side Navigation</span>
 			<Close />
 		</button>
 		<div class="flex flex-col gap-4 md:hidden">
@@ -24,27 +24,27 @@ import * as m from "@/paraglide/messages";
 			</p>
 			<ul class="flex flex-col gap-2 uppercase">
 				<li class="text-lg md:text-xl">
-					<a class="inline-block py-2" href="#top"
+					<a class="block py-1" href="#top"
 						>{m.zesty_plane_oryx_stir()}</a
 					>
 				</li>
 				<li class="text-lg md:text-xl">
-					<a class="inline-block py-2" href="#services"
+					<a class="block py-1" href="#services"
 						>{m.bold_late_gecko_transform()}</a
 					>
 				</li>
 				<li class="text-lg md:text-xl">
-					<a class="inline-block py-2" href="#process"
+					<a class="block py-1" href="#process"
 						>{m.careful_lucky_cowfish_dine()}</a
 					>
 				</li>
 				<li class="text-lg md:text-xl">
-					<a class="inline-block py-2" href="#price"
+					<a class="block py-1" href="#price"
 						>{m.grand_keen_antelope_endure()}</a
 					>
 				</li>
 				<li class="text-lg md:text-xl">
-					<a class="inline-block py-2" href="#vision"
+					<a class="block py-1" href="#vision"
 						>{m.smart_zippy_shell_dust()}</a
 					>
 				</li>
@@ -65,77 +65,53 @@ import * as m from "@/paraglide/messages";
 				<h2 class="flex text-lg sm:text-2xl md:text-4xl">
 					{m.heroic_green_racoon_believe()}
 				</h2>
-				<p class="max-w-[400px] text-sm text-muted-foreground">
+				<p class="max-w-[400px] xl:max-w-[700px] text-sm text-muted-foreground">
 					{m.full_factual_trout_lock()}
 				</p>
 			</div>
 			<ul
-				class="flex flex-col text-primary-foreground/70 md:text-primary-foreground">
-				<li class="text-sm md:text-lg">
-					<a class="inline-block py-2" href="/en/" data-lang="en">English</a>
+				class="grid grid-cols-2 grid-rows-4 [column-gap:2rem] [row-gap:0.5rem] text-primary-foreground/70 md:text-primary-foreground">
+				<li class="text-sm md:text-base">
+					<a class="block py-1" href="/en/" data-lang="en">English</a>
 				</li>
-				<li class="text-sm md:text-lg">
-					<a class="inline-block py-2" href="/tl/" data-lang="tl">Tagalog</a>
+				<li class="text-sm md:text-base">
+					<a class="block py-1" href="/tl/" data-lang="tl">Tagalog</a>
 				</li>
-				<li class="text-sm md:text-lg">
-					<a class="inline-block py-2" href="/id/" data-lang="id">Bahasa</a>
+				<li class="text-sm md:text-base">
+					<a class="block py-1" href="/id/" data-lang="id">Bahasa</a>
 				</li>
-				<li class="text-sm md:text-lg">
-					<a class="inline-block py-2" href="/zh-HK/" data-lang="zh-HK"
+				<li class="text-sm md:text-base">
+					<a class="block py-1" href="/zh-HK/" data-lang="zh-HK"
 						>繁體中文</a
 					>
 				</li>
-				<li class="text-sm md:text-lg">
-					<a class="inline-block py-2" href="/zh-CN/" data-lang="zh-CN"
+				<li class="text-sm md:text-base">
+					<a class="block py-1" href="/zh-CN/" data-lang="zh-CN"
 						>简体中文</a
 					>
 				</li>
-				<li class="text-sm md:text-lg">
-					<a class="inline-block py-2" href="/ja/" data-lang="ja">日本語</a>
+				<li class="text-sm md:text-base">
+					<a class="block py-1" href="/ja/" data-lang="ja">日本語</a>
 				</li>
-				<li>
-					<a
-						href="/credits/"
-						class="block py-2 text-xs text-muted-foreground underline">
-						<span class="sr-only">{m.noisy_fluffy_fish_jest()}</span>
-						{m.caring_icy_goat_fold()}</a
-					>
+				<li class="text-sm md:text-base">
+					<a class="block py-1" href="/vi/" data-lang="vi">Ngôn ngữ</a>
 				</li>
+				
 			</ul>
+			<a
+				href="/credits/"
+				class="block py-1 -translate-y-2 text-xs text-muted-foreground underline">
+				<span class="sr-only">{m.noisy_fluffy_fish_jest()}</span>
+				{m.caring_icy_goat_fold()}</a
+			>
 		</div>
 	</div>
 </nav>
 
 <style>
-	#sidenav {
-		/* transition: all 0.35s cubic-bezier(0.17, 0.84, 0.44, 1);
-		backdrop-filter: blur(0);
-		-webkit-backdrop-filter: blur(0); */
-	}
-	#sidenav.sidenavDisplay {
-		/* backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px); */
-	}
-
-	#sidenav > div {
-		/* transform: translate3d(100px, 0, 0);
-		transition: all 0.5s cubic-bezier(0.17, 0.84, 0.44, 1); */
+	#sidenavScroll {
 		will-change: transform, opacity;
-		/* opacity: 0.4; */
 	}
-
-	/* #sidenav.sidenavDisplay > div {
-		transform: translate3d(0, 0, 0);
-		opacity: 1;
-	} */
-
-	/* #sidenav.sidenavClose > div {
-		transition:
-			transform 0.5s cubic-bezier(0.17, 0.84, 0.44, 1),
-			opacity 0.4s cubic-bezier(0.17, 0.84, 0.44, 1) 0.05s;
-		transform: translate3d(100%, 0, 0);
-		opacity: 0;
-	} */
 </style>
 
 <script>
@@ -156,39 +132,18 @@ import * as m from "@/paraglide/messages";
 		lenis.raf(time * 1000);
 	});
 
-	const closeSidenav = () => {
-		gsap.to(sidenav, {
-			backdropFilter: "blur(0px)",
-			ease: "power3.out",
-			overwrite: "auto",
-		});
-		gsap.to(sidenavScroll, {
-			duration: 0.5,
-			xPercent: 100,
-			ease: "power3.out",
-			overwrite: "auto",
-		});
-		gsap.to(sidenavScroll, {
-			duration: 0.4,
-			delay: 0.05,
-			opacity: 0,
-			ease: "power3.out",
-			overwrite: "auto",
-			onComplete: () => {
-				gsap.set(sidenav, { display: "none" });
-			},
-		});
-	};
-	sidenav?.addEventListener("click", (e) => {
-		if (e.target !== sidenav) return;
-		closeSidenav();
+	sidenavCloseButton?.addEventListener("click", () => {
+		window?.closeSidenav();
 	});
 
-	sidenavCloseButton?.addEventListener("click", closeSidenav);
-
-	declare global {
-		var closeSidenav: () => void;
-	}
-
-	window.closeSidenav = closeSidenav;
+	sidenav?.addEventListener(
+		"click",
+		(e) => {
+			if (e.target !== sidenav) return;
+			window?.closeSidenav();
+		},
+		{
+			passive: true,
+		},
+	);
 </script>

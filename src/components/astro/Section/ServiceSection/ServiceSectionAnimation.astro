@@ -139,7 +139,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 					// markers: true,
 					id: `serviceContent${i}`,
 					scrub: 1,
-					invalidateOnRefresh: false,
+					invalidateOnRefresh: true,
 					onEnter: () => {
 						serviceLabel[i + 1]?.classList.add("serviceLabelActive");
 				serviceLabel[i]?.classList.remove("serviceLabelActive");
@@ -199,7 +199,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 				`${self.progress * negativeOffset}px`,
 			);
 		},
-		invalidateOnRefresh: false,
+		invalidateOnRefresh: true,
 	});
 
 	ScrollTrigger.create({
@@ -207,7 +207,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 		end: "bottom top",
 		trigger: container?.lastElementChild,
 		start: `top top+=${sum - negativeOffset - 4}`,
-		invalidateOnRefresh: false,
+		invalidateOnRefresh: true,
 		// markers: true,
 		onEnter: () => {
 			for (let i = 0; i < sectionHead.length; i++) {
@@ -223,6 +223,4 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 			}
 		},
 	});
-
-	window.serviceSectionReady = true;
 </script>

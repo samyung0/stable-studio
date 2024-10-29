@@ -13,6 +13,7 @@ import FooterSection from "@/components/astro/Section/FooterSection/FooterSectio
 import FloatingNavBar from "@/components/astro/Section/FloatingNavBar/FloatingNavBar.astro";
 import LargeAsterisk from "@/components/astro/ui/LargeAsterisk.astro";
 import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
+import Menu from "./ui/Menu.astro";
 ---
 
 <Layout>
@@ -23,7 +24,7 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 		class="pointer-events-none fixed top-0 z-[999] hidden min-h-full min-w-full">
 		<div
 			id="faqCursor"
-			class="pointer-events-none fixed size-32 origin-center opacity-0 hidden lg:block">
+			class="pointer-events-none fixed hidden size-32 origin-center opacity-0 lg:block">
 			<LargeAsterisk />
 		</div>
 	</div>
@@ -31,13 +32,19 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 	<!-- side nav for language and menu on mobile -->
 	<SideNav />
 
+	<button
+		id="smallNavButton"
+		class="fixed right-6 top-6 z-[200] block size-8 sm:right-12 sm:top-8 md:hidden">
+		<span class="sr-only">Open side navigation</span>
+		<Menu />
+	</button>
+
 	<div id="mainScroll">
 		<!-- hero, services and process section -->
 		<main id="home">
 			<div
 				class="relative mx-auto min-h-screen px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
 				<HeaderSection />
-
 				<LandingSection />
 				<ServiceSection />
 				<ProcessSection />
@@ -56,204 +63,104 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 		<div class="relative mx-auto px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]">
 			<FooterSection />
 		</div>
-		</main>
-
-		<FloatingNavBar />
-
-		<script
-			is:inline
-			type="application/ld+json"
-			set:html={JSON.stringify(indexSchemaMarkup)}
-		/>
 	</div>
-	<!-- </div> -->
-	<style is:global>
-		#faqCursor {
-			fill-opacity: 0.4;
-		}
-	</style>
-	<script>
-		import Lenis, { type ScrollToOptions } from "lenis";
-		import gsap from "gsap";
-		import { ScrollTrigger } from "gsap/ScrollTrigger";
-		import { horizontalLoop } from "@/lib/gsap/loop";
-		import { cookies } from "@/lib/clientCookies";
 
-		gsap.registerPlugin(ScrollTrigger);
-		// ScrollTrigger.config({
-		// 	ignoreMobileResize: true
-		// })
+	<FloatingNavBar />
 
-		const lenis = new Lenis({
-			// lerp: 0.4,
-			eventsTarget: document.getElementById("mainScroll")!,
-		});
-
-		lenis.on("scroll", ScrollTrigger.update);
-
-		gsap.ticker.add((time) => {
-			lenis.raf(time * 1000);
-		});
-
-		gsap.ticker.lagSmoothing(0);
-
-		window.lenis = lenis;
-		
-
-		const cursorContainer = document.getElementById(
-			"cursorContainer",
-		) as HTMLElement | null;
-		const faqCursor = document.getElementById(
-			"faqCursor",
-		) as HTMLElement | null;
-
-		gsap.set(faqCursor, {
-			xPercent: -50,
-			yPercent: -50,
-		});
-
-		const xTo = gsap.quickTo(faqCursor, "x", {
-			duration: 0.2,
-			ease: "power3",
-		});
-		const yTo = gsap.quickTo(faqCursor, "y", {
-			duration: 0.2,
-			ease: "power3",
-		});
-		const cursorMoveHandler = (e: MouseEvent) => {
-			if (cursorContainer) cursorContainer.style.display = "block";
-			xTo(e.clientX);
-			yTo(e.clientY);
-		};
-		const mm = gsap.matchMedia();
-		mm.add(
-			{ isLg: "(max-width: 1023px)", isDesktop: "(min-width: 1024px)" },
-			(context) => {
-				const isLg = !!context.conditions?.isLg;
-				if (isLg) return;
-
-				document.addEventListener("mousemove", cursorMoveHandler);
-				gsap.set(faqCursor, {
-					x: window.innerWidth / 2,
-					y: window.innerHeight / 2,
-				});
-
-				() => {
-					document.removeEventListener("mousemove", cursorMoveHandler);
-				};
-			},
-		);
-
-		// ScrollTrigger.normalizeScroll({
-		// 	allowClicks: true,
-		// 	allowNestedScroll: true,
-		// });
-
-		horizontalLoop(document.getElementById("animatedDivider"), {
-			repeat: -1,
-			speed: 0.35,
-		});
-
-		declare global {
-			var serviceSectionReady: boolean;
-			var processSectionReady: boolean;
-			var priceSectionReady: boolean;
-			var missionSectionReady: boolean;
-			var faqSectionReady: boolean;
-			var ctaSectionReady: boolean;
-			var lenis: Lenis;
-		}
-
-		const config: () => ScrollToOptions = () => ({
-			offset: -window.innerHeight * 0.2,
-			easing: (x: number) =>
-				x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2,
-			duration: 1.5,
-		});
-		const handleHashNavigate = (href: string) => {
-			lenis.scrollTo(href, config());
-			window.location.hash = href;
-			window.activeIndex = window.href?.indexOf(href.split("#")[1]);
-			window.setNavbar?.();
-		};
-		window.onload = () => {
-			const urlHash = window.location.href.split("#")[1];
-			if (urlHash) handleHashNavigate(`#${urlHash}`);
-			// const check = setInterval(() => {
-			// 	const ready =
-			// 		window.serviceSectionReady &&
-			// 		window.processSectionReady &&
-			// 		window.priceSectionReady &&
-			// 		window.missionSectionReady &&
-			// 		window.faqSectionReady &&
-			// 		window.ctaSectionReady;
-			// 	if (!ready) return;
-			// 	clearInterval(check);
-			// 	lenis.resize();
-
-			// 	// slide in anim
-			// 	if (window.innerWidth >= 1024) {
-			// 		const sectionHeadAnimated = gsap.utils.toArray(
-			// 			".sectionHeadAnimated",
-			// 		) as HTMLElement[];
-			// 		for (let i = 0; i < sectionHeadAnimated.length; i++) {
-			// 			gsap
-			// 				.timeline({
-			// 					scrollTrigger: {
-			// 						trigger: sectionHeadAnimated[i],
-			// 						start: "top 85%",
-			// 						once: true,
-			// 						invalidateOnRefresh: false,
-			// 						// markers: true,
-			// 					},
-			// 				})
-			// 				.fromTo(
-			// 					Array.from(sectionHeadAnimated[i].children).slice(0, 3),
-			// 					{
-			// 						y: 40,
-			// 					},
-			// 					{
-			// 						y: 0,
-			// 						duration: 1.5,
-			// 						stagger: 0.08,
-			// 						ease: "power3.out",
-			// 					},
-			// 				);
-			// 		}
-			// 	}
-
-			// 	// setTimeout(() => {
-			// 	window.ctaSectionTimeline?.();
-			// 	window.footerTimelineFn?.();
-			// 	window.setNavbar?.();
-			// 	// }, 1);
-			// }, 100);
-
-			const anchorArray = gsap.utils.toArray("a") as HTMLAnchorElement[];
-			anchorArray.forEach((anchor) => {
-				anchor.addEventListener(
-					"click",
-					(e) => {
-						const lang = anchor.getAttribute("data-lang");
-						const href = anchor.getAttribute("href");
-						if (lang) {
-							e.preventDefault();
-							cookies.set("lang", lang);
-							window.location.assign(href ?? `/${lang}/`);
-							return;
-						}
-
-						if (!href || !href.startsWith("#")) return;
-						e.preventDefault();
-						handleHashNavigate(href);
-						window.closeSidenav?.();
-					},
-					{
-						passive: false,
-						capture: true,
-					},
-				);
-			});
-		};
-	</script>
+	<script
+		is:inline
+		type="application/ld+json"
+		set:html={JSON.stringify(indexSchemaMarkup)}
+	/>
 </Layout>
+<style is:global>
+	#faqCursor {
+		fill-opacity: 0.4;
+	}
+</style>
+<script>
+	import Lenis, { type ScrollToOptions } from "lenis";
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { horizontalLoop } from "@/lib/gsap/loop";
+	import { cookies } from "@/lib/clientCookies";
+	import cursorFollow from "@/lib/cursorFollow";
+
+	gsap.registerPlugin(ScrollTrigger);
+	ScrollTrigger.config({ ignoreMobileResize: true });
+
+	const lenis = new Lenis({
+		// lerp: 0.4,
+		eventsTarget: document.getElementById("mainScroll")!,
+	});
+
+	lenis.on("scroll", ScrollTrigger.update);
+
+	gsap.ticker.add((time) => {
+		lenis.raf(time * 1000);
+	});
+
+	gsap.ticker.lagSmoothing(0);
+
+	cursorFollow();
+
+	horizontalLoop(document.getElementById("animatedDivider"), {
+		repeat: -1,
+		speed: 0.35,
+	});
+
+	const config: () => ScrollToOptions = () => ({
+		offset: -window.innerHeight * 0.2,
+		easing: (x: number) =>
+			x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2,
+		duration: 1.5,
+	});
+	const handleHashNavigate = (href: string) => {
+		lenis.scrollTo(href, config());
+		window.location.hash = href;
+		window.activeIndex = window.href?.indexOf(href.split("#")[1]);
+		window.setNavbar?.();
+	};
+
+	const smallNavButton = document.getElementById("smallNavButton");
+	gsap.to(smallNavButton, {
+		scrollTrigger: {
+			trigger: document.documentElement,
+			start: "top top",
+			end: `+=${window.innerHeight * 0.2}`,
+			scrub: 1,
+		},
+		autoAlpha: 0,
+	});
+
+	window.onload = () => {
+		const urlHash = window.location.href.split("#")[1];
+		if (urlHash) handleHashNavigate(`#${urlHash}`);
+
+		const anchorArray = gsap.utils.toArray("a") as HTMLAnchorElement[];
+		anchorArray.forEach((anchor) => {
+			anchor.addEventListener(
+				"click",
+				(e) => {
+					const lang = anchor.getAttribute("data-lang");
+					const href = anchor.getAttribute("href");
+					if (lang) {
+						e.preventDefault();
+						cookies.set("lang", lang);
+						window.location.assign(href ?? `/${lang}/`);
+						return;
+					}
+
+					if (!href || !href.startsWith("#")) return;
+					e.preventDefault();
+					handleHashNavigate(href);
+					window.closeSidenav?.();
+				},
+				{
+					passive: false,
+					capture: true,
+				},
+			);
+		});
+	};
+</script>
