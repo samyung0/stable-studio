@@ -272,8 +272,8 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 					start: "top 70%",
 					end: "top 30%",
 					scrub: 1,
-					// markers: true,
-					invalidateOnRefresh: true,
+					markers: true,
+					invalidateOnRefresh: false,
 				},
 				defaults: {
 					ease: "none",
@@ -282,6 +282,8 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 			.to(ctaArrowPath[1], { strokeDashoffset: 0, duration: 2 })
 			.to(ctaArrowPath[0], { strokeDashoffset: 0, duration: 0.5 });
 	};
+
+	ctaSectionTimeline();
 
 	declare global {
 		var ctaSectionTimeline: () => void;

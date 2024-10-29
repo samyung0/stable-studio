@@ -70,16 +70,40 @@ import * as m from "@/paraglide/messages";
 </header>
 
 <script>
+	import gsap from "gsap";
 	const languageButton = document.getElementById("languageButton");
 	const sidenav = document.getElementById("sidenav");
+	const sidenavScroll = document.getElementById("sidenavScroll");
 	const smallNavButton = document.getElementById("smallNavButton");
 
 	const openNav = () => {
-		if (!sidenav) return;
-		sidenav.style.display = "flex";
-		requestAnimationFrame(() => {
-			sidenav.classList.add("sidenavDisplay");
-		});
+		gsap.set(sidenav, { display: "flex" });
+		gsap.fromTo(
+			sidenav,
+			{
+				backdropFilter: "blur(0px)",
+			},
+			{
+				duration: 0.35,
+				backdropFilter: "blur(12px)",
+				ease: "power3.out",
+				overwrite: "auto",
+			},
+		);
+		gsap.fromTo(
+			sidenavScroll,
+			{
+				xPercent: 0,
+				x: 100,
+				opacity: 1
+			},
+			{
+				x: 0,
+				duration: 0.5,
+				overwrite: "auto",
+				ease: "power3.out",
+			},
+		);
 	};
 
 	languageButton?.addEventListener("click", openNav);

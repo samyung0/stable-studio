@@ -13,7 +13,7 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 			</span>
 		</span>
 		<span
-			class="serviceContent w block h-0 overflow-hidden text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:text-base lg:leading-[1.8]">
+			class="faqContent w block h-0 overflow-hidden text-sm leading-[1.4] text-muted-foreground md:leading-[1.8] lg:text-base lg:leading-[1.8]">
 			<span class="flex pt-4 text-left md:pt-5">
 				<slot name="description" />
 			</span>
@@ -21,7 +21,7 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 	</button>
 </li>
 <style is:global>
-	.serviceContent {
+	.faqContent {
 		will-change: height;
 	}
 </style>
@@ -33,11 +33,11 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 	const faqSection = gsap.utils.toArray(".faqSection") as HTMLElement[];
 
 	const handleOpen = (faq: HTMLElement, e: Event) => {
-		const serviceContent = faq.querySelector(".serviceContent");
+		const faqContent = faq.querySelector(".faqContent");
 		const faqArrow = faq.querySelector(".faqArrow");
-		if (!serviceContent) return;
-		const open = getComputedStyle(serviceContent).height === "0px";
-		gsap.to(serviceContent, {
+		if (!faqContent) return;
+		const open = getComputedStyle(faqContent).height === "0px";
+		gsap.to(faqContent, {
 			height: open ? "auto" : "0",
 			opacity: open ? 1 : 0,
 			duration: 0.7,
