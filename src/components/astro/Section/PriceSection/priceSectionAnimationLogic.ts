@@ -1,13 +1,10 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const priceSectionAnimationLogic = () => {
+const priceSectionAnimationLogic = (processTimeline: gsap.core.Timeline, ratio: number) => {
 	gsap.registerPlugin(ScrollTrigger);
 	const processSectionContainer = document.getElementById(
 		"processSectionContainer",
-	) as HTMLElement | null;
-	const processSection = document.getElementById(
-		"processSection",
 	) as HTMLElement | null;
 	const priceSectionContainer = document.getElementById(
 		"price",
@@ -25,35 +22,24 @@ const priceSectionAnimationLogic = () => {
 			const isMobile = !!context.conditions?.isMobile;
 			const reduceMotion = !!context.conditions?.reduceMotion;
 			if (isMobile || reduceMotion) return;
-			const timelineStart = gsap.timeline({
-				scrollTrigger: {
-					trigger: priceSectionContainer,
-					pinType: "transform",
-					start: "top bottom",
-					end: "top top",
-					pin: processSectionContainer,
-					pinSpacing: false,
-					scrub: 1,
-					// markers: true,
-					invalidateOnRefresh: true,
-				},
-				defaults: { overwrite: "auto", ease: "none" },
-			});
-			timelineStart.to(
-				processSection?.parentElement!,
+
+			processTimeline.to(
+				processSectionContainer,
 				{
 					autoAlpha: 0,
+					duration: ratio,
 				},
-				0,
+				processTimeline.duration() - ratio
 			);
 
-			timelineStart.to(
-				processSection?.parentElement!,
+			processTimeline.to(
+				processSectionContainer,
 				{
-					y: 30,
+					"--offset-top": "30px",
 					delay: 0.1,
+					duration: ratio
 				},
-				0,
+				processTimeline.duration() - ratio
 			);
 		},
 	);
@@ -75,16 +61,11 @@ const priceSectionAnimationLogic = () => {
 			const timelineMain = gsap.timeline({
 				scrollTrigger: {
 					trigger: priceAnimationContainer,
-					// pinnedContainer: priceSectionContainer,
 					start: "top 90%",
 					end: `top 35%`,
-					// pin: true,
-					// pinType: "transform",
-					// pinReparent: true,
 					id: "timelineMain",
 					scrub: 1,
-					// markers: true,
-					invalidateOnRefresh: true,
+					invalidateOnRefresh: false,
 				},
 			});
 			gsap.set(priceAnimationContainer, {
@@ -118,8 +99,7 @@ const priceSectionAnimationLogic = () => {
 					end: `bottom top`,
 					scrub: 1,
 					id: "timelineEnd",
-					// markers: true,
-					invalidateOnRefresh: true,
+					invalidateOnRefresh: false,
 				},
 				defaults: { overwrite: "auto", ease: "none" },
 			});

@@ -12,11 +12,11 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 <div
 	id="processRight"
 	class={cn(
-		"relative order-first flex aspect-video w-full flex-1 items-center justify-center overflow-hidden 2xl:max-w-[40%]",
+		"relative order-first flex aspect-video w-full flex-1 items-center justify-center overflow-hidden 2xl:max-w-[40%] min-h-[90px] max-h-[170px]",
 		!isBahasa &&
-			"md:sticky md:top-0 md:order-last md:aspect-auto md:max-h-full md:max-w-[35%] max-h-[170px]",
+			"md:sticky md:top-0 md:order-last md:aspect-auto md:max-h-full md:max-w-[35%]",
 		isBahasa &&
-			"lg:sticky lg:top-0 lg:order-last lg:aspect-auto lg:max-h-full lg:max-w-[35%] max-h-[170px] md:max-h-[220px]",
+			"lg:sticky lg:top-0 lg:order-last lg:aspect-auto lg:max-h-full lg:max-w-[35%] md:max-h-[220px]",
 	)}>
 	<div
 		class={cn(

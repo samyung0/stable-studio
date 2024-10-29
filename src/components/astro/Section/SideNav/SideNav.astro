@@ -39,7 +39,7 @@ import * as m from "@/paraglide/messages";
 					>
 				</li>
 				<li class="text-lg md:text-xl">
-					<a class="inline-block py-2" href="#pricing"
+					<a class="inline-block py-2" href="#price"
 						>{m.grand_keen_antelope_endure()}</a
 					>
 				</li>
@@ -108,34 +108,34 @@ import * as m from "@/paraglide/messages";
 
 <style>
 	#sidenav {
-		transition: all 0.35s cubic-bezier(0.17, 0.84, 0.44, 1);
+		/* transition: all 0.35s cubic-bezier(0.17, 0.84, 0.44, 1);
 		backdrop-filter: blur(0);
-		-webkit-backdrop-filter: blur(0);
+		-webkit-backdrop-filter: blur(0); */
 	}
 	#sidenav.sidenavDisplay {
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
+		/* backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px); */
 	}
 
 	#sidenav > div {
-		transform: translate3d(100px, 0, 0);
-		transition: all 0.5s cubic-bezier(0.17, 0.84, 0.44, 1);
+		/* transform: translate3d(100px, 0, 0);
+		transition: all 0.5s cubic-bezier(0.17, 0.84, 0.44, 1); */
 		will-change: transform, opacity;
-		opacity: 0.4;
+		/* opacity: 0.4; */
 	}
 
-	#sidenav.sidenavDisplay > div {
+	/* #sidenav.sidenavDisplay > div {
 		transform: translate3d(0, 0, 0);
 		opacity: 1;
-	}
+	} */
 
-	#sidenav.sidenavClose > div {
+	/* #sidenav.sidenavClose > div {
 		transition:
 			transform 0.5s cubic-bezier(0.17, 0.84, 0.44, 1),
 			opacity 0.4s cubic-bezier(0.17, 0.84, 0.44, 1) 0.05s;
 		transform: translate3d(100%, 0, 0);
 		opacity: 0;
-	}
+	} */
 </style>
 
 <script>
@@ -157,13 +157,27 @@ import * as m from "@/paraglide/messages";
 	});
 
 	const closeSidenav = () => {
-		if (!sidenav) return;
-		sidenav.classList.remove("sidenavDisplay");
-		sidenav.classList.add("sidenavClose");
-		setTimeout(() => {
-			sidenav.style.display = "none";
-			sidenav.classList.remove("sidenavClose");
-		}, 500);
+		gsap.to(sidenav, {
+			backdropFilter: "blur(0px)",
+			ease: "power3.out",
+			overwrite: "auto",
+		});
+		gsap.to(sidenavScroll, {
+			duration: 0.5,
+			xPercent: 100,
+			ease: "power3.out",
+			overwrite: "auto",
+		});
+		gsap.to(sidenavScroll, {
+			duration: 0.4,
+			delay: 0.05,
+			opacity: 0,
+			ease: "power3.out",
+			overwrite: "auto",
+			onComplete: () => {
+				gsap.set(sidenav, { display: "none" });
+			},
+		});
 	};
 	sidenav?.addEventListener("click", (e) => {
 		if (e.target !== sidenav) return;

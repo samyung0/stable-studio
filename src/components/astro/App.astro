@@ -71,42 +71,6 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 		#faqCursor {
 			fill-opacity: 0.4;
 		}
-		.fadeinAnimation {
-			filter: blur(50px);
-			opacity: 0.5;
-			animation: blur 1s cubic-bezier(0.23,1,0.32,1) forwards;
-			will-change: opacity, filter;
-			-webkit-backface-visibility: hidden;
-			-webkit-transform: translate3d(0, 0, 0);
-			backface-visibility: hidden;
-			transform: translate3d(0, 0, 0);
-		}
-
-		@keyframes blur {
-			0% {
-				filter: blur(50px);
-				opacity: 0.5;
-			}
-			100% {
-				filter: blur(0);
-				opacity: 1;
-			}
-		}
-
-		.slideinAnimation {
-			transform: translate3d(0, 100px, 0);
-			animation: slide 1s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
-			will-change: transform;
-		}
-
-		@keyframes slide {
-			0% {
-				transform: translate3d(0, 100px, 0);
-			}
-			100% {
-				transform: translate3d(0, 0, 0);
-			}
-		}
 	</style>
 	<script>
 		import Lenis, { type ScrollToOptions } from "lenis";
@@ -116,6 +80,9 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 		import { cookies } from "@/lib/clientCookies";
 
 		gsap.registerPlugin(ScrollTrigger);
+		// ScrollTrigger.config({
+		// 	ignoreMobileResize: true
+		// })
 
 		const lenis = new Lenis({
 			// lerp: 0.4,
@@ -129,6 +96,9 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 		});
 
 		gsap.ticker.lagSmoothing(0);
+
+		window.lenis = lenis;
+		
 
 		const cursorContainer = document.getElementById(
 			"cursorContainer",
@@ -174,13 +144,10 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 			},
 		);
 
-		ScrollTrigger.normalizeScroll({
-			allowClicks: true,
-			allowNestedScroll: true,
-		});
-		ScrollTrigger.config({
-			ignoreMobileResize: true,
-		})
+		// ScrollTrigger.normalizeScroll({
+		// 	allowClicks: true,
+		// 	allowNestedScroll: true,
+		// });
 
 		horizontalLoop(document.getElementById("animatedDivider"), {
 			repeat: -1,
@@ -194,10 +161,11 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 			var missionSectionReady: boolean;
 			var faqSectionReady: boolean;
 			var ctaSectionReady: boolean;
+			var lenis: Lenis;
 		}
 
 		const config: () => ScrollToOptions = () => ({
-			offset: -window.innerHeight * 0.05,
+			offset: -window.innerHeight * 0.2,
 			easing: (x: number) =>
 				x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2,
 			duration: 1.5,
@@ -210,55 +178,56 @@ import SideNav from "@/components/astro/Section/SideNav/SideNav.astro";
 		};
 		window.onload = () => {
 			const urlHash = window.location.href.split("#")[1];
-			const check = setInterval(() => {
-				const ready =
-					window.serviceSectionReady &&
-					window.processSectionReady &&
-					window.priceSectionReady &&
-					window.missionSectionReady &&
-					window.faqSectionReady &&
-					window.ctaSectionReady;
-				if (!ready) return;
-				clearInterval(check);
-				lenis.resize();
-				if (urlHash) handleHashNavigate(`#${urlHash}`);
+			if (urlHash) handleHashNavigate(`#${urlHash}`);
+			// const check = setInterval(() => {
+			// 	const ready =
+			// 		window.serviceSectionReady &&
+			// 		window.processSectionReady &&
+			// 		window.priceSectionReady &&
+			// 		window.missionSectionReady &&
+			// 		window.faqSectionReady &&
+			// 		window.ctaSectionReady;
+			// 	if (!ready) return;
+			// 	clearInterval(check);
+			// 	lenis.resize();
 
-				// slide in anim
-				if (window.innerWidth >= 1024) {
-					const sectionHeadAnimated = gsap.utils.toArray(
-						".sectionHeadAnimated",
-					) as HTMLElement[];
-					for (let i = 0; i < sectionHeadAnimated.length; i++) {
-						gsap
-							.timeline({
-								scrollTrigger: {
-									trigger: sectionHeadAnimated[i],
-									start: "top 85%",
-									once: true,
-									// markers: true,
-								},
-							})
-							.fromTo(
-								Array.from(sectionHeadAnimated[i].children).slice(0, 3),
-								{
-									y: 40,
-								},
-								{
-									y: 0,
-									duration: 1.5,
-									stagger: 0.08,
-									ease: "power3.out",
-								},
-							);
-					}
-				}
+			// 	// slide in anim
+			// 	if (window.innerWidth >= 1024) {
+			// 		const sectionHeadAnimated = gsap.utils.toArray(
+			// 			".sectionHeadAnimated",
+			// 		) as HTMLElement[];
+			// 		for (let i = 0; i < sectionHeadAnimated.length; i++) {
+			// 			gsap
+			// 				.timeline({
+			// 					scrollTrigger: {
+			// 						trigger: sectionHeadAnimated[i],
+			// 						start: "top 85%",
+			// 						once: true,
+			// 						invalidateOnRefresh: false,
+			// 						// markers: true,
+			// 					},
+			// 				})
+			// 				.fromTo(
+			// 					Array.from(sectionHeadAnimated[i].children).slice(0, 3),
+			// 					{
+			// 						y: 40,
+			// 					},
+			// 					{
+			// 						y: 0,
+			// 						duration: 1.5,
+			// 						stagger: 0.08,
+			// 						ease: "power3.out",
+			// 					},
+			// 				);
+			// 		}
+			// 	}
 
-				// setTimeout(() => {
-				window.ctaSectionTimeline?.();
-				window.footerTimelineFn?.();
-				window.setNavbar?.();
-				// }, 1);
-			}, 100);
+			// 	// setTimeout(() => {
+			// 	window.ctaSectionTimeline?.();
+			// 	window.footerTimelineFn?.();
+			// 	window.setNavbar?.();
+			// 	// }, 1);
+			// }, 100);
 
 			const anchorArray = gsap.utils.toArray("a") as HTMLAnchorElement[];
 			anchorArray.forEach((anchor) => {

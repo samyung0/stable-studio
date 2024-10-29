@@ -11,11 +11,15 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 
 <div
 	class="col-span-full col-start-1 grid auto-rows-min xl:col-span-2 xl:col-start-2 xl:grid-cols-2">
-	<div id="processSectionContainer" class="col-span-full">
-		<div id="processSection" class="flex flex-col overflow-hidden ~py-6/24">
+	<div
+		id="processSectionContainer"
+		style="--offset-top: 0px;"
+		class="col-span-full">
+		<div id="processSection" class="flex flex-col ~py-6/24">
 			<!-- top section -->
 			<div
 				id="processTitleContainer"
+				style="transform: translate3d(0, var(--offset-top), 0)"
 				class={cn(
 					"flex flex-col items-start gap-3 sm:gap-5",
 					!isBahasa && "lg:flex-row lg:gap-[7vw]",
@@ -105,6 +109,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 			<!-- main content section -->
 			<div
 				id="processScrollContainer"
+				style="transform: translate3d(0, var(--offset-top), 0)"
 				class={cn(
 					"pb-6/16 flex max-h-full flex-1 overflow-hidden pt-3 sm:~pt-6/16",
 					!isBahasa && "md:flex-initial",
@@ -113,7 +118,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 				<article
 					id="processScroll"
 					class={cn(
-						"flex max-h-full flex-1 flex-col gap-0 overflow-hidden rounded-xl bg-card xl:gap-[4vw]",
+						"flex max-h-full flex-1 flex-col gap-0 rounded-xl bg-card xl:gap-[4vw] overflow-auto",
 						!isBahasa && "md:min-h-[40vh] md:flex-row",
 						isBahasa && "lg:min-h-[40vh] lg:flex-row",
 					)}>
@@ -136,23 +141,15 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 		min-height: 100dvh;
 	}
 </style>
+
 <style is:global>
 	@media (-webkit-max-device-pixel-ratio: 3) and (max-width: 400px) and (max-height: 700px) {
 		#processRight {
 			display: none;
 		}
 	}
-	@media (max-height: 650px) {
-		#processDecoration {
-			display: none;
-		}
-		#processTitleContainer {
-			display: none;
-		}
-
-		#processScrollContainer {
-			padding-top: 0;
-		}
+	#processSectionContainer {
+		padding-bottom: 2400px;
 	}
 </style>
 
@@ -166,6 +163,16 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 	import titleAnimation from "./titleAnimation";
 	import progressWheelAnimation from "./progressWheelAnimation";
 	import priceSectionAnimationLogic from "@/components/astro/Section/PriceSection/priceSectionAnimationLogic";
+	import Lenis from "lenis";
+
+	const lenis = new Lenis({
+		wrapper: document.getElementById("processScroll")!,
+		overscroll: true,
+	});
+
+	gsap.ticker.add((time) => {
+		lenis.raf(time * 1000);
+	});
 
 	gsap.registerPlugin(ScrollTrigger);
 	gsap.config({
@@ -231,22 +238,25 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 		},
 	});
 
+	// if (processSectionContainer)
+	// 	processSectionContainer.style.paddingBottom = `${scrollDistancePerCard * processLeftChildren.length}px`;
+
 	const timeline = gsap.timeline({
 		scrollTrigger: {
 			trigger: processSection,
 			start: "top top",
+			id: "processSection",
 			pin: true,
-			pinType: "transform",
-			pinnedContainer: processSectionContainer,
+			pinSpacing: false,
 			// pinReparent: true,
-			pinSpacing: true,
-			end: `+=${scrollDistancePerCard * processLeftChildren.length}`,
+			anticipatePin: 1,
+			end: `+=${scrollDistancePerCard * processLeftChildren.length + window.innerHeight}`,
 			scrub: true,
 			// markers: true,
-			invalidateOnRefresh: true,
+			invalidateOnRefresh: false,
 			onUpdate: progressWheelAnimation.bind(null, rotateWheel),
 		},
-		defaults: { duration: 0, ease: "none", overwrite: true },
+		defaults: { ease: "none", overwrite: "auto" },
 	});
 
 	// the first card does not need any animation when scrolling up or down
@@ -297,7 +307,10 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 		processSectionProgressText,
 	);
 
-	priceSectionAnimationLogic();
+	const ratio = window.innerHeight / scrollDistancePerCard;
+	timeline.to({}, {}, `+=${ratio}`);
+
+	priceSectionAnimationLogic(timeline, ratio);
 
 	window.processSectionReady = true;
 	window.priceSectionReady = true;

@@ -60,7 +60,7 @@ const year = new Date().getFullYear();
 					start: "top bottom-=50",
 					end: "bottom bottom",
 					scrub: 1,
-					invalidateOnRefresh: true,
+					invalidateOnRefresh: false,
 					// markers: true,
 				},
 			})
@@ -70,6 +70,8 @@ const year = new Date().getFullYear();
 				ease: "none",
 			});
 	};
+
+	footerTimelineFn();
 
 	declare global {
 		var footerTimelineFn: () => void;
