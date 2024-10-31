@@ -12,8 +12,11 @@ import GeometrySquare from "../../ui/GeometrySquare.astro";
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
 const isTagalog = Astro.locals.paraglide.lang === "tl";
+const isHK = Astro.locals.paraglide.lang === "zh-HK";
+const isTW = Astro.locals.paraglide.lang === "zh-TW";
+const isChinese = Astro.locals.paraglide.lang === "zh";
 
-const isSmall = isBahasa || isTagalog;
+const isSmall = isBahasa || isTagalog || isHK || isTW || isChinese;
 ---
 
 <!-- landing section -->
