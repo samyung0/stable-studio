@@ -7,8 +7,9 @@ import { cn } from "@/lib/utils";
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
 const isViet = Astro.locals.paraglide.lang === "vi";
+const isTagalog = Astro.locals.paraglide.lang === "vi";
 
-const isSmall = isBahasa || isViet;
+const isSmall = isBahasa || isViet || isTagalog;
 ---
 
 <!-- img part on right -->

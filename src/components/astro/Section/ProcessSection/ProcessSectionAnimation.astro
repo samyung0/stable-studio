@@ -8,8 +8,9 @@ import * as m from "@/paraglide/messages";
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
 const isViet = Astro.locals.paraglide.lang === "vi";
+const isTagalog = Astro.locals.paraglide.lang === "vi";
 
-const isSmall = isBahasa || isViet;
+const isSmall = isBahasa || isViet || isTagalog;
 ---
 
 <div
