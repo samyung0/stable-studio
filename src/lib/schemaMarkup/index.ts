@@ -30,12 +30,12 @@ const indexSchemaMarkup: Graph = {
 			foundingDate: "2024-11-15",
 			keywords:
 				"Stable Studio, Web Development, Custom Websites, Freelancers, SEO, Optimization, Animation, GSAP, Animated Websites, Technology, Web Dev, React JS, Next JS, TypeScript, Javascript, HTML, CSS, JS, Software Development, Front-end, Fullstack, VS Code",
-			logo: "https://stablestudio.org/_image?href=%2F_astro%2Fpartialty.DtNZG1tt.svg&f=svg", // TODO: replace logo
+			logo: "https://stablestudio.org/stablestudio-large.svg",
 			name: "Stable Studio",
 			url: "https://stablestudio.org/",
 		},
 		{
-			"@type": "WebPage",
+			"@type": "ProfilePage",
 			"@id": "https://stablestudio.org/#website",
 			url: "https://stablestudio.org/",
 			mainContentOfPage: {
@@ -48,6 +48,7 @@ const indexSchemaMarkup: Graph = {
 				"@type": "SpeakableSpecification",
 				cssSelector: "p, h1, h2, h3, h4, h5, h6, span, a, li",
 			},
+			mainEntity: { "@id": "https://stablestudio.org/#sam" },
 			name: "Stable Studio",
 			specialty: {
 				"@type": "Specialty",
@@ -63,8 +64,52 @@ const indexSchemaMarkup: Graph = {
 			],
 			lastReviewed: "2024-11-15",
 			publisher: { "@id": "https://stablestudio.org/#sam" },
+			breadcrumb: { "@id": "https://stablestudio.org/#breadcrumb" },
 			description:
 				"Stable Studio is a freelancers studio that makes animations-rich websites. We prioritize user experience, website profile and development speed.",
+		},
+		{
+			"@type": "BreadcrumbList",
+			"@id": "https://stablestudio.org/#breadcrumb",
+			numberOfItems: 6,
+			itemListElement: [
+				{
+					"@type": "ListItem",
+					position: 1,
+					name: "Home",
+					item: "https://stablestudio.org/#top",
+				},
+				{
+					"@type": "ListItem",
+					position: 2,
+					name: "Services",
+					item: "https://stablestudio.org/#serice",
+				},
+				{
+					"@type": "ListItem",
+					position: 3,
+					name: "Development Process",
+					item: "https://stablestudio.org/#process",
+				},
+				{
+					"@type": "ListItem",
+					position: 4,
+					name: "Pricing",
+					item: "https://stablestudio.org/#price",
+				},
+				{
+					"@type": "ListItem",
+					position: 1,
+					name: "Vision",
+					item: "https://stablestudio.org/#vision",
+				},
+				{
+					"@type": "ListItem",
+					position: 1,
+					name: "Get Started",
+					item: "https://stablestudio.org/#getstarted",
+				},
+			],
 		},
 		{
 			"@type": "Offer",
