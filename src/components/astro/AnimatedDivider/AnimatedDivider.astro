@@ -6,37 +6,63 @@ import ArrowBoth from "./ArrowBoth.astro";
 import ArrowBothShort from "./ArrowBothShort.astro";
 
 import * as m from "@/paraglide/messages";
+import { cn } from "@/lib/utils";
+
+const isViet = Astro.locals.paraglide.lang === "vi";
+const isHK = Astro.locals.paraglide.lang === "zh-HK";
+const isCN = Astro.locals.paraglide.lang === "zh-CN";
+const isTW = Astro.locals.paraglide.lang === "zh-TW";
+const isZH = isHK || isCN || isTW || Astro.locals.paraglide.lang === "zh";
 ---
 
-<div class="flex items-center gap-1 text-flatgray2">
-	<span class="animatedDividerText whitespace-nowrap">{m.lazy_born_gadfly_work()}</span>
+<div
+	class={cn(
+		"flex items-center gap-1 text-flatgray2",
+		isZH && "font-sans font-semibold text-xs sm:text-sm",
+		isViet && "overflow-visible",
+	)}>
+	<span class="animatedDividerText whitespace-nowrap"
+		>{m.lazy_born_gadfly_work()}</span
+	>
 	<span class="pb-1">
 		<Asterisk />
 	</span>
-	<span class="animatedDividerText whitespace-nowrap">{m.acidic_factual_angelfish_charm()}</span>
-	<span class="pb-1">
+	<span class="animatedDividerText whitespace-nowrap"
+		>{m.acidic_factual_angelfish_charm()}</span
+	>
+	<span class="pb-1 text-flatdarkblue">
 		<ArrowRight />
 	</span>
 	<span class="pb-1">
 		<Asterisk />
 	</span>
-	<span class="animatedDividerText whitespace-nowrap">{m.tame_slimy_angelfish_pray()}</span>
+	<span class="animatedDividerText whitespace-nowrap"
+		>{m.tame_slimy_angelfish_pray()}</span
+	>
 	<span class="pb-1 text-flatviolet">
 		<ArrowBothShort />
 	</span>
-	<span class="animatedDividerText whitespace-nowrap">{m.this_east_lemming_quiz()}</span>
+	<span class="animatedDividerText whitespace-nowrap"
+		>{m.this_east_lemming_quiz()}</span
+	>
 	<span class="pb-1">
 		<Asterisk />
 	</span>
-	<span class="animatedDividerText whitespace-nowrap">{m.knotty_sea_shrike_scoop()}</span>
+	<span class="animatedDividerText whitespace-nowrap"
+		>{m.knotty_sea_shrike_scoop()}</span
+	>
 	<span class="pb-1">
 		<Plus />
 	</span>
-	<span class="animatedDividerText whitespace-nowrap">{m.acidic_factual_angelfish_charm()}</span>
+	<span class="animatedDividerText whitespace-nowrap"
+		>{m.acidic_factual_angelfish_charm()}</span
+	>
 	<span class="pb-1">
 		<ArrowRight />
 	</span>
-	<span class="animatedDividerText whitespace-nowrap">{m.teal_loved_fireant_trim()}</span>
+	<span class="animatedDividerText whitespace-nowrap"
+		>{m.teal_loved_fireant_trim()}</span
+	>
 	<span class="pb-1">
 		<Asterisk />
 	</span>
@@ -49,32 +75,28 @@ import * as m from "@/paraglide/messages";
 	import gsap from "gsap";
 	const text = gsap.utils.toArray(".animatedDividerText") as HTMLElement[];
 
-	const animateTextHighlight = () => {
-		const visibleTextNumber = Math.ceil(window.innerWidth / 164);
+	const visibleTextNumber = Math.ceil(window.innerWidth / 164);
 
-		const groups = Math.floor(text.length / visibleTextNumber);
+	const groups = Math.floor(text.length / visibleTextNumber);
 
-		for (let i = 0; i < groups; i++) {
-			const seq = gsap.utils.shuffle(
-				text.slice(i * visibleTextNumber, (i + 1) * visibleTextNumber),
-			);
+	for (let i = 0; i < groups; i++) {
+		const seq = gsap.utils.shuffle(
+			text.slice(i * visibleTextNumber, (i + 1) * visibleTextNumber),
+		);
 
-			const t = gsap.timeline({ repeat: -1 });
-			seq.forEach((el, index) => {
-				t.to(el, {
-					keyframes: [
-						{ color: "hsl(60 1.33% 14.71%)", duration: 1 },
-						{
-							color: "rgb(161, 161, 161)",
-							duration: 1,
-							delay: gsap.utils.random(0.5, 2),
-						},
-					],
-					delay: () => gsap.utils.random(1, 2),
-				});
+		const t = gsap.timeline({ repeat: -1 });
+		seq.forEach((el, index) => {
+			t.to(el, {
+				keyframes: [
+					{ color: "hsl(60 1.33% 14.71%)", duration: 1 },
+					{
+						color: "rgb(161, 161, 161)",
+						duration: 1,
+						delay: gsap.utils.random(0.5, 2),
+					},
+				],
+				delay: () => gsap.utils.random(1, 2),
 			});
-		}
-	};
-
-	animateTextHighlight();
+		});
+	}
 </script>

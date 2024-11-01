@@ -14,9 +14,11 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 const isTagalog = Astro.locals.paraglide.lang === "tl";
 const isHK = Astro.locals.paraglide.lang === "zh-HK";
 const isTW = Astro.locals.paraglide.lang === "zh-TW";
-const isChinese = Astro.locals.paraglide.lang === "zh";
+const isCN = Astro.locals.paraglide.lang === "zh-CN";
+const isZH = Astro.locals.paraglide.lang === "zh";
 
-const isSmall = isBahasa || isTagalog || isHK || isTW || isChinese;
+const isSmall = isBahasa || isTagalog || isHK || isTW || isZH || isCN;
+const isChinese = isZH || isCN || isTW || isHK;
 ---
 
 <!-- landing section -->
@@ -35,13 +37,15 @@ const isSmall = isBahasa || isTagalog || isHK || isTW || isChinese;
 				"flex-[2] text-4xl leading-[1.2] sm:text-[9vw] lg:text-[6vw] 3xl:text-[130px]",
 				isSmall &&
 					"text-2xl sm:text-[6vw] xl:text-[4vw] 2xl:text-[4.2vw] 3xl:text-[100px] leading-[1.4] tracking-tight",
+				isChinese && "text-3xl leading-[1.4]",
 			)}>
 			<span class={cn("sm:whitespace-nowrap", isSmall && "relative")}
 				>{m.tasty_wide_toad_renew()}
 				<span
 					class={cn(
 						"inline-block aspect-square w-[36px] translate-y-2 sm:w-[9vw] lg:w-[6vw] 3xl:w-[130px]",
-						isSmall && "hidden",
+						(isBahasa || isTagalog || isTW || isCN) && "hidden",
+						isChinese && "translate-x-2",
 					)}>
 					<GeometrySquare />
 				</span>
@@ -52,18 +56,25 @@ const isSmall = isBahasa || isTagalog || isHK || isTW || isChinese;
 		<div
 			class="flex min-w-[300px] flex-1 shrink-0 flex-col items-start py-4 sm:max-w-[60vw] xl:max-w-[700px]">
 			<div
-				class="pb-8 uppercase leading-[1.7] opacity-80"
+				class={cn(
+					"pb-8 uppercase leading-[1.7] opacity-80",
+					(!isSmall || isChinese) && "xl:translate-y-[2vh]",
+				)}
 				id="landingSectionDetails">
 				<AnimatedText>Stable Studio</AnimatedText>
 				{m.active_calm_felix_sway()}
 			</div>
 
 			<a class="flex items-center gap-1" href="#process">
-				<span class="-mt-1 block size-3 stroke-2 text-black">
+				<span
+					class={cn(
+						"-mt-1 block size-3 stroke-2 text-black",
+						isChinese && "mt-0",
+					)}>
 					<ArrowRightDown />
 				</span>
 				<span
-					class="group text-xs sm:text-sm relative inline-flex items-center justify-center overflow-hidden">
+					class="group relative inline-flex items-center justify-center overflow-hidden text-xs sm:text-sm">
 					<span
 						class="translate-y-0 transition duration-300 group-hover:translate-y-[100%]">
 						{m.every_late_squid_revive()}

@@ -15,6 +15,12 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 const isViet = Astro.locals.paraglide.lang === "vi";
 const isTagalog = Astro.locals.paraglide.lang === "tl";
 
+const isHK = Astro.locals.paraglide.lang === "zh-HK";
+const isTW = Astro.locals.paraglide.lang === "zh-TW";
+const isCN = Astro.locals.paraglide.lang === "zh-CN";
+const isZH = Astro.locals.paraglide.lang === "zh";
+const isChinese = isHK || isTW || isCN || isZH;
+
 const isSmall = isBahasa || isViet || isTagalog;
 ---
 
@@ -50,6 +56,7 @@ const isSmall = isBahasa || isViet || isTagalog;
 						"text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[7vw] md:leading-[1] 3xl:text-[130px]",
 					isSmall &&
 						"text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[5vw] md:leading-[1] 3xl:text-[130px]",
+						isChinese && "leading-[1.4] md:leading-[1.4]"
 				)}>
 				<h1>
 					{m.clean_strong_giraffe_pinch()}
@@ -68,7 +75,7 @@ const isSmall = isBahasa || isViet || isTagalog;
 				</h1>
 			</header>
 			<div
-				class="2xl:pr-[8vw] flex flex-col gap-10 ~pt-6/24 md:flex-row md:gap-[5vw]">
+				class="flex flex-col gap-10 ~pt-6/24 md:flex-row md:gap-[5vw] 2xl:pr-[8vw]">
 				<div
 					class="order-last flex flex-1 flex-col gap-6 md:order-first md:gap-10">
 					<p
@@ -82,11 +89,10 @@ const isSmall = isBahasa || isViet || isTagalog;
 					</p>
 					<div class="flex flex-col items-start gap-3">
 						<p class="mutedTextDark">{m.spry_real_cow_slide()}</p>
-						<ul
-							class="flex items-center gap-3 text-base font-normal">
+						<ul class="flex items-center gap-3 text-base font-normal">
 							<li>
 								<a
-									class="inline-block size-8 stroke-1 text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground"
+									class="inline-block size-8 stroke-1 text-primary-foreground/70 transition-colors duration-300 hover:text-primary-foreground"
 									href="mailto:samyung@stablestudio.org">
 									<span class="sr-only">Email Address</span>
 									<Mail />
@@ -94,7 +100,7 @@ const isSmall = isBahasa || isViet || isTagalog;
 							</li>
 							<li>
 								<a
-									class="inline-block size-8 stroke-1 text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground"
+									class="inline-block size-8 stroke-1 text-primary-foreground/70 transition-colors duration-300 hover:text-primary-foreground"
 									href="https://x.com/stablestudioSS">
 									<span class="sr-only">Twitter Link</span>
 									<Twitter />
@@ -102,7 +108,7 @@ const isSmall = isBahasa || isViet || isTagalog;
 							</li>
 							<li>
 								<a
-									class="inline-block size-8 stroke-1 text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground"
+									class="inline-block size-8 stroke-1 text-primary-foreground/70 transition-colors duration-300 hover:text-primary-foreground"
 									href="https://www.facebook.com/profile.php?id=61567128136714">
 									<span class="sr-only">Facebook Link</span>
 									<Meta />
@@ -110,13 +116,17 @@ const isSmall = isBahasa || isViet || isTagalog;
 							</li>
 							<li>
 								<a
-									class="inline-block size-8 stroke-1 text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground"
+									class="inline-block size-8 stroke-1 text-primary-foreground/70 transition-colors duration-300 hover:text-primary-foreground"
 									href="https://www.instagram.com/stablestudioss/">
 									<span class="sr-only">Instagram Link</span>
 									<Instagram />
 								</a>
 							</li>
-							<li class="-translate-y-[2px] text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground">
+							<li
+								class={cn(
+									"-translate-y-[2px] text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground",
+									
+								)}>
 								<a href="https://sam.partialty.com"
 									>{m.spry_direct_stork_devour()}</a
 								>
@@ -191,7 +201,7 @@ const isSmall = isBahasa || isViet || isTagalog;
 							>
 
 							<span
-								class="relative mt-[2px] text-xs sm:text-sm flex items-center justify-center overflow-hidden">
+								class="relative mt-[2px] flex items-center justify-center overflow-hidden text-xs sm:text-sm">
 								<span
 									class="translate-y-0 transition duration-300 group-hover:translate-y-[100%]">
 									{m.suave_helpful_lion_evoke()}

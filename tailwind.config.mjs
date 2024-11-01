@@ -17,6 +17,8 @@ export default {
 			},
 			fontFamily: {
 				sans: ["PPMori", ...defaultTheme.fontFamily.sans],
+				sansTC: ["Noto Sans TC Variable", ...defaultTheme.fontFamily.sans],
+				sansSC: ["Noto Sans SC Variable", ...defaultTheme.fontFamily.sans],
 			},
 			borderRadius: {
 				DEFAULT: "100px",

@@ -25,6 +25,10 @@ import "@/styles/global.css";
 		<meta name="generator" content={Astro.generator} />
 		<slot name="head" />
 		{
+			import.meta.env.MODE !== "development" && (<link rel="preload" href="/fonts/PPMori-Regular.woff2" as="font" crossorigin="anonymous" />)}
+		{
+				import.meta.env.MODE !== "development" && (<link rel="preload" href="/fonts/PPMori-SemiBold.woff2" as="font" crossorigin="anonymous" />)}
+		{
 			import.meta.env.MODE !== "development" && (
 				<script
 					is:inline

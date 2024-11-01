@@ -7,6 +7,12 @@ import * as m from "@/paraglide/messages";
 import { cn } from "@/lib/utils";
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
+
+const isHK = Astro.locals.paraglide.lang === "zh-HK";
+const isTW = Astro.locals.paraglide.lang === "zh-TW";
+const isCN = Astro.locals.paraglide.lang === "zh-CN";
+const isZH = Astro.locals.paraglide.lang === "zh";
+const isChinese = isHK || isTW || isCN || isZH;
 ---
 
 <section
@@ -24,12 +30,13 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 							"whitespace-nowrap text-center",
 							!isBahasa && "text-[6vw] leading-[1] 3xl:text-[100px]",
 							isBahasa && "text-[4vw] leading-[1] 3xl:text-[100px]",
+							isChinese && "text-[8vw] sm:text-[6vw] sm:leading-[1]"
 						)}>{m.merry_clean_jannes_lock()}</span
 					>
 					<span
 						class={cn(
 							"whitespace-nowrap text-center",
-							!isBahasa && "text-[2.5vw] leading-[1.2] 3xl:text-4xl",
+							!isBahasa && "text-[3.5vw] sm:text-[2.5vw] sm:leading-[1.2] 3xl:text-4xl",
 							isBahasa && "text-[1.8vw] leading-[1.2] 3xl:text-2xl",
 						)}>
 						{m.blue_factual_panther_buzz()}
@@ -55,34 +62,54 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 					<section
 						class="price flex flex-1 flex-col gap-4 rounded-xl bg-flatdeepblue px-6 py-6 lg:gap-6 lg:px-8 lg:py-16">
 						<h2
-							class="flex h-[50px] items-center text-lg leading-[1.4] lg:text-base lg:leading-[1.8]">
+							class="flex h-[50px] items-center text-xl leading-[1.4] lg:text-2xl lg:leading-[1.8]">
 							{m.actual_great_parrot_heart()}
 						</h2>
 						<div class="border-t border-muted-foreground"></div>
 						<ul class="space-y-2 md:space-y-3">
 							<li class="flex items-center gap-2 text-primary-foreground">
-								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+								<span
+									class={cn(
+										"size-3 -translate-y-[2px] fill-primary-foreground",
+										isChinese && "translate-y-0",
+									)}>
 									<Check />
 								</span>
 								{m.frail_spry_gadfly_quiz()}
 							</li>
 							<li class="flex items-center gap-2">
-								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+								<span
+									class={cn(
+										"size-3 -translate-y-[2px] fill-primary-foreground",
+										isChinese && "translate-y-0",
+									)}>
 									<Check />
 								</span>{m.broad_arable_herring_spin()}
 							</li>
 							<li class="flex items-center gap-2">
-								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+								<span
+									class={cn(
+										"size-3 -translate-y-[2px] fill-primary-foreground",
+										isChinese && "translate-y-0",
+									)}>
 									<Check />
 								</span>{m.arable_white_goldfish_attend()}
 							</li>
 							<li class="flex items-center gap-2">
-								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+								<span
+									class={cn(
+										"size-3 -translate-y-[2px] fill-primary-foreground",
+										isChinese && "translate-y-0",
+									)}>
 									<Check />
 								</span>{m.short_inner_parakeet_amaze()}
 							</li>
 							<li class="flex items-center gap-2">
-								<span class="size-3 -translate-y-[2px] fill-primary-foreground">
+								<span
+									class={cn(
+										"size-3 -translate-y-[2px] fill-primary-foreground",
+										isChinese && "translate-y-0",
+									)}>
 									<Check />
 								</span>{m.mushy_tiny_jaguar_gulp()}
 							</li>
@@ -102,7 +129,8 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 									class="relative z-10 duration-500 group-hover:text-primary"
 									>{m.startnow()}</span
 								>
-								<span class="absolute top-0 left-0 size-full overflow-hidden rounded-md"
+								<span
+									class="absolute left-0 top-0 size-full overflow-hidden rounded-md"
 									><span
 										class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatdarkblue transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
 									></span></span
@@ -115,35 +143,58 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 						<h2
 							class="flex h-[50px] items-center gap-5 whitespace-nowrap text-xl leading-[1.4] text-primary lg:text-2xl lg:leading-[1.8] xl:gap-[2vw]">
 							{m.fun_upper_finch_cherish()}
-							<span class="text-xs font-normal uppercase text-muted-foreground"
-								>{m.known_tangy_butterfly_savor()}</span
+							<span
+								class={cn(
+									"text-xs font-normal uppercase text-muted-foreground",
+									isChinese && "text-sm",
+								)}>{m.known_tangy_butterfly_savor()}</span
 							>
 						</h2>
 						<div class="border-t border-muted-foreground/50"></div>
 						<div class="flex gap-12">
 							<ul class="space-y-3">
 								<li class="flex items-center gap-2">
-									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+									<span
+										class={cn(
+											"size-3 -translate-y-[2px] fill-black stroke-[3]",
+											isChinese && "translate-y-0",
+										)}>
 										<Check />
 									</span>{m.royal_stock_hamster_pick()}
 								</li>
 								<li class="flex items-center gap-2">
-									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+									<span
+										class={cn(
+											"size-3 -translate-y-[2px] fill-black stroke-[3]",
+											isChinese && "translate-y-0",
+										)}>
 										<Check />
 									</span>{m.aware_key_lemming_adapt()}
 								</li>
 								<li class="flex items-center gap-2">
-									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+									<span
+										class={cn(
+											"size-3 -translate-y-[2px] fill-black stroke-[3]",
+											isChinese && "translate-y-0",
+										)}>
 										<Check />
 									</span>{m.salty_north_fish_boost()}
 								</li>
 								<li class="flex items-center gap-2">
-									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+									<span
+										class={cn(
+											"size-3 -translate-y-[2px] fill-black stroke-[3]",
+											isChinese && "translate-y-0",
+										)}>
 										<Check />
 									</span>{m.strong_white_impala_absorb()}
 								</li>
 								<li class="flex items-center gap-2">
-									<span class="size-3 -translate-y-[2px] fill-black stroke-[3]">
+									<span
+										class={cn(
+											"size-3 -translate-y-[2px] fill-black stroke-[3]",
+											isChinese && "translate-y-0",
+										)}>
 										<Check />
 									</span>{m.tasty_major_flea_imagine()}
 								</li>
@@ -165,9 +216,12 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 									<span class="size-4 text-muted-foreground md:size-6"
 										><ArrowRightShort /></span
 									>
-									<span class="mt-[2px] block">{m.startnow()}</span>
+									<span class={cn("mt-[2px] block", isChinese && "mt-0")}
+										>{m.startnow()}</span
+									>
 								</span>
-								<span class="absolute top-0 left-0 size-full overflow-hidden rounded-md"
+								<span
+									class="absolute left-0 top-0 size-full overflow-hidden rounded-md"
 									><span
 										class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-flatblue transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"
 									></span></span

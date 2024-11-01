@@ -67,6 +67,8 @@ import Menu from "./ui/Menu.astro";
 
 	<FloatingNavBar />
 
+	<slot />
+
 	<script
 		is:inline
 		type="application/ld+json"
@@ -101,6 +103,12 @@ import Menu from "./ui/Menu.astro";
 	});
 
 	gsap.ticker.lagSmoothing(0);
+
+	declare global {
+		var lenis: Lenis;
+	}
+
+	window.lenis = lenis;
 
 	cursorFollow();
 

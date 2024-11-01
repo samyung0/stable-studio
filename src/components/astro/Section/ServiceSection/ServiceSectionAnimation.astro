@@ -9,6 +9,12 @@ import { cn, toRoman } from "@/lib/utils";
 const { subServices } = Astro.props;
 
 const isBahasa = Astro.locals.paraglide.lang === "id";
+
+const isHK = Astro.locals.paraglide.lang === "zh-HK";
+const isTW = Astro.locals.paraglide.lang === "zh-TW";
+const isCN = Astro.locals.paraglide.lang === "zh-CN";
+const isZH = Astro.locals.paraglide.lang === "zh";
+const isChinese = isHK || isTW || isCN || isZH;
 ---
 
 <section class="serviceSection relative w-full">
@@ -19,6 +25,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 				"serviceLabel inline-block w-[30px] text-muted-foreground transition-all duration-500 ease-in md:w-auto",
 				!isBahasa && "lg:w-0",
 				isBahasa && "xl:w-0",
+				isChinese && "font-sans",
 			)}>
 			<slot name="label" class="text-base" />
 		</span>
@@ -28,6 +35,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 				"serviceSectionHeader block text-base uppercase md:text-lg",
 				!isBahasa && "lg:mt-2",
 				isBahasa && "xl:mt-2",
+				isChinese && "lg:text-xl",
 			)}>
 			<slot name="title" />
 		</span>
@@ -100,58 +108,56 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 		});
 	}
 
-	const container = document.getElementById("serviceSectionContainer");
 	const serviceLabel = gsap.utils.toArray(".serviceLabel") as HTMLElement[];
-	const serviceSection = gsap.utils.toArray(".serviceSection") as HTMLElement[];
 	const sectionHead = gsap.utils.toArray(
 		".serviceSection>.sectionHead",
 	) as HTMLElement[];
+	const lastBorder = sectionHead[sectionHead.length - 1] as HTMLElement | null;
+	const serviceContent = gsap.utils.toArray(
+		".serviceSection .serviceContent",
+	) as HTMLElement[];
+	lastBorder!.style.borderBottomWidth = "1px";
+	serviceLabel[0].classList.add("serviceLabelActive");
+
+	const container = document.getElementById("serviceSectionContainer");
+	const serviceSection = gsap.utils.toArray(".serviceSection") as HTMLElement[];
 	const serviceSectionHeader = gsap.utils.toArray(
 		".serviceSectionHeader",
 	) as HTMLElement[];
 	const serviceSectionContainer = document.getElementById(
 		"serviceSectionContainer",
 	) as HTMLElement | null;
-	const lastBorder = sectionHead[sectionHead.length - 1] as HTMLElement | null;
-	lastBorder!.style.borderBottomWidth = "1px";
-	serviceLabel[0].classList.add("serviceLabelActive");
 
-	const negativeOffset = window.innerWidth >= 1280 ? 60 : 0;
 	const padding =
 		parseFloat(getComputedStyle(lastBorder!).paddingTop) +
 		parseFloat(getComputedStyle(lastBorder!).paddingBottom);
-
 	const displayingArray = [] as number[];
 	const heightArray = [] as number[];
 	const finalPos = [0] as number[];
 	let sum = 0;
 	for (let i = 0; i < serviceSection.length - 1; i++) {
-		const serviceContent = serviceSection[i].querySelector(
-			".serviceContent",
-		) as HTMLElement | null;
-		if (serviceContent) {
-			gsap.to(serviceContent, {
-				autoAlpha: 0,
-				scrollTrigger: {
-					trigger: container,
-					start: `top+=${heightArray.reduce((prev, cur) => prev + cur, 0) - sum + serviceContent.offsetHeight * 0.3} top`,
-					end: `+=${sum + serviceContent.offsetHeight * 0.7}`,
-					// markers: true,
-					id: `serviceContent${i}`,
-					scrub: 1,
-					invalidateOnRefresh: true,
-					onEnter: () => {
-						serviceLabel[i + 1]?.classList.add("serviceLabelActive");
-				serviceLabel[i]?.classList.remove("serviceLabelActive");
-					},
-					onLeaveBack: () => {
-						serviceLabel[i]?.classList.add("serviceLabelActive");
-				serviceLabel[i + 1]?.classList.remove("serviceLabelActive");
-					},
+		gsap.to(serviceContent[i], {
+			autoAlpha: window.innerWidth >= 1280 ? 0 : 1,
+			scrollTrigger: {
+				trigger: container,
+				start: `top+=${heightArray.reduce((prev, cur) => prev + cur, 0) - sum + serviceContent[i].offsetHeight * 0.3} top`,
+				end: `+=${sum + serviceContent[i].offsetHeight * 0.7}`,
+				// markers: true,
+				// id: `serviceContent${i}`,
+				scrub: 1,
+				invalidateOnRefresh: false,
+				onEnter: () => {
+					serviceLabel[i + 1]?.classList.add("serviceLabelActive");
+					serviceLabel[i]?.classList.remove("serviceLabelActive");
 				},
-				ease: "power2.out",
-			});
-		}
+				onLeaveBack: () => {
+					serviceLabel[i]?.classList.add("serviceLabelActive");
+					serviceLabel[i + 1]?.classList.remove("serviceLabelActive");
+				},
+			},
+			ease: "power2.out",
+		});
+
 		const contentHeight = serviceSectionHeader[i].offsetHeight;
 		heightArray.push(sectionHead[i].offsetHeight);
 		displayingArray.push(padding + contentHeight + 1);
@@ -160,67 +166,90 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 			serviceSection[i + 1].style.setProperty("--self-offset", `${sum}px`);
 	}
 
-	const globalSectionHead = document.querySelector(".sectionHead") as HTMLElement;
-	const sectionHeadPaddingTop = parseFloat(getComputedStyle(globalSectionHead).paddingTop);
-	let lastChildHeight = Math.max(...heightArray) - sum;
-	const lastChild = container?.lastElementChild as HTMLElement | null;
-	const extraHeight = lastChildHeight - (lastChild?.offsetHeight ?? 0);
-	if (extraHeight < sectionHeadPaddingTop)
-		lastChildHeight += sectionHeadPaddingTop - extraHeight;
-	gsap.set(serviceSection, {
-		height: lastChildHeight
-	})
+	if (window.innerWidth >= 1280) {
+		const negativeOffset = 60;
 
-	heightArray.push(lastChildHeight);
-	serviceSectionContainer!.style.height = `${heightArray.reduce((prev, cur) => prev + cur, 0)}px`;
-	for (let i = 0; i < serviceSection.length; i++) {
-		serviceSection[i].style.position = "absolute";
-		serviceSection[i].style.bottom = "0";
-		serviceSection[i].style.right = "0";
-		serviceSection[i].style.height =
-			`${heightArray.slice(i).reduce((prev, cur) => prev + cur, 0)}px`;
-	}
-	for (let i = sectionHead.length - 2; i >= 0; i--) {
-		finalPos.push(
-			sectionHead[i].offsetHeight -
-				displayingArray[i] +
-				(finalPos[finalPos.length - 1] ?? 0),
+		const globalSectionHead = document.querySelector(
+			".sectionHead",
+		) as HTMLElement;
+		const sectionHeadPaddingTop = parseFloat(
+			getComputedStyle(globalSectionHead).paddingTop,
 		);
-	}
+		let lastChildHeight = Math.max(...heightArray) - sum;
+		const lastChild = container?.lastElementChild as HTMLElement | null;
+		const extraHeight = lastChildHeight - (lastChild?.offsetHeight ?? 0);
+		if (extraHeight < sectionHeadPaddingTop)
+			lastChildHeight += sectionHeadPaddingTop - extraHeight;
+		gsap.set(serviceSection, {
+			height: lastChildHeight,
+		});
 
-	ScrollTrigger.create({
-		trigger: container,
-		start: "top top",
-		endTrigger: container?.lastElementChild,
-		end: `top top+=${sum - negativeOffset}`,
-		onUpdate: (self) => {
-			container?.style.setProperty(
-				"--negative-top",
-				`${self.progress * negativeOffset}px`,
+		heightArray.push(lastChildHeight);
+		serviceSectionContainer!.style.height = `${heightArray.reduce((prev, cur) => prev + cur, 0)}px`;
+		for (let i = 0; i < serviceSection.length; i++) {
+			serviceSection[i].style.position = "absolute";
+			serviceSection[i].style.bottom = "0";
+			serviceSection[i].style.right = "0";
+			serviceSection[i].style.height =
+				`${heightArray.slice(i).reduce((prev, cur) => prev + cur, 0)}px`;
+		}
+		for (let i = sectionHead.length - 2; i >= 0; i--) {
+			finalPos.push(
+				sectionHead[i].offsetHeight -
+					displayingArray[i] +
+					(finalPos[finalPos.length - 1] ?? 0),
 			);
-		},
-		invalidateOnRefresh: true,
-	});
+		}
+		ScrollTrigger.create({
+			trigger: container,
+			start: "top top",
+			endTrigger: container?.lastElementChild,
+			end: `top top+=${sum - negativeOffset}`,
+			onUpdate: (self) => {
+				container?.style.setProperty(
+					"--negative-top",
+					`${self.progress * negativeOffset}px`,
+				);
+			},
+			invalidateOnRefresh: false,
+		});
 
-	ScrollTrigger.create({
-		endTrigger: container,
-		end: "bottom top",
-		trigger: container?.lastElementChild,
-		start: `top top+=${sum - negativeOffset - 4}`,
-		invalidateOnRefresh: true,
-		// markers: true,
-		onEnter: () => {
-			for (let i = 0; i < sectionHead.length; i++) {
-				sectionHead[i].style.position = "absolute";
-				sectionHead[i].style.top = `${finalPos[sectionHead.length - 1 - i] + 4}px`;
-			}
-		},
-		onLeaveBack: () => {
-			for (let i = 0; i < sectionHead.length; i++) {
-				sectionHead[i].style.position = "sticky";
-				sectionHead[i].style.top =
-					`calc(var(--self-offset) - var(--negative-top) - var(--scrollaway-top))`;
-			}
-		},
-	});
+		ScrollTrigger.create({
+			endTrigger: container,
+			end: "bottom top",
+			trigger: container?.lastElementChild,
+			start: `top top+=${sum - negativeOffset + 2}`,
+			invalidateOnRefresh: false,
+			// markers: true,
+			onEnter: () => {
+				for (let i = 0; i < sectionHead.length; i++) {
+					sectionHead[i].style.position = "absolute";
+					sectionHead[i].style.top =
+						`${finalPos[sectionHead.length - 1 - i] - 4}px`;
+				}
+			},
+			onLeaveBack: () => {
+				for (let i = 0; i < sectionHead.length; i++) {
+					sectionHead[i].style.position = "sticky";
+					sectionHead[i].style.top =
+						`calc(var(--self-offset) - var(--negative-top) - var(--scrollaway-top))`;
+				}
+			},
+		});
+	} else {
+		// let sum2 = 0;
+		// for (let i = 0; i < serviceSection.length; i++) {
+		// 	ScrollTrigger.create({
+		// 		trigger: serviceSection[i],
+		// 		start: `top-=${sum2}`,
+		// 		endTrigger: container,
+		// 		end: `bottom top+=${sum + serviceSection[serviceSection.length - 1].offsetHeight}`,
+		// 		pin: true,
+		// 		pinSpacing: false,
+		// 		anticipatePin: 1,
+		// 		invalidateOnRefresh: false,
+		// 	});
+		// 	sum2 += displayingArray[i];
+		// }
+	}
 </script>

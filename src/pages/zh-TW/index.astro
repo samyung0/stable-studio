@@ -4,48 +4,55 @@ import { SEO } from "astro-seo";
 
 import * as m from "@/paraglide/messages";
 
+// Supports weights 100-900
+import '@fontsource-variable/noto-sans-tc';
+
 export const prerender = true;
 ---
 
 <App>
-	<SEO
-		slot="head"
-		canonical="https://stablestudio.org/zh-TW"
-		title="Stable Studio"
-		description=`Stable Studio ${m.active_calm_felix_sway()}`
-		openGraph={{
-			basic: {
+	<Fragment slot="head">
+		<SEO
+			canonical="https://stablestudio.org/zh-TW"
+			title="Stable Studio"
+			description=`Stable Studio ${m.active_calm_felix_sway()}`
+			openGraph={{
+				basic: {
+					title: "Stable Studio",
+					type: "website",
+					image: "https://stablestudio.org/stablestudio-large.png",
+					url: "https://stablestudio.org",
+				},
+				optional: {
+					locale: "zh-TW",
+					localeAlternate: [
+						"en",
+						"ja",
+						"tl",
+						"id",
+						"zh-HK",
+						"zh-CN",
+						"vi",
+						"zh-TW",
+						"zh",
+					],
+					siteName: "Stable Studio",
+					description: `Stable Studio ${m.active_calm_felix_sway()}`,
+				},
+			}}
+			twitter={{
+				card: "summary_large_image",
+				site: "@stablestudioSS",
 				title: "Stable Studio",
-				type: "website",
+				description: `Stable Studio ${m.active_calm_felix_sway()}`,
 				image: "https://stablestudio.org/stablestudio-large.png",
-				url: "https://stablestudio.org",
-			},
-			optional: {
-				locale: "zh-TW",
-				localeAlternate: [
-					"en",
-					"ja",
-					"tl",
-					"id",
-					"zh-HK",
-					"zh-CN",
-					"vi",
-					"zh-TW",
-					"zh",
-				],
-				siteName: "Stable Studio",
-				description:
-					`Stable Studio ${m.active_calm_felix_sway()}`,
-			},
-		}}
-		twitter={{
-			card: "summary_large_image",
-			site: "@stablestudioSS",
-			title: "Stable Studio",
-			description:
-				`Stable Studio ${m.active_calm_felix_sway()}`,
-			image: "https://stablestudio.org/stablestudio-large.png",
-			creator: "@sorarararu00"
-		}}
-	/>
+				creator: "@sorarararu00",
+			}}
+		/>
+		<style is:global>
+			body {
+				@apply font-sansTC text-sm font-medium sm:text-base;
+			}
+		</style>
+	</Fragment>
 </App>

@@ -1,7 +1,14 @@
 ---
+import { cn } from "@/lib/utils";
 import NestedSquare from "../../ui/NestedSquare.astro";
 
 import * as m from "@/paraglide/messages";
+
+const isHK = Astro.locals.paraglide.lang === "zh-HK";
+const isTW = Astro.locals.paraglide.lang === "zh-TW";
+const isCN = Astro.locals.paraglide.lang === "zh-CN";
+const isZH = Astro.locals.paraglide.lang === "zh";
+const isChinese = isHK || isTW || isCN || isZH;
 ---
 
 <!-- vision section -->
@@ -30,7 +37,10 @@ import * as m from "@/paraglide/messages";
 			</svg>
 			<p
 				id="missionSectionDescription"
-				class="text-center text-lg text-primary sm:text-2xl md:text-3xl md:leading-[1.4] 3xl:text-5xl 3xl:leading-[1.4]">
+				class={cn(
+					"text-center text-lg text-primary sm:text-2xl md:text-3xl md:leading-[1.4] 3xl:text-5xl 3xl:leading-[1.4]",
+					isChinese && "leading-[1.4] md:leading-[1.2] 3xl:leading-[1.2]",
+				)}>
 				{m.each_misty_myna_blink()}&nbsp;&nbsp;<span
 					class="inline-block size-6 align-sub sm:size-8 md:size-9 3xl:size-14">
 					<NestedSquare />

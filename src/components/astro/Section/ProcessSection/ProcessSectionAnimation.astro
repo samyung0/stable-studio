@@ -80,21 +80,22 @@ const isSmall = isBahasa || isViet || isTagalog;
 						<!-- label -->
 						<div class="flex items-center justify-start gap-3">
 							<span class="processStep processActive flex items-center gap-1"
-								><span class="overflow-hidden">{m.crisp_green_camel_pet()}</span
+								><span class="overflow-hidden whitespace-nowrap"
+									>{m.crisp_green_camel_pet()}</span
 								><span>/01/</span></span
 							>
 							<span class="processStep flex items-center gap-1"
-								><span class="w-0 overflow-hidden"
+								><span class="w-0 overflow-hidden whitespace-nowrap"
 									>{m.crisp_green_camel_pet()}</span
 								><span>/02/</span></span
 							>
 							<span class="processStep flex items-center gap-1"
-								><span class="w-0 overflow-hidden"
+								><span class="w-0 overflow-hidden whitespace-nowrap"
 									>{m.crisp_green_camel_pet()}</span
 								><span>/03/</span></span
 							>
 							<span class="processStep flex items-center gap-1"
-								><span class="w-0 overflow-hidden"
+								><span class="w-0 overflow-hidden whitespace-nowrap"
 									>{m.crisp_green_camel_pet()}</span
 								><span>/04/</span></span
 							>
@@ -206,9 +207,6 @@ const isSmall = isBahasa || isViet || isTagalog;
 	) as HTMLElement | null;
 	const processTitle = gsap.utils.toArray(".processTitle") as HTMLElement[];
 	const processSectionWheel = document.getElementById("processSectionWheel");
-	const processSectionContainer = document.getElementById(
-		"processSectionContainer",
-	);
 
 	if (processSectionProgressBar)
 		processSectionProgressBar.style.willChange = "transform";
@@ -241,9 +239,6 @@ const isSmall = isBahasa || isViet || isTagalog;
 			this.progress(1);
 		},
 	});
-
-	// if (processSectionContainer)
-	// 	processSectionContainer.style.paddingBottom = `${scrollDistancePerCard * processLeftChildren.length}px`;
 
 	const timeline = gsap.timeline({
 		scrollTrigger: {
