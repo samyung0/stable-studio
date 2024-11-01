@@ -100,7 +100,7 @@ export default defineConfig({
 	},
 	i18n: {
 		defaultLocale: "en",
-		locales: ["en", "ja", "tl", "id", "zh-HK", "zh-CN", "vi", "zh-TW", "zh"],
+		locales: ["en", "tl", "id", "zh-HK", "zh-CN", "vi", "zh-TW", "zh"],
 		routing: "manual",
 	},
 });
