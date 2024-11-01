@@ -1,16 +1,28 @@
 ---
+import { cn } from "@/lib/utils";
 import * as m from "@/paraglide/messages";
+
+const isHK = Astro.locals.paraglide.lang === "zh-HK";
+const isTW = Astro.locals.paraglide.lang === "zh-TW";
+const isCN = Astro.locals.paraglide.lang === "zh-CN";
+const isZH = Astro.locals.paraglide.lang === "zh";
+
+const isChinese = isZH || isCN || isTW || isHK;
 ---
 
 <nav
 	class="fixed bottom-[2%] left-[50%] hidden h-[44px] -translate-x-[50%] sm:block md:h-[54px]">
-	<div class="relative flex h-full flex-col">
+	<div
+		class={cn(
+			"relative flex h-full flex-col",
+			isChinese && "md:[&_a]:text-sm",
+		)}>
 		<div class="relative z-[100] flex h-full items-center">
 			<div
-				class="flex h-full rounded border border-primary bg-primary text-xs text-primary-foreground">
+				class="flex h-full rounded border border-primary bg-primary text-primary-foreground">
 				<a
 					id="activeItem"
-					class="flex items-center gap-3 whitespace-nowrap p-5"
+					class="flex text-xs items-center gap-3 whitespace-nowrap p-5"
 					href="#home">{m.cozy_noble_yak_adapt()}<span>/</span></a
 				>
 			</div>
