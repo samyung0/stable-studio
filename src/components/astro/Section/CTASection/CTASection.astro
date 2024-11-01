@@ -56,7 +56,7 @@ const isSmall = isBahasa || isViet || isTagalog;
 						"text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[7vw] md:leading-[1] 3xl:text-[130px]",
 					isSmall &&
 						"text-2xl leading-[1] tracking-tight sm:text-3xl md:text-[5vw] md:leading-[1] 3xl:text-[130px]",
-						isChinese && "leading-[1.4] md:leading-[1.4]"
+					isChinese && "leading-[1.4] md:leading-[1.4]",
 				)}>
 				<h1>
 					{m.clean_strong_giraffe_pinch()}
@@ -68,6 +68,8 @@ const isSmall = isBahasa || isViet || isTagalog;
 								"aspect-video w-[130px] translate-x-3 translate-y-3 sm:w-[180px] md:w-[30vw] 3xl:w-[700px]",
 								!isSmall && "md:translate-y-[3vw] 3xl:translate-y-[2vw]",
 								isSmall && "md:translate-y-[2vw]",
+								isChinese &&
+									"translate-y-5 md:translate-y-[5vw] 3xl:translate-y-[3vw]",
 							)}>
 							<VeryLongArrowRightDown />
 						</span></span
@@ -125,7 +127,6 @@ const isSmall = isBahasa || isViet || isTagalog;
 							<li
 								class={cn(
 									"-translate-y-[2px] text-primary-foreground/70 duration-300 transition-colors hover:text-primary-foreground",
-									
 								)}>
 								<a href="https://sam.partialty.com"
 									>{m.spry_direct_stork_devour()}</a
@@ -144,7 +145,10 @@ const isSmall = isBahasa || isViet || isTagalog;
 						autocomplete="name"
 						type="text"
 						placeholder={m.loud_male_lobster_bask()}
-						class="mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border"
+						class={cn(
+							"mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border",
+							isChinese && "text-sm placeholder:!text-xs",
+						)}
 					/>
 					<input
 						required
@@ -155,14 +159,19 @@ const isSmall = isBahasa || isViet || isTagalog;
 						autocomplete="email"
 						type="email"
 						placeholder={m.sunny_stout_cougar_tend()}
-						class="mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border"
+						class={cn(
+							"mutedTextInput text-normal h-[50px] border-b border-border/30 bg-transparent text-base font-normal transition-all focus:border-border",
+							isChinese && "text-sm placeholder:!text-xs",
+						)}
 					/>
 					<textarea
 						required
 						name="enquiry"
 						placeholder={m.safe_ago_alligator_soar()}
-						class="mutedTextInput text-normal m-0 h-[80px] border-b border-border/30 bg-transparent p-0 text-base font-normal outline-none transition-all focus:border-border"
-					></textarea>
+						class={cn(
+							"mutedTextInput text-normal m-0 h-[80px] border-b border-border/30 bg-transparent p-0 text-base font-normal outline-none transition-all focus:border-border",
+							isChinese && "text-sm placeholder:!text-xs",
+						)}></textarea>
 
 					<div
 						aria-live="polite"
@@ -201,7 +210,10 @@ const isSmall = isBahasa || isViet || isTagalog;
 							>
 
 							<span
-								class="relative mt-[2px] flex items-center justify-center overflow-hidden text-xs sm:text-sm">
+								class={cn(
+									"relative mt-[2px] flex items-center justify-center overflow-hidden text-xs sm:text-sm",
+									isChinese && "mt-0 text-sm",
+								)}>
 								<span
 									class="translate-y-0 transition duration-300 group-hover:translate-y-[100%]">
 									{m.suave_helpful_lion_evoke()}

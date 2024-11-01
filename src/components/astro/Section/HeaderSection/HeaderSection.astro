@@ -1,16 +1,23 @@
 ---
+import { cn } from "@/lib/utils";
 import ArrowRightShort from "../../ui/ArrowRightShort.astro";
 import StableStudio from "../../ui/StableStudio.astro";
 import World from "../../ui/World.astro";
 
 import * as m from "@/paraglide/messages";
+
+const isHK = Astro.locals.paraglide.lang === "zh-HK";
+const isTW = Astro.locals.paraglide.lang === "zh-TW";
+const isCN = Astro.locals.paraglide.lang === "zh-CN";
+const isZH = Astro.locals.paraglide.lang === "zh";
+const isChinese = isHK || isTW || isCN || isZH;
 ---
 
 <!-- header -->
-<header id="top" class="pt-6 sm:pt-8">
+<header id="top" class="pt-8">
 	<div class="flex items-center justify-between">
 		<div>
-			<a href="https://stablestudio.org" class="block w-32 sm:w-48">
+			<a href="https://stablestudio.org" class="min-h-8 flex items-center w-[160px] sm:w-56">
 				<span class="sr-only">Stable Studio Homepage</span>
 				<StableStudio />
 			</a>
@@ -21,8 +28,11 @@ import * as m from "@/paraglide/messages";
 					id="languageButton"
 					class="group relative overflow-hidden rounded px-4 py-4 md:px-6 md:py-5">
 					<span class="relative z-10 flex items-center gap-2">
-						<span class="hidden size-4 -translate-y-[1px] lg:inline"
-							><World /></span
+						<span
+							class={cn(
+								"hidden size-4 -translate-y-[1px] lg:inline",
+								isChinese && "translate-y-0",
+							)}><World /></span
 						>
 						<span>{m.zippy_careful_rooster_clasp()}</span>
 					</span>
@@ -44,7 +54,9 @@ import * as m from "@/paraglide/messages";
 						<span class="size-4 text-muted-foreground md:size-6">
 							<ArrowRightShort />
 						</span>
-						<span class="mt-[2px] block">{m.fresh_nimble_tortoise_soar()}</span>
+						<span class={cn("mt-[2px] block", isChinese && "mt-0")}
+							>{m.fresh_nimble_tortoise_soar()}</span
+						>
 					</span>
 
 					<span class="absolute left-0 top-0 size-full overflow-hidden rounded"
@@ -62,8 +74,7 @@ import * as m from "@/paraglide/messages";
 	/* @property compatibility hack, see https://codepen.io/propjockey/pen/OJdJmya */
 	/* for some reasons does not work when opening through another device, even though on the same network, it has to be in localhost */
 	@supports (background: paint(xddd)) or
-	((width: 1rlh) and ((-webkit-hyphens: none) or (-moz-appearance: none))) {
-
+		((width: 1rlh) and ((-webkit-hyphens: none) or (-moz-appearance: none))) {
 		@property --radialFixLeft {
 			syntax: "<color>";
 			initial-value: rgb(38, 38, 38);
