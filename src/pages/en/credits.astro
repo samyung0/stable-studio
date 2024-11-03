@@ -1,0 +1,50 @@
+---
+import AppCredits from "@/components/astro/AppCredits.astro";
+import { SEO } from "astro-seo";
+
+import * as m from "@/paraglide/messages";
+
+export const prerender = true;
+---
+
+<AppCredits>
+	<SEO
+		slot="head"
+		canonical="https://stablestudio.org/en/credits"
+		title="Stable Studio"
+		description=`Stable Studio ${m.active_calm_felix_sway()}`
+		openGraph={{
+			basic: {
+				title: "Stable Studio",
+				type: "website",
+				image: "https://stablestudio.org/stablestudio-large.png",
+				url: "https://stablestudio.org/en/credits",
+			},
+			optional: {
+				locale: "en",
+				localeAlternate: [
+					"en",
+					"tl",
+					"id",
+					"zh-HK",
+					"zh-CN",
+					"vi",
+					"zh-TW",
+					"zh",
+				],
+				siteName: "Stable Studio",
+				description:
+					`Stable Studio ${m.active_calm_felix_sway()}`,
+			},
+		}}
+		twitter={{
+			card: "summary_large_image",
+			site: "@stablestudioSS",
+			title: "Stable Studio",
+			description:
+				`Stable Studio ${m.active_calm_felix_sway()}`,
+			image: "https://stablestudio.org/stablestudio-large.png",
+			creator: "@sorarararu00"
+		}}
+	/>
+</AppCredits>

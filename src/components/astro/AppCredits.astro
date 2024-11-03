@@ -1,0 +1,24 @@
+---
+import { creditsSchemaMarkup } from "@/lib/schemaMarkup";
+import Layout from "@/layouts/Layout.astro";
+import CreditsSection from "./Section/CreditsSection/CreditsSection.astro";
+---
+
+<Layout>
+	<slot name="head" slot="head" />
+
+	<div id="mainScroll">
+		<main
+			class="relative flex min-h-screen">
+			<CreditsSection />
+		</main>
+
+		<slot />
+
+		<script
+			is:inline
+			type="application/ld+json"
+			set:html={JSON.stringify(creditsSchemaMarkup)}
+		/>
+	</div>
+</Layout>

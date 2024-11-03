@@ -1,0 +1,36 @@
+---
+import * as m from "@/paraglide/messages";
+import ConcaveSquare from "../../ui/ConcaveSquare.astro";
+import StableStudio from "../../ui/StableStudio.astro";
+---
+
+<section
+	class="mx-auto flex h-screen w-full shrink-0 justify-center px-6 sm:px-12 md:px-16 lg:w-[70vw] 2xl:w-[50vw]"
+	id="header">
+	<div class="relative flex h-full items-center justify-center">
+		<div class="absolute left-0 top-8">
+			<a
+				href="https://stablestudio.org"
+				class="flex min-h-8 w-[120px] items-center sm:w-[160px]">
+				<span class="sr-only">Stable Studio Homepage</span>
+				<StableStudio />
+			</a>
+		</div>
+		<div
+			class="flex max-w-[500px] flex-col gap-4 whitespace-normal sm:gap-6 3xl:max-w-[800px] 3xl:gap-10">
+			<p
+				class="whitespace-nowrap text-[0.65rem] font-normal uppercase leading-7 text-muted-foreground md:text-xs 3xl:text-sm">
+				/ {m.caring_icy_goat_fold()} /
+			</p>
+			<h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl">Credits Page</h1>
+			<p class="text-sm text-muted-foreground lg:text-base">
+				Big thanks to all these amazing people for their contributions and work
+				which makes this idea of launching a studio become a reality.
+			</p>
+			<div
+				class="3xl:size-18 size-8 translate-y-8 sm:size-10 md:size-12 lg:size-14">
+				<ConcaveSquare />
+			</div>
+		</div>
+	</div>
+</section>

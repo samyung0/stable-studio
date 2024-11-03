@@ -178,4 +178,66 @@ const indexSchemaMarkup: Graph = {
 	],
 };
 
-export { indexSchemaMarkup };
+const creditsSchemaMarkup: Graph = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Person",
+			"@id": "https://stablestudio.org/#sam",
+			name: "Sam Yung",
+			url: "https://stablestudio.org/",
+			additionalName: "Yung Chin Pang",
+			birthDate: "2002-08-19",
+			email: "yungchinpang9@gmail.com",
+			sameAs: [
+				"https://sam.partialty.com",
+				"https://www.linkedin.com/in/yung-chin-pang-14ba7b1a4/",
+			],
+			familyName: "Yung",
+			givenName: "Sam",
+			gender: "Male",
+			image:
+				"https://sam.partialty.com/_image?href=%2F_astro%2Fprofile.Cs45b1KG.jpg&q=low&f=webp",
+			nationality: "Hong Kong",
+		},
+		{
+			"@type": "Organization",
+			"@id": "https://stablestudio.org/#organization",
+			email: "samyung@partialty.com",
+			founder: { "@id": "https://stablestudio.org/#sam" },
+			foundingDate: "2024-11-15",
+			keywords:
+				"Stable Studio, Web Development, Custom Websites, Freelancers, SEO, Optimization, Animation, GSAP, Animated Websites, Technology, Web Dev, React JS, Next JS, TypeScript, Javascript, HTML, CSS, JS, Software Development, Front-end, Fullstack, VS Code",
+			logo: "https://stablestudio.org/stablestudio-large.svg",
+			name: "Stable Studio",
+			url: "https://stablestudio.org/",
+		},
+		{
+			"@type": "ProfilePage",
+			"@id": "https://stablestudio.org/#website",
+			url: "https://stablestudio.org/",
+			mainContentOfPage: {
+				"@type": "WebPageElement",
+				cssSelector: "#schemaMarkupMain",
+			},
+			relatedLink: "https://sam.partialty.com",
+			significantLink: "https://sam.partialty.com",
+			speakable: {
+				"@type": "SpeakableSpecification",
+				cssSelector: "p, h1, h2, h3, h4, h5, h6, span, a, li",
+			},
+			mainEntity: { "@id": "https://stablestudio.org/#sam" },
+			name: "Stable Studio",
+			specialty: {
+				"@type": "Specialty",
+				name: "Web Development",
+			},
+			lastReviewed: "2024-11-15",
+			publisher: { "@id": "https://stablestudio.org/#sam" },
+			description:
+				"Stable Studio is a freelancers studio that makes animations-rich websites. We prioritize user experience, website profile and development speed.",
+		},
+	],
+};
+
+export { indexSchemaMarkup, creditsSchemaMarkup };

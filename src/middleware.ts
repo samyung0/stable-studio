@@ -1,5 +1,6 @@
 import { defineMiddleware } from "astro:middleware";
 import { isAvailableLanguageTag, sourceLanguageTag } from "./paraglide/runtime";
+import { cookies } from "./lib/clientCookies";
 
 // this middleware is mostly for dev only
 // vercel has its own middleware logic and most likely so does cloudflare pages
@@ -33,6 +34,8 @@ import { isAvailableLanguageTag, sourceLanguageTag } from "./paraglide/runtime";
 export const onRequest =
 	import.meta.env.MODE === "development" &&
 	defineMiddleware(async (ctx, next) => {
+		console.log(ctx.url.pathname)
+
 		const firstSegment = ctx.url.pathname.split("/")[1] as string | undefined;
 		if (
 			firstSegment?.startsWith("_") ||
@@ -42,7 +45,18 @@ export const onRequest =
 			firstSegment?.startsWith("wrangler")
 		)
 			return next();
-		if (isAvailableLanguageTag(firstSegment)) return next();
+		if (isAvailableLanguageTag(firstSegment)) {
+			const date = new Date();
+			date.setTime(date.getTime() + 9999 * 24 * 60 * 60 * 1000);
+			const expires = date;
+			ctx.cookies.set("lang", firstSegment, {
+				expires,
+				sameSite: "lax",
+				secure: true,
+				path: "/",
+			});	
+			return next();
+		}
 
 		const acceptLanguage = ctx.request.headers.get("accept-language");
 
@@ -53,6 +67,16 @@ export const onRequest =
 		}
 
 		if (!lang || !isAvailableLanguageTag(lang)) lang = sourceLanguageTag; // fallback to default lang
+
+		const date = new Date();
+		date.setTime(date.getTime() + 9999 * 24 * 60 * 60 * 1000);
+		const expires = date;
+		ctx.cookies.set("lang", lang, {
+			expires,
+			sameSite: "lax",
+			secure: true,
+			path: "/",
+		});
 
 		if (lang === sourceLanguageTag)
 			return ctx.rewrite(`/${sourceLanguageTag}${ctx.url.pathname}`);

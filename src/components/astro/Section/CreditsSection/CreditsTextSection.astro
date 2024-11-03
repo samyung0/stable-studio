@@ -1,0 +1,172 @@
+---
+import * as m from "@/paraglide/messages";
+import { Image } from "astro:assets";
+import Verysus from "@/assets/verysus.jpg";
+import Verysus2 from "@/assets/verysus2.jpg";
+import Sussybaka from "@/assets/sussybaka.jpg";
+import ExternalLink from "../../ui/ExternalLink.astro";
+import Toosus from "@/assets/toosus.jpg";
+---
+
+<section
+	id="textSection"
+	class="sectionContainer relative z-10 flex h-full w-full min-w-[50vw] whitespace-normal rounded-[20px] bg-flatdeepviolet px-[10vw] text-primary-foreground lg:w-auto">
+	<div
+		class="flex w-full flex-col gap-24 ~py-32/64 lg:h-[85%] lg:gap-[7vh] lg:self-end lg:p-0 3xl:gap-[15vh]">
+		<div class="relative">
+			<p
+				class="sectionSmallLabel whitespace-nowrap text-[0.65rem] font-normal uppercase text-background/70 md:text-xs 3xl:text-sm">
+				/ text /
+			</p>
+			<h2 class="text-xl leading-[1] md:text-2xl lg:text-[3.5vw] 3xl:text-5xl">
+				Translation and Content
+			</h2>
+		</div>
+		<div
+			class="cardOuterContainer flex flex-col gap-24 lg:max-h-full lg:gap-12 2xl:gap-[10vh]">
+			<div
+				class="cardContainer cardContainerTop flex flex-col gap-24 lg:min-w-max lg:flex-row lg:items-start lg:gap-[8vw] lg:pl-[15vw] lg:pr-[5vw]">
+				<section
+					class="personCard relative flex flex-col items-center justify-between gap-6 md:grid md:grid-cols-[210px_minmax(380px,500px)] lg:grid-cols-[max-content_minmax(0,500px)] lg:gap-12">
+					<div
+						class="flex flex-col justify-center gap-3 md:justify-start md:gap-6">
+						<div
+							class="personImage flex items-center justify-center md:justify-start">
+							<Image
+								src={Verysus}
+								alt="Nguyễn Mậu Bách"
+								class="h-[100px] w-[100px] rounded-xl object-contain sm:h-[120px] sm:w-[120px] lg:h-[150px] lg:w-[150px]"
+							/>
+						</div>
+						<div class="flex flex-col items-center md:items-start">
+							<p class="text-lg md:text-2xl lg:text-3xl lg:leading-[1]">
+								Nguyễn Mậu Bách
+							</p>
+							<p
+								class="text-[0.65rem] uppercase tracking-tight text-primary-foreground md:text-xs lg:text-sm">
+								Software Engineering Student
+							</p>
+						</div>
+					</div>
+					<div
+						class="sectionPersonDesc flex flex-col text-xs tracking-wide text-primary-foreground/50 md:gap-3 md:text-sm">
+						<a
+							href="https://github.com/Helixu38"
+							target="_blank"
+							class="flex items-center gap-2"
+							>Github Profile
+							<span class="inline-block size-4 -translate-y-[2px] stroke-2">
+								<ExternalLink />
+							</span>
+						</a>
+						<p class="max-w-full">
+							Translated the website content into Vietnamese and also grinded my
+							Strinova account to diamond. Paid in cookies. Great value for the
+							work.
+						</p>
+					</div>
+				</section>
+				<section
+					class="personCard relative flex flex-col items-center justify-between gap-6 md:grid md:grid-cols-[210px_minmax(380px,500px)] lg:grid-cols-[max-content_minmax(0,500px)] lg:gap-12">
+					<div
+						class="flex flex-col justify-center gap-3 md:justify-start md:gap-6">
+						<div
+							class="personImage flex items-center justify-center md:justify-start">
+							<Image
+								src={Verysus2}
+								alt="Muhammad Ramaditya Puspitowarno"
+								class="h-[100px] w-[100px] rounded-xl object-contain sm:h-[120px] sm:w-[120px] lg:h-[150px] lg:w-[150px]"
+							/>
+						</div>
+						<div class="flex flex-col items-center md:items-start">
+							<p
+								class="text-base tracking-tighter md:text-lg md:leading-[1] lg:text-xl lg:leading-[0.8]">
+								Muhammad Ramaditya Puspitowarno
+							</p>
+							<p
+								class="text-[0.65rem] uppercase tracking-tight text-primary-foreground md:text-xs lg:text-sm">
+								Gambler
+							</p>
+						</div>
+					</div>
+					<p
+						class="sectionPersonDesc text-xs tracking-wide text-primary-foreground/50 md:text-sm">
+						Translated the website content into Indonesian and helped connecting
+						with other designers. He will not regret going to casinos in Macau I
+						promise.
+					</p>
+				</section>
+			</div>
+			<div
+				class="cardContainer cardContainerBottom flex flex-col gap-24 lg:min-w-max lg:flex-row lg:items-start lg:gap-[15vw] lg:pl-[35vw] lg:pr-[5vw]">
+				<section
+					class="personCard relative flex flex-col items-center justify-between gap-6 md:grid md:grid-cols-[210px_minmax(380px,500px)] lg:grid-cols-[max-content_minmax(0,500px)] lg:gap-12">
+					<div
+						class="flex flex-col justify-center gap-3 md:justify-start md:gap-6">
+						<div
+							class="personImage flex items-center justify-center md:justify-start">
+							<Image
+								src={Sussybaka}
+								alt="Christian Jay Baquilid"
+								class="h-[100px] w-[100px] rounded-xl object-contain sm:h-[120px] sm:w-[120px] lg:h-[150px] lg:w-[150px]"
+							/>
+						</div>
+						<div class="flex flex-col items-center md:items-start">
+							<p
+								class="text-lg md:text-xl md:leading-[1] lg:text-2xl lg:leading-[0.8]">
+								Christian Jay Baquilid
+							</p>
+							<p
+								class="text-[0.65rem] uppercase tracking-tight text-primary-foreground md:text-xs lg:text-sm">
+								AI dev & AI trainer
+							</p>
+						</div>
+					</div>
+					<p
+						class="sectionPersonDesc text-xs tracking-wide text-primary-foreground/50 md:text-sm">
+						Translated the website content into Filipino and also helped
+						connecting with other designers. Enjoys playing Star Rail, Apex and
+						ZZZ and is blessed with god-tier gacha luck.
+					</p>
+				</section>
+				<section
+					class="personCard relative flex flex-col items-center justify-between gap-6 md:grid md:grid-cols-[210px_minmax(380px,500px)] lg:grid-cols-[max-content_minmax(0,500px)] lg:gap-12">
+					<div
+						class="flex flex-col justify-center gap-3 md:justify-start md:gap-6">
+						<div
+							class="personImage flex items-center justify-center md:justify-start">
+							<Image
+								src={Toosus}
+								alt="Prince Pipen"
+								class="h-[100px] w-[100px] rounded-xl object-contain sm:h-[120px] sm:w-[120px] lg:h-[150px] lg:w-[150px]"
+							/>
+						</div>
+						<div class="flex flex-col items-center md:items-start">
+							<p
+								class="text-lg md:text-xl md:leading-[1] lg:text-2xl lg:leading-[0.8]">
+								Prince Pipen
+							</p>
+							<p
+								class="text-[0.65rem] uppercase tracking-tight text-primary-foreground md:text-xs lg:text-sm">
+								Entrepreneur and Producer
+							</p>
+						</div>
+					</div>
+					<div
+						class="sectionPersonDesc flex flex-col gap-3 text-xs tracking-wide text-primary-foreground/50 md:text-sm">
+						<p class="flex items-center gap-2 text-base">
+							Datte kimi, yowai mon.
+						</p>
+						<p class="max-w-full">
+							Translated the website content into Filipino. Started 2 companies
+							when he was 18, became an investor in 20 and is now the CEO of a
+							multinational reputation-maxxing copmany. ZZZ and Valo enjoyer
+							with impeccable mechanical skills and game sense. Paid in rice.
+							And also his birth stone is Rock-Bottom.
+						</p>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,133 @@
+---
+import * as m from "@/paraglide/messages";
+import { Image } from "astro:assets";
+
+import Ketrin from "@/assets/ketrin.jpg";
+import Sophie from "@/assets/sophie.png";
+import Arslan from "@/assets/arslan.jpg";
+---
+
+<section
+	id="artSection"
+	class="sectionContainer relative z-10 flex h-full w-full min-w-[50vw] whitespace-normal rounded-[20px] bg-primary px-[10vw] text-primary-foreground lg:w-auto">
+	<div
+		class="flex w-full flex-col gap-24 ~py-32/64 lg:h-[85%] lg:gap-[7vh] lg:self-end lg:p-0 3xl:gap-[15vh]">
+		<div class="relative">
+			<p
+				class="sectionSmallLabel whitespace-nowrap text-[0.65rem] font-normal uppercase text-background/70 md:text-xs 3xl:text-sm">
+				/ art /
+			</p>
+			<h2 class="text-xl leading-[1] md:text-2xl lg:text-[3.5vw] 3xl:text-5xl">
+				Illustrations and Graphics
+			</h2>
+		</div>
+		<div
+			class="cardOuterContainer flex flex-col gap-24 lg:max-h-full lg:gap-12 2xl:gap-[10vh]">
+			<div
+				class="cardContainer cardContainerTop flex flex-col gap-24 lg:min-w-max lg:flex-row lg:items-start lg:gap-[8vw] lg:pl-[15vw] lg:pr-[5vw]">
+				<section
+					itemscope
+					itemtype="https://schema.org/Person"
+					class="personCard relative flex flex-col items-center justify-between gap-6 md:grid md:grid-cols-[210px_minmax(380px,500px)] lg:grid-cols-[max-content_minmax(0,500px)] lg:gap-12">
+					<div
+						class="flex flex-col justify-center gap-3 md:justify-start md:gap-6">
+						<div
+							class="personImage flex items-center justify-center md:justify-start">
+							<Image
+								itemprop="image"
+								src={Sophie}
+								alt="Sophie"
+								class="h-[100px] w-[100px] rounded-xl object-contain sm:h-[120px] sm:w-[120px] lg:h-[150px] lg:w-[150px]"
+							/>
+						</div>
+						<div class="flex flex-col items-center md:items-start">
+							<p
+								itemprop="name"
+								class="text-lg sm:text-2xl lg:text-3xl lg:leading-[0.8]">
+								Sophie
+							</p>
+							<p
+								itemprop="jobTitle"
+								class="text-[0.65rem] uppercase tracking-tight text-primary-foreground md:text-xs lg:text-sm">
+								Illustrator and Graphic Designer
+							</p>
+						</div>
+					</div>
+					<p
+						itemprop="description"
+						class="sectionPersonDesc text-xs tracking-wide text-primary-foreground/50 md:text-sm">
+						Creates hand-drawn illustrations and digital vector arts for
+						websites and apps, and also unique T-shirt and merch designs. She
+						provided us with beautiful and unique illustrations and demonstrated
+						how she can convey messages and feelings through subtle design
+						elements sprinkled throughout the art.
+					</p>
+				</section>
+				<section
+					class="personCard relative flex flex-col items-center justify-between gap-6 md:grid md:grid-cols-[210px_minmax(380px,500px)] lg:grid-cols-[max-content_minmax(0,500px)] lg:gap-12">
+					<div
+						class="flex flex-col justify-center gap-3 md:justify-start md:gap-6">
+						<div
+							class="personImage flex items-center justify-center md:justify-start">
+							<Image
+								src={Arslan}
+								alt="Arslan N."
+								class="h-[100px] w-[100px] rounded-xl object-contain sm:h-[120px] sm:w-[120px] lg:h-[150px] lg:w-[150px]"
+							/>
+						</div>
+						<div class="flex flex-col items-center md:items-start">
+							<p class="text-lg sm:text-2xl lg:text-3xl lg:leading-[0.8]">
+								Arslan N.
+							</p>
+							<p
+								class="text-[0.65rem] uppercase tracking-tight text-primary-foreground md:text-xs lg:text-sm">
+								Graphic and Logo Designer
+							</p>
+						</div>
+					</div>
+					<p
+						class="sectionPersonDesc text-xs tracking-wide text-primary-foreground/50 md:text-sm">
+						Creates different kinds of modern and minimalistic logo designs.
+						Amongst all other logo designers, Arslan provided us with a unique
+						design that is the most effective in communicating our brand message
+						and delivered the work in the shortest amount of time.
+					</p>
+				</section>
+			</div>
+			<div
+				class="cardContainer cardContainerBottom flex flex-col gap-24 lg:min-w-max lg:flex-row lg:items-start lg:gap-[15vw] lg:pl-[35vw] lg:pr-[5vw]">
+				<section
+					class="personCard relative flex flex-col items-center justify-between gap-6 md:grid md:grid-cols-[210px_minmax(380px,500px)] lg:grid-cols-[max-content_minmax(0,500px)] lg:gap-12">
+					<div
+						class="flex flex-col justify-center gap-3 md:justify-start md:gap-6">
+						<div
+							class="personImage flex items-center justify-center md:justify-start">
+							<Image
+								src={Ketrin}
+								alt="Ketrin"
+								class="h-[100px] w-[100px] rounded-xl object-contain sm:h-[120px] sm:w-[120px] lg:h-[150px] lg:w-[150px]"
+							/>
+						</div>
+						<div class="flex flex-col items-center md:items-start">
+							<p class="text-lg sm:text-2xl lg:text-3xl lg:leading-[0.8]">
+								Ketrin L.
+							</p>
+							<p
+								class="text-[0.65rem] uppercase tracking-tight text-primary-foreground md:text-xs lg:text-sm">
+								3d artist and Illustrator
+							</p>
+						</div>
+					</div>
+					<p
+						class="sectionPersonDesc text-xs tracking-wide text-primary-foreground/50 md:text-sm">
+						Creates custom vector illustrations, 3d low-poly icons and scenes,
+						vector tracing for images and also character designs. She provided
+						us with an amazing illustration for the landing page and
+						demonstrated her creativity with the art composition, and also
+						illustration skills with the handling of curves and shapes.
+					</p>
+				</section>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,298 @@
+---
+import NestedSquare from "../../ui/NestedSquare.astro";
+import CreditsHeaderSection from "./CreditsHeaderSection.astro";
+import CreditsArtSection from "./CreditsArtSection.astro";
+import CreditsTextSection from "./CreditsTextSection.astro";
+import CreditsFooterSection from "./CreditsFooterSection.astro";
+import LargeAsterisk from "../../ui/LargeAsterisk.astro";
+---
+
+<div
+	id="horizontalScroll"
+	class="relative flex max-h-[100vh] min-h-full w-full flex-col items-stretch overflow-auto overflow-x-hidden lg:flex-row lg:gap-6 lg:overflow-hidden lg:overflow-x-hidden lg:whitespace-nowrap">
+	<div
+		id="spinner"
+		class="fixed bottom-0 right-0 hidden size-[10vh] max-h-[200px] max-w-[250px] lg:block">
+		<LargeAsterisk />
+	</div>
+
+	<CreditsHeaderSection />
+
+	<section
+		id="sectionMaster"
+		class="relative flex flex-col items-center lg:flex-row lg:whitespace-nowrap lg:pr-[100vw]">
+		<CreditsArtSection />
+		<CreditsTextSection />
+		<CreditsFooterSection />
+	</section>
+</div>
+
+<style is:global>
+	.textTopBottom {
+		writing-mode: vertical-rl;
+		text-orientation: upright;
+	}
+	.sectionSmallLabel {
+		position: absolute;
+		bottom: 100%;
+		transform: translateY(-100%) translateX(200px);
+	}
+	@media (max-width: 1023px) {
+		.sectionSmallLabel {
+			position: relative;
+			bottom: unset;
+			/* transform: translateY(0) translateX(0); */
+		}
+	}
+	#spinner {
+		mix-blend-mode: luminosity;
+		z-index: 999;
+	}
+</style>
+<script>
+	import gsap from "gsap";
+	import ScrollTrigger from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+	ScrollTrigger.config({ ignoreMobileResize: true });
+	gsap.config({
+		force3D: true,
+	});
+	gsap.defaults({
+		overwrite: "auto",
+	});
+
+	import Lenis from "lenis";
+	const horizontalScroll = document.getElementById("horizontalScroll");
+	let lenis: Lenis | null = null;
+
+	const resize = () => {
+		if (window.innerWidth > 1023 && !lenis?.isHorizontal) {
+			lenis?.scrollTo(0, {
+				immediate: true,
+			});
+			lenis?.destroy();
+			lenis = new Lenis({
+				wrapper: horizontalScroll!,
+				orientation: "horizontal",
+				gestureOrientation: "both"
+			});
+			lenis?.on("scroll", ScrollTrigger.update);
+			gsap.ticker.add((time) => {
+				lenis?.raf(time * 1000);
+			});
+		} else if (window.innerWidth < 1024 && (!lenis || lenis?.isHorizontal)) {
+			lenis?.scrollTo(0, {
+				immediate: true,
+			});
+			lenis?.destroy();
+			lenis = new Lenis({
+				wrapper: horizontalScroll!,
+			});
+			lenis.on("scroll", ScrollTrigger.update);
+			gsap.ticker.add((time) => {
+				lenis?.raf(time * 1000);
+			});
+		}
+	};
+
+	resize();
+	window.addEventListener("resize", resize);
+
+	const header = document.getElementById("header");
+	const artSection = document.getElementById("artSection");
+	const sectionContainer = gsap.utils.toArray(
+		".sectionContainer",
+	) as HTMLElement[];
+	const sectionMaster = document.getElementById("sectionMaster");
+	const sectionSmallLabel = gsap.utils.toArray(
+		".sectionSmallLabel",
+	) as HTMLElement[];
+	const personCard = gsap.utils.toArray(".personCard") as HTMLElement[];
+	const spinner = document.getElementById("spinner");
+
+	const mm = gsap.matchMedia();
+
+	mm.add(
+		{
+			isMobile: "(max-width: 1023px)",
+			isDesktop: "(min-width: 1024px)",
+			reduceMotion: "(prefers-reduced-motion: reduce)",
+		},
+		(context) => {
+			const isMobile = !!context.conditions?.isMobile;
+			const reduceMotion = !!context.conditions?.reduceMotion;
+			if (isMobile || reduceMotion) {
+				sectionSmallLabel.forEach((label) => {
+					label.style.transform = "translateY(-100%) translateX(0)";
+				});
+				return;
+			}
+
+			gsap.to(header, {
+				scrollTrigger: {
+					trigger: header,
+					endTrigger: artSection,
+					horizontal: true,
+					scroller: horizontalScroll,
+					pin: true,
+					pinSpacing: false,
+					scrub: 1,
+					invalidateOnRefresh: true,
+				},
+				autoAlpha: 0,
+				ease: "none",
+			});
+
+			for (let i = 0; i < sectionContainer.length; i++) {
+				gsap.set(sectionSmallLabel[i], {
+					x: () => window.innerWidth / 4,
+					yPercent: -100,
+				});
+				gsap.fromTo(
+					sectionSmallLabel[i],
+					{
+						x: () => window.innerWidth / 4,
+						yPercent: -100,
+					},
+					{
+						scrollTrigger: {
+							trigger: sectionContainer[i],
+							start: () => `left left+=${window.innerWidth * 0.5}`,
+							horizontal: true,
+							scroller: horizontalScroll,
+							scrub: 1,
+							invalidateOnRefresh: true,
+						},
+						x: 0,
+						ease: "none",
+					},
+				);
+
+				gsap.to(sectionContainer[i], {
+					scrollTrigger: {
+						trigger: sectionContainer[i],
+						start: () => `left left+=${window.innerWidth * 0.5}`,
+						horizontal: true,
+						scroller: horizontalScroll,
+						scrub: 1,
+						invalidateOnRefresh: true,
+					},
+					borderTopLeftRadius: 250,
+					borderBottomLeftRadius: 250,
+					ease: "none",
+				});
+
+				if (i < 1) continue;
+				gsap.to(sectionContainer[i], {
+					scrollTrigger: {
+						trigger: sectionContainer[i],
+						start: () => `left right`,
+						horizontal: true,
+						scroller: horizontalScroll,
+						scrub: 1,
+						invalidateOnRefresh: true,
+					},
+					ease: "none",
+					x: -100,
+				});
+			}
+
+			const offsetArray = [14, 8, 4, 9, 8, 4, 14];
+
+			for (let i = 0; i < personCard.length; i++) {
+				const offsetRatio = offsetArray[i % offsetArray.length];
+				gsap.set(personCard[i], {
+					x: () => window.innerWidth / offsetRatio,
+				});
+				gsap.to(personCard[i], {
+					scrollTrigger: {
+						trigger: personCard[i],
+						start: () => `left left+=${window.innerWidth * 0.75}`,
+						horizontal: true,
+						scroller: horizontalScroll,
+						invalidateOnRefresh: true,
+						scrub: 1,
+					},
+					x: 0,
+				});
+				if (i < 1) continue;
+				gsap.set(personCard[i], {
+					autoAlpha: 0,
+					filter: "blur(6px)",
+				});
+				ScrollTrigger.create({
+					trigger: personCard[i],
+					start: () => `left left+=${window.innerWidth * 0.75}`,
+					onEnter: () => {
+						gsap.fromTo(
+							personCard[i],
+							{
+								autoAlpha: 0.4,
+								filter: "blur(6px)",
+							},
+							{
+								autoAlpha: 1,
+								filter: "blur(0px)",
+								ease: "power3.out",
+								duration: 0.5,
+							},
+						);
+					},
+					onLeaveBack: () => {
+						gsap.to(personCard[i], {
+							autoAlpha: 0,
+							filter: "blur(6px)",
+							ease: "power3.out",
+							duration: 0.5,
+						});
+					},
+					horizontal: true,
+					scroller: horizontalScroll,
+					invalidateOnRefresh: true,
+				});
+			}
+
+			gsap.set(spinner, {
+				xPercent: 50,
+				yPercent: 50,
+			});
+
+			const rotateWheel = gsap.to(spinner, {
+				rotation: 360,
+				transformOrigin: "center",
+				duration: 7,
+				repeat: -1,
+				ease: "none",
+				overwrite: false,
+				onReverseComplete: function () {
+					this.progress(1);
+				},
+				// paused: true,
+			});
+
+			gsap.to(spinner, {
+				scrollTrigger: {
+					end: () =>
+						`+=${sectionMaster!.offsetWidth - (window.innerWidth - header!.offsetWidth - parseFloat(getComputedStyle(horizontalScroll!).gap.slice(0, -2)))}`,
+					horizontal: true,
+					scroller: horizontalScroll,
+					scrub: true,
+					invalidateOnRefresh: true,
+					onUpdate: (self) => {
+						let rotateSpeed = self.getVelocity() / 200;
+						const dir = self.direction;
+						if (
+							Math.abs(rotateSpeed) < 1 ||
+							self.progress === 0 ||
+							self.progress === 1
+						)
+							rotateSpeed = dir;
+						rotateWheel.timeScale(rotateSpeed);
+					},
+				},
+				x: () => -window.innerWidth,
+				ease: "none",
+			});
+		},
+	);
+</script>

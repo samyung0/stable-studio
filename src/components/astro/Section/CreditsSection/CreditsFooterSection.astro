@@ -1,0 +1,65 @@
+---
+import * as m from "@/paraglide/messages";
+import { cn } from "@/lib/utils";
+import { Image } from "astro:assets";
+import Instagram from "../../ui/Instagram.astro";
+import Mail from "../../ui/Mail.astro";
+import Meta from "../../ui/Meta.astro";
+import Twitter from "../../ui/Twitter.astro";
+---
+
+<section
+  id="footer"
+	class="lg:absolute lg:right-0 flex min-h-screen lg:w-[100vw] items-center justify-center">
+	<div class="flex h-full flex-col items-center justify-center gap-12 lg:-ml-[50px]">
+		<a href="/" class="h-[80px] md:h-[100px]">
+			<Image
+				src="/stablestudio-large.svg"
+				alt="Stable Studio"
+				width="200"
+				height="200"
+				class="size-full object-contain"
+			/>
+		</a>
+		<ul class="flex items-center gap-3 text-base font-normal">
+			<li>
+				<a
+					class="inline-block size-6 md:size-8 stroke-1 text-primary/70 transition-colors duration-300 hover:text-primary"
+					href="mailto:samyung@stablestudio.org">
+					<span class="sr-only">Email Address</span>
+					<Mail />
+				</a>
+			</li>
+			<li>
+				<a
+					class="inline-block size-6 md:size-8 stroke-1 text-primary/70 transition-colors duration-300 hover:text-primary"
+					href="https://x.com/stablestudioSS">
+					<span class="sr-only">Twitter Link</span>
+					<Twitter />
+				</a>
+			</li>
+			<li>
+				<a
+					class="inline-block size-6 md:size-8 stroke-1 text-primary/70 transition-colors duration-300 hover:text-primary"
+					href="https://www.facebook.com/profile.php?id=61567128136714">
+					<span class="sr-only">Facebook Link</span>
+					<Meta />
+				</a>
+			</li>
+			<li>
+				<a
+					class="inline-block size-6 md:size-8 stroke-1 text-primary/70 transition-colors duration-300 hover:text-primary"
+					href="https://www.instagram.com/stablestudioss/">
+					<span class="sr-only">Instagram Link</span>
+					<Instagram />
+				</a>
+			</li>
+			<li
+				class={cn(
+					"-translate-y-[2px] text-primary/70 duration-300 transition-colors hover:text-primary",
+				)}>
+				<a href="https://sam.partialty.com">{m.spry_direct_stork_devour()}</a>
+			</li>
+		</ul>
+	</div>
+</section>
