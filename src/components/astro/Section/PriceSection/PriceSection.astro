@@ -30,13 +30,14 @@ const isChinese = isHK || isTW || isCN || isZH;
 							"whitespace-nowrap text-center",
 							!isBahasa && "text-[6vw] leading-[1] 3xl:text-[100px]",
 							isBahasa && "text-[4vw] leading-[1] 3xl:text-[100px]",
-							isChinese && "text-[8vw] sm:text-[6vw] sm:leading-[1]"
+							isChinese && "text-[8vw] sm:text-[6vw] sm:leading-[1]",
 						)}>{m.merry_clean_jannes_lock()}</span
 					>
 					<span
 						class={cn(
 							"whitespace-nowrap text-center",
-							!isBahasa && "text-[3.5vw] sm:text-[2.5vw] sm:leading-[1.2] 3xl:text-4xl",
+							!isBahasa &&
+								"text-[3.5vw] sm:text-[2.5vw] sm:leading-[1.2] 3xl:text-4xl",
 							isBahasa && "text-[1.8vw] leading-[1.2] 3xl:text-2xl",
 						)}>
 						{m.blue_factual_panther_buzz()}
@@ -66,7 +67,7 @@ const isChinese = isHK || isTW || isCN || isZH;
 							{m.actual_great_parrot_heart()}
 						</h2>
 						<div class="border-t border-muted-foreground"></div>
-						<ul class="space-y-2 md:space-y-3">
+						<ul class="flex flex-col gap-2 md:gap-3">
 							<li class="flex items-center gap-2 text-primary-foreground">
 								<span
 									class={cn(
@@ -152,7 +153,7 @@ const isChinese = isHK || isTW || isCN || isZH;
 						</h2>
 						<div class="border-t border-muted-foreground/50"></div>
 						<div class="flex gap-12">
-							<ul class="space-y-3">
+							<ul class="flex flex-col gap-2 md:gap-3">
 								<li class="flex items-center gap-2">
 									<span
 										class={cn(

@@ -34,8 +34,6 @@ import { cookies } from "./lib/clientCookies";
 export const onRequest =
 	import.meta.env.MODE === "development" &&
 	defineMiddleware(async (ctx, next) => {
-		console.log(ctx.url.pathname)
-
 		const firstSegment = ctx.url.pathname.split("/")[1] as string | undefined;
 		if (
 			firstSegment?.startsWith("_") ||

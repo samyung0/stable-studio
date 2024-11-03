@@ -1,30 +1,46 @@
 ---
-import NestedSquare from "../../ui/NestedSquare.astro";
 import CreditsHeaderSection from "./CreditsHeaderSection.astro";
 import CreditsArtSection from "./CreditsArtSection.astro";
 import CreditsTextSection from "./CreditsTextSection.astro";
 import CreditsFooterSection from "./CreditsFooterSection.astro";
 import LargeAsterisk from "../../ui/LargeAsterisk.astro";
+import ArrowBothVertical from "../../ui/ArrowBothVertical.astro";
 ---
 
 <div
 	id="horizontalScroll"
-	class="relative flex max-h-[100vh] min-h-full w-full flex-col items-stretch overflow-auto overflow-x-hidden lg:flex-row lg:gap-6 lg:overflow-hidden lg:overflow-x-hidden lg:whitespace-nowrap">
+	class="relative h-screen w-screen overflow-auto overflow-x-hidden lg:flex lg:overflow-hidden lg:overflow-x-hidden">
 	<div
-		id="spinner"
-		class="fixed bottom-0 right-0 hidden size-[10vh] max-h-[200px] max-w-[250px] lg:block">
-		<LargeAsterisk />
+		class="pointer-events-none relative z-20 pb-[100vh] lg:pb-0 lg:pr-[100vw]">
+		<div class="flex w-full flex-col items-stretch lg:flex-row lg:bg-primary">
+			<div
+				id="spinner"
+				class="fixed bottom-0 right-0 hidden size-[10vh] max-h-[200px] max-w-[250px] lg:block">
+				<LargeAsterisk />
+			</div>
+
+			<CreditsHeaderSection />
+
+			<section class="relative flex flex-col items-center lg:flex-row">
+				<div
+					id="sectionMaster"
+					class="relative flex h-full w-full flex-col items-center lg:flex-row">
+					<CreditsArtSection />
+					<CreditsTextSection />
+					<div
+						class="absolute right-0 top-0 flex h-full w-[100px] items-center justify-center">
+						<p
+							class="flex flex-col items-center justify-center gap-4 uppercase text-primary-foreground">
+							<span class="textTopBottom">speed</span>
+							<span class="h-[130px] w-[12px]"><ArrowBothVertical /></span>
+							<span class="textTopBottom">performance</span>
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
 	</div>
-
-	<CreditsHeaderSection />
-
-	<section
-		id="sectionMaster"
-		class="relative flex flex-col items-center lg:flex-row lg:whitespace-nowrap lg:pr-[100vw]">
-		<CreditsArtSection />
-		<CreditsTextSection />
-		<CreditsFooterSection />
-	</section>
+	<CreditsFooterSection />
 </div>
 
 <style is:global>
@@ -74,7 +90,8 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 			lenis = new Lenis({
 				wrapper: horizontalScroll!,
 				orientation: "horizontal",
-				gestureOrientation: "both"
+				gestureOrientation: "both",
+				syncTouch: true,
 			});
 			lenis?.on("scroll", ScrollTrigger.update);
 			gsap.ticker.add((time) => {
@@ -87,6 +104,7 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 			lenis?.destroy();
 			lenis = new Lenis({
 				wrapper: horizontalScroll!,
+				syncTouch: true,
 			});
 			lenis.on("scroll", ScrollTrigger.update);
 			gsap.ticker.add((time) => {
@@ -135,9 +153,11 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 					horizontal: true,
 					scroller: horizontalScroll,
 					pin: true,
+					start: "left left",
+					end: "left left",
 					pinSpacing: false,
 					scrub: 1,
-					invalidateOnRefresh: true,
+					invalidateOnRefresh: false,
 				},
 				autoAlpha: 0,
 				ease: "none",
@@ -145,13 +165,13 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 
 			for (let i = 0; i < sectionContainer.length; i++) {
 				gsap.set(sectionSmallLabel[i], {
-					x: () => window.innerWidth / 4,
+					x: () => window.innerWidth / 6,
 					yPercent: -100,
 				});
 				gsap.fromTo(
 					sectionSmallLabel[i],
 					{
-						x: () => window.innerWidth / 4,
+						x: () => window.innerWidth / 6,
 						yPercent: -100,
 					},
 					{
@@ -161,7 +181,7 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 							horizontal: true,
 							scroller: horizontalScroll,
 							scrub: 1,
-							invalidateOnRefresh: true,
+							invalidateOnRefresh: false,
 						},
 						x: 0,
 						ease: "none",
@@ -175,7 +195,7 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 						horizontal: true,
 						scroller: horizontalScroll,
 						scrub: 1,
-						invalidateOnRefresh: true,
+						invalidateOnRefresh: false,
 					},
 					borderTopLeftRadius: 250,
 					borderBottomLeftRadius: 250,
@@ -190,7 +210,7 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 						horizontal: true,
 						scroller: horizontalScroll,
 						scrub: 1,
-						invalidateOnRefresh: true,
+						invalidateOnRefresh: false,
 					},
 					ease: "none",
 					x: -100,
@@ -210,7 +230,7 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 						start: () => `left left+=${window.innerWidth * 0.75}`,
 						horizontal: true,
 						scroller: horizontalScroll,
-						invalidateOnRefresh: true,
+						invalidateOnRefresh: false,
 						scrub: 1,
 					},
 					x: 0,
@@ -248,7 +268,7 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 					},
 					horizontal: true,
 					scroller: horizontalScroll,
-					invalidateOnRefresh: true,
+					invalidateOnRefresh: false,
 				});
 			}
 
@@ -272,12 +292,11 @@ import LargeAsterisk from "../../ui/LargeAsterisk.astro";
 
 			gsap.to(spinner, {
 				scrollTrigger: {
-					end: () =>
-						`+=${sectionMaster!.offsetWidth - (window.innerWidth - header!.offsetWidth - parseFloat(getComputedStyle(horizontalScroll!).gap.slice(0, -2)))}`,
+					end: `+=${sectionMaster!.offsetWidth - (window.innerWidth - header!.offsetWidth - parseFloat(getComputedStyle(horizontalScroll!).gap.slice(0, -2)))}`,
 					horizontal: true,
 					scroller: horizontalScroll,
 					scrub: true,
-					invalidateOnRefresh: true,
+					invalidateOnRefresh: false,
 					onUpdate: (self) => {
 						let rotateSpeed = self.getVelocity() / 200;
 						const dir = self.direction;

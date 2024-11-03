@@ -9,8 +9,8 @@ const imageAnimationRight = (
 
 	mm.add(
 		{
-			isMobile: "(max-width: 767px)",
-			isDesktop: "(min-width: 768px)",
+			isMobile: "(max-width: 1023px)",
+			isDesktop: "(min-width: 1024px)",
 			reduceMotion: "(prefers-reduced-motion: reduce)",
 		},
 		(context) => {

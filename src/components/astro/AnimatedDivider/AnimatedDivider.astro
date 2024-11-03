@@ -1,7 +1,5 @@
 ---
-import Asterisk from "./Asterisk.astro";
 import ArrowRight from "./ArrowRight.astro";
-import Plus from "./Plus.astro";
 import ArrowBoth from "./ArrowBoth.astro";
 import ArrowBothShort from "./ArrowBothShort.astro";
 
@@ -17,25 +15,21 @@ const isZH = isHK || isCN || isTW || Astro.locals.paraglide.lang === "zh";
 
 <div
 	class={cn(
-		"flex items-center gap-1 text-flatgray2",
+		"flex items-center gap-1 text-flatgray2 animate-infinite-scroll",
 		isZH && "font-sans font-semibold text-xs sm:text-sm",
 		isViet && "overflow-visible",
 	)}>
 	<span class="animatedDividerText whitespace-nowrap"
 		>{m.lazy_born_gadfly_work()}</span
 	>
-	<span class="pb-1">
-		<Asterisk />
-	</span>
+	<span class="translate-y-[2px]"> * </span>
 	<span class="animatedDividerText whitespace-nowrap"
 		>{m.acidic_factual_angelfish_charm()}</span
 	>
 	<span class="pb-1">
 		<ArrowRight />
 	</span>
-	<span class="pb-1">
-		<Asterisk />
-	</span>
+	<span class="translate-y-[2px]"> * </span>
 	<span class="animatedDividerText whitespace-nowrap"
 		>{m.tame_slimy_angelfish_pray()}</span
 	>
@@ -45,15 +39,11 @@ const isZH = isHK || isCN || isTW || Astro.locals.paraglide.lang === "zh";
 	<span class="animatedDividerText whitespace-nowrap"
 		>{m.this_east_lemming_quiz()}</span
 	>
-	<span class="pb-1">
-		<Asterisk />
-	</span>
+	<span class="translate-y-[2px]"> * </span>
 	<span class="animatedDividerText whitespace-nowrap"
 		>{m.knotty_sea_shrike_scoop()}</span
 	>
-	<span class="pb-1">
-		<Plus />
-	</span>
+	<span class="-translate-y-[1px]"> + </span>
 	<span class="animatedDividerText whitespace-nowrap"
 		>{m.acidic_factual_angelfish_charm()}</span
 	>
@@ -63,9 +53,7 @@ const isZH = isHK || isCN || isTW || Astro.locals.paraglide.lang === "zh";
 	<span class="animatedDividerText whitespace-nowrap"
 		>{m.teal_loved_fireant_trim()}</span
 	>
-	<span class="pb-1">
-		<Asterisk />
-	</span>
+	<span class="translate-y-[2px]"> * </span>
 	<span class="pb-1">
 		<ArrowBoth />
 	</span>

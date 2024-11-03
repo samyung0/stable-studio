@@ -44,8 +44,8 @@ import ArrowDown from "../../ui/ArrowDown.astro";
 			ease: "power4.out",
 			overwrite: true,
 			onComplete: () => {
-				window?.ctaSectionTimeline();
-				window?.footerTimelineFn();
+				window.ctaSectionTimeline?.();
+				window.footerTimelineFn?.();
 			},
 		});
 		gsap.to(faqArrow, {

@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import "@/styles/preflight.css";
 
 // import { pwaInfo } from "virtual:pwa-info";
 ---
@@ -41,7 +42,7 @@ import "@/styles/global.css";
 		{pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />} -->
 	</head>
 	
-	<body class="max-w-[100vw] overflow-auto overflow-x-hidden">
+	<body class="max-w-screen overflow-auto overflow-x-hidden">
 		<slot />
 		
 		<script is:inline type="text/javascript">/*! modernizr 3.6.0 (Custom Build) | MIT *

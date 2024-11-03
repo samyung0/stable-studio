@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import ConcaveSquare from "../../ui/ConcaveSquare.astro";
 import * as m from "@/paraglide/messages";
 
@@ -8,17 +7,17 @@ const year = new Date().getFullYear();
 
 <footer
 	id="footer"
-	class="flex h-[150px] flex-col font-sans ~mt-6/24 ~pb-5/10 sm:h-[300px]">
+	class="flex h-full flex-col font-sans ~pt-6/24 ~pb-5/10 justify-between">
 	<div id="footerIconContainer" class="relative flex flex-col">
 		<a
 			id="footerIcon"
 			href="#top"
-			class="absolute left-0 top-0 size-[16vmin] max-h-[100px] max-w-[100px]">
+			class="size-[16vmin] max-h-[100px] max-w-[100px]">
 			<span class="sr-only">{m.dizzy_new_tuna_enchant()}</span>
 			<ConcaveSquare />
 		</a>
 	</div>
-	<div class="mt-auto flex w-full items-end justify-between self-end">
+	<div class="flex w-full items-end justify-between">
 		<a
 			href="https://stablestudio.org"
 			class="size-11 translate-y-3 p-3 opacity-35 transition-opacity duration-300 ease-in-out hover:opacity-100 md:size-14">
@@ -44,6 +43,7 @@ const year = new Date().getFullYear();
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	gsap.registerPlugin(ScrollTrigger);
 
+	const getstarted = document.getElementById("getstarted");
 	const footer = document.getElementById("footer");
 	const footerIcon = document.getElementById("footerIcon");
 	const footerIconContainer = document.getElementById("footerIconContainer");
@@ -57,16 +57,15 @@ const year = new Date().getFullYear();
 		timeline = gsap
 			.timeline({
 				scrollTrigger: {
-					trigger: footer,
-					start: "top bottom-=50",
-					end: "bottom bottom",
+					trigger: getstarted,
+					start: "bottom bottom",
+					end: `+=${footer!.offsetHeight}`,
 					scrub: 1,
-					invalidateOnRefresh: true,
-					// markers: true,
+					invalidateOnRefresh: false,
 				},
 			})
 			.to(footerIcon, {
-				x: () => `${footerIconContainer?.offsetWidth ?? 0}px`,
+				x: `${footerIconContainer?.offsetWidth ?? 0}px`,
 				rotate: 360,
 				ease: "none",
 			});

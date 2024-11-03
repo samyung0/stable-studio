@@ -10,7 +10,7 @@ const isBahasa = Astro.locals.paraglide.lang === "id";
 const isViet = Astro.locals.paraglide.lang === "vi";
 const isTagalog = Astro.locals.paraglide.lang === "tl";
 
-const isSmall = isBahasa || isViet || isTagalog;
+const isSmall = true;
 ---
 
 <div
@@ -124,7 +124,7 @@ const isSmall = isBahasa || isViet || isTagalog;
 					id="processScroll"
 					class={cn(
 						"flex max-h-full flex-1 flex-col gap-0 rounded-xl bg-card xl:gap-[4vw] overflow-auto",
-						!isSmall && "md:min-h-[40vh] md:flex-row",
+						!isSmall && "md:min-h-[40vh] lg:min-h-[60vh] md:flex-row",
 						isSmall && "lg:min-h-[40vh] lg:flex-row",
 					)}>
 					<ProcessSectionLeft />
@@ -172,6 +172,8 @@ const isSmall = isBahasa || isViet || isTagalog;
 
 	const lenis = new Lenis({
 		wrapper: document.getElementById("processScroll")!,
+		eventsTarget: document.getElementById("mainScroll")!,
+		lerp: 0.2,
 		overscroll: true,
 	});
 
@@ -252,7 +254,7 @@ const isSmall = isBahasa || isViet || isTagalog;
 			end: `+=${scrollDistancePerCard * processLeftChildren.length + window.innerHeight}`,
 			scrub: true,
 			// markers: true,
-			invalidateOnRefresh: true,
+			invalidateOnRefresh: false,
 			onUpdate: progressWheelAnimation.bind(null, rotateWheel),
 		},
 		defaults: { ease: "none", overwrite: "auto" },
@@ -294,6 +296,8 @@ const isSmall = isBahasa || isViet || isTagalog;
 				processTitle[indexToHide],
 				processTitle.filter((_, i) => i !== indexToShow && i !== indexToHide),
 			);
+
+			lenis?.resize();
 		}, i);
 	}
 

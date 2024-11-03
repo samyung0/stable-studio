@@ -54,9 +54,13 @@ const isChinese = isHK || isTW || isCN || isZH;
 				<slot name="description" />
 				{
 					subServices && (
-						<ul class="serviceSectionSub grid grid-cols-[min-content_1fr] divide-y divide-muted-foreground/50 pt-3 text-primary md:pt-4">
+						<ul class="serviceSectionSub grid grid-cols-[min-content_1fr] pt-3 text-primary md:pt-4">
 							{subServices.map((subService, index) => (
-								<li class="col-span-2 grid grid-cols-[0px_1fr] gap-6 py-2 md:gap-8 md:py-4">
+								<li
+									class={cn(
+										"col-span-2 grid grid-cols-[0px_1fr] gap-6 border-muted-foreground/50 py-2 md:gap-8 md:py-4",
+										index < subServices.length - 1 && "border-b",
+									)}>
 									<span class="whitespace-nowrap text-sm md:text-base">
 										{toRoman(index + 1)}
 									</span>
@@ -139,13 +143,19 @@ const isChinese = isHK || isTW || isCN || isZH;
 	const heightArray = [] as number[];
 	const finalPos = [0] as number[];
 	let sum = 0;
+	const sectionHeadHeightArr = [] as number[];
+	const contentHeightArr = [] as number[];
+	for (let i = 0; i < sectionHead.length; i++) {
+		sectionHeadHeightArr.push(sectionHead[i].offsetHeight);
+		contentHeightArr.push(serviceSectionHeader[i].offsetHeight);
+	}
 	for (let i = 0; i < serviceSection.length - 1; i++) {
 		gsap.to(serviceContent[i], {
 			autoAlpha: window.innerWidth >= 1280 ? 0 : 1,
 			scrollTrigger: {
 				trigger: container,
-				start: `top+=${heightArray.reduce((prev, cur) => prev + cur, 0) - sum + serviceContent[i].offsetHeight * 0.3} top`,
-				end: `+=${sum + serviceContent[i].offsetHeight * 0.7}`,
+				start: `top+=${heightArray.reduce((prev, cur) => prev + cur, 0) - sum + sectionHeadHeightArr[i] * 0.3} top`,
+				end: `+=${sum + sectionHeadHeightArr[i] * 0.7}`,
 				// markers: true,
 				// id: `serviceContent${i}`,
 				scrub: 1,
@@ -162,9 +172,8 @@ const isChinese = isHK || isTW || isCN || isZH;
 			ease: "power2.out",
 		});
 
-		const contentHeight = serviceSectionHeader[i].offsetHeight;
 		heightArray.push(sectionHead[i].offsetHeight);
-		displayingArray.push(padding + contentHeight + 1);
+		displayingArray.push(padding + contentHeightArr[i] + 1);
 		sum += displayingArray[i];
 		if (serviceSection[i + 1])
 			serviceSection[i + 1].style.setProperty("--self-offset", `${sum}px`);

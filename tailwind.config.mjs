@@ -96,9 +96,14 @@ export default {
 					"66%": { transform: "scale(0.8)" },
 					"100%": { transform: "scale(1)" },
 				},
+				"infinite-scroll": {
+					from: { transform: "translateX(0)" },
+					to: { transform: "translateX(-100%)" },
+				},
 			},
 			animation: {
 				"pop-blob": "pop-blob 5s infinite",
+				"infinite-scroll": "infinite-scroll 25s linear infinite",
 			},
 		},
 	},

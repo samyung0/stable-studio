@@ -125,6 +125,8 @@ const isChinese = isHK || isTW || isCN || isZH;
 	) as SVGAnimateElement[];
 
 	const openSidenav = () => {
+		window.lenis?.stop();
+		console.log(window.lenis)
 		window.sidenavOpen = true;
 		sidenavAnimateOpen.forEach((el) => el.beginElement());
 		gsap.set(sidenav, { display: "flex" });
@@ -144,6 +146,7 @@ const isChinese = isHK || isTW || isCN || isZH;
 	};
 
 	const closeSidenav = () => {
+		window.lenis?.start();
 		window.sidenavOpen = false;
 		sidenavAnimateClose.forEach((animate) => animate.beginElement());
 		gsap.to(sidenav, {

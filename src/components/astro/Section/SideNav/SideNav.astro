@@ -7,7 +7,7 @@ import * as m from "@/paraglide/messages";
 
 <nav
 	id="sidenav"
-	class="fixed left-0 top-0 z-[100] hidden size-full h-full items-stretch justify-end">
+	class="pointer-events-auto fixed bottom-0 left-0 top-0 z-[100] hidden size-full h-[100vh] items-stretch justify-end">
 	<div
 		id="sidenavScroll"
 		class="relative flex max-h-full min-w-full max-w-full translate-x-full flex-col gap-7 overflow-auto bg-primary px-6 py-6 text-primary-foreground sm:min-w-[60vw] sm:max-w-[70vw] md:min-w-[35vw] md:px-16 md:py-28 lg:max-w-[50vw] 2xl:max-w-[30vw]">
@@ -114,7 +114,10 @@ import * as m from "@/paraglide/messages";
 
 	const lenis = new Lenis({
 		wrapper: sidenavScroll!,
+		overscroll: false,
 	});
+
+	lenis.on("scroll", ScrollTrigger.update);
 
 	gsap.ticker.add((time) => {
 		lenis.raf(time * 1000);

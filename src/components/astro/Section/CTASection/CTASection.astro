@@ -31,23 +31,26 @@ const isSmall = isBahasa || isViet || isTagalog;
 	<div
 		id="ctaSection"
 		class={cn(
-			"relative grid w-full justify-between gap-[5vw] px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]",
-			!isSmall && "ctaSectionBreakSmall",
-			isSmall && "ctaSectionBreakLarge",
+			"relative grid w-full justify-between px-6 sm:px-12 md:px-16 3xl:max-w-[95vw]",
+			!isSmall && "ctaSectionBreakSmall gap-[5vw] ",
+			isSmall && "ctaSectionBreakLarge sm:gap-[5vw]",
 		)}>
 		<p
 			class={cn(
-				"mutedText relative left-0 col-start-[2] row-start-1 ml-auto",
-				!isSmall && "lg:col-start-[1] lg:mx-auto",
-				isSmall && "xl:col-start-[1] xl:mx-auto",
+				"mutedText relative left-0 row-start-1",
+				!isSmall && "lg:col-start-1 col-start-2 ml-auto lg:mx-auto",
+				isSmall &&
+					"xl:col-start-1 col-start-1 sm:ml-auto sm:col-start-2 xl:mx-auto",
 			)}>
 			/ {m.getstarted2()} /
 		</p>
 		<div
 			class={cn(
-				"col-span-2 col-start-1 row-start-1 md:-mt-4",
-				!isSmall && "lg:col-span-1 lg:col-start-2 lg:-mt-2",
-				isSmall && "xl:col-span-1 xl:col-start-2 xl:-mt-2",
+				"col-start-1 md:-mt-4",
+				!isSmall &&
+					"row-start-1 col-span-2 lg:col-span-1 lg:col-start-2 lg:-mt-2",
+				isSmall &&
+					"sm:col-start-1 sm:row-start-1 sm:col-span-2 xl:col-span-1 xl:col-start-2 xl:-mt-2",
 			)}>
 			<header
 				class={cn(
@@ -239,17 +242,27 @@ const isSmall = isBahasa || isViet || isTagalog;
 </section>
 
 <style is:global>
-	.ctaSectionBreakSmall,
-	.ctaSectionBreakLarge {
+	.ctaSectionBreakSmall {
 		grid-template-columns: auto min-content;
 	}
-	@media screen and (min-width: 64rem) {
+	.ctaSectionBreakLarge {
+		grid-template-columns: 1fr;
+		grid-template-rows: min-content 1fr;
+	}
+	@media (min-width: 40rem) {
+		/* sm, 640px */
+		.ctaSectionBreakLarge {
+			grid-template-columns: auto min-content;
+			grid-template-rows: unset;
+		}
+	}
+	@media (min-width: 64rem) {
 		/* lg, 1024px */
 		.ctaSectionBreakSmall {
 			grid-template-columns: 10vw 1fr;
 		}
 	}
-	@media screen and (min-width: 80rem) {
+	@media (min-width: 80rem) {
 		/* xl, 1280px */
 		.ctaSectionBreakLarge {
 			grid-template-columns: 10vw 1fr;
@@ -298,7 +311,7 @@ const isSmall = isBahasa || isViet || isTagalog;
 					end: "top 30%",
 					scrub: 1,
 					// markers: true,
-					invalidateOnRefresh: true,
+					invalidateOnRefresh: false,
 				},
 				defaults: {
 					ease: "none",

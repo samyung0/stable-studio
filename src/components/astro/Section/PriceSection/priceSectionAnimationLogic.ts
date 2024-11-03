@@ -65,7 +65,7 @@ const priceSectionAnimationLogic = (processTimeline: gsap.core.Timeline, ratio: 
 					end: `top 35%`,
 					id: "timelineMain",
 					scrub: 1,
-					invalidateOnRefresh: true,
+					invalidateOnRefresh: false,
 				},
 			});
 			gsap.set(priceAnimationContainer, {
@@ -99,7 +99,7 @@ const priceSectionAnimationLogic = (processTimeline: gsap.core.Timeline, ratio: 
 					end: `bottom top`,
 					scrub: 1,
 					id: "timelineEnd",
-					invalidateOnRefresh: true,
+					invalidateOnRefresh: false,
 				},
 				defaults: { overwrite: "auto", ease: "none" },
 			});
