@@ -254,7 +254,7 @@ const isSmall = true;
 			end: `+=${scrollDistancePerCard * processLeftChildren.length + window.innerHeight}`,
 			scrub: true,
 			// markers: true,
-			invalidateOnRefresh: false,
+			invalidateOnRefresh: true,
 			onUpdate: progressWheelAnimation.bind(null, rotateWheel),
 		},
 		defaults: { ease: "none", overwrite: "auto" },
