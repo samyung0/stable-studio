@@ -170,10 +170,11 @@ const isSmall = true;
 	import priceSectionAnimationLogic from "@/components/astro/Section/PriceSection/priceSectionAnimationLogic";
 	import Lenis from "lenis";
 	
+	const processScroll = document.getElementById("processScroll");
 	let lenis: Lenis | null = null;
 	if (
 		!window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
-		processScroll!.scrollHeight > processScroll.offsetHeight
+		processScroll!.scrollHeight > processScroll!.offsetHeight
 	) {
 		lenis = new Lenis({
 			wrapper: document.getElementById("processScroll")!,
