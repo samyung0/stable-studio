@@ -149,37 +149,6 @@ const isChinese = isHK || isTW || isCN || isZH;
 		sectionHeadHeightArr.push(sectionHead[i].offsetHeight);
 		contentHeightArr.push(serviceSectionHeader[i].offsetHeight);
 	}
-	for (let i = 0; i < serviceSection.length - 1; i++) {
-		gsap.to(serviceContent[i], {
-			autoAlpha: window.innerWidth >= 1280 ? 0 : 1,
-			scrollTrigger: {
-				trigger: container,
-				start: `top+=${heightArray.reduce((prev, cur) => prev + cur, 0) - sum + sectionHeadHeightArr[i] * 0.3} top`,
-				end: `+=${sum + sectionHeadHeightArr[i] * 0.7}`,
-				// markers: true,
-				// id: `serviceContent${i}`,
-				scrub: 1,
-				invalidateOnRefresh: false,
-				onEnter: () => {
-					serviceLabel[i + 1]?.classList.add("serviceLabelActive");
-					serviceLabel[i]?.classList.remove("serviceLabelActive");
-				},
-				onLeaveBack: () => {
-					serviceLabel[i]?.classList.add("serviceLabelActive");
-					serviceLabel[i + 1]?.classList.remove("serviceLabelActive");
-				},
-			},
-			ease: "power2.out",
-		});
-
-		heightArray.push(sectionHead[i].offsetHeight);
-		displayingArray.push(padding + contentHeightArr[i] + 1);
-		sum += displayingArray[i];
-		if (serviceSection[i + 1])
-			serviceSection[i + 1].style.setProperty("--self-offset", `${sum}px`);
-	}
-
-	const negativeOffset = window.innerWidth >= 1280 ? 60 : 0;
 
 	const globalSectionHead = document.querySelector(
 		".sectionHead",
@@ -187,67 +156,122 @@ const isChinese = isHK || isTW || isCN || isZH;
 	const sectionHeadPaddingTop = parseFloat(
 		getComputedStyle(globalSectionHead).paddingTop,
 	);
-	let lastChildHeight = Math.max(...heightArray) - sum;
-	const lastChild = container?.lastElementChild as HTMLElement | null;
-	const extraHeight = lastChildHeight - (lastChild?.offsetHeight ?? 0);
-	if (extraHeight < sectionHeadPaddingTop)
-		lastChildHeight += sectionHeadPaddingTop - extraHeight;
-	gsap.set(serviceSection, {
-		height: lastChildHeight,
-	});
 
-	heightArray.push(lastChildHeight);
-	serviceSectionContainer!.style.height = `${heightArray.reduce((prev, cur) => prev + cur, 0)}px`;
-	for (let i = 0; i < serviceSection.length; i++) {
-		serviceSection[i].style.position = "absolute";
-		serviceSection[i].style.bottom = "0";
-		serviceSection[i].style.right = "0";
-		serviceSection[i].style.height =
-			`${heightArray.slice(i).reduce((prev, cur) => prev + cur, 0)}px`;
-	}
-	for (let i = sectionHead.length - 2; i >= 0; i--) {
-		finalPos.push(
-			sectionHead[i].offsetHeight -
-				displayingArray[i] +
-				(finalPos[finalPos.length - 1] ?? 0),
-		);
-	}
-	ScrollTrigger.create({
-		trigger: container,
-		start: "top top",
-		endTrigger: container?.lastElementChild,
-		end: `top top+=${sum - negativeOffset}`,
-		onUpdate: (self) => {
-			container?.style.setProperty(
-				"--negative-top",
-				`${self.progress * negativeOffset}px`,
-			);
-		},
-		invalidateOnRefresh: false,
-	});
+	const mm = gsap.matchMedia();
 
-	ScrollTrigger.create({
-		endTrigger: container,
-		end: "bottom top",
-		trigger: container?.lastElementChild,
-		start: `top top+=${sum - negativeOffset + 2}`,
-		invalidateOnRefresh: false,
-		// markers: true,
-		onEnter: () => {
-			for (let i = 0; i < sectionHead.length; i++) {
-				sectionHead[i].style.position = "absolute";
-				sectionHead[i].style.top =
-					`${finalPos[sectionHead.length - 1 - i] - 2}px`;
-			}
+	mm.add(
+		{
+			reduceMotion: "(prefers-reduced-motion: reduce)",
+			normal: "(prefers-reduced-motion: no-preference)",
 		},
-		onLeaveBack: () => {
-			for (let i = 0; i < sectionHead.length; i++) {
-				sectionHead[i].style.position = "sticky";
-				sectionHead[i].style.top =
-					`calc(var(--self-offset) - var(--negative-top) - var(--scrollaway-top))`;
+		(context) => {
+			const reduceMotion = !!context.conditions?.reduceMotion;
+			if (reduceMotion) {
+				const h = serviceSection[serviceSection.length - 1].offsetHeight;
+				gsap.set(serviceSection[serviceSection.length - 1], {
+					height: h + sectionHeadPaddingTop,
+				});
+				gsap.set(sectionHead, {
+					position: "relative",
+				});
+				return;
 			}
+
+			for (let i = 0; i < serviceSection.length - 1; i++) {
+				gsap.to(serviceContent[i], {
+					autoAlpha: window.innerWidth >= 1280 ? 0 : 1,
+					scrollTrigger: {
+						trigger: container,
+						start: `top+=${heightArray.reduce((prev, cur) => prev + cur, 0) - sum + sectionHeadHeightArr[i] * 0.3} top`,
+						end: `+=${sum + sectionHeadHeightArr[i] * 0.7}`,
+						// markers: true,
+						// id: `serviceContent${i}`,
+						scrub: 1,
+						invalidateOnRefresh: false,
+						onEnter: () => {
+							serviceLabel[i + 1]?.classList.add("serviceLabelActive");
+							serviceLabel[i]?.classList.remove("serviceLabelActive");
+						},
+						onLeaveBack: () => {
+							serviceLabel[i]?.classList.add("serviceLabelActive");
+							serviceLabel[i + 1]?.classList.remove("serviceLabelActive");
+						},
+					},
+					ease: "power2.out",
+				});
+
+				heightArray.push(sectionHead[i].offsetHeight);
+				displayingArray.push(padding + contentHeightArr[i] + 1);
+				sum += displayingArray[i];
+				if (serviceSection[i + 1])
+					serviceSection[i + 1].style.setProperty("--self-offset", `${sum}px`);
+			}
+
+			const negativeOffset = window.innerWidth >= 1280 ? 60 : 0;
+
+			let lastChildHeight = Math.max(...heightArray) - sum;
+			const lastChild = container?.lastElementChild as HTMLElement | null;
+			const extraHeight = lastChildHeight - (lastChild?.offsetHeight ?? 0);
+			if (extraHeight < sectionHeadPaddingTop)
+				lastChildHeight += sectionHeadPaddingTop - extraHeight;
+			gsap.set(serviceSection[serviceSection.length - 1], {
+				height: lastChildHeight,
+			});
+
+			heightArray.push(lastChildHeight);
+			serviceSectionContainer!.style.height = `${heightArray.reduce((prev, cur) => prev + cur, 0)}px`;
+			for (let i = 0; i < serviceSection.length; i++) {
+				serviceSection[i].style.position = "absolute";
+				serviceSection[i].style.bottom = "0";
+				serviceSection[i].style.right = "0";
+				serviceSection[i].style.height =
+					`${heightArray.slice(i).reduce((prev, cur) => prev + cur, 0)}px`;
+			}
+			for (let i = sectionHead.length - 2; i >= 0; i--) {
+				finalPos.push(
+					sectionHead[i].offsetHeight -
+						displayingArray[i] +
+						(finalPos[finalPos.length - 1] ?? 0),
+				);
+			}
+			ScrollTrigger.create({
+				trigger: container,
+				start: "top top",
+				endTrigger: container?.lastElementChild,
+				end: `top top+=${sum - negativeOffset}`,
+				onUpdate: (self) => {
+					container?.style.setProperty(
+						"--negative-top",
+						`${self.progress * negativeOffset}px`,
+					);
+				},
+				invalidateOnRefresh: false,
+			});
+
+			ScrollTrigger.create({
+				endTrigger: container,
+				end: "bottom top",
+				trigger: container?.lastElementChild,
+				start: `top top+=${sum - negativeOffset + 2}`,
+				invalidateOnRefresh: false,
+				// markers: true,
+				onEnter: () => {
+					for (let i = 0; i < sectionHead.length; i++) {
+						sectionHead[i].style.position = "absolute";
+						sectionHead[i].style.top =
+							`${finalPos[sectionHead.length - 1 - i] - 2}px`;
+					}
+				},
+				onLeaveBack: () => {
+					for (let i = 0; i < sectionHead.length; i++) {
+						sectionHead[i].style.position = "sticky";
+						sectionHead[i].style.top =
+							`calc(var(--self-offset) - var(--negative-top) - var(--scrollaway-top))`;
+					}
+				},
+			});
 		},
-	});
+	);
 	// } else {
 	// 	container!.style.overflow = "hidden";
 	// 	let sum2 = 0;

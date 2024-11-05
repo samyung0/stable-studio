@@ -96,6 +96,10 @@ import CreditsCalloutSection from "./Section/CreditsCalloutSection/CreditsCallou
 	ScrollTrigger.config({ ignoreMobileResize: true });
 
 	const initGlobalLenis = () => {
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			document.getElementById("mainScroll")!.style.overflow = "auto";
+			return;
+		}
 		window.lenis = new Lenis({
 			// lerp: 0.4,
 			overscroll: true,

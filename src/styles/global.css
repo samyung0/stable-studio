@@ -115,3 +115,70 @@ body {
 input {
 	outline: none;
 }
+
+@media (prefers-contrast: more) {
+	:root {
+		--background: 0 0 100%;
+		--foreground: 0 0 0%;
+		--muted: 0 0 100%;
+		--border: 0 0% 0%;
+		--muted-foreground: 0 0% 0%;
+		--card: 0 0 97%;
+		--card-foreground: 0 0 0%;
+		--border: 0 0 0%;
+		--input: 0 0 0%;
+		--primary: 0 0 0%;
+		--primary-foreground: 0 0 100%;
+		--secondary: 0 0 0%;
+		--secondary-foreground: 0 0 100%;
+		--accent: 0 0 0%;
+		--accent-foreground: 0 0 100%;
+		--gray: #ffffff;
+		--gray_2: rgb(0, 0, 0);
+	}
+
+	/* NEED CLEANING UP OF STYLES, CHANGING COLOR FOR EACH ELEMENT IS NOT A GOOD PRACTICE */
+
+	#price .sectionHead span:not(#monthlySubscription span),
+	#getstarted p,
+	#getstarted input::placeholder,
+	#getstarted textarea::placeholder,
+	#getstarted a {
+		color: hsl(var(--primary-foreground));
+	}
+
+	#monthlySubscription a svg {
+		color: hsl(var(--primary-foreground));
+	}
+
+	#getstarted svg:not(button svg) {
+		stroke: hsl(var(--primary-foreground));
+	}
+
+	#getstarted input,
+	#getstarted textarea {
+		border-color: hsl(var(--primary-foreground));
+	}
+
+	#navList > ul,
+	#clip-path-container {
+		background-color: hsl(var(--card));
+	}
+
+	.animatedDividerText,
+	.animatedDividerColoredSVG {
+		color: hsl(var(--primary)) !important;
+	}
+
+	#getStartedButton svg {
+		stroke: hsl(var(--primary-foreground));
+	}
+
+	#sidenav {
+		--muted-foreground: 0 0% 100%;
+	}
+
+	#sidenav ul {
+		color: hsl(var(--primary-foreground));
+	}
+}

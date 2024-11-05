@@ -170,13 +170,14 @@ const isSmall = true;
 	import priceSectionAnimationLogic from "@/components/astro/Section/PriceSection/priceSectionAnimationLogic";
 	import Lenis from "lenis";
 
-	const lenis = new Lenis({
-		wrapper: document.getElementById("processScroll")!,
-		eventsTarget: document.getElementById("mainScroll")!,
-		lerp: 0.2,
-		overscroll: true,
-	});
-
+	if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+		const _lenis = new Lenis({
+			wrapper: document.getElementById("processScroll")!,
+			eventsTarget: document.getElementById("mainScroll")!,
+			lerp: 0.2,
+			overscroll: true,
+		});
+	}
 	gsap.ticker.add((time) => {
 		lenis.raf(time * 1000);
 	});

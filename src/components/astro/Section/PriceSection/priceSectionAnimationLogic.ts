@@ -1,7 +1,10 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const priceSectionAnimationLogic = (processTimeline: gsap.core.Timeline, ratio: number) => {
+const priceSectionAnimationLogic = (
+	processTimeline: gsap.core.Timeline,
+	ratio: number,
+) => {
 	gsap.registerPlugin(ScrollTrigger);
 	const processSectionContainer = document.getElementById(
 		"processSectionContainer",
@@ -29,7 +32,7 @@ const priceSectionAnimationLogic = (processTimeline: gsap.core.Timeline, ratio: 
 					autoAlpha: 0,
 					duration: ratio,
 				},
-				processTimeline.duration() - ratio
+				processTimeline.duration() - ratio,
 			);
 
 			processTimeline.to(
@@ -37,9 +40,9 @@ const priceSectionAnimationLogic = (processTimeline: gsap.core.Timeline, ratio: 
 				{
 					"--offset-top": "30px",
 					delay: 0.1,
-					duration: ratio
+					duration: ratio,
 				},
-				processTimeline.duration() - ratio
+				processTimeline.duration() - ratio,
 			);
 		},
 	);
@@ -53,11 +56,13 @@ const priceSectionAnimationLogic = (processTimeline: gsap.core.Timeline, ratio: 
 			isShort: "(max-height: 799px)",
 			isTall: "(min-height: 800px)",
 			isNarrow: "(max-width: 450px)",
+			reduceMotion: "(prefers-reduced-motion: reduce)",
 		},
 		(context) => {
 			const isShort = !!context.conditions?.isShort;
 			const isNarrow = !!context.conditions?.isNarrow;
-			if (isShort && isNarrow) return;
+			const reduceMotion = !!context.conditions?.reduceMotion;
+			if ((isShort && isNarrow) || reduceMotion) return;
 			const timelineMain = gsap.timeline({
 				scrollTrigger: {
 					trigger: priceAnimationContainer,

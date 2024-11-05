@@ -7,7 +7,7 @@ const year = new Date().getFullYear();
 
 <footer
 	id="footer"
-	class="flex h-full flex-col font-sans ~pt-6/24 ~pb-5/10 justify-between">
+	class="flex h-full flex-col justify-between font-sans ~pt-6/24 ~pb-5/10">
 	<div id="footerIconContainer" class="relative flex flex-col">
 		<a
 			id="footerIcon"
@@ -51,24 +51,41 @@ const year = new Date().getFullYear();
 	gsap.set(footerIcon, {
 		xPercent: -100,
 	});
-	let timeline: GSAPTimeline | null = null;
+	const mm = gsap.matchMedia();
+	// let timeline: GSAPTimeline | null = null;
 	const footerTimelineFn = () => {
-		timeline?.time(0).kill();
-		timeline = gsap
-			.timeline({
-				scrollTrigger: {
-					trigger: getstarted,
-					start: "bottom bottom",
-					end: `+=${footer!.offsetHeight}`,
-					scrub: 1,
-					invalidateOnRefresh: false,
-				},
-			})
-			.to(footerIcon, {
-				x: `${footerIconContainer?.offsetWidth ?? 0}px`,
-				rotate: 360,
-				ease: "none",
-			});
+		mm.kill();
+		// timeline?.time(0).kill();
+		mm.add(
+			{
+				reduceMotion: "(prefers-reduced-motion: reduce)",
+				normal: "(prefers-reduced-motion: no-preference)",
+			},
+			(context) => {
+				const reduceMotion = !!context.conditions?.reduceMotion;
+				if (reduceMotion) {
+					gsap.set(footerIcon, {
+						x: `${footerIconContainer?.offsetWidth ?? 0}px`,
+					});
+					return;
+				}
+				gsap
+					.timeline({
+						scrollTrigger: {
+							trigger: getstarted,
+							start: "bottom bottom",
+							end: `+=${footer!.offsetHeight}`,
+							scrub: 1,
+							invalidateOnRefresh: false,
+						},
+					})
+					.to(footerIcon, {
+						x: `${footerIconContainer?.offsetWidth ?? 0}px`,
+						rotate: 360,
+						ease: "none",
+					});
+			},
+		);
 	};
 
 	footerTimelineFn();

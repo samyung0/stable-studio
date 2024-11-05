@@ -126,7 +126,6 @@ const isChinese = isHK || isTW || isCN || isZH;
 
 	const openSidenav = () => {
 		window.lenis?.stop();
-		console.log(window.lenis)
 		window.sidenavOpen = true;
 		sidenavAnimateOpen.forEach((el) => el.beginElement());
 		gsap.set(sidenav, { display: "flex" });
