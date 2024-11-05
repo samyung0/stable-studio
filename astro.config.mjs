@@ -19,7 +19,22 @@ export default defineConfig({
 			project: "./project.inlang",
 			outdir: "./src/paraglide",
 		}),
-		sitemap(),
+		sitemap({
+			i18n: {
+				defaultLocale: "en",
+				locales: {
+					en: "en",
+					tl: "tl",
+					id: "id",
+					"zh-HK": "zh-HK",
+					"zh-CN": "zh-CN",
+					vi: "vi",
+					"zh-TW": "zh-TW",
+					zh: "zh",
+					"zh-MO": "zh-HK",
+				},
+			},
+		}),
 		tailwind({
 			applyBaseStyles: false,
 		}),
