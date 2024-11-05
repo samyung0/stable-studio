@@ -130,7 +130,10 @@ const isChinese = isZH || isCN || isTW || isHK;
 </style>
 
 <script>
-	// import sus from "@/assets/sus.json"
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+
 	const btn = document.getElementById("loadAnimationBtn")!;
 	const susAnimation = document.getElementById(
 		"susAnimation",
@@ -138,6 +141,22 @@ const isChinese = isZH || isCN || isTW || isHK;
 	const notSusAnimation = document.getElementById(
 		"notSusAnimation",
 	) as HTMLElement | null;
+
+	const landingAnimate = gsap.utils.toArray(".landingAnimate") as (
+		| SVGAnimateElement
+		| SVGAnimateMotionElement
+	)[];
+
+	ScrollTrigger.create({
+		trigger: susAnimation,
+		start: "bottom top",
+		onEnter: () => {
+			landingAnimate.forEach((el) => el.endElement());
+		},
+		onLeaveBack: () => {
+			landingAnimate.forEach((el) => el.beginElement());
+		},
+	});
 
 	declare global {
 		var Modernizr: any;
@@ -179,6 +198,17 @@ const isChinese = isZH || isCN || isTW || isHK;
 				console.log("lottie loaded");
 				notSusAnimation!.style.display = "none";
 				notSusAnimation?.remove();
+			});
+
+			ScrollTrigger.create({
+				trigger: notSusAnimation,
+				start: "bottom top",
+				onEnter: () => {
+					anim.pause();
+				},
+				onLeaveBack: () => {
+					anim.play();
+				},
 			});
 		};
 
