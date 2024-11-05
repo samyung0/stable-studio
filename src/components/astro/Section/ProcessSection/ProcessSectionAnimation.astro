@@ -169,18 +169,22 @@ const isSmall = true;
 	import progressWheelAnimation from "./progressWheelAnimation";
 	import priceSectionAnimationLogic from "@/components/astro/Section/PriceSection/priceSectionAnimationLogic";
 	import Lenis from "lenis";
-
-	if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-		const _lenis = new Lenis({
+	
+	let lenis: Lenis | null = null;
+	if (
+		!window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+		processScroll!.scrollHeight > processScroll.offsetHeight
+	) {
+		lenis = new Lenis({
 			wrapper: document.getElementById("processScroll")!,
 			eventsTarget: document.getElementById("mainScroll")!,
 			lerp: 0.2,
 			overscroll: true,
 		});
+		gsap.ticker.add((time) => {
+			lenis!.raf(time * 1000);
+		});
 	}
-	gsap.ticker.add((time) => {
-		lenis.raf(time * 1000);
-	});
 
 	gsap.registerPlugin(ScrollTrigger);
 	gsap.config({

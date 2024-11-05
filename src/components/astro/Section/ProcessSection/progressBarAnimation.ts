@@ -14,6 +14,7 @@ const progressBarAnimation = (
 			xPercent: 0,
 			borderRadius: 12,
 			duration: () => timeline.totalDuration(),
+			overwrite: true
 		},
 		0,
 	);
@@ -25,7 +26,7 @@ const progressBarAnimation = (
 		{
 			x: () => el?.offsetWidth ?? 0,
 			duration: () => timeline.totalDuration(),
-			overwrite: false,
+			overwrite: "auto",
 		},
 		0,
 	);

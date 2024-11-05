@@ -14,6 +14,8 @@ const progressWheelAnimation = (
 			const reduceMotion = !!context.conditions?.reduceMotion;
 			if (reduceMotion) return;
 			let rotateSpeed = trigger.getVelocity() / 100;
+			if(rotateSpeed > 40) rotateSpeed = 40;
+			if(rotateSpeed < -40) rotateSpeed = -40;
 			const dir = trigger.direction;
 			if (
 				Math.abs(rotateSpeed) < 1 ||
@@ -22,7 +24,7 @@ const progressWheelAnimation = (
 			)
 				rotateSpeed = dir;
 			rotateWheel.timeScale(rotateSpeed);
-			gsap.to(rotateWheel, { timeScale: rotateSpeed });
+			// gsap.to(rotateWheel, { timeScale: rotateSpeed });
 		},
 	);
 };
