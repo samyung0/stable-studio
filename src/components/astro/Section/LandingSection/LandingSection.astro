@@ -111,6 +111,11 @@ const isChinese = isZH || isCN || isTW || isHK;
 		class="hidden text-[0.65rem] font-normal uppercase text-muted-foreground underline"
 		>Load Animation (beware of lag)</button
 	>
+	<button
+		id="resumeAnimationBtn"
+		class="hidden text-[0.65rem] font-normal uppercase text-muted-foreground underline"
+		>Resume Animation (beware of lag)</button
+	>
 	<div id="notSusAnimation" class="hidden">
 		<img alt="static landing image" class="rounded-xl object-contain" />
 		<!-- <LandingImg /> -->
@@ -135,6 +140,7 @@ const isChinese = isZH || isCN || isTW || isHK;
 	gsap.registerPlugin(ScrollTrigger);
 
 	const btn = document.getElementById("loadAnimationBtn")!;
+	const resumeBtn = document.getElementById("resumeAnimationBtn")!;
 	const susAnimation = document.getElementById(
 		"susAnimation",
 	) as HTMLElement | null;
@@ -147,16 +153,54 @@ const isChinese = isZH || isCN || isTW || isHK;
 		| SVGAnimateMotionElement
 	)[];
 
+	const pauseAnim = () => {
+		for (let i = 0; i < landingAnimate.length; i++) {
+			landingAnimate[i].endElement();
+		}
+	};
+
+	const resumeAnim = () => {
+		for (let i = 0; i < landingAnimate.length; i++) {
+			landingAnimate[i].beginElement();
+		}
+	};
+
 	ScrollTrigger.create({
 		trigger: susAnimation,
 		start: "bottom top",
-		onEnter: () => {
-			landingAnimate.forEach((el) => el.endElement());
-		},
-		onLeaveBack: () => {
-			landingAnimate.forEach((el) => el.beginElement());
-		},
+		onEnter: pauseAnim,
+		onLeaveBack: resumeAnim,
 	});
+
+	let hasPaused = false;
+	let hasStarted = false;
+	landingAnimate[0].addEventListener("beginEvent", () => {
+		hasStarted = true;
+		if (hasPaused) pauseAnim();
+	});
+
+	const observer = new PerformanceObserver(function (list) {
+		for (const entry of list.getEntries()) {
+			if (entry.duration > 350 && !hasPaused) {
+				console.log(entry);
+				hasPaused = true;
+				resumeBtn.style.display = "block";
+				if (hasStarted) pauseAnim();
+
+				resumeBtn.addEventListener(
+					"click",
+					() => {
+						hasPaused = false;
+						resumeBtn.style.display = "none";
+						resumeAnim();
+					},
+					{ passive: true },
+				);
+			}
+		}
+	});
+
+	observer.observe({ type: "longtask" });
 
 	declare global {
 		var Modernizr: any;
