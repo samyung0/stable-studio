@@ -33,6 +33,9 @@ import CreditsCalloutSection from "./Section/CreditsCalloutSection/CreditsCallou
 	<!-- side nav for language and menu on mobile -->
 	<SideNav />
 
+	<!-- make above other content so tabbing works better -->
+	<FloatingNavBar />
+
 	<button
 		id="smallNavButton"
 		class="fixed right-6 top-8 z-[200] block size-8 stroke-2 sm:right-12 md:hidden">
@@ -69,8 +72,6 @@ import CreditsCalloutSection from "./Section/CreditsCalloutSection/CreditsCallou
 			</div>
 		</div>
 	</div>
-
-	<FloatingNavBar />
 
 	<slot />
 

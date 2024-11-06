@@ -11,7 +11,7 @@ const isChinese = isZH || isCN || isTW || isHK;
 ---
 
 <nav
-	class="fixed z-[100] bottom-[2%] left-[50%] hidden h-[44px] -translate-x-[50%] sm:block md:h-[54px]">
+	class="fixed bottom-[2%] left-[50%] z-[100] hidden h-[44px] -translate-x-[50%] sm:block md:h-[54px]">
 	<div
 		class={cn(
 			"relative flex h-full flex-col",
@@ -22,7 +22,7 @@ const isChinese = isZH || isCN || isTW || isHK;
 				class="flex h-full rounded border border-primary bg-primary text-primary-foreground">
 				<a
 					id="activeItem"
-					class="flex text-xs items-center gap-3 whitespace-nowrap p-5"
+					class="flex items-center gap-3 whitespace-nowrap p-5 text-xs"
 					href="#home">{m.cozy_noble_yak_adapt()}<span>/</span></a
 				>
 			</div>
@@ -58,12 +58,10 @@ const isChinese = isZH || isCN || isTW || isHK;
 				</div>
 				<div
 					id="clip-path-container"
-					aria-hidden="true"
 					class="pointer absolute left-0 top-0 flex h-full w-full items-center overflow-hidden rounded border border-primary bg-primary">
 					<ul class="flex h-full flex-row items-center">
 						<li class="pl-1 text-xs text-primary-foreground">
 							<a
-								aria-hidden="true"
 								tabindex="-1"
 								class="flex items-center gap-3 whitespace-nowrap p-5"
 								href="#service">{m.bold_late_gecko_transform()}</a
@@ -71,7 +69,6 @@ const isChinese = isZH || isCN || isTW || isHK;
 						</li>
 						<li class="text-xs text-primary-foreground">
 							<a
-								aria-hidden="true"
 								tabindex="-1"
 								class="flex items-center gap-3 whitespace-nowrap p-5"
 								href="#process">{m.kind_merry_jackal_spark()}</a
@@ -79,7 +76,6 @@ const isChinese = isZH || isCN || isTW || isHK;
 						</li>
 						<li class="text-xs text-primary-foreground">
 							<a
-								aria-hidden="true"
 								tabindex="-1"
 								class="flex items-center gap-3 whitespace-nowrap p-5"
 								href="#price">{m.few_tangy_walrus_file()}</a
@@ -87,7 +83,6 @@ const isChinese = isZH || isCN || isTW || isHK;
 						</li>
 						<li class="pr-1 text-xs text-primary-foreground">
 							<a
-								aria-hidden="true"
 								tabindex="-1"
 								class="flex items-center gap-3 whitespace-nowrap p-5"
 								href="#vision">{m.smart_zippy_shell_dust()}</a
