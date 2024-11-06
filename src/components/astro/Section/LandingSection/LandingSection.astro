@@ -153,13 +153,34 @@ const isChinese = isZH || isCN || isTW || isHK;
 		| SVGAnimateMotionElement
 	)[];
 
+	let jankySVG = false;
+
 	const pauseAnim = () => {
-		for (let i = 0; i < landingAnimate.length; i++) {
-			landingAnimate[i].endElement();
+		if (jankySVG) return;
+		// account for svg bug on firefox based browsers
+		const t1 = performance.now();
+		for (let i = 0; i < 20; i++) {
+			landingAnimate[i]?.endElement();
 		}
+		const t2 = performance.now();
+		if (t2 - t1 > 4) {
+			jankySVG = true;
+			return;
+		}
+		requestAnimationFrame(() => {
+			for (let i = 0; i < landingAnimate.length; i++) {
+				landingAnimate[i].endElement();
+			}
+		});
 	};
 
-	const resumeAnim = () => {
+	const resumeAnim = (forceResume?: boolean) => {
+		if (jankySVG && !forceResume) {
+			for (let i = 0; i < 20; i++) {
+				landingAnimate[i]?.beginElement();
+			}
+			return;
+		}
 		for (let i = 0; i < landingAnimate.length; i++) {
 			landingAnimate[i].beginElement();
 		}
@@ -169,7 +190,7 @@ const isChinese = isZH || isCN || isTW || isHK;
 		trigger: susAnimation,
 		start: "bottom top",
 		onEnter: pauseAnim,
-		onLeaveBack: resumeAnim,
+		onLeaveBack: resumeAnim.bind(null, false),
 	});
 
 	let hasPaused = false;
@@ -183,7 +204,7 @@ const isChinese = isZH || isCN || isTW || isHK;
 	const observer = new PerformanceObserver(function (list) {
 		for (const entry of list.getEntries()) {
 			if (entry.duration > 350 && !hasPaused) {
-				if(hasResumed) return;
+				if (hasResumed) return;
 				console.log(entry);
 				hasPaused = true;
 				resumeBtn.style.display = "block";
@@ -195,7 +216,7 @@ const isChinese = isZH || isCN || isTW || isHK;
 						hasPaused = false;
 						hasResumed = true;
 						resumeBtn.style.display = "none";
-						resumeAnim();
+						resumeAnim(true);
 						observer.disconnect();
 					},
 					{ passive: true },
