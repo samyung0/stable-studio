@@ -174,14 +174,16 @@ const isChinese = isZH || isCN || isTW || isHK;
 
 	let hasPaused = false;
 	let hasStarted = false;
+	let hasResumed = false;
 	landingAnimate[0].addEventListener("beginEvent", () => {
 		hasStarted = true;
-		if (hasPaused) pauseAnim();
+		if (hasPaused && !hasResumed) pauseAnim();
 	});
 
 	const observer = new PerformanceObserver(function (list) {
 		for (const entry of list.getEntries()) {
 			if (entry.duration > 350 && !hasPaused) {
+				if(hasResumed) return;
 				console.log(entry);
 				hasPaused = true;
 				resumeBtn.style.display = "block";
@@ -191,8 +193,10 @@ const isChinese = isZH || isCN || isTW || isHK;
 					"click",
 					() => {
 						hasPaused = false;
+						hasResumed = true;
 						resumeBtn.style.display = "none";
 						resumeAnim();
+						observer.disconnect();
 					},
 					{ passive: true },
 				);
