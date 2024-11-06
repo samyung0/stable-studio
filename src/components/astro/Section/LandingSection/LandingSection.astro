@@ -206,56 +206,56 @@ const isChinese = isZH || isCN || isTW || isHK;
 		var Modernizr: any;
 	}
 
-	if (!Modernizr.smil) {
-		susAnimation!.style.display = "none";
-		notSusAnimation!.style.display = "flex";
-		notSusAnimation!.firstElementChild!.setAttribute("src", "/landing.svg");
-		susAnimation!.innerHTML = "";
+	// if (!Modernizr.smil) {
+	// 	susAnimation!.style.display = "none";
+	// 	notSusAnimation!.style.display = "flex";
+	// 	notSusAnimation!.firstElementChild!.setAttribute("src", "/landing.svg");
+	// 	susAnimation!.innerHTML = "";
 
-		const load = async () => {
-			btn.removeEventListener("click", load);
-			btn.remove();
-			btn.style.display = "none";
-			susAnimation!.style.display = "flex";
-			susAnimation!.style.height = `${
-				parseFloat(getComputedStyle(notSusAnimation!).width.slice(0, -2)) /
-				1.692966872
-			}px`;
+	// 	const load = async () => {
+	// 		btn.removeEventListener("click", load);
+	// 		btn.remove();
+	// 		btn.style.display = "none";
+	// 		susAnimation!.style.display = "flex";
+	// 		susAnimation!.style.height = `${
+	// 			parseFloat(getComputedStyle(notSusAnimation!).width.slice(0, -2)) /
+	// 			1.692966872
+	// 		}px`;
 
-			const lottie = (await import("lottie-web")).default;
-			lottie.setQuality(2);
-			const anim = lottie.loadAnimation({
-				container: susAnimation!,
-				renderer: "canvas",
-				loop: true,
-				autoplay: true,
-				// animationData: sus,
-				path: "/sus.json",
-				rendererSettings: {
-					// preserveAspectRatio: "xMidYMid slice",
-					// focusable: false,
-					clearCanvas: false,
-				},
-			});
+	// 		const lottie = (await import("lottie-web")).default;
+	// 		lottie.setQuality(2);
+	// 		const anim = lottie.loadAnimation({
+	// 			container: susAnimation!,
+	// 			renderer: "canvas",
+	// 			loop: true,
+	// 			autoplay: true,
+	// 			// animationData: sus,
+	// 			path: "/sus.json",
+	// 			rendererSettings: {
+	// 				// preserveAspectRatio: "xMidYMid slice",
+	// 				// focusable: false,
+	// 				clearCanvas: false,
+	// 			},
+	// 		});
 
-			anim.addEventListener("DOMLoaded", () => {
-				console.log("lottie loaded");
-				notSusAnimation!.style.display = "none";
-				notSusAnimation?.remove();
-			});
+	// 		anim.addEventListener("DOMLoaded", () => {
+	// 			console.log("lottie loaded");
+	// 			notSusAnimation!.style.display = "none";
+	// 			notSusAnimation?.remove();
+	// 		});
 
-			ScrollTrigger.create({
-				trigger: notSusAnimation,
-				start: "bottom top",
-				onEnter: () => {
-					anim.pause();
-				},
-				onLeaveBack: () => {
-					anim.play();
-				},
-			});
-		};
+	// 		ScrollTrigger.create({
+	// 			trigger: notSusAnimation,
+	// 			start: "bottom top",
+	// 			onEnter: () => {
+	// 				anim.pause();
+	// 			},
+	// 			onLeaveBack: () => {
+	// 				anim.play();
+	// 			},
+	// 		});
+	// 	};
 
-		btn.addEventListener("click", load, { passive: true });
-	}
+	// 	btn.addEventListener("click", load, { passive: true });
+	// }
 </script>
