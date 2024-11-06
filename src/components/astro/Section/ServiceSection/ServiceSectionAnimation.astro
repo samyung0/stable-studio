@@ -187,7 +187,7 @@ const isChinese = isHK || isTW || isCN || isZH;
 						// markers: true,
 						// id: `serviceContent${i}`,
 						scrub: 1,
-						invalidateOnRefresh: false,
+						invalidateOnRefresh: true,
 						onEnter: () => {
 							serviceLabel[i + 1]?.classList.add("serviceLabelActive");
 							serviceLabel[i]?.classList.remove("serviceLabelActive");
@@ -245,7 +245,7 @@ const isChinese = isHK || isTW || isCN || isZH;
 						`${self.progress * negativeOffset}px`,
 					);
 				},
-				invalidateOnRefresh: false,
+				invalidateOnRefresh: true,
 			});
 
 			ScrollTrigger.create({
@@ -253,7 +253,7 @@ const isChinese = isHK || isTW || isCN || isZH;
 				end: "bottom top",
 				trigger: container?.lastElementChild,
 				start: `top top+=${sum - negativeOffset + 2}`,
-				invalidateOnRefresh: false,
+				invalidateOnRefresh: true,
 				// markers: true,
 				onEnter: () => {
 					for (let i = 0; i < sectionHead.length; i++) {
@@ -284,7 +284,7 @@ const isChinese = isHK || isTW || isCN || isZH;
 	// 			pin: true,
 	// 			pinSpacing: false,
 	// 			anticipatePin: 1,
-	// 			invalidateOnRefresh: false,
+	// 			invalidateOnRefresh: true,
 	// 		});
 	// 		sum2 += displayingArray[i];
 	// 	}
