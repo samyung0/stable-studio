@@ -11,8 +11,6 @@
   <p align="center">
     The main repository for Stable Studio.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
     <br />
     <a href="https://stablestudio.org">View Page</a>
   </p>
