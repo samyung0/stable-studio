@@ -96,6 +96,19 @@ import CreditsCalloutSection from "./Section/CreditsCalloutSection/CreditsCallou
 	gsap.registerPlugin(ScrollTrigger);
 	ScrollTrigger.config({ ignoreMobileResize: true });
 
+	// test refresh rate
+	// const t = [] as number[];
+	// function animate(now: number) {
+	// 	t.unshift(now);
+	// 	if (t.length > 10) {
+	// 		const t0 = t.pop();
+	// 		const fps = Math.floor((1000 * 10) / (now - t0!));
+	// 		console.log(fps)
+	// 	} else window.requestAnimationFrame(animate);
+	// }
+
+	// window.requestAnimationFrame(animate);
+
 	const initGlobalLenis = () => {
 		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 			document.getElementById("mainScroll")!.style.overflow = "auto";
