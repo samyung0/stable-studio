@@ -237,6 +237,49 @@ const creditsSchemaMarkup: Graph = {
 			description:
 				"Stable Studio is a freelancers studio that makes animations-rich websites. We prioritize user experience, website profile and development speed.",
 		},
+		{
+			"@type": "ProfessionalService",
+			image: [
+				"https://stablestudio.org/stablestudio-large.png",
+				"https://stablestudio.org/screenshot.png",
+				"https://stablestudio.org/screenshot-small.png",
+			],
+			name: "Stable Studio",
+			address: {
+				"@type": "PostalAddress",
+				streetAddress:
+					"RM A07, 1701-02 New Trend Centre, 704 Prince Edward Road East",
+				addressLocality: "Kowloon",
+				addressRegion: "HK",
+				addressCountry: "HK",
+			},
+			review: {
+				"@type": "Review",
+				reviewRating: {
+					"@type": "Rating",
+					ratingValue: 4.8,
+					bestRating: 5,
+				},
+			},
+			url: "https://stablestudio.org",
+			priceRange: "$$",
+			openingHoursSpecification: [
+				{
+					"@type": "OpeningHoursSpecification",
+					dayOfWeek: [
+						"Monday",
+						"Tuesday",
+						"Wednesday",
+						"Thursday",
+						"Friday",
+						"Saturday",
+						"Sunday",
+					],
+					opens: "00:00",
+					closes: "23:59",
+				},
+			],
+		},
 	],
 };
 
