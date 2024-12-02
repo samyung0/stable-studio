@@ -87,7 +87,7 @@ import CreditsCalloutSection from "./Section/CreditsCalloutSection/CreditsCallou
 	}
 </style>
 <script>
-	import Lenis, { type ScrollToOptions } from "lenis";
+	import Lenis, { type LenisOptions, type ScrollToOptions } from "lenis";
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	import { cookies } from "@/lib/clientCookies";
@@ -110,15 +110,14 @@ import CreditsCalloutSection from "./Section/CreditsCalloutSection/CreditsCallou
 	// window.requestAnimationFrame(animate);
 
 	const initGlobalLenis = () => {
-		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-			document.getElementById("mainScroll")!.style.overflow = "auto";
-			return;
+		const config : LenisOptions = {
+			eventsTarget: document.getElementById("mainScroll")!
 		}
-		window.lenis = new Lenis({
-			// lerp: 0.4,
-			// overscroll: true,
-			eventsTarget: document.getElementById("mainScroll")!,
-		});
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			config.smoothWheel = false;
+		}
+		
+		window.lenis = new Lenis(config);
 
 		lenis.on("scroll", ScrollTrigger.update);
 
@@ -143,10 +142,10 @@ import CreditsCalloutSection from "./Section/CreditsCalloutSection/CreditsCallou
 		offset: -window.innerHeight * 0.2,
 		easing: (x: number) =>
 			x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2,
-		duration: 1.5,
+		duration: window.lenis?.isSmooth ? 1.5 : 1,
 	});
 	const handleHashNavigate = (href: string) => {
-		lenis.scrollTo(href, config());
+		window.lenis?.scrollTo(href, config());
 		window.location.hash = href;
 		window.activeIndex = window.href?.indexOf(href.split("#")[1]);
 		window.setNavbar?.();
